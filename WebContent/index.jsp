@@ -15,6 +15,10 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="parallax.css" rel="stylesheet" type="text/css" >
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <style>
 /* Make the image fully responsive */
 .carousel-inner img {
@@ -35,6 +39,24 @@
 .col-sm-2 {
 	margin: auto;
 }
+
+#wrapper {
+height: 1200px;
+}
+
+.wrapper2 {
+width: 100%;
+height: 33%;
+}
+
+.text1 {
+width: 50%;
+text-align: center;
+float: left;
+margin-top: 70px;
+}
+
+
 
 
 </style>
@@ -168,5 +190,65 @@
 		</div>
 	</div>
 </div>
+
+<div id="wrapper">
+<div class="wrapper2">
+<div class="text1" data-aos="zoom-out-right">
+<h1 class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit " style="margin: 0 0 20px 0;">혼족이란?</h1>
+<p style="text-align: center;"><span style="color: #808080;">혼자 밥을 먹거나 여가생활과 쇼핑을 즐기며, </span></p>
+<p style="text-align: center;"><span style="color: #808080;">여행도 홀로 떠나는 등 혼자 활동하는게 취미이거나 </span></p>
+<p style="text-align: center;"><span style="color: #808080;">그런 성향이 강한 사람들을 일컫는 줄임말.</span></p>
+</div>
+<section id="section2" class="black-circle ct-u-paddingBoth120" style="min-height: 396px; width: 50%; float: left;">
+</section>
+</div>
+<div class="wrapper2">
+<section id="section3" class="black-circle ct-u-paddingBoth120" style="min-height: 396px; width: 50%; float: left;">
+</section>
+<div class="text1" data-aos="zoom-out-left">
+<h1 class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit " style="margin: 0 0 20px 0;">혼족이란?</h1>
+<p style="text-align: center;"><span style="color: #808080;">혼자 밥을 먹거나 여가생활과 쇼핑을 즐기며, </span></p>
+<p style="text-align: center;"><span style="color: #808080;">여행도 홀로 떠나는 등 혼자 활동하는게 취미이거나 </span></p>
+<p style="text-align: center;"><span style="color: #808080;">그런 성향이 강한 사람들을 일컫는 줄임말.</span></p>
+</div>
+</div>
+<div class="wrapper2">
+<div class="text1" data-aos="zoom-out-right">
+<h1 class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit " style="margin: 0 0 20px 0;">혼족이란?</h1>
+<p style="text-align: center;"><span style="color: #808080;">혼자 밥을 먹거나 여가생활과 쇼핑을 즐기며, </span></p>
+<p style="text-align: center;"><span style="color: #808080;">여행도 홀로 떠나는 등 혼자 활동하는게 취미이거나 </span></p>
+<p style="text-align: center;"><span style="color: #808080;">그런 성향이 강한 사람들을 일컫는 줄임말.</span></p>
+</div>
+<section id="section4" class="black-circle ct-u-paddingBoth120" style="min-height: 396px; width: 50%; float: left;">
+</section>
+</div>
+</div>
+
+<div style="height: 500px">
+
+</div>
+<script>
+AOS.init({
+	  duration: 1200,
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('#section2').parallax({
+			imageSrc: 'images/background-3.jpg'
+		});
+		
+		$('#section3').parallax({
+			imageSrc: 'images/background-4.jpg'
+		});
+		$('#section4').parallax({
+			imageSrc: 'images/background-5.jpg'
+		});
+		
+		
+	});
+</script>
 </body>
 </html>
