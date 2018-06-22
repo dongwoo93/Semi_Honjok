@@ -20,59 +20,83 @@
 	integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="
 	crossorigin="anonymous"></script>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css"
 	href="../communitycss/hontalkView.css">
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="../communitycss/Footer-with-button-logo.css">
 </head>
 <body>
-	<nav class="navbar navbar-light bg-light fixed-top navbar-expand-md"
-		id="navbar"> <a class="navbar-brand" href="#"
-		style="color: white">&#xB098;&#xD640;&#xB85C;&#xC871;,,</a>
-	<ul class="nav navbar-nav">
-		<li class="nav-item"></li>
-		<li class="dropdown nav-item"><a class="dropdown-toggle nav-link"
-			data-toggle="dropdown" href="#">&#xD63C;&#xD1A1; <span></span></a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">&#xC790;&#xC720;&#xAC8C;&#xC2DC;&#xD310;</a>
-				</li>
-				<li class="dropdown-item"><a href="#">&#xACE0;&#xBBFC;&#xC0C1;&#xB2F4;</a>
-				</li>
-				<li class="dropdown-item"><a href="#">&#xC9C8;&#xBB38;/&#xB2F5;&#xBCC0;</a>
-				</li>
-				<li class="dropdown-item"><a href="#">&#xD63C;&#xD301;</a></li>
-				<li class="dropdown-item"><a href="#">&#xBCA0;&#xC2A4;&#xD2B8;</a>
-				</li>
-			</ul></li>
-		<li class="nav-item"><a href="#" class="catego nav-link">&#xAFC0;&#xD301;</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">&#xC694;&#xB9AC;</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">&#xC778;&#xD14C;&#xB9AC;&#xC5B4;</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC5EC;&#xD589;</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xB9DB;&#xC9D1;</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC1FC;&#xD551;</a>
-		</li>
-	</ul>
-	<ul class="nav navbar-nav ml-auto">
-		<li class="nav-item"><a href="#" class="nav-link"><span
-				class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		<li class="nav-item"><a href="#" class="nav-link"><span
-				class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	</ul>
-	</nav>
-	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner" id="carousel-inner">
-				<div class="item active carousel-item">
-					<img src="../imges/la.jpg" alt="Los Angeles" class="img">
+<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+<a class="navbar-brand" href="#" style="color: white">&#xB098;&#xD640;&#xB85C;&#xC871;,,</a>
+    <ul class="nav navbar-nav">
+        <li class="nav-item"></li>
+        <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">&#xD63C;&#xD1A1; <span></span></a>
+            <ul
+            class="dropdown-menu">
+                <li class="dropdown-item"><a href="#">&#xC790;&#xC720;&#xAC8C;&#xC2DC;&#xD310;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xACE0;&#xBBFC;&#xC0C1;&#xB2F4;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xC9C8;&#xBB38;/&#xB2F5;&#xBCC0;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xD63C;&#xD301;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xBCA0;&#xC2A4;&#xD2B8;</a>
+                </li>
+                </ul>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xAFC0;&#xD301;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xC694;&#xB9AC;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xC778;&#xD14C;&#xB9AC;&#xC5B4;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC5EC;&#xD589;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xB9DB;&#xC9D1;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC1FC;&#xD551;</a>
+        </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span>
+
+					Sign Up</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>
+
+					Login</a>
+            </li>
+        </ul>
+</nav>
+	<div id="demo" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="../imges/la.jpg" alt="Los Angeles" width="1200" height="700">
+				<div class="carousel-caption">
+					<h3>Los Angeles</h3>
+					<p>We had such a great time in LA!</p>
 				</div>
-				<div class="item carousel-item">
-					<img src="../imges/chicago.jpg" alt="Chicago" class="img">
+			</div>
+			<div class="carousel-item">
+				<img src="../imges/chicago.jpg" alt="Chicago" width="1200" height="700">
+				<div class="carousel-caption">
+					<h3>Chicago</h3>
+					<p>Thank you, Chicago!</p>
 				</div>
-				<div class="item carousel-item">
-					<img src="../imges/ny.jpg" alt="New york" class="img">
+			</div>
+			<div class="carousel-item">
+				<img src="../imges/ny.jpg" alt="New York" width="1200" height="700">
+				<div class="carousel-caption">
+					<h3>New York</h3>
+					<p>We love the Big Apple!</p>
 				</div>
 			</div>
 		</div>
@@ -124,7 +148,7 @@
 		</div>
 
 		<div id="free2">
-			<h5>고민상담</h5>
+			<h5>질문/답변</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 500px">
@@ -167,10 +191,10 @@
 		</div>
 
 		<div id="free3">
-			<h5>고민상담</h5>
+			<h5>베스트</h5>
 
 			<table class="table table-hover" id="second-table"
-				style="width: 300px; height: 300px;">
+				style="width: 350px; height: 300px;">
 				<thead class="thead-dark">
 					<tr>
 						<th>글번호</th>
@@ -183,7 +207,7 @@
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
-						<td>제목이다</td>
+						<td style="width:80px; height:49px; text-overflow:ellipsis; overflow:hidden;">sdsdsdsd제목이다ssssdsdsddsdsd</td>
 						<td>내용이다</td>
 						<td>작성자다</td>
 					</tr>
@@ -223,12 +247,30 @@
 						<td>$30,000.00</td>
 						<td>작성자다</td>
 					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>50</td>
+						<td>$30,000.00</td>
+						<td>작성자다</td>
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>50</td>
+						<td>$30,000.00</td>
+						<td>작성자다</td>
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>50</td>
+						<td>$30,000.00</td>
+						<td>작성자다</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
 
 		<div id="free4">
-			<h5>혼톡</h5>
+			<h5>고민상담</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 500px">
@@ -271,7 +313,7 @@
 		</div>
 
 		<div id="free5">
-			<h5>질문/답변</h5>
+			<h5>혼팁</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 500px">
@@ -313,5 +355,53 @@
 			</table>
 		</div>
 	</div>
+
+
+	<footer id="myFooter">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h2 class="logo">
+					<a href="#"> LOGO </a>
+				</h2>
+			</div>
+			<div class="col-md-2">
+				<h5>Get started</h5>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Sign up</a></li>
+					<li><a href="#">Downloads</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h5>About us</h5>
+				<ul>
+					<li><a href="#">Company Information</a></li>
+					<li><a href="#">Contact us</a></li>
+					<li><a href="#">Reviews</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h5>Support</h5>
+				<ul>
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">Help desk</a></li>
+					<li><a href="#">Forums</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<div class="social-networks">
+					<a href="#" class="twitter"><i class="fa fa-twitter"></i></a> <a
+						href="#" class="facebook"><i class="fa fa-facebook"></i></a> <a
+						href="#" class="google"><i class="fa fa-google-plus"></i></a>
+				</div>
+				<button type="button" class="btn btn-secondary">Contact us</button>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<p>&#xA9; 2016 Copyright Text</p>
+	</div>
+	</footer>
 </body>
 </html>
