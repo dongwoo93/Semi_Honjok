@@ -56,9 +56,12 @@ float: left;
 margin-top: 70px;
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> master
 </style>
 </head>
 <body>
@@ -170,11 +173,15 @@ margin-top: 70px;
 				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
 				</a>
 				<div class="card-body">
+<<<<<<< HEAD
 				
 				<a href=""><h5 class="card-title">Card title</h5></a>
 				
 					
 					
+=======
+				<a href=""><h5 class="card-title">Card title</h5></a>
+>>>>>>> master
 					<p class="card-text">
 						<small class="text-muted">Last updated 3 mins ago</small>
 					</p>
