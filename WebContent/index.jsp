@@ -166,9 +166,14 @@ margin-top: 70px;
 		</div>
 		<div class="col-sm-2" id="card1">
 			<div class="card">
+			<a href="">
 				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				</a>
 				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
+				
+				<a href=""><h5 class="card-title">Card title</h5></a>
+				
+					
 					
 					<p class="card-text">
 						<small class="text-muted">Last updated 3 mins ago</small>
