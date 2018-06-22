@@ -7,58 +7,63 @@
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="parallax.css" rel="stylesheet" type="text/css" >
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<style>
-/* Make the image fully responsive */
-.carousel-inner img {
-	width: 100%;
-	height: 700px;
-}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-.card-deck {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
-	margin: 0 350px 80px 250px;
-}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-.card {
-	width: 300px;
-	height: 300px;
-}
-
-.col-sm-2 {
-	margin: auto;
-}
-
-#wrapper {
-height: 1200px;
-}
-
-.wrapper2 {
-width: 100%;
-height: 33%;
-}
-
-.text1 {
-width: 50%;
-text-align: center;
-float: left;
-margin-top: 70px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="parallax.css" rel="stylesheet" type="text/css" >
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+<a class="navbar-brand" href="#" style="color: white">&#xB098;&#xD640;&#xB85C;&#xC871;,,</a>
+    <ul class="nav navbar-nav">
+        <li class="nav-item"></li>
+        <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">&#xD63C;&#xD1A1; <span></span></a>
+            <ul
+            class="dropdown-menu">
+                <li class="dropdown-item"><a href="#">&#xC790;&#xC720;&#xAC8C;&#xC2DC;&#xD310;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xACE0;&#xBBFC;&#xC0C1;&#xB2F4;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xC9C8;&#xBB38;/&#xB2F5;&#xBCC0;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xD63C;&#xD301;</a>
+                </li>
+                <li class="dropdown-item"><a href="#">&#xBCA0;&#xC2A4;&#xD2B8;</a>
+                </li>
+                </ul>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xAFC0;&#xD301;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xC694;&#xB9AC;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xC778;&#xD14C;&#xB9AC;&#xC5B4;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC5EC;&#xD589;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xB9DB;&#xC9D1;</a>
+        </li>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC1FC;&#xD551;</a>
+        </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span>
+
+					Sign Up</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>
+
+					Login</a>
+            </li>
+        </ul>
+</nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -167,6 +172,8 @@ margin-top: 70px;
 				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
 				</a>
 				<div class="card-body">
+
+				
 				<a href=""><h5 class="card-title">Card title</h5></a>
 					<p class="card-text">
 						<small class="text-muted">Last updated 3 mins ago</small>
