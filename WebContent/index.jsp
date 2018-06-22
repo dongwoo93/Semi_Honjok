@@ -26,8 +26,7 @@
     <ul class="nav navbar-nav">
         <li class="nav-item"></li>
         <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">&#xD63C;&#xD1A1; <span></span></a>
-            <ul
-            class="dropdown-menu">
+            <ul class="dropdown-menu">
                 <li class="dropdown-item"><a href="#">&#xC790;&#xC720;&#xAC8C;&#xC2DC;&#xD310;</a>
                 </li>
                 <li class="dropdown-item"><a href="#">&#xACE0;&#xBBFC;&#xC0C1;&#xB2F4;</a>

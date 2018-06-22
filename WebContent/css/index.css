@@ -1,4 +1,6 @@
-
+.navbar-light .navbar-nav .nav-link{
+   color:white;
+}
 
 .dropdown-menu {
 	background-color: black;
