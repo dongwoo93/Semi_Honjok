@@ -1,14 +1,12 @@
-
-.navbar-default .navbar-nav>li>a{
+.navbar-light .navbar-nav .nav-link{
 	color:white;
 }
 
-.container-fluid::after {
-	border: none;
+.container-fluid::after { 
+	border: none; 
 }
-
-#navbar{
-	border:none;
+#navbar{ 
+	border:none; 
 }
 .dropdown-menu{
 	background-color:black;
@@ -24,31 +22,21 @@
 }
 
 #navbar{
+	color: white;
 	background: transparent;
 	z-index:99;
 	position: absolute;
 }
 
-#carousel-inner{
-	height: 500px;
-	
-}
-.carousel-inner > .item active > .img{
+#demo {
+	padding-left: 0px;
+	padding-right: 0px;
 	width: 100%;
-	height:100%;
 }
 
-.carousel-inner > .item > .img{
+.carousel-inner img {
 	width: 100%;
-	height:100%;
-}
-
-.carousel-inner > .item active{
-	height:100%;
-}
-
-.carousel-inner > .item{
-	height:100%;
+	height: 700px;
 }
 
 #first-table{
@@ -56,16 +44,42 @@
 	height:100%;
 	width: 25%;
 }
-#second-table{
+#free{
+	padding-left:30px;
 	float:left;
-	height:100%;
-	padding-left:200px;
-	width: 25%;
+}
+#free2{
+	padding-left:30px;
+	float:left;
 }
 
-#total-table{
-	margin-left:200px;
-	padding-top:100px;
-	height:100px;
+#free3{
+	float:left;
+	padding-left:150px;
+	padding-top: 20px;
 }
+#free4{
+	padding-left:30px;
+	float:left;
+	position: absolute;
+	padding-top:350px;
+	height:300px;
+}
+
+#free5{
+	padding-left:30px;
+	float:left;
+	position: absolute;
+	padding-top:350px;
+	padding-left:550px;
+	height:300px;
+}
+
+.container2{
+	margin-left: 150px;
+	margin-top:70px;
+	min-width:1625px;
+	min-height:800px;
+}
+
 
