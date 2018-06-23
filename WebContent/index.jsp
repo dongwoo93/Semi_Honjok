@@ -57,7 +57,7 @@
 
 					Sign Up</a>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>
+            <li class="nav-item"><a href="login.html" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>
 
 					Login</a>
             </li>
@@ -228,9 +228,28 @@
 </div>
 </div>
 
-<div style="height: 500px">
+<div style="height: 300px; background-color: #1e73be; padding-top: 90px; padding-bottom: 60px; padding-left: 200px; text-align: center;">
+<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+<div id="shiva"><div class="count" data-count="800" style="color: #ffffff !important">0</div></div>
+<span class="counter-title">만명</span>
+<div id="cwrapper" style="color: #ffffff;"><h4 style="text-align: center;"><span><b>1인 가구</b></span></h4></div>
+</div>
+<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+<div id="shiva"><div class="count" data-count="100" style="color: #ffffff !important">0</div></div>
+<span class="counter-title">만명</span>
+<div id="cwrapper" style="color: #ffffff;"><h4 style="text-align: center;"><span><b>최근 5년 혼족 증가 수가구</b></span></h4></div>
+</div>
+<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+<div id="shiva"><div class="count" data-count="50" style="color: #ffffff !important">0</div></div>
+<span class="counter-title">%</span>
+<div id="cwrapper" style="color: #ffffff;"><h4 style="text-align: center;"><span><b>혼족 여성 비율</b></span></h4></div>
+</div>
+
+
 
 </div>
+
+<div style="height: 500px;"></div>
 <script>
 AOS.init({
 	  duration: 1200,
@@ -251,7 +270,34 @@ AOS.init({
 			imageSrc: 'images/background-5.jpg'
 		});
 		
-		
+		var a = 0;
+		$(window).scroll(function() {
+		  var oTop = $('#shiva').offset().top - window.innerHeight;
+		  if (a == 0 && $(window).scrollTop() > oTop) {
+		    $('.count').each(function() {
+		      var $this = $(this),
+		        countTo = $this.attr('data-count');
+		      $({
+		        countNum: $this.text()
+		      }).animate({
+		          countNum: countTo
+		        },
+
+		        {
+		          duration: 2000,
+		          easing: 'swing',
+		          step: function() {
+		            $this.text(Math.floor(this.countNum));
+		          },
+		          complete: function() {
+		            $this.text(this.countNum);
+		            //alert('finished');
+		          }
+		        });
+		    });
+		    a = 1;
+		  }
+		});
 	});
 </script>
 </body>
