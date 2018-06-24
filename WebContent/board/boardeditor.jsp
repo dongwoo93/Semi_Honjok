@@ -23,9 +23,16 @@
     
 	<script>
 	$(document).ready(function() {
-	      $('#summernote').summernote();
+	      $('#summernote').summernote({
+	    	  height: 300,                 // set editor height
+	    	  minHeight: null,             // set minimum height of editor
+	    	  maxHeight: null,             // set maximum height of editor
+	    	  focus: true      
+	      });
+	});
 
-	      $("#listButton").click(function() {
+	      /* $("#listButton").click(function() {
+	    	  setInterval(function() { 
 	         $.ajax({
 	            type : 'post',
 	            url : '../boardWrite',
@@ -35,16 +42,26 @@
 	              // $("#listDiv").html(data);
 	            }
 	         });
+	    	  }, 5000);
+	         var title = $("#title").val();
+	    	  $.ajax({
+	    		  url:'../boardWrite',
+	    		  type:"post",
+	    		  data: {title:title}
+	    		  
+	    	  });
 	      })
 
-	   });
+	   }); */
 
 	</script>
 </head>
 <body>
-	
+	<form action="../boardWrite" method="post">
+	제목:	<input type="text" name="title" id="title">
 	<textarea id="summernote" name="summernote"></textarea>
-	<input type="button" value="완료" id="listButton">
+	<input type="submit" value="완료" id="listButton">
+	</form>
 
 </body>
 </html>

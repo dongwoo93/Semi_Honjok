@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import honjok.web.dao.BoardWriteDAO;
+
 
 @WebServlet("/boardWrite")
 public class BoardWriteController extends HttpServlet {
@@ -19,10 +21,15 @@ public class BoardWriteController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf8");
 		StringBuffer sb = new StringBuffer();
 		String line = null;
 		boolean isRedirect = true;
 		String dst = null;
+		String title = request.getParameter("title");
+		String contents = request.getParameter("summernote");
+		System.out.println(title);
+		BoardWriteDAO dao = new BoardWriteDAO();
 		try {
 			BufferedReader reader = request.getReader();
 			while ((line = reader.readLine()) != null)
@@ -31,13 +38,19 @@ public class BoardWriteController extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 
-		String a = sb.toString();
-		request.setAttribute("data", a);
+		//String contents = sb.toString();
+		System.out.println(contents);
+		try {
+			dao.insertInfo(title, contents);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//isRedirect = false; 
 		dst = "index.jsp";
 		
 		if(isRedirect) {
 			response.sendRedirect(dst);
+			System.out.println(dst);
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);
