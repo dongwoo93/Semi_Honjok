@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,7 @@ public class BoardWriteController extends HttpServlet {
 		String dst = null;
 		String title = request.getParameter("title");
 		String contents = request.getParameter("summernote");
-		System.out.println(title);
+		
 		BoardWriteDAO dao = new BoardWriteDAO();
 		try {
 			BufferedReader reader = request.getReader();
@@ -39,18 +38,17 @@ public class BoardWriteController extends HttpServlet {
 		}
 
 		//String contents = sb.toString();
-		System.out.println(contents);
+		//System.out.println(contents);
 		try {
 			dao.insertInfo(title, contents);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//isRedirect = false; 
+		isRedirect = false; 
 		dst = "index.jsp";
-		
+
 		if(isRedirect) {
 			response.sendRedirect(dst);
-			System.out.println(dst);
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);

@@ -8,7 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>${data}</div>
+<div>
+	<c:forEach var="item" items="${result}"> 
+		<tr>
+		<td>${item.title}</td>
+		<td>${item.contents}</td>
+		</tr>
+	</c:forEach>
+</div>
 	
 </body>
 </html>
