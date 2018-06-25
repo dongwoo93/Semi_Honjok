@@ -21,15 +21,19 @@ public class BoardWriteDAO {
 		return DriverManager.getConnection(url, dbId, dbPw);
 	}
 
-	public int insertInfo(String title, String contents) throws Exception{
+	public int insertInfo(String category, String subject, String title, String contents, String systemFileName, String originalFileName) throws Exception{
 		Connection con = this.getConnection();
-		String sql = "insert into testtip values(testtip_seq.nextval, ?, ?)";
+		String sql = "insert into testtip values(testtip_seq.nextval, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(contents);
 		con.setAutoCommit(false);
 
-		pstat.setString(1, title);
-		pstat.setCharacterStream(2, sr, contents.length());
+		pstat.setString(1, category);
+		pstat.setString(2, subject);
+		pstat.setString(3, title);
+		pstat.setCharacterStream(4, sr, contents.length());
+		pstat.setString(5, systemFileName);
+		pstat.setString(6, originalFileName);
 
 		int result = pstat.executeUpdate();
 		con.commit();
@@ -48,7 +52,7 @@ public class BoardWriteDAO {
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
 			BoardDTO dto = new BoardDTO();
-			dto.setTitle(rs.getString(1));
+			dto.setTitle(rs.getString(2));
 			Reader instream = rs.getCharacterStream("contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read

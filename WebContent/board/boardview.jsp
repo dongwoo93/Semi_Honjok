@@ -12,6 +12,8 @@
 	<c:forEach var="item" items="${result}"> 
 		<tr>
 		<td>${item.title}</td>
+		</tr>
+		<tr>
 		<td>${item.contents}</td>
 		</tr>
 	</c:forEach>
