@@ -228,21 +228,64 @@
 </div>
 </div>
 
-<div style="height: 300px; background-color: #1e73be; padding-top: 90px; padding-bottom: 60px; padding-left: 200px; text-align: center;">
+<div id="conbox" style="text-align: center; padding-left: 180px; padding-top: 60px; padding-bottom: 60px;" data-aos="fade-zoom-in">
+<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼술혼밥</h3><img src="1.png" class="iconimg">
+			<p style="text-align: center;"><span style="color: #333333;">혼술 혼밥하기 좋은 곳을</span></p>
+<p style="text-align: center;"><span style="color: #333333;">소개합니다.</span></p>
+</div>
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium " style="border-radius: 2px;">바로가기</a></p>
+
+		</div>
+	</div>
+
+		</div>
+		
+		<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼족 제품&amp;서비스</h3><img src="2.png" class="iconimg">
+			<p style="text-align: center;"><span style="color: #333333;">혼족이 쓰면 유용하고 핫한</span></p>
+<p style="text-align: center;"><span style="color: #333333;">제품 또는 서비스를&nbsp;소개합니다.</span></p>
+</div>
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium " style="border-radius: 2px;">바로가기</a></p>
+
+		</div>
+	</div>
+
+		</div>
+		
+		<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼족 문화</h3><img src="3.png" class="iconimg">
+			<p style="text-align: center;"><span style="color: #333333;">혼족의 감성, 행동, 사상</span></p>
+<p style="text-align: center;"><span style="color: #333333;">혼족문화를 &nbsp;소개합니다.</span></p>
+</div>
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium " style="border-radius: 2px;">바로가기</a></p>
+
+		</div>
+	</div>
+		</div>
+		</div>
+
+<div style="height: 300px; background-color: #1e73be; padding-top: 60px; padding-bottom: 60px; padding-left: 200px; text-align: center;">
 <div id="cwrapper" style="display: inline-block; margin-right: 300px;">
 <div id="shiva"><div class="count" data-count="800" style="color: #ffffff !important">0</div></div>
-<span class="counter-title">만명</span>
-<div id="cwrapper" style="color: #ffffff;"><h4 style="text-align: center;"><span><b>1인 가구</b></span></h4></div>
+<span class="counter-title">만명</span> <br>
+<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>1인 가구</b></span></h4></div>
 </div>
 <div id="cwrapper" style="display: inline-block; margin-right: 300px;">
 <div id="shiva"><div class="count" data-count="100" style="color: #ffffff !important">0</div></div>
-<span class="counter-title">만명</span>
-<div id="cwrapper" style="color: #ffffff;"><h4 style="text-align: center;"><span><b>최근 5년 혼족 증가 수가구</b></span></h4></div>
+<span class="counter-title">만명</span> <br>
+<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>최근 5년 혼족 증가 가구수</b></span></h4></div>
 </div>
-<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+<div id="cwrapper" style="display: inline-block; margin-right: 300px;"> 
 <div id="shiva"><div class="count" data-count="50" style="color: #ffffff !important">0</div></div>
-<span class="counter-title">%</span>
-<div id="cwrapper" style="color: #ffffff;"><h4 style="text-align: center;"><span><b>혼족 여성 비율</b></span></h4></div>
+<span class="counter-title">%</span> <br>
+<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>혼족 비율</b></span></h4></div>
 </div>
 
 
@@ -284,7 +327,7 @@ AOS.init({
 		        },
 
 		        {
-		          duration: 2000,
+		          duration: 1500,
 		          easing: 'swing',
 		          step: function() {
 		            $this.text(Math.floor(this.countNum));
@@ -298,6 +341,19 @@ AOS.init({
 		    a = 1;
 		  }
 		});
+		var scroll_start = 0;
+	    var startchange = $('#startchange');
+	    var offset = startchange.offset();
+	    if (startchange.length){
+	        $(document).scroll(function() { 
+	            scroll_start = $(document).scrollTop();
+	            if(scroll_start > offset.top) {
+	                $(".navbar").css('background-color', 'blue');
+	            } else {
+	                $('.navbar').css('background-color', 'red');
+	            }
+	        });
+	    }
 	});
 </script>
 </body>
