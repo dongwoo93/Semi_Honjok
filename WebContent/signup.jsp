@@ -53,9 +53,8 @@
   
         $('#registerForm').validate({
         	
-        	
             rules: {
-                id:{required:true, minlength:3, remote:"Validate"},
+                id:{required:true, minlength:3},
                 pw: "required",
                 pw2: {required:true, equalTo:'#pw'},               
                 name: {required:true},
@@ -71,7 +70,6 @@
                 id: {
                      required:"아이디를  입력해주세요.",
                      minlength: jQuery.format("아이디는 {0}자 이상 입력해주세요!"),
-                     remote : jQuery.format("입력하신 {0}는 이미존재하는 아이디입니다. ")
                 },
                 pw:"암호를 입력하시오.",
                 pw2: {
