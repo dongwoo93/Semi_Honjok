@@ -12,7 +12,7 @@ import kh.web.dbutils.DBUtils;
 public class BoardFreeDAO {
 	public List<BoardFreeDTO> selectData() throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_free.*, row_number() over(order by writedate desc) as num from board_free";
+		String sql = "select board_free.*, row_number() over(order by free_writedate desc) as num from board_free";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		
@@ -22,7 +22,6 @@ public class BoardFreeDAO {
 		
 		while(rs.next()) {
 			BoardFreeDTO dto = new BoardFreeDTO();
-			
 			dto.setFree_seq(rs.getString(1));
 			dto.setFree_title(rs.getString(2));
 			dto.setFree_writer(rs.getString(3));
@@ -32,8 +31,6 @@ public class BoardFreeDAO {
 			dto.setFree_like(rs.getString(7));
 			dto.setFree_writedate(rs.getString(8));
 			dto.setFree_ip(rs.getString(9));
-			
-		
 			list.add(dto);
 		}
 		

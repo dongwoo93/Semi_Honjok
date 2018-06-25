@@ -1,6 +1,7 @@
 package honjok.web.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -31,13 +32,14 @@ public class BoardFree_Controller extends HttpServlet {
 
 
 			if(command.equals("/freeboardView.freeb")) {
+				System.out.println("µé¾î¿È");
 				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.selectData();
-
+				List<BoardFreeDTO> result = new ArrayList<>();
+				
+				result = dao.selectData();
 				request.setAttribute("result", result);
-
-				RequestDispatcher rd = request.getRequestDispatcher("community/freeboardView.jsp");
-				rd.forward(request, response);
+				dst = "/community/hontalkView.jsp";
+				
 			}else if(command.equals("/hontalkView.freeb")){
 				BoardFreeDAO dao = new BoardFreeDAO();
 				
@@ -47,16 +49,16 @@ public class BoardFree_Controller extends HttpServlet {
 				
 				System.out.println(result);
 				
-				RequestDispatcher rd = request.getRequestDispatcher("community/hontalkView.jsp");
-				rd.forward(request, response);
-				
 			}
 
 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("error.html");
+		
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher(dst);
+		rd.forward(request, response);
+		
 	}
 
 

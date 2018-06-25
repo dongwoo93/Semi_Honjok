@@ -30,19 +30,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
-	href="../communitycss/hontalkView.css">
+	href="communitycss/hontalkView.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="../communitycss/Footer-with-button-logo.css">
+	href="communitycss/Footer-with-button-logo.css">
 
-<script>
-	$(document).ready(function(){
-		$(location).attr=("href","hontalkView.freeb");
-	})
-
-</script>	
-	
 	
 </head>
 <body>
@@ -84,15 +77,15 @@
 	</ul>
 	<ul class="nav navbar-nav ml-auto">
 		<li class="nav-item"><a href="#" class="nav-link"><img
-				src="../imges/signup.png" width="45" height="30"> Sign Up</a></li>
+				src="imges/signup.png" width="45" height="30"> Sign Up</a></li>
 		<li class="nav-item"><a href="#" class="nav-link"><img
-				src="../imges/login.png" width="45" height="30"> Login</a></li>
+				src="imges/login.png" width="45" height="30"> Login</a></li>
 	</ul>
 	</nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../imges/sky.jpg" alt="Los Angeles" width="1200"
+				<img src="imges/sky.jpg" alt="Los Angeles" width="1200"
 					height="700">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
@@ -100,7 +93,7 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../imges/nature-3042751_1280.jpg" alt="Chicago"
+				<img src="imges/nature-3042751_1280.jpg" alt="Chicago"
 					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
@@ -108,7 +101,7 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../imges/hiker-1149898_1280.jpg" alt="New York"
+				<img src="imges/hiker-1149898_1280.jpg" alt="New York"
 					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>New York</h3>

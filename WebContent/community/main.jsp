@@ -5,18 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<script>
+function loca() {
+	location.href = "../hollo.com";
+}
+	
+</script>
 </head>
-<body>
-<form action="PayController" method="post">
-<table border="1">
-<tr>
-
-<td><div name="name">[마지막특가] 엔돌펫 러블리프릴T 강아지티셔츠(핑크) S~2XL 강아지옷 민소매 나시티</div></td>
-<td><div name="price">12900</div></td>
-<td><button id="pay">결제하기</button></td>
-</tr>r
-</table>
-</form>
+<body onload="loca()">
 
 </body>
 </html>
