@@ -9,8 +9,6 @@
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
-${name} <br>
-${price}
 
 <script>
 var IMP = window.IMP; // 생략가능

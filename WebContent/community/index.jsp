@@ -18,69 +18,74 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" href="../communitycss/Footer-with-button-logo.css">
 </head>
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-<a class="navbar-brand" href="#" style="color: white">&#xB098;&#xD640;&#xB85C;&#xC871;,,</a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item"></li>
-        <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">&#xD63C;&#xD1A1; <span></span></a>
-            <ul class="dropdown-menu">
-                <li class="dropdown-item"><a href="#">&#xC790;&#xC720;&#xAC8C;&#xC2DC;&#xD310;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xACE0;&#xBBFC;&#xC0C1;&#xB2F4;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xC9C8;&#xBB38;/&#xB2F5;&#xBCC0;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xD63C;&#xD301;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xBCA0;&#xC2A4;&#xD2B8;</a>
-                </li>
-                </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xAFC0;&#xD301;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xC694;&#xB9AC;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xC778;&#xD14C;&#xB9AC;&#xC5B4;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC5EC;&#xD589;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xB9DB;&#xC9D1;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC1FC;&#xD551;</a>
-        </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span>
-
-					Sign Up</a>
-            </li>
-            <li class="nav-item"><a href="login.html" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>
-
-					Login</a>
-            </li>
-        </ul>
-</nav>
+	<a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
+	<ul class="nav navbar-nav">
+		<li class="nav-item"></li>
+		<li class="dropdown nav-item"><a class="dropdown-toggle nav-link"
+			data-toggle="dropdown" href="#">혼톡</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">자유게시판</a></li>
+				<li class="dropdown-item"><a href="#">고민상담</a></li>
+				<li class="dropdown-item"><a href="#">질문/답변</a></li>
+				<li class="dropdown-item"><a href="#">혼팁</a></li>
+				<li class="dropdown-item"><a href="#">베스트</a></li>
+			</ul></li>
+		<li class="dropdown nav-item"><a href="#"
+			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">전체보기</a></li>
+				<li class="dropdown-item"><a href="#">청소</a></li>
+				<li class="dropdown-item"><a href="#">라이프</a></li>
+				<li class="dropdown-item"><a href="#">경제적</a></li>
+			</ul></li>
+		<li class="dropdown nav-item"><a href="#"
+			class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">초간단요리</a></li>
+				<li class="dropdown-item"><a href="#">일반요리</a></li>
+			</ul></li>
+		<li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
+		</li>
+	</ul>
+	<ul class="nav navbar-nav ml-auto">
+		<li class="nav-item"><a href="#" class="nav-link"><img
+				src="../imges/signup.png" width="45" height="30"> Sign Up</a></li>
+		<li class="nav-item"><a href="#" class="nav-link"><img
+				src="../imges/login.png" width="45" height="30"> Login</a></li>
+	</ul>
+	</nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="la.jpg" alt="Los Angeles" width="1200" height="700">
+				<img src="../imges/sky.jpg" alt="Los Angeles" width="1200"
+					height="700">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
 					<p>We had such a great time in LA!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="chicago.jpg" alt="Chicago" width="1200" height="700">
+				<img src="../imges/nature-3042751_1280.jpg" alt="Chicago"
+					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
 					<p>Thank you, Chicago!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="ny.jpg" alt="New York" width="1200" height="700">
+				<img src="../imges/hiker-1149898_1280.jpg" alt="New York"
+					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>New York</h3>
 					<p>We love the Big Apple!</p>
@@ -92,7 +97,7 @@
 	<div class="card-deck">
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -104,7 +109,7 @@
 		</div>
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -116,7 +121,7 @@
 		</div>
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -128,7 +133,7 @@
 		</div>
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -143,7 +148,7 @@
 	<div class="card-deck">
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -155,7 +160,7 @@
 		</div>
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -168,7 +173,7 @@
 		<div class="col-sm-2" id="card1">
 			<div class="card">
 			<a href="">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				</a>
 				<div class="card-body">
 
@@ -182,7 +187,7 @@
 		</div>
 		<div class="col-sm-2" id="card1">
 			<div class="card">
-				<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					
@@ -230,7 +235,7 @@
 
 <div id="conbox" style="text-align: center; padding-left: 180px; padding-top: 60px; padding-bottom: 60px;" data-aos="fade-zoom-in">
 <div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼술혼밥</h3><img src="1.png" class="iconimg">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼술혼밥</h3><img src="../images/1.png" class="iconimg">
 			<p style="text-align: center;"><span style="color: #333333;">혼술 혼밥하기 좋은 곳을</span></p>
 <p style="text-align: center;"><span style="color: #333333;">소개합니다.</span></p>
 </div>
@@ -244,13 +249,13 @@
 		</div>
 		
 		<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼족 제품&amp;서비스</h3><img src="2.png" class="iconimg">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼족 제품&amp;서비스</h3><img src="../images/2.png" class="iconimg">
 			<p style="text-align: center;"><span style="color: #333333;">혼족이 쓰면 유용하고 핫한</span></p>
 <p style="text-align: center;"><span style="color: #333333;">제품 또는 서비스를&nbsp;소개합니다.</span></p>
 </div>
 	<div class="wpb_text_column wpb_content_element ">
 		<div class="wpb_wrapper">
-			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium " style="border-radius: 2px;">바로가기</a></p>
+			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium" style="border-radius: 2px;">바로가기</a></p>
 
 		</div>
 	</div>
@@ -258,7 +263,7 @@
 		</div>
 		
 		<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼족 문화</h3><img src="3.png" class="iconimg">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>혼족 문화</h3><img src="../images/3.png" class="iconimg">
 			<p style="text-align: center;"><span style="color: #333333;">혼족의 감성, 행동, 사상</span></p>
 <p style="text-align: center;"><span style="color: #333333;">혼족문화를 &nbsp;소개합니다.</span></p>
 </div>
@@ -290,6 +295,55 @@
 </div>
 
 <div style="height: 500px;"></div>
+
+<footer id="myFooter">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h2 class="logo">
+					<a href="#"> LOGO </a>
+				</h2>
+			</div>
+			<div class="col-md-2">
+				<h5>Get started</h5>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Sign up</a></li>
+					<li><a href="#">Downloads</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h5>About us</h5>
+				<ul>
+					<li><a href="#">Company Information</a></li>
+					<li><a href="#">Contact us</a></li>
+					<li><a href="#">Reviews</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h5>Support</h5>
+				<ul>
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">Help desk</a></li>
+					<li><a href="#">Forums</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<div class="social-networks">
+					<a href="https://twitter.com/?lang=ko" class="twitter"><i
+						class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/"
+						class="facebook"><i class="fa fa-facebook"></i></a> <a
+						href="https://www.google.com/" class="google"><i
+						class="fa fa-google-plus"></i></a>
+				</div>
+				<button type="button" class="btn btn-secondary">Contact us</button>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<p>&#xA9; 2018 Copyright Text</p>
+	</div>
+	</footer>
 <script>
 AOS.init({
 	  duration: 1200,
@@ -300,14 +354,14 @@ AOS.init({
 	$(document).ready(function() {
 
 		$('#section2').parallax({
-			imageSrc: 'images/background-3.jpg'
+			imageSrc: '../images/background-3.jpg'
 		});
 		
 		$('#section3').parallax({
-			imageSrc: 'images/background-4.jpg'
+			imageSrc: '../images/background-4.jpg'
 		});
 		$('#section4').parallax({
-			imageSrc: 'images/background-5.jpg'
+			imageSrc: '../images/background-5.jpg'
 		});
 		
 		var a = 0;
