@@ -1,86 +1,108 @@
-package honjok.web.dao;
+package honjok.web.dto;
 
 public class BoardFreeDTO {
 	private int seq;
-	private int no;
-	private String head;
+	private String header;
 	private String title;
 	private String contents;
 	private String writer;
 	private String writedate;
 	private int viewcount;
-	private int suggest;
+	private int like;
+	private String ip;
+	
 	
 	public BoardFreeDTO() {
-	
+		
 	}
 	
-	public BoardFreeDTO(int seq, int no, String head, String title, String contents, String writer, String writedate,
-			int viewcount, int suggest) {
+	public BoardFreeDTO(int seq, String header, String title, String contents, String writer, String writedate,
+			int viewcount, int like, String ip) {
 		super();
 		this.seq = seq;
-		this.no = no;
-		this.head = head;
+		this.header = header;
 		this.title = title;
 		this.contents = contents;
 		this.writer = writer;
 		this.writedate = writedate;
 		this.viewcount = viewcount;
-		this.suggest = suggest;
+		this.like = like;
+		this.ip = ip;
 	}
 
 	public int getSeq() {
 		return seq;
 	}
+
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public int getNo() {
-		return no;
+
+	public String getHeader() {
+		return header;
 	}
-	public void setNo(int no) {
-		this.no = no;
+
+	public void setHeader(String header) {
+		this.header = header;
 	}
-	public String getHead() {
-		return head;
-	}
-	public void setHead(String head) {
-		this.head = head;
-	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContents() {
 		return contents;
 	}
+
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+
 	public String getWriter() {
 		return writer;
 	}
+
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
+
 	public String getWritedate() {
 		return writedate;
 	}
+
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
+
 	public int getViewcount() {
 		return viewcount;
 	}
+
 	public void setViewcount(int viewcount) {
 		this.viewcount = viewcount;
 	}
-	public int getSuggest() {
-		return suggest;
+
+	public int getLike() {
+		return like;
 	}
-	public void setSuggest(int suggest) {
-		this.suggest = suggest;
+
+	public void setLike(int like) {
+		this.like = like;
 	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
+	
+	
+
 }

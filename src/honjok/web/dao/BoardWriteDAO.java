@@ -10,19 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import honjok.web.dto.BoardDTO;
+import kh.web.dbutils.DBUtils;
 
 public class BoardWriteDAO {
-	private Connection getConnection() throws Exception{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String dbId = "kh";
-		String dbPw = "kh";
-
-		return DriverManager.getConnection(url, dbId, dbPw);
-	}
-
 	public int insertInfo(String title, String contents) throws Exception{
-		Connection con = this.getConnection();
+		Connection con = DBUtils.getConnection();
 		String sql = "insert into testtip values(testtip_seq.nextval, ?, ?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(contents);
@@ -40,7 +32,7 @@ public class BoardWriteDAO {
 
 	}
 	public List<BoardDTO> boardSelect() throws Exception{
-		Connection con = this.getConnection();
+		Connection con = DBUtils.getConnection();
 		String sql = "select * from testtip";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();

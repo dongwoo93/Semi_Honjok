@@ -57,8 +57,8 @@
 	</script>
 </head>
 <body>
-	<div class="container">
-		<form action="../BoardFree_Controller" method="post">
+	<div class=container>
+		<form action="../qnaWrite" method="post">
 			제목: <input type="text" name="title" id="title">
 			<textarea id="summernote" name="summernote"></textarea>
 			<input type="submit" value="완료" id="listButton">

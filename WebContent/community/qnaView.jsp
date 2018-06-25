@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="honjok.web.dto.BoardFreeDTO"%>
-<jsp:useBean id="dto" class="honjok.web.dto.BoardFreeDTO">
+<%@page import="honjok.web.dto.BoardQnaDTO"%>
+<jsp:useBean id="dto" class="honjok.web.dto.BoardQnaDTO">
 	<jsp:setProperty name="dto" property="*"></jsp:setProperty>
 </jsp:useBean>
-<jsp:useBean id="dao" class="honjok.web.dao.BoardFreeDAO" />
+<jsp:useBean id="dao" class="honjok.web.dao.BoardQnaDAO" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,16 +17,7 @@
 <script>
 	$(document).ready(function(){
 		$("#write").click(function(){
-			$(location).attr('href', "freeboardWrite.jsp")
-		})
-		$("#chat").click(function(){
-			$(location).attr('href', "ajax01.freeb")
-		})
-		$("#humor").click(function(){
-			$(location).attr('href', "ajax02.freeb")
-		})
-		$("#beast").click(function(){
-			$(location).attr('href', "ajax03.freeb")
+			$(location).attr('href', "qnaWrite.jsp")
 		})
 	})
 </script>
@@ -35,11 +26,6 @@
 <div class="container">
 	<table class="table table-hover">
 		<thead  class="head" id="head">
-		<tr>
-			<div class="headSelect">
-				<button type="button" id="chat">잡담</button><button type="button" id="humor">유머</button><button type="button" id="beast">동물</button>
-			</div>
-		</tr>
 			<tr>
 				<td id="no">No.</td>
 				<td id="header">말머리</td>
@@ -58,11 +44,11 @@
 						<tr>
 							<td id="no">${item.seq}
 							<td id="header">${item.header}
-							<td id="title"><a href="BoardFree_Controller?no=${item.seq}" class="no-uline">${item.title}</a>
+							<td id="title"><a href="BoardQnaController?no=${item.seq}" class="no-uline">${item.title}</a>
 							<td id="writer">${item.writer}
 							<td id="date">${item.writedate}
 							<td id="view">${item.viewcount}
-							<td id="like">${item.like}
+							<td id="like">${item.suggest}
 						</tr>
 					</tbody>
 				</c:forEach>

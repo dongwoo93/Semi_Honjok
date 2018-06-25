@@ -21,21 +21,21 @@ public class BoardWriteController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
-		StringBuffer sb = new StringBuffer();
-		String line = null;
+//		StringBuffer sb = new StringBuffer();
+//		String line = null;
 		boolean isRedirect = true;
 		String dst = null;
 		String title = request.getParameter("title");
 		String contents = request.getParameter("summernote");
 		
 		BoardWriteDAO dao = new BoardWriteDAO();
-		try {
-			BufferedReader reader = request.getReader();
-			while ((line = reader.readLine()) != null)
-				sb.append(line);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+//		try {
+//			BufferedReader reader = request.getReader();
+//			while ((line = reader.readLine()) != null)
+//				sb.append(line);
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
 
 		//String contents = sb.toString();
 		//System.out.println(contents);
