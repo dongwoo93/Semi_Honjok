@@ -25,6 +25,8 @@
       Kakao.Auth.login({
         success: function(authObj) {
           alert(JSON.stringify(authObj));
+          document.write(JSON.stringify(authObj))
+          
         },
         fail: function(err) {
           alert(JSON.stringify(err));
@@ -33,6 +35,10 @@
     };
   //]]>
 </script>
+
+	
+
+
 
 </body>
 </html>
