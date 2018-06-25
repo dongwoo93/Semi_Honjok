@@ -36,27 +36,36 @@ public class BoardFree_Controller extends HttpServlet {
 
 				request.setAttribute("result", result);
 
-				RequestDispatcher rd = request.getRequestDispatcher("community/freeboardView.jsp");
-				rd.forward(request, response);
+				isRedirect=false;
+				dst = "null";
+				
 			}else if(command.equals("/hontalkView.freeb")){
 				BoardFreeDAO dao = new BoardFreeDAO();
+				System.out.println("들어온다");
 				
 				List<BoardFreeDTO> result = dao.selectData();
 				
 				request.setAttribute("result", result);
-				
-				System.out.println(result);
-				
-				RequestDispatcher rd = request.getRequestDispatcher("community/hontalkView.jsp");
-				rd.forward(request, response);
+
+				isRedirect=false;
+				dst = "/community/hontalkView.jsp";
 				
 			}
 
 
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
-		response.sendRedirect("error.html");
+		
+		if(isRedirect) {
+			response.sendRedirect(dst);
+		}else {
+			RequestDispatcher rd = request.getServletContext().getRequestDispatcher(dst);
+			rd.forward(request, response);
+		}
+
+		
 	}
 
 

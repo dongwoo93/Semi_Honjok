@@ -30,69 +30,70 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
-	href="../communitycss/hontalkView.css">
+	href="communitycss/hontalkView.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="../communitycss/Footer-with-button-logo.css">
+	href="/communitycss/Footer-with-button-logo.css">
 
 <script>
 	$(document).ready(function(){
-		$(location).attr=("href","hontalkView.freeb");
+		$('ul.nav li.dropdown').hover(function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	         }, function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	         });
 	})
-
+	
 </script>	
 	
 	
 </head>
 <body>
-	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-	<a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
-	<ul class="nav navbar-nav">
-		<li class="nav-item"></li>
-		<li class="dropdown nav-item"><a class="dropdown-toggle nav-link"
-			data-toggle="dropdown" href="#">혼톡</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">자유게시판</a></li>
-				<li class="dropdown-item"><a href="#">고민상담</a></li>
-				<li class="dropdown-item"><a href="#">질문/답변</a></li>
-				<li class="dropdown-item"><a href="#">혼팁</a></li>
-				<li class="dropdown-item"><a href="#">베스트</a></li>
-			</ul></li>
-		<li class="dropdown nav-item"><a href="#"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">전체보기</a></li>
-				<li class="dropdown-item"><a href="#">청소</a></li>
-				<li class="dropdown-item"><a href="#">라이프</a></li>
-				<li class="dropdown-item"><a href="#">경제적</a></li>
-			</ul></li>
-		<li class="dropdown nav-item"><a href="#"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">초간단요리</a></li>
-				<li class="dropdown-item"><a href="#">일반요리</a></li>
-			</ul></li>
-		<li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
-		</li>
-	</ul>
-	<ul class="nav navbar-nav ml-auto">
-		<li class="nav-item"><a href="#" class="nav-link"><img
-				src="../imges/signup.png" width="45" height="30"> Sign Up</a></li>
-		<li class="nav-item"><a href="#" class="nav-link"><img
-				src="../imges/login.png" width="45" height="30"> Login</a></li>
-	</ul>
-	</nav>
+<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
+   <ul class="nav navbar-nav">
+      <li class="nav-item"></li>
+      <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="">혼톡</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">자유게시판</a></li>
+            <li class="dropdown-item"><a href="#">고민상담</a></li>
+            <li class="dropdown-item"><a href="#">질문/답변</a></li>
+            <li class="dropdown-item"><a href="#">혼팁</a></li>
+            <li class="dropdown-item"><a href="#">베스트</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a href="#"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">전체보기</a></li>
+            <li class="dropdown-item"><a href="#">청소</a></li>
+            <li class="dropdown-item"><a href="#">라이프</a></li>
+            <li class="dropdown-item"><a href="#">경제적</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a href="#"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">초간단요리</a></li>
+            <li class="dropdown-item"><a href="#">일반요리</a></li>
+         </ul></li>
+      <li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
+      </li>
+   </ul>
+   <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item"><a href="#" class="nav-link"> Sign Up</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+   </ul>
+   </nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../imges/sky.jpg" alt="Los Angeles" width="1200"
+				<img src="imges/sky.jpg" alt="Los Angeles" width="1200"
 					height="700">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
@@ -100,7 +101,7 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../imges/nature-3042751_1280.jpg" alt="Chicago"
+				<img src="imges/nature-3042751_1280.jpg" alt="Chicago"
 					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
@@ -108,7 +109,7 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../imges/hiker-1149898_1280.jpg" alt="New York"
+				<img src="imges/hiker-1149898_1280.jpg" alt="New York"
 					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>New York</h3>
