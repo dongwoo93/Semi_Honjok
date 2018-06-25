@@ -287,9 +287,6 @@
 <span class="counter-title">%</span> <br>
 <div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>»•¡∑ ∫Ò¿≤</b></span></h4></div>
 </div>
-
-
-
 </div>
 
 <div style="height: 500px;"></div>
@@ -341,19 +338,7 @@ AOS.init({
 		    a = 1;
 		  }
 		});
-		var scroll_start = 0;
-	    var startchange = $('#startchange');
-	    var offset = startchange.offset();
-	    if (startchange.length){
-	        $(document).scroll(function() { 
-	            scroll_start = $(document).scrollTop();
-	            if(scroll_start > offset.top) {
-	                $(".navbar").css('background-color', 'blue');
-	            } else {
-	                $('.navbar').css('background-color', 'red');
-	            }
-	        });
-	    }
+		0
 	});
 </script>
 </body>
