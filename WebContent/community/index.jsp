@@ -19,49 +19,52 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="parallax.css"
+<link rel="stylesheet" type="text/css" href="css/parallax.css"
 	rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 </head>
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-<img src="../imges/coffee.png" width=60 height=60>
-   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
+<img src="imges/coffee.png" width=60 height=60>
+   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Hollo</a>
    <ul class="nav navbar-nav">
       <li class="nav-item"></li>
-      <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="../hontalkView.freeb">ȥ��</a>
+      <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="freeboardView.freeb">�����Խ���</a></li>
-            <li class="dropdown-item"><a href="#">��λ��</a></li>
-            <li class="dropdown-item"><a href="#">����/�亯</a></li>
-            <li class="dropdown-item"><a href="#">ȥ��</a></li>
-            <li class="dropdown-item"><a href="#">����Ʈ</a></li>
+            <li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
+            <li class="dropdown-item"><a href="#">고민상담</a></li>
+            <li class="dropdown-item"><a href="#">질문/답변</a></li>
+            <li class="dropdown-item"><a href="#">혼팁</a></li>
+            <li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
          </ul></li>
       <li class="dropdown nav-item"><a href="#"
-         class="dropdown-toggle nav-link" data-toggle="dropdown">����</a>
+         class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">��ü����</a></li>
-            <li class="dropdown-item"><a href="#">û��</a></li>
-            <li class="dropdown-item"><a href="#">������</a></li>
-            <li class="dropdown-item"><a href="#">������</a></li>
+            <li class="dropdown-item"><a href="#">전체보기</a></li>
+            <li class="dropdown-item"><a href="#">청소</a></li>
+            <li class="dropdown-item"><a href="#">라이프</a></li>
+            <li class="dropdown-item"><a href="#">경제적</a></li>
          </ul></li>
       <li class="dropdown nav-item"><a href="#"
-         class="dropdown-toggle nav-link" data-toggle="dropdown">�丮</a>
+         class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">�ʰ��ܿ丮</a></li>
-            <li class="dropdown-item"><a href="#">�Ϲݿ丮</a></li>
+            <li class="dropdown-item"><a href="#">초간단요리</a></li>
+            <li class="dropdown-item"><a href="#">일반요리</a></li>
          </ul></li>
-      <li class="nav-item"><a href="#" class="catego nav-link">���׸���</a>
+      <li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
       </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">ȥ������</a>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
       </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">ȥ������</a>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
       </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">ȥ������</a>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
       </li>
    </ul>
    <ul class="nav navbar-nav ml-auto">
@@ -383,53 +386,53 @@
 		</div>
 	</div>
 		<footer id="myFooter">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<h2 class="logo">
-						<a href="#"> LOGO </a>
-					</h2>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h2 class="logo">
+					<a href="#"> LOGO </a>
+				</h2>
+			</div>
+			<div class="col-md-2">
+				<h5>Get started</h5>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Sign up</a></li>
+					<li><a href="#">Downloads</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h5>About us</h5>
+				<ul>
+					<li><a href="#">Company Information</a></li>
+					<li><a href="#">Contact us</a></li>
+					<li><a href="#">Reviews</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h5>Support</h5>
+				<ul>
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">Help desk</a></li>
+					<li><a href="#">Forums</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<div class="social-networks">
+					<a href="https://twitter.com/?lang=ko" class="twitter"><i
+						class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/"
+						class="facebook"><i class="fa fa-facebook"></i></a> <a
+						href="https://www.google.com/" class="google"><i
+						class="fa fa-google-plus"></i></a>
 				</div>
-				<div class="col-md-2">
-					<h5>Get started</h5>
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Sign up</a></li>
-						<li><a href="#">Downloads</a></li>
-					</ul>
-				</div>
-				<div class="col-md-2">
-					<h5>About us</h5>
-					<ul>
-						<li><a href="#">Company Information</a></li>
-						<li><a href="#">Contact us</a></li>
-						<li><a href="#">Reviews</a></li>
-					</ul>
-				</div>
-				<div class="col-md-2">
-					<h5>Support</h5>
-					<ul>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Help desk</a></li>
-						<li><a href="#">Forums</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3">
-					<div class="social-networks">
-						<a href="https://twitter.com/?lang=ko" class="twitter"><i
-							class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/"
-							class="facebook"><i class="fa fa-facebook"></i></a> <a
-							href="https://www.google.com/" class="google"><i
-							class="fa fa-google-plus"></i></a>
-					</div>
-					<button type="button" class="btn btn-secondary">Contact us</button>
-				</div>
+				<button type="button" class="btn btn-secondary">Contact us</button>
 			</div>
 		</div>
-		<div class="footer-copyright">
-			<p>&#xA9; 2018 Copyright Text</p>
-		</div>
-		</footer>
+	</div>
+	<div class="footer-copyright">
+		<p>&#xA9; 2018 Copyright Text</p>
+	</div>
+	</footer>
 	<script>
 AOS.init({
 	  duration: 1200,
@@ -461,10 +464,6 @@ AOS.init({
 			}
 			
 		});
-		
-		
-		
-		
 		
 		$('#section2').parallax({
 			imageSrc: 'images/background-3.jpg'

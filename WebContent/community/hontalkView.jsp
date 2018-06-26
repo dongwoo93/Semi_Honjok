@@ -34,7 +34,7 @@
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="/communitycss/Footer-with-button-logo.css">
+	href="communitycss/Footer-with-button-logo.css">
 
 <script>
 	$(document).ready(function(){
@@ -50,16 +50,17 @@
 </head>
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
+<img src="imges/coffee.png" width=60 height=60>
+   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Hollo</a>
    <ul class="nav navbar-nav">
       <li class="nav-item"></li>
-      <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="">혼톡</a>
+      <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">자유게시판</a></li>
+            <li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
             <li class="dropdown-item"><a href="#">고민상담</a></li>
             <li class="dropdown-item"><a href="#">질문/답변</a></li>
             <li class="dropdown-item"><a href="#">혼팁</a></li>
-            <li class="dropdown-item"><a href="#">베스트</a></li>
+            <li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
          </ul></li>
       <li class="dropdown nav-item"><a href="#"
          class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
@@ -85,7 +86,7 @@
       </li>
    </ul>
    <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item"><a href="#" class="nav-link"> Sign Up</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
    </ul>
    </nav>
