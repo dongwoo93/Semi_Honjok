@@ -11,28 +11,45 @@
 
 </head>
 <body>
-<a id="custom-login-btn" href="javascript:loginWithKakao()">
-<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
-</a>
+
+
+
 <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-   
+ 
+  Kakao.init('7b5cebd6ff38bcc35f50a75797895963');    
+ 
+  Kakao.Auth.login({ 
+     success: function() { 
+            // 로그인 성공시, API를 호출합니다. 
+            Kakao.API.request({ 
+                   url: '/v1/user/me', 
+                   success: function(res) { 
+                            
+                         var id = JSON.stringify(res.id)
+                         var email = JSON.stringify(res.kaccount_email) 
+                         var name = JSON.stringify(res.properties.nickname) 
+                              
+                           
+                          console.log(id+email+name); 
+                       	  location.href="test.do?id="+id+"&email="+email+"&name="+name; 
+                   }, 
+                   fail: function(error) { 
+                          console.log(JSON.stringify(error)); 
+                   } 
+            }); 
+     }, 
+     fail: function(err) { 
+            console.log(JSON.stringify(err)); 
+     } 
+}); 
     
-    Kakao.init('7b5cebd6ff38bcc35f50a75797895963');
-    function loginWithKakao() {
-      // 로그인 창을 띄웁니다.
-      Kakao.Auth.login({
-        success: function(authObj) {
-          alert(JSON.stringify(authObj));
-          document.write(JSON.stringify(authObj))
-          
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-        }
-      });
-    };
+  	
+  	
+      
+  
+  
   //]]>
 </script>
 

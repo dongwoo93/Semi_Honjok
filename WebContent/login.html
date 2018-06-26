@@ -20,9 +20,9 @@ window.onload = function() {
 }
   var googleUser = {};
   var startApp = function() {
-	  console.log("들어옴");
+	  
 	    gapi.load('auth2', function(){
-	    	console.log("들어옴2");
+	    	
 	      // Retrieve the singleton for the GoogleAuth library and set up the client.
 	      auth2 = gapi.auth2.init({
 	        client_id: '593657004380-rjfrfo1tpfg9uqv1cbp5udckbmu8sqgr.apps.googleusercontent.com',
@@ -32,7 +32,7 @@ window.onload = function() {
 	      });
 	      attachSignin(document.getElementById('customBtn'));
 	    });
-	    console.log("나감");
+	    
 	  };
 
 	  function attachSignin(element) {
@@ -218,10 +218,11 @@ window.onload = function() {
 							</div>
 							<h2 class="text-center">Member Login</h2>
 							<div class="social-btn text-center">
-								<a href="naverlogin.jsp" onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
+								<a href="naver.do" onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
 								<img src="naver.PNG" style="width: 100%; height: 55px; cursor: pointer;">
 								</a>
-								<a href="javascript:loginWithKakao()">
+								<!-- <a href="javascript:loginWithKakao()"> -->
+								<a href="kakaologin.jsp">
 								<img src="kakao.png" style="width: 100%; height: 55px; cursor: pointer;">
 								</a>
 								<a href="javascript:startApp()" id="customBtn">  

@@ -5,10 +5,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 public class navertest {
 
     public static void main(String[] args) {
-        String token = "AAAAONVratv1GIXFgtUSgcJ91FT1kmsS9yIb3c8aV5dTuq3CmNw6CeoO97LTII2ALQowXJOaPpOCrrKfe41AdpPV45o="
+        String token = "AAAANhYGzXK46utLrbNIT/8ji9AYK6dIVNLIM+PJpLJGfT0vF9/wOHXJA2fxjEnlSi9nDMx8WfJYjG9oiwLXvhnYn4o"
+        		+ "="
         		+ "";// 네이버 로그인 접근 토큰;
         String header = "Bearer " + token; // Bearer 다음에 공백 추가
         try {
@@ -30,7 +34,30 @@ public class navertest {
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(response.toString());
+            
+            JSONParser jsPars = new JSONParser();
+            String Alldata = response.toString();
+            JSONObject jsOBj = (JSONObject)jsPars.parse(Alldata);           
+            /*System.out.println(response.toString());*/
+            
+            String member = jsOBj.get("response").toString();
+            System.out.println(member);
+            
+            JSONObject jsOBj2 = (JSONObject)jsPars.parse(member);
+            String id = jsOBj2.get("id").toString();
+            String name = jsOBj2.get("name").toString();
+            String gender = jsOBj2.get("gender").toString();
+            String email = jsOBj2.get("email").toString();
+            
+            
+            
+            System.out.println(id);
+            System.out.println(name);
+            System.out.println(gender);
+            System.out.println(email);	
+            
+            
+           
         } catch (Exception e) {
             System.out.println(e);
         }

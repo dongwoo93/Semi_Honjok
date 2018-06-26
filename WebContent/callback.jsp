@@ -45,6 +45,8 @@
       br.close();
       if(responseCode==200) {
         out.println(res.toString());
+        System.out.println(res.toString());
+        
       }
     } catch (Exception e) {
       e.printStackTrace();
