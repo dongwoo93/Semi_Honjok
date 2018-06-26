@@ -16,8 +16,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 	$(document).ready(function(){
-		$("#write").click(function(){
-			$(location).attr('href', "freeboardWrite.jsp")
+		console.log("들어옴");
+		
+		$("#all").click(function(){
+			$(location).attr('href', "freeboardView.freeb")
 		})
 		$("#chat").click(function(){
 			$(location).attr('href', "ajax01.freeb")
@@ -28,6 +30,9 @@
 		$("#beast").click(function(){
 			$(location).attr('href', "ajax03.freeb")
 		})
+		$("#write").click(function(){
+			$(location).attr('href', "community/freeboardWrite.jsp");
+		})
 	})
 </script>
 </head>
@@ -37,7 +42,7 @@
 		<thead  class="head" id="head">
 		<tr>
 			<div class="headSelect">
-				<button type="button" id="chat">잡담</button><button type="button" id="humor">유머</button><button type="button" id="beast">동물</button>
+				<button type="button" id="all">전체</button><button type="button" id="chat">잡담</button><button type="button" id="humor">유머</button><button type="button" id="beast">동물</button>
 			</div>
 		</tr>
 			<tr>
@@ -58,7 +63,7 @@
 						<tr>
 							<td id="no">${item.seq}
 							<td id="header">${item.header}
-							<td id="title"><a href="BoardFree_Controller?no=${item.seq}" class="no-uline">${item.title}</a>
+							<td id="title"><a href="BoardFree_Controller.freeb?no=${item.seq}" class="no-uline">${item.title}</a>
 							<td id="writer">${item.writer}
 							<td id="date">${item.writedate}
 							<td id="view">${item.viewcount}
@@ -77,8 +82,8 @@
 		</c:choose>
 		</table>
 		<div id="bottom">
-			<%-- <% dao.getPageNavi(currentPage)%> --%>
-			<input type=button id=write value="글 쓰기">
+			${navi}
+			<input type=button id="write" value="글 쓰기">
 		</div>
 	</div>
 

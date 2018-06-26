@@ -59,10 +59,15 @@
 </head>
 <body>
 	<div class="container">
-		<form action="../BoardQnaController" method="post"
+		<form action="../BoardUserTipController" method="post"
 			enctype="multipart/form-data">
 			<div id="wrapper">
-				제목: <input type="text" name="title" id="title">
+				제목: <input type="text" name="title" id="title"> 말머리: <select
+					name="header" id="header">
+					<option value="chat">히오스</option>
+					<option value="humor">와우</option>
+					<option value="beast">배그</option>
+				</select>
 			</div>
 			<textarea id="summernote" name="summernote"></textarea>
 			<input type="file" name="file" id="file"> <input

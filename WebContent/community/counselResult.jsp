@@ -5,16 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="../communitycss/freeboard.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 	$(document).ready(function(){
-		$("#go").click(function(){
-			$(location).attr('href', "test.freeb")
+		$("#check").click(function(){
+			$(location).attr('href', "??.jsp")
+		})
+		$("#list").click(function(){
+			$(location).attr('href', "counselView.jsp")
 		})
 	})
 </script>
 </head>
 <body>
-	<button type="button" id="go">테스트</button>
+<div class=container>
+	<div id="result">글이 작성되었습니다.<button type="button" id="check">작성 글 확인</button><button type="button" id="list">목록으로</button></div>
+</div>
 </body>
 </html>

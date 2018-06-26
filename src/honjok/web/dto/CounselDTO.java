@@ -1,6 +1,6 @@
 package honjok.web.dto;
 
-public class BoardQnaDTO {
+public class CounselDTO {
 	private int seq;
 	private String header;
 	private String title;
@@ -11,11 +11,11 @@ public class BoardQnaDTO {
 	private int like;
 	private String ip;
 
-	public BoardQnaDTO() {
-		
+	public CounselDTO() {
+	
 	}
 	
-	public BoardQnaDTO(int seq, String header, String title, String contents, String writer, String writedate,
+	public CounselDTO(int seq, String header, String title, String contents, String writer, String writedate,
 			int viewcount, int like, String ip) {
 		super();
 		this.seq = seq;
@@ -38,8 +38,8 @@ public class BoardQnaDTO {
 	public String getHeader() {
 		return header;
 	}
-	public void setHeader(String head) {
-		this.header = head;
+	public void setHeader(String header) {
+		this.header = header;
 	}
 	public String getTitle() {
 		return title;

@@ -10,13 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import honjok.web.dao.BoardUserTipDAO;
-import honjok.web.dto.BoardUserTipDTO;
+import honjok.web.dao.CounselDAO;
+import honjok.web.dto.CounselDTO;
 
-
-@WebServlet("*.utip")
-public class BoardUserTipController extends HttpServlet {
-	
+/**
+ * Servlet implementation class CounselController
+ */
+@WebServlet("*.coun")
+public class CounselController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isRedirect = true;
 		String dst = null;
@@ -32,66 +34,66 @@ public class BoardUserTipController extends HttpServlet {
 			String command = requestURI.substring(contextPath.length());
 
 			System.out.println(command);
-			if(command.equals("/test.utip")) {
+			if(command.equals("/test.coun")) {
 				System.out.println("들어옴");
 				try {
-					BoardUserTipDAO dao = new BoardUserTipDAO();
-					List<BoardUserTipDTO> result = dao.selectData();
+					CounselDAO dao = new CounselDAO();
+					List<CounselDTO> result = dao.selectData();
 
 					request.setAttribute("result", result);
 
 					isRedirect = false;
-					dst = "community/userTipView.jsp";
+					dst = "community/counselView.jsp";
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/userTipView.UserTip")) {
-				BoardUserTipDAO dao = new BoardUserTipDAO();
-				List<BoardUserTipDTO> result = dao.selectData();
+			}else if(command.equals("/counselView.coun")) {
+				CounselDAO dao = new CounselDAO();
+				List<CounselDTO> result = dao.selectData();
 
 				request.setAttribute("result", result);
 
 				isRedirect = false;
-				dst = "community/UserTipboardView.jsp";
-			}else if(command.equals("/userTipWrite.UserTip")) {
-				BoardUserTipDAO dao = new BoardUserTipDAO();
-				BoardUserTipDTO dto = new BoardUserTipDTO();
+				dst = "community/counselView.jsp";
+			}else if(command.equals("/counselWrite.coun")) {
+				CounselDAO dao = new CounselDAO();
+				CounselDTO dto = new CounselDTO();
 
 				int result = dao.insertData1(dto);
 
 				isRedirect = false; 
-				dst = "userTipResult.jsp";
-			}else if(command.equals("/ajax01.utip")) {
+				dst = "counselResult.jsp";
+			}else if(command.equals("/ajax01.coun")) {
 				System.out.println("왔음1");
 				try {
-					BoardUserTipDAO dao = new BoardUserTipDAO();
-					List<BoardUserTipDTO> result = dao.selectHeader1Data();
+					CounselDAO dao = new CounselDAO();
+					List<CounselDTO> result = dao.selectHeader1Data();
 
 					request.setAttribute("result", result);
 
 					isRedirect = false;
-					dst = "community/userTipboardView.jsp";
+					dst = "community/counselView.jsp";
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/ajax02.utip")) {
+			}else if(command.equals("/ajax02.coun")) {
 				System.out.println("왔음2");
-				BoardUserTipDAO dao = new BoardUserTipDAO();
-				List<BoardUserTipDTO> result = dao.selectHeader2Data();
+				CounselDAO dao = new CounselDAO();
+				List<CounselDTO> result = dao.selectHeader2Data();
 
 				request.setAttribute("result", result);
 
 				isRedirect = false;
-				dst = "community/userTipboardView.jsp";
-			}else if(command.equals("/ajax03.utip")) {
+				dst = "community/counselView.jsp";
+			}else if(command.equals("/ajax03.coun")) {
 				System.out.println("왔음3");
-				BoardUserTipDAO dao = new BoardUserTipDAO();
-				List<BoardUserTipDTO> result = dao.selectHeader3Data();
+				CounselDAO dao = new CounselDAO();
+				List<CounselDTO> result = dao.selectHeader3Data();
 
 				request.setAttribute("result", result);
 
 				isRedirect = false;
-				dst = "community/userTipboardView.jsp";
+				dst = "community/counselView.jsp";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -106,6 +108,7 @@ public class BoardUserTipController extends HttpServlet {
 		}
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -35,8 +35,8 @@ public class BoardQnaController extends HttpServlet {
 
 				request.setAttribute("result", result);
 
-				RequestDispatcher rd = request.getRequestDispatcher("community/qnaView.jsp");
-				rd.forward(request, response);
+				isRedirect = false;
+				dst = "community/qnaView.jsp";
 			}else if(command.equals("/qnaWrite.qna")) {
 				BoardQnaDAO dao = new BoardQnaDAO();
 				BoardQnaDTO dto = new BoardQnaDTO();

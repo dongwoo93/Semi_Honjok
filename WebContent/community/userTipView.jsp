@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="honjok.web.dto.BoardQnaDTO"%>
-<jsp:useBean id="dto" class="honjok.web.dto.BoardQnaDTO">
+<%@page import="honjok.web.dto.BoardFreeDTO"%>
+<jsp:useBean id="dto" class="honjok.web.dto.BoardFreeDTO">
 	<jsp:setProperty name="dto" property="*"></jsp:setProperty>
 </jsp:useBean>
-<jsp:useBean id="dao" class="honjok.web.dao.BoardQnaDAO" />
+<jsp:useBean id="dao" class="honjok.web.dao.BoardFreeDAO" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,8 +16,22 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 	$(document).ready(function(){
+		console.log("들어옴");
+		
+		$("#all").click(function(){
+			$(location).attr('href', "userTipView.utip")
+		})
+		$("#chat").click(function(){
+			$(location).attr('href', "ajax01.utip")
+		})
+		$("#humor").click(function(){
+			$(location).attr('href', "ajax02.utip")
+		})
+		$("#beast").click(function(){
+			$(location).attr('href', "ajax03.utip")
+		})
 		$("#write").click(function(){
-			$(location).attr('href', "qnaWrite.qna")
+			$(location).attr('href', "community/userTipWrite.jsp");
 		})
 	})
 </script>
@@ -26,8 +40,14 @@
 <div class="container">
 	<table class="table table-hover">
 		<thead  class="head" id="head">
+		<tr>
+			<div class="headSelect">
+				<button type="button" id="all">전체</button><button type="button" id="chat">히오스</button><button type="button" id="humor">와우</button><button type="button" id="beast">배그</button>
+			</div>
+		</tr>
 			<tr>
 				<td id="no">No.</td>
+				<td id="header">말머리</td>
 				<td id="title">제목</td>
 				<td id="writer">작성자</td>
 				<td id="date">작성일</td>
@@ -42,7 +62,8 @@
 					<tbody id="body_a">
 						<tr>
 							<td id="no">${item.seq}
-							<td id="title"><a href="BoardQnaController?no=${item.seq}" class="no-uline">${item.title}</a>
+							<td id="header">${item.header}
+							<td id="title"><a href="BoardFree_Controller?no=${item.seq}" class="no-uline">${item.title}</a>
 							<td id="writer">${item.writer}
 							<td id="date">${item.writedate}
 							<td id="view">${item.viewcount}
@@ -54,7 +75,7 @@
 			<c:otherwise>
 			<tbody id="body_b">
 				<tr id="shit">
-					<td id="nothing" colspan=6>표시할 내용이 없습니다.</td>
+					<td id="nothing" colspan=7>표시할 내용이 없습니다.</td>
 				</tr>
 			</tbody>
 			</c:otherwise>
