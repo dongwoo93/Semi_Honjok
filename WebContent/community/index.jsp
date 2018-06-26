@@ -1,68 +1,90 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../parallax.css" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../parallax.css"
+	rel="stylesheet" type="text/css">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
-<link rel="stylesheet" href="../communitycss/Footer-with-button-logo.css">
+
+<link rel="stylesheet" type="text/css"
+	href="../communitycss/footer-distributed-with-address-and-phones.css">
+
+
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet"
+	href="css/footer-distributed-with-address-and-phones.css">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<link href="http://fonts.googleapis.com/css?family=Cookie"
+	rel="stylesheet" type="text/css">
+
+
 </head>
 <body>
-<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-<img src="../imges/coffee.png" width=60 height=60>
-   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
-   <ul class="nav navbar-nav">
-      <li class="nav-item"></li>
-      <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="../hontalkView.freeb">È¥Åå</a>
-         <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="freeboardView.freeb">ÀÚÀ¯°Ô½ÃÆÇ</a></li>
-            <li class="dropdown-item"><a href="#">°í¹Î»ó´ã</a></li>
-            <li class="dropdown-item"><a href="#">Áú¹®/´äº¯</a></li>
-            <li class="dropdown-item"><a href="#">È¥ÆÁ</a></li>
-            <li class="dropdown-item"><a href="#">º£½ºÆ®</a></li>
-         </ul></li>
-      <li class="dropdown nav-item"><a href="#"
-         class="dropdown-toggle nav-link" data-toggle="dropdown">²ÜÆÁ</a>
-         <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">ÀüÃ¼º¸±â</a></li>
-            <li class="dropdown-item"><a href="#">Ã»¼Ò</a></li>
-            <li class="dropdown-item"><a href="#">¶óÀÌÇÁ</a></li>
-            <li class="dropdown-item"><a href="#">°æÁ¦Àû</a></li>
-         </ul></li>
-      <li class="dropdown nav-item"><a href="#"
-         class="dropdown-toggle nav-link" data-toggle="dropdown">¿ä¸®</a>
-         <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">ÃÊ°£´Ü¿ä¸®</a></li>
-            <li class="dropdown-item"><a href="#">ÀÏ¹İ¿ä¸®</a></li>
-         </ul></li>
-      <li class="nav-item"><a href="#" class="catego nav-link">ÀÎÅ×¸®¾î</a>
-      </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">È¥Á·¿©Çà</a>
-      </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">È¥Á·¸ÀÁı</a>
-      </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">È¥Á·¼îÇÎ</a>
-      </li>
-   </ul>
-   <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-   </ul>
-   </nav>
+	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+	<img src="../imges/coffee.png" width=60 height=60> <a
+		class="navbar-brand" href="#" style="color: white; font-size: 26px;">Hollor</a>
+	<ul class="nav navbar-nav">
+		<li class="nav-item"></li>
+		<li class="dropdown"><a class="dropdown-toggle nav-link"
+			id="hontalkView" data-toggle="dropdown" href="../hontalkView.freeb">í˜¼í†¡</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="freeboardView.freeb">ììœ ê²Œì‹œíŒ</a></li>
+				<li class="dropdown-item"><a href="#">ê³ ë¯¼ìƒë‹´</a></li>
+				<li class="dropdown-item"><a href="#">ì§ˆë¬¸/ë‹µë³€</a></li>
+				<li class="dropdown-item"><a href="#">í˜¼íŒ</a></li>
+				<li class="dropdown-item"><a href="#">ë² ìŠ¤íŠ¸</a></li>
+			</ul></li>
+		<li class="dropdown nav-item"><a href="#"
+			class="dropdown-toggle nav-link" data-toggle="dropdown">ê¿€íŒ</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">ì „ì²´ë³´ê¸°</a></li>
+				<li class="dropdown-item"><a href="#">ì²­ì†Œ</a></li>
+				<li class="dropdown-item"><a href="#">ë¼ì´í”„</a></li>
+				<li class="dropdown-item"><a href="#">ê²½ì œì </a></li>
+			</ul></li>
+		<li class="dropdown nav-item"><a href="#"
+			class="dropdown-toggle nav-link" data-toggle="dropdown">ìš”ë¦¬</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">ì´ˆê°„ë‹¨ìš”ë¦¬</a></li>
+				<li class="dropdown-item"><a href="#">ì¼ë°˜ìš”ë¦¬</a></li>
+			</ul></li>
+		<li class="nav-item"><a href="#" class="catego nav-link">ì¸í…Œë¦¬ì–´</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">í˜¼ì¡±ì—¬í–‰</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">í˜¼ì¡±ë§›ì§‘</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">í˜¼ì¡±ì‡¼í•‘</a>
+		</li>
+	</ul>
+	<ul class="nav navbar-nav ml-auto">
+		<li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+		<li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+	</ul>
+	</nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -91,315 +113,431 @@
 			</div>
 		</div>
 	</div>
-	<div><h1 style="margin-top: 30px; margin-left: 330px; margin-bottom: 20px">Latest Contents</h1>
-	<div class="card-deck">
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
+	<div>
+		<h1 style="margin-top: 30px; margin-left: 330px; margin-bottom: 20px">Latest
+			Contents</h1>
+		<div class="card-deck">
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
+
+		<div class="card-deck">
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<a href=""> <img class="card-img-top" src="../fjords.jpg"
+						alt="Card image cap">
+					</a>
+					<div class="card-body">
+
+
+						<a href=""><h5 class="card-title">Card title</h5></a>
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2" id="card1">
+				<div class="card">
+					<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+
+						<p class="card-text">
+							<small class="text-muted">Last updated 3 mins ago</small>
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="card-deck">
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
+
+	<div id="wrapper">
+		<div class="wrapper2">
+			<div class="text1" data-aos="zoom-out-right">
+				<h1
+					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
+					style="margin: 0 0 20px 0;">í˜¼ì¡±ì´ë€?</h1>
+				<p style="text-align: center;">
+					<span style="color: #808080;">í˜¼ì ë°¥ì„ ë¨¹ê±°ë‚˜ ì—¬ê°€ìƒí™œê³¼ ì‡¼í•‘ì„ ì¦ê¸°ë©°, </span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">ì—¬í–‰ë„ í™€ë¡œ ë– ë‚˜ëŠ” ë“± í˜¼ì í™œë™í•˜ëŠ”ê²Œ ì·¨ë¯¸ì´ê±°ë‚˜ </span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">ê·¸ëŸ° ì„±í–¥ì´ ê°•í•œ ì‚¬ëŒë“¤ì„ ì¼ì»«ëŠ” ì¤„ì„ë§.</span>
+				</p>
+			</div>
+			<section id="section2" class="black-circle ct-u-paddingBoth120"
+				style="min-height: 396px; width: 50%; float: left;"> </section>
+		</div>
+		<div class="wrapper2">
+			<section id="section3" class="black-circle ct-u-paddingBoth120"
+				style="min-height: 396px; width: 50%; float: left;"> </section>
+			<div class="text1" data-aos="zoom-out-left">
+				<h1
+					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
+					style="margin: 0 0 20px 0;">í˜¼ì¡±ì´ë€?</h1>
+				<p style="text-align: center;">
+					<span style="color: #808080;">í˜¼ì ë°¥ì„ ë¨¹ê±°ë‚˜ ì—¬ê°€ìƒí™œê³¼ ì‡¼í•‘ì„ ì¦ê¸°ë©°, </span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">ì—¬í–‰ë„ í™€ë¡œ ë– ë‚˜ëŠ” ë“± í˜¼ì í™œë™í•˜ëŠ”ê²Œ ì·¨ë¯¸ì´ê±°ë‚˜ </span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">ê·¸ëŸ° ì„±í–¥ì´ ê°•í•œ ì‚¬ëŒë“¤ì„ ì¼ì»«ëŠ” ì¤„ì„ë§.</span>
+				</p>
+			</div>
+		</div>
+		<div class="wrapper2">
+			<div class="text1" data-aos="zoom-out-right">
+				<h1
+					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
+					style="margin: 0 0 20px 0;">í˜¼ì¡±ì´ë€?</h1>
+				<p style="text-align: center;">
+					<span style="color: #808080;">í˜¼ì ë°¥ì„ ë¨¹ê±°ë‚˜ ì—¬ê°€ìƒí™œê³¼ ì‡¼í•‘ì„ ì¦ê¸°ë©°, </span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">ì—¬í–‰ë„ í™€ë¡œ ë– ë‚˜ëŠ” ë“± í˜¼ì í™œë™í•˜ëŠ”ê²Œ ì·¨ë¯¸ì´ê±°ë‚˜ </span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">ê·¸ëŸ° ì„±í–¥ì´ ê°•í•œ ì‚¬ëŒë“¤ì„ ì¼ì»«ëŠ” ì¤„ì„ë§.</span>
+				</p>
+			</div>
+			<section id="section4" class="black-circle ct-u-paddingBoth120"
+				style="min-height: 396px; width: 50%; float: left;"> </section>
+		</div>
+	</div>
+
+	<div id="conbox"
+		style="text-align: center; padding-left: 180px; padding-top: 60px; padding-bottom: 60px;"
+		data-aos="fade-zoom-in">
+		<div class="wpb_wrapper"
+			style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div
+				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
+				<h3>í˜¼ìˆ í˜¼ë°¥</h3>
+				<img src="../images/1.png" class="iconimg">
+				<p style="text-align: center;">
+					<span style="color: #333333;">í˜¼ìˆ  í˜¼ë°¥í•˜ê¸° ì¢‹ì€ ê³³ì„</span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #333333;">ì†Œê°œí•©ë‹ˆë‹¤.</span>
+				</p>
+			</div>
+			<div class="wpb_text_column wpb_content_element ">
+				<div class="wpb_wrapper">
+					<p style="text-align: center;">
+						<a href="" target="_self" class="button color-1 medium "
+							style="border-radius: 2px;">ë°”ë¡œê°€ê¸°</a>
 					</p>
+
 				</div>
 			</div>
+
 		</div>
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
+
+		<div class="wpb_wrapper"
+			style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div
+				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
+				<h3>í˜¼ì¡± ì œí’ˆ&amp;ì„œë¹„ìŠ¤</h3>
+				<img src="../images/2.png" class="iconimg">
+				<p style="text-align: center;">
+					<span style="color: #333333;">í˜¼ì¡±ì´ ì“°ë©´ ìœ ìš©í•˜ê³  í•«í•œ</span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #333333;">ì œí’ˆ ë˜ëŠ” ì„œë¹„ìŠ¤ë¥¼&nbsp;ì†Œê°œí•©ë‹ˆë‹¤.</span>
+				</p>
+			</div>
+			<div class="wpb_text_column wpb_content_element ">
+				<div class="wpb_wrapper">
+					<p style="text-align: center;">
+						<a href="" target="_self" class="button color-1 medium"
+							style="border-radius: 2px;">ë°”ë¡œê°€ê¸°</a>
 					</p>
+
 				</div>
 			</div>
-		</div>
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-			<a href="">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				</a>
-				<div class="card-body">
 
-				
-				<a href=""><h5 class="card-title">Card title</h5></a>
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
+		</div>
+
+		<div class="wpb_wrapper"
+			style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div
+				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
+				<h3>í˜¼ì¡± ë¬¸í™”</h3>
+				<img src="../images/3.png" class="iconimg">
+				<p style="text-align: center;">
+					<span style="color: #333333;">í˜¼ì¡±ì˜ ê°ì„±, í–‰ë™, ì‚¬ìƒ</span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #333333;">í˜¼ì¡±ë¬¸í™”ë¥¼ &nbsp;ì†Œê°œí•©ë‹ˆë‹¤.</span>
+				</p>
+			</div>
+			<div class="wpb_text_column wpb_content_element ">
+				<div class="wpb_wrapper">
+					<p style="text-align: center;">
+						<a href="" target="_self" class="button color-1 medium "
+							style="border-radius: 2px;">ë°”ë¡œê°€ê¸°</a>
 					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-2" id="card1">
-			<div class="card">
-				<img class="card-img-top" src="../fjords.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					
-					<p class="card-text">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</p>
+
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div id="wrapper">
-<div class="wrapper2">
-<div class="text1" data-aos="zoom-out-right">
-<h1 class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit " style="margin: 0 0 20px 0;">È¥Á·ÀÌ¶õ?</h1>
-<p style="text-align: center;"><span style="color: #808080;">È¥ÀÚ ¹äÀ» ¸Ô°Å³ª ¿©°¡»ıÈ°°ú ¼îÇÎÀ» Áñ±â¸ç, </span></p>
-<p style="text-align: center;"><span style="color: #808080;">¿©Çàµµ È¦·Î ¶°³ª´Â µî È¥ÀÚ È°µ¿ÇÏ´Â°Ô Ãë¹ÌÀÌ°Å³ª </span></p>
-<p style="text-align: center;"><span style="color: #808080;">±×·± ¼ºÇâÀÌ °­ÇÑ »ç¶÷µéÀ» ÀÏÄÂ´Â ÁÙÀÓ¸».</span></p>
-</div>
-<section id="section2" class="black-circle ct-u-paddingBoth120" style="min-height: 396px; width: 50%; float: left;">
-</section>
-</div>
-<div class="wrapper2">
-<section id="section3" class="black-circle ct-u-paddingBoth120" style="min-height: 396px; width: 50%; float: left;">
-</section>
-<div class="text1" data-aos="zoom-out-left">
-<h1 class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit " style="margin: 0 0 20px 0;">È¥Á·ÀÌ¶õ?</h1>
-<p style="text-align: center;"><span style="color: #808080;">È¥ÀÚ ¹äÀ» ¸Ô°Å³ª ¿©°¡»ıÈ°°ú ¼îÇÎÀ» Áñ±â¸ç, </span></p>
-<p style="text-align: center;"><span style="color: #808080;">¿©Çàµµ È¦·Î ¶°³ª´Â µî È¥ÀÚ È°µ¿ÇÏ´Â°Ô Ãë¹ÌÀÌ°Å³ª </span></p>
-<p style="text-align: center;"><span style="color: #808080;">±×·± ¼ºÇâÀÌ °­ÇÑ »ç¶÷µéÀ» ÀÏÄÂ´Â ÁÙÀÓ¸».</span></p>
-</div>
-</div>
-<div class="wrapper2">
-<div class="text1" data-aos="zoom-out-right">
-<h1 class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit " style="margin: 0 0 20px 0;">È¥Á·ÀÌ¶õ?</h1>
-<p style="text-align: center;"><span style="color: #808080;">È¥ÀÚ ¹äÀ» ¸Ô°Å³ª ¿©°¡»ıÈ°°ú ¼îÇÎÀ» Áñ±â¸ç, </span></p>
-<p style="text-align: center;"><span style="color: #808080;">¿©Çàµµ È¦·Î ¶°³ª´Â µî È¥ÀÚ È°µ¿ÇÏ´Â°Ô Ãë¹ÌÀÌ°Å³ª </span></p>
-<p style="text-align: center;"><span style="color: #808080;">±×·± ¼ºÇâÀÌ °­ÇÑ »ç¶÷µéÀ» ÀÏÄÂ´Â ÁÙÀÓ¸».</span></p>
-</div>
-<section id="section4" class="black-circle ct-u-paddingBoth120" style="min-height: 396px; width: 50%; float: left;">
-</section>
-</div>
-</div>
-
-<div id="conbox" style="text-align: center; padding-left: 180px; padding-top: 60px; padding-bottom: 60px;" data-aos="fade-zoom-in">
-<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>È¥¼úÈ¥¹ä</h3><img src="../images/1.png" class="iconimg">
-			<p style="text-align: center;"><span style="color: #333333;">È¥¼ú È¥¹äÇÏ±â ÁÁÀº °÷À»</span></p>
-<p style="text-align: center;"><span style="color: #333333;">¼Ò°³ÇÕ´Ï´Ù.</span></p>
-</div>
-	<div class="wpb_text_column wpb_content_element ">
-		<div class="wpb_wrapper">
-			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium " style="border-radius: 2px;">¹Ù·Î°¡±â</a></p>
-
-		</div>
-	</div>
-
-		</div>
-		
-		<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>È¥Á· Á¦Ç°&amp;¼­ºñ½º</h3><img src="../images/2.png" class="iconimg">
-			<p style="text-align: center;"><span style="color: #333333;">È¥Á·ÀÌ ¾²¸é À¯¿ëÇÏ°í ÇÖÇÑ</span></p>
-<p style="text-align: center;"><span style="color: #333333;">Á¦Ç° ¶Ç´Â ¼­ºñ½º¸¦&nbsp;¼Ò°³ÇÕ´Ï´Ù.</span></p>
-</div>
-	<div class="wpb_text_column wpb_content_element ">
-		<div class="wpb_wrapper">
-			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium" style="border-radius: 2px;">¹Ù·Î°¡±â</a></p>
-
-		</div>
-	</div>
-
-		</div>
-		
-		<div class="wpb_wrapper" style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"><h3>È¥Á· ¹®È­</h3><img src="../images/3.png" class="iconimg">
-			<p style="text-align: center;"><span style="color: #333333;">È¥Á·ÀÇ °¨¼º, Çàµ¿, »ç»ó</span></p>
-<p style="text-align: center;"><span style="color: #333333;">È¥Á·¹®È­¸¦ &nbsp;¼Ò°³ÇÕ´Ï´Ù.</span></p>
-</div>
-	<div class="wpb_text_column wpb_content_element ">
-		<div class="wpb_wrapper">
-			<p style="text-align: center;"><a href="" target="_self" class="button color-1 medium " style="border-radius: 2px;">¹Ù·Î°¡±â</a></p>
-
-		</div>
-	</div>
-		</div>
-		</div>
-
-<div style="height: 300px; background-color: #1e73be; padding-top: 60px; padding-bottom: 60px; padding-left: 200px; text-align: center;">
-<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
-<div id="shiva"><div class="count" data-count="800" style="color: #ffffff !important">0</div></div>
-<span class="counter-title">¸¸¸í</span> <br>
-<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>1ÀÎ °¡±¸</b></span></h4></div>
-</div>
-<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
-<div id="shiva"><div class="count" data-count="100" style="color: #ffffff !important">0</div></div>
-<span class="counter-title">¸¸¸í</span> <br>
-<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>ÃÖ±Ù 5³â È¥Á· Áõ°¡ °¡±¸¼ö</b></span></h4></div>
-</div>
-<div id="cwrapper" style="display: inline-block; margin-right: 300px;"> 
-<div id="shiva"><div class="count" data-count="50" style="color: #ffffff !important">0</div></div>
-<span class="counter-title">%</span> <br>
-<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"><h4 style="text-align: center;"><span><b>È¥Á· ºñÀ²</b></span></h4></div>
-</div>
-</div>
-
-<footer id="myFooter">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3">
-				<h2 class="logo">
-					<a href="#"> LOGO </a>
-				</h2>
+	<div
+		style="height: 300px; background-color: #1e73be; padding-top: 60px; padding-bottom: 60px; padding-left: 200px; text-align: center;">
+		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+			<div id="shiva">
+				<div class="count" data-count="800"
+					style="color: #ffffff !important">0</div>
 			</div>
-			<div class="col-md-2">
-				<h5>Get started</h5>
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Sign up</a></li>
-					<li><a href="#">Downloads</a></li>
-				</ul>
+			<span class="counter-title">ë§Œëª…</span> <br>
+			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in">
+				<h4 style="text-align: center;">
+					<span><b>1ì¸ ê°€êµ¬</b></span>
+				</h4>
 			</div>
-			<div class="col-md-2">
-				<h5>About us</h5>
-				<ul>
-					<li><a href="#">Company Information</a></li>
-					<li><a href="#">Contact us</a></li>
-					<li><a href="#">Reviews</a></li>
-				</ul>
+		</div>
+		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+			<div id="shiva">
+				<div class="count" data-count="100"
+					style="color: #ffffff !important">0</div>
 			</div>
-			<div class="col-md-2">
-				<h5>Support</h5>
-				<ul>
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">Help desk</a></li>
-					<li><a href="#">Forums</a></li>
-				</ul>
+			<span class="counter-title">ë§Œëª…</span> <br>
+			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in">
+				<h4 style="text-align: center;">
+					<span><b>ìµœê·¼ 5ë…„ í˜¼ì¡± ì¦ê°€ ê°€êµ¬ìˆ˜</b></span>
+				</h4>
 			</div>
-			<div class="col-md-3">
-				<div class="social-networks">
-					<a href="https://twitter.com/?lang=ko" class="twitter"><i
-						class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/"
-						class="facebook"><i class="fa fa-facebook"></i></a> <a
-						href="https://www.google.com/" class="google"><i
-						class="fa fa-google-plus"></i></a>
-				</div>
-				<button type="button" class="btn btn-secondary">Contact us</button>
+		</div>
+		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
+			<div id="shiva">
+				<div class="count" data-count="50" style="color: #ffffff !important">0</div>
+			</div>
+			<span class="counter-title">%</span> <br>
+			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in">
+				<h4 style="text-align: center;">
+					<span><b>í˜¼ì¡± ë¹„ìœ¨</b></span>
+				</h4>
 			</div>
 		</div>
 	</div>
-	<div class="footer-copyright">
-		<p>&#xA9; 2018 Copyright Text</p>
+
+	<footer class="footer-distributed">
+
+	<div class="footer-left">
+
+		<h3>
+			Company<span>logo</span>
+		</h3>
+
+		<p class="footer-links">
+			<a href="#">Home</a> Â· <a href="#">Blog</a> Â· <a href="#">Pricing</a>
+			Â· <a href="#">About</a> Â· <a href="#">Faq</a> Â· <a href="#">Contact</a>
+		</p>
+
+		<p class="footer-company-name">Company Name &copy; 2015</p>
 	</div>
+
+	<div class="footer-center">
+
+		<div>
+			<i class="fa fa-map-marker"></i>
+			<p>
+				<span>21 Revolution Street</span> Seoul, Korea
+			</p>
+		</div>
+
+		<div>
+			<i class="fa fa-phone"></i>
+			<p>+1 555 123456</p>
+		</div>
+
+		<div>
+			<i class="fa fa-envelope"></i>
+			<p>
+				<a href="mailto:cool_93@naver.com">cool_93@naver.com</a>
+			</p>
+		</div>
+
+	</div>
+
+	<div class="footer-right">
+
+		<p class="footer-company-about">
+			<span>About the company</span> Lorem ipsum dolor sit amet,
+			consectateur adispicing elit. Fusce euismod convallis velit, eu
+			auctor lacus vehicula sit amet.
+		</p>
+
+		<div class="footer-icons">
+
+			<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a> <a href="https://twitter.com/"><i
+				class="fa fa-twitter"></i></a> <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+			<a href="https://github.com/"><i class="fa fa-github"></i></a>
+
+		</div>
+
+	</div>
+
 	</footer>
-<script>
-AOS.init({
-	  duration: 1200,
-	});
-</script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
 
-		$('#section2').parallax({
-			imageSrc: '../images/background-3.jpg'
+	<script>
+		AOS.init({
+			duration : 1200,
 		});
-		
-		$('#section3').parallax({
-			imageSrc: '../images/background-4.jpg'
-		});
-		$('#section4').parallax({
-			imageSrc: '../images/background-5.jpg'
-		});
-		
-		$('ul.nav li.dropdown').hover(function() {
-	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-	         }, function() {
-	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-	         });
-		
-		var a = 0;
-		$(window).scroll(function() {
-		  var oTop = $('#shiva').offset().top - window.innerHeight;
-		  if (a == 0 && $(window).scrollTop() > oTop) {
-		    $('.count').each(function() {
-		      var $this = $(this),
-		        countTo = $this.attr('data-count');
-		      $({
-		        countNum: $this.text()
-		      }).animate({
-		          countNum: countTo
-		        },
+	</script>
 
-		        {
-		          duration: 1500,
-		          easing: 'swing',
-		          step: function() {
-		            $this.text(Math.floor(this.countNum));
-		          },
-		          complete: function() {
-		            $this.text(this.countNum);
-		            //alert('finished');
-		          }
-		        });
-		    });
-		    a = 1;
-		  }
-		});
-		
-		$('#hontalkView').click(function () {
-	          window.location = $(this).attr('href');
-	      });
-		
-	});
-</script>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+
+							$('#section2').parallax({
+								imageSrc : '../images/background-3.jpg'
+							});
+
+							$('#section3').parallax({
+								imageSrc : '../images/background-4.jpg'
+							});
+							$('#section4').parallax({
+								imageSrc : '../images/background-5.jpg'
+							});
+
+							$('ul.nav li.dropdown').hover(
+									function() {
+										$(this).find('.dropdown-menu').stop(
+												true, true).delay(200).fadeIn(
+												500);
+									},
+									function() {
+										$(this).find('.dropdown-menu').stop(
+												true, true).delay(200).fadeOut(
+												500);
+									});
+
+							var a = 0;
+							$(window)
+									.scroll(
+											function() {
+												var oTop = $('#shiva').offset().top
+														- window.innerHeight;
+												if (a == 0
+														&& $(window)
+																.scrollTop() > oTop) {
+													$('.count')
+															.each(
+																	function() {
+																		var $this = $(this), countTo = $this
+																				.attr('data-count');
+																		$(
+																				{
+																					countNum : $this
+																							.text()
+																				})
+																				.animate(
+																						{
+																							countNum : countTo
+																						},
+
+																						{
+																							duration : 1500,
+																							easing : 'swing',
+																							step : function() {
+																								$this
+																										.text(Math
+																												.floor(this.countNum));
+																							},
+																							complete : function() {
+																								$this
+																										.text(this.countNum);
+																								//alert('finished');
+																							}
+																						});
+																	});
+													a = 1;
+												}
+											});
+
+							$('#hontalkView').click(function() {
+								window.location = $(this).attr('href');
+							});
+
+						});
+	</script>
 </body>
 </html>
