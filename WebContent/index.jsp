@@ -40,9 +40,9 @@
                 </li>
                 </ul>
         </li>
-        <li class="nav-item"><a href="board/boardtip.jsp" class="catego nav-link">&#xAFC0;&#xD301;</a>
+        <li class="nav-item"><a href="select.tip" class="catego nav-link">&#xAFC0;&#xD301;</a>
         </li>
-        <li class="nav-item"><a href="BoardSelectController" class="catego nav-link">&#xC694;&#xB9AC;</a>
+        <li class="nav-item"><a href="#" class="catego nav-link">&#xC694;&#xB9AC;</a>
         </li>
         <li class="nav-item"><a href="board/boardeditor.jsp" class="catego nav-link">&#xC778;&#xD14C;&#xB9AC;&#xC5B4;</a>
         </li>

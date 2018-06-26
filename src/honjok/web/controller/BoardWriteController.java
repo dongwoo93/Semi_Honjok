@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import honjok.web.dao.BoardTipDAO;
 import honjok.web.dao.BoardWriteDAO;
+import honjok.web.dto.BoardDTO;
 
 
 @WebServlet("/boardWrite")
@@ -28,7 +30,7 @@ public class BoardWriteController extends HttpServlet {
 		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
-		// getServletContext() 
+		// getServletContext()
 		File f = new File(realPath);
 
 		if(!f.exists()){
@@ -43,20 +45,21 @@ public class BoardWriteController extends HttpServlet {
 		String systemFileName = mr.getFilesystemName("file");
 		String originalFileName = mr.getOriginalFileName("file");
 
-		System.out.println(systemFileName);
-		System.out.println(originalFileName);
+		//System.out.println(systemFileName);
+		//System.out.println(originalFileName);
 		boolean isRedirect = true;
 		String dst = null;
 		String title = mr.getParameter("title");
-		System.out.println(title);
+		//System.out.println(title);
 		String category = mr.getParameter("category");
-		System.out.println(category);
+		//System.out.println(category);
 		String subject = mr.getParameter("subject");
-		System.out.println(subject);
+		//System.out.println(subject);
 		String contents = mr.getParameter("summernote");
 
-		System.out.println(contents);
-		BoardWriteDAO dao = new BoardWriteDAO();
+		//System.out.println(contents);
+		//BoardWriteDAO dao = new BoardWriteDAO();
+
 		/*try {
 			BufferedReader reader = request.getReader();
 			while ((line = reader.readLine()) != null)
@@ -67,14 +70,23 @@ public class BoardWriteController extends HttpServlet {
 
 		//String contents = sb.toString();
 		//System.out.println(contents);
-		try {
-			dao.insertInfo(category, subject, title, contents, systemFileName, originalFileName);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		isRedirect = false; 
-		dst = "index.jsp";
 
+		if(category.equals("²ÜÆÁ")) {
+			BoardTipDAO tipDAO = new BoardTipDAO();
+			try {
+				String seq = tipDAO.getBoardSeq();
+				BoardDTO dto = new BoardDTO(seq, category, subject, title, contents, systemFileName, originalFileName);
+				tipDAO.insertData(dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			isRedirect = false; 
+			dst = "index.jsp";
+		}else if(category.equals("¿ä¸®")) {
+			
+		}
+		
+		
 		if(isRedirect) {
 			response.sendRedirect(dst);
 		}else {

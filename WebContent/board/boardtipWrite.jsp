@@ -26,9 +26,12 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
-<link rel="stylesheet" href="../boardcss/boardeditor.css"
+<link rel="stylesheet" href="/boardcss/boardwritecss.css"
 	type="text/css">
+	<!-- include summernote plugin-->
+<script type="text/javascript" src="summernote-map-plugin.js"></script>
 <script>
+
 
 $(document).ready(function() {
 	
@@ -147,6 +150,7 @@ $(document).ready(function() {
 				/* 	  codemirror: { // codemirror options
 						    theme: 'paper'
 						  } */
+						  
 				});
 			</script>
 			<div class="col-sm-3">

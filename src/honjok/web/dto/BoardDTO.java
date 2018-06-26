@@ -11,9 +11,12 @@ public class BoardDTO {
 	private String writedate;
 	private String systemFileName;
 	private String originalFileName;
+	
 	public BoardDTO() {}
-	public BoardDTO(String category, String subject, String title, 
+	
+	public BoardDTO(String seq, String category, String subject, String title, 
 			String contents, String systemFileName, String originalFileName) {
+		this.seq = seq;
 		this.category = category;
 		this.subject = subject;
 		this.title = title;
@@ -23,7 +26,6 @@ public class BoardDTO {
 	}
 	public BoardDTO(String seq, String category, String subject, String title, String contents, int viewcount, int like,
 			String writedate, String systemFileName, String originalFileName) {
-		super();
 		this.seq = seq;
 		this.category = category;
 		this.subject = subject;
