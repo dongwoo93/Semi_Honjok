@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,35 +32,35 @@
 	<a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
 	<ul class="nav navbar-nav">
 		<li class="nav-item"></li>
-		<li class="dropdown"><a id="hontalkView" class="dropdown-toggle nav-link" data-toggle="dropdown" href="freeboardView.freeb">È¥Åå</a>
+		<li class="dropdown"><a id="hontalkView" class="dropdown-toggle nav-link" data-toggle="dropdown" href="freeboardView.freeb">í˜¼í†¡</a>
 			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">ÀÚÀ¯°Ô½ÃÆÇ</a></li>
-				<li class="dropdown-item"><a href="#">°í¹Î»ó´ã</a></li>
-				<li class="dropdown-item"><a href="#">Áú¹®/´äº¯</a></li>
-				<li class="dropdown-item"><a href="#">È¥ÆÁ</a></li>
-				<li class="dropdown-item"><a href="#">º£½ºÆ®</a></li>
+				<li class="dropdown-item"><a href="#">ìžìœ ê²Œì‹œíŒ</a></li>
+				<li class="dropdown-item"><a href="#">ê³ ë¯¼ìƒë‹´</a></li>
+				<li class="dropdown-item"><a href="#">ì§ˆë¬¸/ë‹µë³€</a></li>
+				<li class="dropdown-item"><a href="#">í˜¼íŒ</a></li>
+				<li class="dropdown-item"><a href="#">ë² ìŠ¤íŠ¸</a></li>
 			</ul></li>
 		<li class="dropdown nav-item"><a href="#"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">²ÜÆÁ</a>
+			class="dropdown-toggle nav-link" data-toggle="dropdown">ê¿€íŒ</a>
 			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">ÀüÃ¼º¸±â</a></li>
-				<li class="dropdown-item"><a href="#">Ã»¼Ò</a></li>
-				<li class="dropdown-item"><a href="#">¶óÀÌÇÁ</a></li>
-				<li class="dropdown-item"><a href="#">°æÁ¦Àû</a></li>
+				<li class="dropdown-item"><a href="#">ì „ì²´ë³´ê¸°</a></li>
+				<li class="dropdown-item"><a href="#">ì²­ì†Œ</a></li>
+				<li class="dropdown-item"><a href="#">ë¼ì´í”„</a></li>
+				<li class="dropdown-item"><a href="#">ê²½ì œì </a></li>
 			</ul></li>
 		<li class="dropdown nav-item"><a href="#"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">¿ä¸®</a>
+			class="dropdown-toggle nav-link" data-toggle="dropdown">ìš”ë¦¬</a>
 			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">ÃÊ°£´Ü¿ä¸®</a></li>
-				<li class="dropdown-item"><a href="#">ÀÏ¹Ý¿ä¸®</a></li>
+				<li class="dropdown-item"><a href="#">ì´ˆê°„ë‹¨ìš”ë¦¬</a></li>
+				<li class="dropdown-item"><a href="#">ì¼ë°˜ìš”ë¦¬</a></li>
 			</ul></li>
-		<li class="nav-item"><a href="#" class="catego nav-link">ÀÎÅ×¸®¾î</a>
+		<li class="nav-item"><a href="#" class="catego nav-link">ì¸í…Œë¦¬ì–´</a>
 		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">È¥Á·¿©Çà</a>
+		<li class="nav-item"><a href="#" class="catego nav-link">í˜¼ì¡±ì—¬í–‰</a>
 		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">È¥Á·¸ÀÁý</a>
+		<li class="nav-item"><a href="#" class="catego nav-link">í˜¼ì¡±ë§›ì§‘</a>
 		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">È¥Á·¼îÇÎ</a>
+		<li class="nav-item"><a href="#" class="catego nav-link">í˜¼ì¡±ì‡¼í•‘</a>
 		</li>
 	</ul>
 	<ul class="nav navbar-nav ml-auto">
@@ -212,15 +212,15 @@
 			<div class="text1" data-aos="zoom-out-right" data-aos-once="true">
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
-					style="margin: 0 0 20px 0;">È¥Á·ÀÌ¶õ?</h1>
+					style="margin: 0 0 20px 0;">í˜¼ì¡±ì´ëž€?</h1>
 				<p style="text-align: center;">
-					<span style="color: #808080;">È¥ÀÚ ¹äÀ» ¸Ô°Å³ª ¿©°¡»ýÈ°°ú ¼îÇÎÀ» Áñ±â¸ç, </span>
+					<span style="color: #808080;">í˜¼ìž ë°¥ì„ ë¨¹ê±°ë‚˜ ì—¬ê°€ìƒí™œê³¼ ì‡¼í•‘ì„ ì¦ê¸°ë©°, </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">¿©Çàµµ È¦·Î ¶°³ª´Â µî È¥ÀÚ È°µ¿ÇÏ´Â°Ô Ãë¹ÌÀÌ°Å³ª </span>
+					<span style="color: #808080;">ì—¬í–‰ë„ í™€ë¡œ ë– ë‚˜ëŠ” ë“± í˜¼ìž í™œë™í•˜ëŠ”ê²Œ ì·¨ë¯¸ì´ê±°ë‚˜ </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">±×·± ¼ºÇâÀÌ °­ÇÑ »ç¶÷µéÀ» ÀÏÄÂ´Â ÁÙÀÓ¸».</span>
+					<span style="color: #808080;">ê·¸ëŸ° ì„±í–¥ì´ ê°•í•œ ì‚¬ëžŒë“¤ì„ ì¼ì»«ëŠ” ì¤„ìž„ë§.</span>
 				</p>
 			</div>
 			<section id="section2" class="black-circle ct-u-paddingBoth120"
@@ -232,15 +232,15 @@
 			<div class="text1" data-aos="zoom-out-left" data-aos-once="true">
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
-					style="margin: 0 0 20px 0;">È¥Á·ÀÌ¶õ?</h1>
+					style="margin: 0 0 20px 0;">í˜¼ì¡±ì´ëž€?</h1>
 				<p style="text-align: center;">
-					<span style="color: #808080;">È¥ÀÚ ¹äÀ» ¸Ô°Å³ª ¿©°¡»ýÈ°°ú ¼îÇÎÀ» Áñ±â¸ç, </span>
+					<span style="color: #808080;">í˜¼ìž ë°¥ì„ ë¨¹ê±°ë‚˜ ì—¬ê°€ìƒí™œê³¼ ì‡¼í•‘ì„ ì¦ê¸°ë©°, </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">¿©Çàµµ È¦·Î ¶°³ª´Â µî È¥ÀÚ È°µ¿ÇÏ´Â°Ô Ãë¹ÌÀÌ°Å³ª </span>
+					<span style="color: #808080;">ì—¬í–‰ë„ í™€ë¡œ ë– ë‚˜ëŠ” ë“± í˜¼ìž í™œë™í•˜ëŠ”ê²Œ ì·¨ë¯¸ì´ê±°ë‚˜ </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">±×·± ¼ºÇâÀÌ °­ÇÑ »ç¶÷µéÀ» ÀÏÄÂ´Â ÁÙÀÓ¸».</span>
+					<span style="color: #808080;">ê·¸ëŸ° ì„±í–¥ì´ ê°•í•œ ì‚¬ëžŒë“¤ì„ ì¼ì»«ëŠ” ì¤„ìž„ë§.</span>
 				</p>
 			</div>
 		</div>
@@ -248,15 +248,15 @@
 			<div class="text1" data-aos="zoom-out-right" data-aos-once="true">
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
-					style="margin: 0 0 20px 0;">È¥Á·ÀÌ¶õ?</h1>
+					style="margin: 0 0 20px 0;">í˜¼ì¡±ì´ëž€?</h1>
 				<p style="text-align: center;">
-					<span style="color: #808080;">È¥ÀÚ ¹äÀ» ¸Ô°Å³ª ¿©°¡»ýÈ°°ú ¼îÇÎÀ» Áñ±â¸ç, </span>
+					<span style="color: #808080;">í˜¼ìž ë°¥ì„ ë¨¹ê±°ë‚˜ ì—¬ê°€ìƒí™œê³¼ ì‡¼í•‘ì„ ì¦ê¸°ë©°, </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">¿©Çàµµ È¦·Î ¶°³ª´Â µî È¥ÀÚ È°µ¿ÇÏ´Â°Ô Ãë¹ÌÀÌ°Å³ª </span>
+					<span style="color: #808080;">ì—¬í–‰ë„ í™€ë¡œ ë– ë‚˜ëŠ” ë“± í˜¼ìž í™œë™í•˜ëŠ”ê²Œ ì·¨ë¯¸ì´ê±°ë‚˜ </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">±×·± ¼ºÇâÀÌ °­ÇÑ »ç¶÷µéÀ» ÀÏÄÂ´Â ÁÙÀÓ¸».</span>
+					<span style="color: #808080;">ê·¸ëŸ° ì„±í–¥ì´ ê°•í•œ ì‚¬ëžŒë“¤ì„ ì¼ì»«ëŠ” ì¤„ìž„ë§.</span>
 				</p>
 			</div>
 			<section id="section4" class="black-circle ct-u-paddingBoth120"
@@ -271,20 +271,20 @@
 			style="text-align: center; display: inline-block; margin-right: 200px;">
 			<div
 				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
-				<h3>È¥¼úÈ¥¹ä</h3>
+				<h3>í˜¼ìˆ í˜¼ë°¥</h3>
 				<img src="images/1.png" class="iconimg">
 				<p style="text-align: center;">
-					<span style="color: #333333;">È¥¼ú È¥¹äÇÏ±â ÁÁÀº °÷À»</span>
+					<span style="color: #333333;">í˜¼ìˆ  í˜¼ë°¥í•˜ê¸° ì¢‹ì€ ê³³ì„</span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #333333;">¼Ò°³ÇÕ´Ï´Ù.</span>
+					<span style="color: #333333;">ì†Œê°œí•©ë‹ˆë‹¤.</span>
 				</p>
 			</div>
 			<div class="wpb_text_column wpb_content_element ">
 				<div class="wpb_wrapper">
 					<p style="text-align: center;">
 						<a href="" target="_self" class="button color-1 medium "
-							style="border-radius: 2px;">¹Ù·Î°¡±â</a>
+							style="border-radius: 2px;">ë°”ë¡œê°€ê¸°</a>
 					</p>
 
 				</div>
@@ -296,20 +296,20 @@
 			style="text-align: center; display: inline-block; margin-right: 200px;">
 			<div
 				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
-				<h3>È¥Á· Á¦Ç°&amp;¼­ºñ½º</h3>
+				<h3>í˜¼ì¡± ì œí’ˆ&amp;ì„œë¹„ìŠ¤</h3>
 				<img src="images/2.png" class="iconimg">
 				<p style="text-align: center;">
-					<span style="color: #333333;">È¥Á·ÀÌ ¾²¸é À¯¿ëÇÏ°í ÇÖÇÑ</span>
+					<span style="color: #333333;">í˜¼ì¡±ì´ ì“°ë©´ ìœ ìš©í•˜ê³  í•«í•œ</span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #333333;">Á¦Ç° ¶Ç´Â ¼­ºñ½º¸¦&nbsp;¼Ò°³ÇÕ´Ï´Ù.</span>
+					<span style="color: #333333;">ì œí’ˆ ë˜ëŠ” ì„œë¹„ìŠ¤ë¥¼&nbsp;ì†Œê°œí•©ë‹ˆë‹¤.</span>
 				</p>
 			</div>
 			<div class="wpb_text_column wpb_content_element ">
 				<div class="wpb_wrapper">
 					<p style="text-align: center;">
 						<a href="" target="_self" class="button color-1 medium"
-							style="border-radius: 2px;">¹Ù·Î°¡±â</a>
+							style="border-radius: 2px;">ë°”ë¡œê°€ê¸°</a>
 					</p>
 
 				</div>
@@ -321,20 +321,20 @@
 			style="text-align: center; display: inline-block; margin-right: 200px;">
 			<div
 				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
-				<h3>È¥Á· ¹®È­</h3>
+				<h3>í˜¼ì¡± ë¬¸í™”</h3>
 				<img src="images/3.png" class="iconimg">
 				<p style="text-align: center;">
-					<span style="color: #333333;">È¥Á·ÀÇ °¨¼º, Çàµ¿, »ç»ó</span>
+					<span style="color: #333333;">í˜¼ì¡±ì˜ ê°ì„±, í–‰ë™, ì‚¬ìƒ</span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #333333;">È¥Á·¹®È­¸¦ &nbsp;¼Ò°³ÇÕ´Ï´Ù.</span>
+					<span style="color: #333333;">í˜¼ì¡±ë¬¸í™”ë¥¼ &nbsp;ì†Œê°œí•©ë‹ˆë‹¤.</span>
 				</p>
 			</div>
 			<div class="wpb_text_column wpb_content_element ">
 				<div class="wpb_wrapper">
 					<p style="text-align: center;">
 						<a href="" target="_self" class="button color-1 medium "
-							style="border-radius: 2px;">¹Ù·Î°¡±â</a>
+							style="border-radius: 2px;">ë°”ë¡œê°€ê¸°</a>
 					</p>
 
 				</div>
@@ -346,39 +346,39 @@
 		style="height: 300px; background-color: #1e73be; padding-top: 60px; padding-bottom: 60px; padding-left: 200px; text-align: center;">
 		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
 			<div id="shiva">
-				<div class="count" data-count="800"
+				<div id="c0" class="count" data-count="0"
 					style="color: #ffffff !important">0</div>
 			</div>
-			<span class="counter-title">¸¸¸í</span> <br>
+			<span class="counter-title">ê°€êµ¬</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
 				data-aos-once="true">
 				<h4 style="text-align: center;">
-					<span><b>1ÀÎ °¡±¸</b></span>
+					<span><b>ì „ì²´ ê°€êµ¬ìˆ˜</b></span>
 				</h4>
 			</div>
 		</div>
 		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
 			<div id="shiva">
-				<div class="count" data-count="100"
+				<div id="c1" class="count" data-count="0"
 					style="color: #ffffff !important">0</div>
 			</div>
-			<span class="counter-title">¸¸¸í</span> <br>
+			<span class="counter-title">ëª…</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
 				data-aos-once="true">
 				<h4 style="text-align: center;">
-					<span><b>ÃÖ±Ù 5³â È¥Á· Áõ°¡ °¡±¸¼ö</b></span>
+					<span><b>1ì¸ ê°€êµ¬ìˆ˜</b></span>
 				</h4>
 			</div>
 		</div>
 		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
 			<div id="shiva">
-				<div class="count" data-count="50" style="color: #ffffff !important">0</div>
+				<div id="c2" class="count" data-count="27.8" style="color: #ffffff !important">0</div>
 			</div>
 			<span class="counter-title">%</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
 				data-aos-once="true">
 				<h4 style="text-align: center;">
-					<span><b>È¥Á· ºñÀ²</b></span>
+					<span><b>1ì¸ ê°€êµ¬ ë¹„ìœ¨</b></span>
 				</h4>
 			</div>
 		</div>
@@ -439,7 +439,34 @@ AOS.init({
 
 	<script type="text/javascript">
 	$(document).ready(function() {
-
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+	
+		$.ajax({
+			url:"data.com",
+			type:"get",
+			success:function(resp) {
+				for(var i = 0; resp.length > i; i++) {
+					var total = resp[i].DT;
+					$("#c"+i).attr("data-count", total);
+				}	
+				
+				var data1 = parseFloat($("#c0").attr("data-count"));
+				var data2 = parseFloat($("#c1").attr("data-count"));
+				$("#c0").attr("data-count", data1 * 1000);
+				$("#c1").attr("data-count", data2 * 1000);
+			},
+			error : function() {
+				console.log("ì—ëŸ¬ ë°œìƒ!");
+			}
+			
+		});
+		
+		
+		
+		
+		
 		$('#section2').parallax({
 			imageSrc: 'images/background-3.jpg'
 		});
@@ -470,7 +497,7 @@ AOS.init({
 		            $this.text(Math.floor(this.countNum));
 		          },
 		          complete: function() {
-		            $this.text(this.countNum);
+		            $this.text(numberWithCommas(this.countNum));
 		            //alert('finished');
 		          }
 		        });
@@ -489,6 +516,7 @@ AOS.init({
 		    window.location = $(this).attr('href');
 		});
 		
+			
 	});
 </script>
 </body>
