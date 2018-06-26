@@ -2,6 +2,10 @@
 	margin-left: 50px;
 }
 
+.dropdown nav-item::active{
+	
+}
+
 .dropdown-item:focus, .dropdown-item:hover{
 	background-color: black;
 }

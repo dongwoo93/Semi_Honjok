@@ -28,48 +28,47 @@
 <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-	<a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
-	<ul class="nav navbar-nav">
-		<li class="nav-item"></li>
-		<li class="dropdown"><a id="hontalkView" class="dropdown-toggle nav-link" data-toggle="dropdown" href="freeboardView.freeb">혼톡</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">자유게시판</a></li>
-				<li class="dropdown-item"><a href="#">고민상담</a></li>
-				<li class="dropdown-item"><a href="#">질문/답변</a></li>
-				<li class="dropdown-item"><a href="#">혼팁</a></li>
-				<li class="dropdown-item"><a href="#">베스트</a></li>
-			</ul></li>
-		<li class="dropdown nav-item"><a href="#"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">전체보기</a></li>
-				<li class="dropdown-item"><a href="#">청소</a></li>
-				<li class="dropdown-item"><a href="#">라이프</a></li>
-				<li class="dropdown-item"><a href="#">경제적</a></li>
-			</ul></li>
-		<li class="dropdown nav-item"><a href="#"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">초간단요리</a></li>
-				<li class="dropdown-item"><a href="#">일반요리</a></li>
-			</ul></li>
-		<li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
-		</li>
-	</ul>
-	<ul class="nav navbar-nav ml-auto">
-		<li class="nav-item"><a href="#" class="nav-link"><img
-				src="imges/signup.png" width="45" height="30"> Sign Up</a></li>
-		<li class="nav-item"><a href="#" class="nav-link"><img
-				src="imges/login.png" width="45" height="30"> Login</a></li>
-	</ul>
-	</nav>
+<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+<img src="../imges/coffee.png" width=60 height=60>
+   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Aloner</a>
+   <ul class="nav navbar-nav">
+      <li class="nav-item"></li>
+      <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="../hontalkView.freeb">ȥ��</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="freeboardView.freeb">�����Խ���</a></li>
+            <li class="dropdown-item"><a href="#">��λ��</a></li>
+            <li class="dropdown-item"><a href="#">����/�亯</a></li>
+            <li class="dropdown-item"><a href="#">ȥ��</a></li>
+            <li class="dropdown-item"><a href="#">����Ʈ</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a href="#"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">����</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">��ü����</a></li>
+            <li class="dropdown-item"><a href="#">û��</a></li>
+            <li class="dropdown-item"><a href="#">������</a></li>
+            <li class="dropdown-item"><a href="#">������</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a href="#"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">�丮</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">�ʰ��ܿ丮</a></li>
+            <li class="dropdown-item"><a href="#">�Ϲݿ丮</a></li>
+         </ul></li>
+      <li class="nav-item"><a href="#" class="catego nav-link">���׸���</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">ȥ������</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">ȥ������</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">ȥ������</a>
+      </li>
+   </ul>
+   <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+   </ul>
+   </nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -478,6 +477,12 @@ AOS.init({
 			imageSrc: 'images/background-5.jpg'
 		});
 		
+		$('ul.nav li.dropdown').hover(function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	         }, function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	         });
+		
 		var a = 0;
 		$(window).scroll(function() {
 		  var oTop = $('#shiva').offset().top - window.innerHeight;
@@ -506,17 +511,10 @@ AOS.init({
 		  }
 		});
 		
-		$('ul.nav li.dropdown').hover(function() {
-			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-			}, function() {
-			  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-			});
-		
 		$('#hontalkView').click(function () {
-		    window.location = $(this).attr('href');
-		});
+	          window.location = $(this).attr('href');
+	      });
 		
-			
 	});
 </script>
 </body>
