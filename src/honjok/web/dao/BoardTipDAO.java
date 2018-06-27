@@ -54,10 +54,10 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		int recordTotalCount = rs.getInt(1);
-		// rs.getInt("totalCount");  ÀüÃ¼ ±Û(·¹ÄÚµå) ÀÇ °³¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡¼­ °Ô½Ã±ÛÀÌ ¸î°³ º¸ÀÏ°ÇÁö
-		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡¼­ ³×ºñ°ÔÀÌÅÍ°¡ ¸î°³¾¿ º¸ÀÏ°ÇÁö
-		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸îÆäÀÌÁö·Î ±¸¼º µÉ°ÍÀÎÁö
+		// rs.getInt("totalCount");  ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½î°³ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½
+		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×ºï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½
+		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É°ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
@@ -70,20 +70,20 @@ public class BoardTipDAO {
 			currentPage = 1;
 		}else if(currentPage > pageTotalCount) {
 			currentPage = pageTotalCount;
-		} // ÇöÀç ÆäÀÌÁö°¡ ºñÁ¤»óÀÎÁö °ËÁõÇÏ´Â ÄÚµå
+		} // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½
 
 		//-----------------------------------------------------
 
 
-		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //³×ºñ°ÔÀÌÅÍ°¡ ½ÃÀÛ ÇÏ´Â °ª
-		int endNavi = startNavi + (naviCountPerPage - 1); // ³×ºñ°ÔÀÌÅÍ ³¡ °ª
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //ï¿½×ºï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½
+		int endNavi = startNavi + (naviCountPerPage - 1); // ï¿½×ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
 
-		//		System.out.println("ÇöÀç ÆäÀÌÁö : " + currentPage);
-		//		System.out.println("³×ºñ°ÔÀÌÅÍ ½ÃÀÛ : " + startNavi);
-		//		System.out.println("³×ºñ°ÔÀÌÅÍ ³¡ : " + endNavi);
+		//		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + currentPage);
+		//		System.out.println("ï¿½×ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + startNavi);
+		//		System.out.println("ï¿½×ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : " + endNavi);
 
 		boolean needPrev = true;
 		boolean needNext = true;
@@ -164,7 +164,7 @@ public class BoardTipDAO {
 			
 		}
 		
-		System.out.println("½ÇÇàµÈ´Ù");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½È´ï¿½");
 		instream.close();// Close input stream
 		pstat.close();
 		con.close();

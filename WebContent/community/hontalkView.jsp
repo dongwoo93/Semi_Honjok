@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Aloner</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,78 +23,94 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
-	href="../communitycss/hontalkView.css">
+	href="communitycss/hontalkView.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="../communitycss/Footer-with-button-logo.css">
+	href="communitycss/Footer-with-button-logo.css">
+
+<script>
+	$(document).ready(function(){
+		$('ul.nav li.dropdown').hover(function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	         }, function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	         });
+	})
+	
+</script>	
+	
 </head>
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-<a class="navbar-brand" href="#" style="color: white">&#xB098;&#xD640;&#xB85C;&#xC871;,,</a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item"></li>
-        <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">&#xD63C;&#xD1A1; <span></span></a>
-            <ul
-            class="dropdown-menu">
-                <li class="dropdown-item"><a href="#">&#xC790;&#xC720;&#xAC8C;&#xC2DC;&#xD310;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xACE0;&#xBBFC;&#xC0C1;&#xB2F4;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xC9C8;&#xBB38;/&#xB2F5;&#xBCC0;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xD63C;&#xD301;</a>
-                </li>
-                <li class="dropdown-item"><a href="#">&#xBCA0;&#xC2A4;&#xD2B8;</a>
-                </li>
-                </ul>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xAFC0;&#xD301;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xC694;&#xB9AC;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xC778;&#xD14C;&#xB9AC;&#xC5B4;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC5EC;&#xD589;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xB9DB;&#xC9D1;</a>
-        </li>
-        <li class="nav-item"><a href="#" class="catego nav-link">&#xD63C;&#xC871;&#xC1FC;&#xD551;</a>
-        </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span>
-
-					Sign Up</a>
-            </li>
-            <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>
-
-					Login</a>
-            </li>
-        </ul>
-</nav>
+<img src="imges/coffee.png" width=60 height=60>
+   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Hollo</a>
+   <ul class="nav navbar-nav">
+      <li class="nav-item"></li>
+      <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
+            <li class="dropdown-item"><a href="#">고민상담</a></li>
+            <li class="dropdown-item"><a href="#">질문/답변</a></li>
+            <li class="dropdown-item"><a href="#">혼팁</a></li>
+            <li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a href="#"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">전체보기</a></li>
+            <li class="dropdown-item"><a href="#">청소</a></li>
+            <li class="dropdown-item"><a href="#">라이프</a></li>
+            <li class="dropdown-item"><a href="#">경제적</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a href="#"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#">초간단요리</a></li>
+            <li class="dropdown-item"><a href="#">일반요리</a></li>
+         </ul></li>
+      <li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
+      </li>
+      <li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
+      </li>
+   </ul>
+   <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+   </ul>
+   </nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../imges/la.jpg" alt="Los Angeles" width="1200" height="700">
+				<img src="imges/sky.jpg" alt="Los Angeles" width="1200"
+					height="700">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
 					<p>We had such a great time in LA!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../imges/chicago.jpg" alt="Chicago" width="1200" height="700">
+				<img src="imges/nature-3042751_1280.jpg" alt="Chicago"
+					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
 					<p>Thank you, Chicago!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../imges/ny.jpg" alt="New York" width="1200" height="700">
+				<img src="imges/hiker-1149898_1280.jpg" alt="New York"
+					width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>New York</h3>
 					<p>We love the Big Apple!</p>
@@ -104,10 +121,12 @@
 
 	<div class="container2">
 		<div id="free">
-			<h5>자유게시판</h5>
+			<h5>
+				<a href="#">자유게시판</a>
+			</h5>
 
 			<table class="table table-hover" id="first-table"
-				style="width: 500px">
+				style="width: 500px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
 						<th>글번호</th>
@@ -118,40 +137,27 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>제목이다</td>
-						<td>내용이다</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>95</td>
-						<td>$12,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>150</td>
-						<td>$20,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
+					<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
+						varStatus="status">
+						<tr>
+							<td class="td-contents">${item.free_seq}</td>
+							<td class="td-contents">${item.free_contents}</td>
+							<td class="td-contents">${item.free_writer}</td>
+						</tr>
+					</c:forEach>
+
 				</tbody>
 			</table>
 
 		</div>
 
 		<div id="free2">
-			<h5>질문/답변</h5>
+			<h5>
+				<a href="#">질문/답변</a>
+			</h5>
 
 			<table class="table table-hover" id="second-table"
-				style="width: 500px">
+				style="width: 500px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
 						<th>글번호</th>
@@ -164,37 +170,39 @@
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
-						<td>제목이다</td>
-						<td>내용이다</td>
-						<td>작성자다</td>
+						<td class="td-contents">제목이다</td>
+						<td class="td-contents">내용이다</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">2</th>
-						<td>95</td>
-						<td>$12,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">95</td>
+						<td class="td-contents">$12,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">3</th>
-						<td>150</td>
-						<td>$20,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">150</td>
+						<td class="td-contents">$20,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">50</td>
+						<td class="td-contents">$30,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
 		<div id="free3">
-			<h5>베스트</h5>
+			<h5>
+				<a href="#">베스트</a>
+			</h5>
 
 			<table class="table table-hover" id="second-table"
-				style="width: 350px; height: 300px;">
+				style="width: 350px; height: 300px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
 						<th>글번호</th>
@@ -207,27 +215,27 @@
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
-						<td style="width:80px; height:49px; text-overflow:ellipsis; overflow:hidden;">sdsdsdsd제목이다ssssdsdsddsdsd</td>
-						<td>내용이다</td>
-						<td>작성자다</td>
+						<td class="td-contents2"><a href="#">sdsdsdsd제목이다ssssdsdsddsdsd삉삉></a></td>
+						<td class="td-contents2">내용이다dddddasd</td>
+						<td class="td-contents2">작성자다asdasdasd</td>
 					</tr>
 					<tr>
 						<th scope="row">2</th>
-						<td>95</td>
-						<td>$12,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents2">95</td>
+						<td class="td-contents2">$12,000.00</td>
+						<td class="td-contents2">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">3</th>
-						<td>150</td>
-						<td>$20,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents2">150</td>
+						<td class="td-contents2">$20,000.00</td>
+						<td class="td-contents2">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents2">50</td>
+						<td class="td-contents2">$30,000.00</td>
+						<td class="td-contents2">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">4</th>
@@ -270,10 +278,12 @@
 		</div>
 
 		<div id="free4">
-			<h5>고민상담</h5>
+			<h5>
+				<a href="#">고민상담</a>
+			</h5>
 
 			<table class="table table-hover" id="second-table"
-				style="width: 500px">
+				style="width: 500px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
 						<th>글번호</th>
@@ -286,37 +296,39 @@
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
-						<td>제목이다</td>
-						<td>내용이다</td>
-						<td>작성자다</td>
+						<td class="td-contents">제목이다</td>
+						<td class="td-contents">내용이다</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">2</th>
-						<td>95</td>
-						<td>$12,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">95</td>
+						<td class="td-contents">$12,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">3</th>
-						<td>150</td>
-						<td>$20,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">150</td>
+						<td class="td-contents">$20,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">50</td>
+						<td class="td-contents">$30,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
 		<div id="free5">
-			<h5>혼팁</h5>
+			<h5>
+				<a href="#">혼팁</a>
+			</h5>
 
 			<table class="table table-hover" id="second-table"
-				style="width: 500px">
+				style="width: 500px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
 						<th>글번호</th>
@@ -329,27 +341,27 @@
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
-						<td>제목이다</td>
-						<td>내용이다</td>
-						<td>작성자다</td>
+						<td class="td-contents">제목이다</td>
+						<td class="td-contents">내용이다</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">2</th>
-						<td>95</td>
-						<td>$12,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">95</td>
+						<td class="td-contents">$12,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">3</th>
-						<td>150</td>
-						<td>$20,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">150</td>
+						<td class="td-contents">$20,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 					<tr>
 						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
+						<td class="td-contents">50</td>
+						<td class="td-contents">$30,000.00</td>
+						<td class="td-contents">작성자다</td>
 					</tr>
 				</tbody>
 			</table>
@@ -391,16 +403,18 @@
 			</div>
 			<div class="col-md-3">
 				<div class="social-networks">
-					<a href="#" class="twitter"><i class="fa fa-twitter"></i></a> <a
-						href="#" class="facebook"><i class="fa fa-facebook"></i></a> <a
-						href="#" class="google"><i class="fa fa-google-plus"></i></a>
+					<a href="https://twitter.com/?lang=ko" class="twitter"><i
+						class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/"
+						class="facebook"><i class="fa fa-facebook"></i></a> <a
+						href="https://www.google.com/" class="google"><i
+						class="fa fa-google-plus"></i></a>
 				</div>
 				<button type="button" class="btn btn-secondary">Contact us</button>
 			</div>
 		</div>
 	</div>
 	<div class="footer-copyright">
-		<p>&#xA9; 2016 Copyright Text</p>
+		<p>&#xA9; 2018 Copyright Text</p>
 	</div>
 	</footer>
 </body>
