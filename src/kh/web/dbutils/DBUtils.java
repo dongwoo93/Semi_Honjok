@@ -7,10 +7,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class DBUtils {
-	public static Connection getConnection() throws Exception {
-		Context context = new InitialContext();
+	public static Connection getConnection() throws Exception{
+		Context context =  new InitialContext();
 		DataSource ds = (DataSource)context.lookup("java:/comp/env/oracle");
 		return ds.getConnection();
 	}
 }
-
