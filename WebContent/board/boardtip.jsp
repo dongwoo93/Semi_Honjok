@@ -25,12 +25,12 @@
 					<div class="col-sm-3" id="card1">
 						<div class="card">
 							<img class="card-img-top" src="files/${tmp.systemFileName}"
-								alt="Card image cap">
+								alt="Card image cap"><br>
 							<div class="card-body">
-								<h5 class="card-title">${tmp.title}</h5>
+								<h5 class="card-title">${tmp.title}</h5><br>
 								<%-- <p class="card-text">${tmp.contents}</p> --%>
-								<p class="card-text">
-									<small class="text-muted">${tmp.writedate}</small>
+								<p class="card-text" style="text-align:right;">
+									<small class="text-muted" >${tmp.writedate}</small>
 								</p>
 							</div>
 						</div>
@@ -41,7 +41,8 @@
 		</c:choose>
 
 	</div>
-	<div>${navi}</div>
-
+	<div class="col-lg-12" align="center">
+		<div>${navi}</div>
+	</div>
 </body>
 </html>

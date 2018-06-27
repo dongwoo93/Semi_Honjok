@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 </head>
 <body>
-	<form action="editor.tw" method="post" enctype="multipart/form-data">
+	<form action="../editor.tw" method="post" enctype="multipart/form-data">
 		<div id="wrapper">
 			<div class="form-row" style="padding-left: 14px;">
 				<div class="form-group col-md-2">
@@ -153,7 +153,7 @@ $(document).ready(function() {
 					$.ajax({
 						data : data,
 						type : "POST",
-						url : 'upload.tw',
+						url : '../upload.tw',
 						cache : false,
 						contentType : false,
 						/* enctype : 'multipart/form-data', */

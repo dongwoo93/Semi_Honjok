@@ -54,10 +54,10 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		int recordTotalCount = rs.getInt(1);
-		// rs.getInt("totalCount");  ��ü ��(���ڵ�) �� ������ �����ϴ� ����
-		int recordCountPerPage = 10; // �� ���������� �Խñ��� � ���ϰ���
-		int naviCountPerPage = 10; // �� ���������� �׺�����Ͱ� ��� ���ϰ���
-		int pageTotalCount = 0; // ��ü�� ���������� ���� �ɰ�����
+		// rs.getInt("totalCount");  占쏙옙체 占쏙옙(占쏙옙占쌘듸옙) 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙
+		int recordCountPerPage = 8; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌉시깍옙占쏙옙 占쏘개 占쏙옙占싹곤옙占쏙옙
+		int naviCountPerPage = 10; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌓븝옙占쏙옙占쏙옙叩占� 占쏘개占쏙옙 占쏙옙占싹곤옙占쏙옙
+		int pageTotalCount = 0; // 占쏙옙체占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占심곤옙占쏙옙占쏙옙
 
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
@@ -70,20 +70,20 @@ public class BoardTipDAO {
 			currentPage = 1;
 		}else if(currentPage > pageTotalCount) {
 			currentPage = pageTotalCount;
-		} // ���� �������� ���������� �����ϴ� �ڵ�
+		} // 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌘듸옙
 
 		//-----------------------------------------------------
 
 
-		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //�׺�����Ͱ� ���� �ϴ� ��
-		int endNavi = startNavi + (naviCountPerPage - 1); // �׺������ �� ��
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //占쌓븝옙占쏙옙占쏙옙叩占� 占쏙옙占쏙옙 占싹댐옙 占쏙옙
+		int endNavi = startNavi + (naviCountPerPage - 1); // 占쌓븝옙占쏙옙占쏙옙占� 占쏙옙 占쏙옙
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
 
-		//		System.out.println("���� ������ : " + currentPage);
-		//		System.out.println("�׺������ ���� : " + startNavi);
-		//		System.out.println("�׺������ �� : " + endNavi);
+		//		System.out.println("占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 : " + currentPage);
+		//		System.out.println("占쌓븝옙占쏙옙占쏙옙占� 占쏙옙占쏙옙 : " + startNavi);
+		//		System.out.println("占쌓븝옙占쏙옙占쏙옙占� 占쏙옙 : " + endNavi);
 
 		boolean needPrev = true;
 		boolean needNext = true;
@@ -124,7 +124,7 @@ public class BoardTipDAO {
 		return sb.toString();
 	}
 	
-	public List<BoardDTO> selectData(int startNum, int endNum) throws Exception{
+	public List<BoardDTO> selectAllData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_tip.*, row_number() over(order by tip_writedate desc) as num from board_tip)\r\n" + 
 				"where num between ? and ?";
@@ -134,7 +134,7 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
 		
-		Reader instream = null;
+		
 		while(rs.next()) {
 			StringBuffer sb = new StringBuffer();
 			BoardDTO dto = new BoardDTO();
@@ -147,7 +147,7 @@ public class BoardTipDAO {
 			dto.setWritedate(rs.getString(8));
 			dto.setSystemFileName(rs.getString(9));
 			dto.setOriginalFileName(rs.getString(10));
-			instream = rs.getCharacterStream("tip_contents");
+			Reader instream = rs.getCharacterStream("tip_contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -156,16 +156,43 @@ public class BoardTipDAO {
 					sb.append(buffer[i]);
 				} 
 			}
-			
+			instream.close();// Close input stream
 			dto.setContents(sb.toString());
 			System.out.println(dto.getContents());
 			list.add(dto);
-			
-			
 		}
+		pstat.close();
+		con.close();
+		return list;
+	}
+	
+	public List<BoardDTO> selectNaviData(int startNum, int endNum) throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_tip.*, row_number() over(order by tip_writedate desc) as num from board_tip)\r\n" + 
+				"where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, startNum);
+		pstat.setInt(2, endNum);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardDTO> list = new ArrayList<>();
+		System.out.println(startNum);
+		System.out.println(endNum);
 		
-		System.out.println("����ȴ�");
-		instream.close();// Close input stream
+		while(rs.next()) {
+			StringBuffer sb = new StringBuffer();
+			BoardDTO dto = new BoardDTO();
+			dto.setSeq(rs.getString(1));
+			dto.setCategory(rs.getString(2));
+			dto.setSubject(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setContents("");
+			dto.setViewcount(rs.getInt(6));
+			dto.setLike(rs.getInt(7));
+			dto.setWritedate(rs.getString(8));
+			dto.setSystemFileName(rs.getString(9));
+			dto.setOriginalFileName(rs.getString(10));
+			list.add(dto);
+		}
 		pstat.close();
 		con.close();
 		return list;

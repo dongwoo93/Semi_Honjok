@@ -53,13 +53,13 @@ public class BoardWriteController extends HttpServlet {
 			originalFileName = mr.getOriginalFileName(paramName);
 			systemFileName = mr.getFilesystemName(paramName);
 		}
-		
+
 		System.out.println(systemFileName);
 		System.out.println(originalFileName);
 		boolean isRedirect = true;
 		String dst = null;
 
-		if(command.equals("/board/upload.tw")) {
+		if(command.equals("/upload.tw")) {
 			realPath = contextPath + "/files/" + systemFileName;
 			System.out.println(realPath);
 			JSONObject json = new JSONObject();
@@ -72,7 +72,7 @@ public class BoardWriteController extends HttpServlet {
 			response.getWriter().close();
 			return;
 		}
-		if(command.equals("/board/editor.tw")) {
+		else if(command.equals("/editor.tw")) {
 			String title = mr.getParameter("title");
 			//System.out.println(title);
 			String category = mr.getParameter("category");
@@ -106,8 +106,7 @@ public class BoardWriteController extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				isRedirect = false; 
-				dst = "../index.jsp";
+				dst = "hollo.com";
 			}else if(category.equals("¿ä¸®")) {
 
 			}
