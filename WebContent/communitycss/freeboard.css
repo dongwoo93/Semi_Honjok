@@ -1,39 +1,61 @@
-#head {
-	width: 100%;
+#all {
+	border-radius: 3px;
+	background-color: #555555;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	padding: 10px 24px;
+	color: white;
 }
 
-#no {
-	width: 10%;
-	text-align: center;
+#all:hover {
+	background-color: white;
+    color: #555555;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#header {
-	width: 10%;
+#chat {
+	border-radius: 3px;
+	background-color: #555555;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	padding: 10px 24px;
+	color: white;
 }
 
-#title {
-	width: 40%;
-	text-align: center;
+#chat:hover {
+	background-color: white;
+    color: #555555;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#writer {
-	width: 10%;
-	text-align: center;
+#humor {
+	border-radius: 3px;
+	background-color: #555555;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	padding: 10px 24px;
+	color: white;
 }
 
-#date {
-	width: 10%;
-	text-align: center;
+#humor:hover {
+	background-color: white;
+    color: #555555;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#view {
-	width: 10%;
-	text-align: center;
+#beast {
+	border-radius: 3px;
+	background-color: #555555;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	padding: 10px 24px;
+	color: white;
 }
 
-#like {
-	width: 10%;
-	text-align: center;
+#beast:hover {
+	background-color: white;
+    color: #555555;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #nothing {
@@ -63,4 +85,16 @@ a:active {
 
 #write {
 	float: right;
+	border-radius: 3px;
+	background-color: #555555;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	padding: 10px 24px;
+	color: white;
+}
+
+#write:hover {
+	background-color: white;
+    color: #555555;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

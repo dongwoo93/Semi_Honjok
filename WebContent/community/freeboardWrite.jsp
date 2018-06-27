@@ -6,56 +6,60 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <!-- include libraries(jQuery, bootstrap) -->
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script
+   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
+   href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css"
+   rel="stylesheet">
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
-<!-- include summernote css/js -->
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-<link rel="stylesheet" href="css/bootstrap.css">
+   src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <link rel="stylesheet" href="../communitycss/boardWrite.css">
 
 <script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			height : 300, // set editor height
-			minHeight : null, // set minimum height of editor
-			maxHeight : null, // set maximum height of editor
-			focus : true
-		});
-	});
-
-	/* $("#listButton").click(function() {
-	  setInterval(function() { 
-	   $.ajax({
-	      type : 'post',
-	      url : '../boardWrite',
-	      dataType : 'text',
-	      data : $("#summernote").val(),
-	      success : function(data) {
-	        // $("#listDiv").html(data);
-	      }
-	   });
-	  }, 5000);
-	   var title = $("#title").val();
-	  $.ajax({
-		  url:'../boardWrite',
-		  type:"post",
-		  data: {title:title}
-		  
-	  });
-	})
-
-	}); */
-</script>
+$(document).ready(function(){
+	$('#summernote').summernote({
+        placeholder : '내용',
+        //width : 1500,
+        //height : 300, // set editor height
+        minHeight : 300, // set minimum height of editor
+        maxHeight : null, // set maximum height of editor
+        focus : true,
+        callbacks : {
+              // 이미지를 업로드 할 때 이벤트 발생
+              onImageUpload : function(files, editor, welEditable) {
+                  sendFile(files[0], this);
+              }
+          }
+             
+     });
+     
+      
+     function sendFile(file, editor) {
+           var data = new FormData();
+           data.append("uploadFile", file);
+           $.ajax({
+              data : data,
+              type : "POST",
+              url : '../upload.freeb',
+              cache : false,
+              contentType : false,
+              /* enctype : 'multipart/form-data', */
+              processData : false,
+              success : function(data) {
+                 // 에디터에 이미지 출력(아직은 안합니다.)
+                 $(editor).summernote('editor.insertImage', data.url);
+              }
+           });
+        }
+     
+})
+         
+         </script>
 </head>
 <body>
 	<div class="container">

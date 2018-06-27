@@ -17,7 +17,7 @@
 <script>
 	$(document).ready(function(){
 		$("#write").click(function(){
-			$(location).attr('href', "qnaWrite.qna")
+			$(location).attr('href', "community/qnaWrite.jsp")
 		})
 	})
 </script>
@@ -42,7 +42,7 @@
 					<tbody id="body_a">
 						<tr>
 							<td id="no">${item.seq}
-							<td id="title"><a href="BoardQnaController?no=${item.seq}" class="no-uline">${item.title}</a>
+							<td id="title"><a href="BoardQnaController.qna?no=${item.seq}" class="no-uline">${item.title}</a>
 							<td id="writer">${item.writer}
 							<td id="date">${item.writedate}
 							<td id="view">${item.viewcount}
@@ -61,7 +61,7 @@
 		</c:choose>
 		</table>
 		<div id="bottom">
-			<%-- <% dao.getPageNavi(currentPage)%> --%>
+			${navi}
 			<input type=button id="write" value="글 쓰기">
 		</div>
 	</div>

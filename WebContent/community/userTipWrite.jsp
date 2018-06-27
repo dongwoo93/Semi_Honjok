@@ -24,37 +24,43 @@
 <link rel="stylesheet" href="../communitycss/boardWrite.css">
 
 <script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			height : 300, // set editor height
-			minHeight : null, // set minimum height of editor
-			maxHeight : null, // set maximum height of editor
-			focus : true
-		});
-	});
-
-	/* $("#listButton").click(function() {
-	  setInterval(function() { 
-	   $.ajax({
-	      type : 'post',
-	      url : '../boardWrite',
-	      dataType : 'text',
-	      data : $("#summernote").val(),
-	      success : function(data) {
-	        // $("#listDiv").html(data);
-	      }
-	   });
-	  }, 5000);
-	   var title = $("#title").val();
-	  $.ajax({
-		  url:'../boardWrite',
-		  type:"post",
-		  data: {title:title}
-		  
-	  });
-	})
-
-	}); */
+$('#summernote').summernote({
+    placeholder : '내용',
+    //width : 1500,
+    //height : 300, // set editor height
+    minHeight : 300, // set minimum height of editor
+    maxHeight : null, // set maximum height of editor
+    focus : true,
+    callbacks : {
+          // 이미지를 업로드 할 때 이벤트 발생
+          onImageUpload : function(files, editor, welEditable) {
+              sendFile(files[0], this);
+          }
+      }
+ /* codemirror: { // codemirror options
+  theme: 'paper'
+} */
+         
+ });
+ 
+  
+ function sendFile(file, editor) {
+       var data = new FormData();
+       data.append("uploadFile", file);
+       $.ajax({
+          data : data,
+          type : "POST",
+          url : '../upload.utip',
+          cache : false,
+          contentType : false,
+          /* enctype : 'multipart/form-data', */
+          processData : false,
+          success : function(data) {
+             // 에디터에 이미지 출력(아직은 안합니다.)
+             $(editor).summernote('editor.insertImage', data.url);
+          }
+       });
+    }
 </script>
 </head>
 <body>

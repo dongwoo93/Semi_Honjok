@@ -161,26 +161,7 @@ public class BoardFreeDAO {
 		con.close();
 		return list;
 	}
-	
 	public int insertData(BoardFreeDTO dto) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_free values(board_free_seq.nextval,?,?,?,?,sysdate,?,?)";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setString(1, dto.getHeader());
-		pstat.setString(2, dto.getTitle());
-		pstat.setString(3, dto.getContents());
-		pstat.setString(4, dto.getWriter());
-		pstat.setInt(5, dto.getViewcount());
-		pstat.setString(6, dto.getIp());
-		int result = pstat.executeUpdate();
-
-		pstat.close();
-		con.commit();
-		con.close();
-		return result;
-	}
-
-	public int insertData1(BoardFreeDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "insert into board_free values(board_free_seq.nextval,?,?,?,?,sysdate,?,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
@@ -303,15 +284,281 @@ public class BoardFreeDAO {
 
 		return result;
 	}
-//	public int getNextVal() throws Exception {
-//		Connection con = DBUtils.getConnection();
-//		String sql = "select max(seq) from board_free";
-//		PreparedStatement pstat = con.prepareStatement(sql);
-//		ResultSet rs = pstat.executeQuery();
-//		rs.next();
-//		int nextval = rs.getInt(1);
-//		pstat.close();
-//		con.close();
-//		return nextval;
-//	}
+	public String getPageNavi2(int currentPage) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from board_free";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		
+		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
+		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
+		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
+		int pageTotalCount = 0; // 전체가 몇 페이지로 구성될 것인지
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10으로 나누어 떨어지지 않음
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		
+		if(needPrev) {
+			sb.append("<a href='freeboardView.freeb?currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='freeboardView.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='freeboardView.freeb?currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='freeboardView.freeb?currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+		System.out.println(sb.toString());
+		
+		String result = sb.toString();
+		con.close();
+		pstat.close();
+
+		return result;
+	}
+	public String getPageNavi3(int currentPage) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from board_free where free_header = '잡담'";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		
+		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
+		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
+		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
+		int pageTotalCount = 0; // 전체가 몇 페이지로 구성될 것인지
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10으로 나누어 떨어지지 않음
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		
+		if(needPrev) {
+			sb.append("<a href='ajax01.freeb?currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='ajax01.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='ajax01.freeb?currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='ajax01.freeb?currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+		System.out.println(sb.toString());
+		
+		String result = sb.toString();
+		con.close();
+		pstat.close();
+
+		return result;
+	}
+	public String getPageNavi4(int currentPage) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from board_free where free_header = '유머'";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		
+		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
+		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
+		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
+		int pageTotalCount = 0; // 전체가 몇 페이지로 구성될 것인지
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10으로 나누어 떨어지지 않음
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		
+		if(needPrev) {
+			sb.append("<a href='ajax02.freeb?currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='ajax02.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='ajax02.freeb?currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='ajax02.freeb?currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+		System.out.println(sb.toString());
+		
+		String result = sb.toString();
+		con.close();
+		pstat.close();
+
+		return result;
+	}
+	public String getPageNavi5(int currentPage) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from board_free where free_header = '동물'";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		
+		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
+		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
+		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
+		int pageTotalCount = 0; // 전체가 몇 페이지로 구성될 것인지
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10으로 나누어 떨어지지 않음
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		
+		if(needPrev) {
+			sb.append("<a href='ajax03.freeb?currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='ajax03.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='ajax03.freeb?currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='ajax03.freeb?currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+		System.out.println(sb.toString());
+		
+		String result = sb.toString();
+		con.close();
+		pstat.close();
+
+		return result;
+	}
+
 }

@@ -16,7 +16,7 @@ import honjok.web.dto.BoardUserTipDTO;
 
 @WebServlet("*.utip")
 public class BoardUserTipController extends HttpServlet {
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isRedirect = true;
 		String dst = null;
@@ -33,22 +33,37 @@ public class BoardUserTipController extends HttpServlet {
 
 			System.out.println(command);
 			if(command.equals("/test.utip")) {
-				System.out.println("들어옴");
-				try {
-					BoardUserTipDAO dao = new BoardUserTipDAO();
-					List<BoardUserTipDTO> result = dao.selectData();
+				int currentPage = 0;
+				String currentPageString = request.getParameter("currentPage");
 
-					request.setAttribute("result", result);
-
-					isRedirect = false;
-					dst = "community/userTipView.jsp";
-				}catch(Exception e) {
-					e.printStackTrace();
+				if(currentPageString == null){
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(currentPageString);
 				}
-			}else if(command.equals("/userTipView.UserTip")) {
 				BoardUserTipDAO dao = new BoardUserTipDAO();
-				List<BoardUserTipDTO> result = dao.selectData();
+				List<BoardUserTipDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				String navi = dao.getPageNavi(currentPage);
 
+				request.setAttribute("navi", navi);
+				request.setAttribute("result", result);
+
+				isRedirect = false;
+				dst = "community/userTipView.jsp";
+			}else if(command.equals("/userTipView.UserTip")) {
+				int currentPage = 0;
+				String currentPageString = request.getParameter("currentPage");
+
+				if(currentPageString == null){
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(currentPageString);
+				}
+				BoardUserTipDAO dao = new BoardUserTipDAO();
+				List<BoardUserTipDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				String navi = dao.getPageNavi(currentPage);
+
+				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
 
 				isRedirect = false;
@@ -57,37 +72,60 @@ public class BoardUserTipController extends HttpServlet {
 				BoardUserTipDAO dao = new BoardUserTipDAO();
 				BoardUserTipDTO dto = new BoardUserTipDTO();
 
-				int result = dao.insertData1(dto);
+				int result = dao.insertData(dto);
 
 				isRedirect = false; 
 				dst = "userTipResult.jsp";
 			}else if(command.equals("/ajax01.utip")) {
-				System.out.println("왔음1");
-				try {
-					BoardUserTipDAO dao = new BoardUserTipDAO();
-					List<BoardUserTipDTO> result = dao.selectHeader1Data();
+				int currentPage = 0;
+				String currentPageString = request.getParameter("currentPage");
 
-					request.setAttribute("result", result);
-
-					isRedirect = false;
-					dst = "community/userTipboardView.jsp";
-				}catch (Exception e) {
-					e.printStackTrace();
+				if(currentPageString == null){
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(currentPageString);
 				}
-			}else if(command.equals("/ajax02.utip")) {
-				System.out.println("왔음2");
 				BoardUserTipDAO dao = new BoardUserTipDAO();
-				List<BoardUserTipDTO> result = dao.selectHeader2Data();
+				List<BoardUserTipDTO> result = dao.selectHeader1Data(currentPage*10-9,currentPage*10);
+				String navi = dao.getPageNavi(currentPage);
 
+				request.setAttribute("navi", navi);
+				request.setAttribute("result", result);
+
+				isRedirect = false;
+				dst = "community/userTipboardView.jsp";
+			}else if(command.equals("/ajax02.utip")) {
+				int currentPage = 0;
+				String currentPageString = request.getParameter("currentPage");
+
+				if(currentPageString == null){
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(currentPageString);
+				}
+				BoardUserTipDAO dao = new BoardUserTipDAO();
+				List<BoardUserTipDTO> result = dao.selectHeader2Data(currentPage*10-9,currentPage*10);
+				String navi = dao.getPageNavi(currentPage);
+
+				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
 
 				isRedirect = false;
 				dst = "community/userTipboardView.jsp";
 			}else if(command.equals("/ajax03.utip")) {
-				System.out.println("왔음3");
-				BoardUserTipDAO dao = new BoardUserTipDAO();
-				List<BoardUserTipDTO> result = dao.selectHeader3Data();
+				int currentPage = 0;
+				String currentPageString = request.getParameter("currentPage");
 
+				if(currentPageString == null){
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(currentPageString);
+				}
+				BoardUserTipDAO dao = new BoardUserTipDAO();
+				List<BoardUserTipDTO> result = dao.selectHeader3Data(currentPage*10-9,currentPage*10);
+				String navi = dao.getPageNavi(currentPage);
+
+				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
 
 				isRedirect = false;

@@ -12,78 +12,84 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="../communitycss/freeboard.css">
+<link rel="stylesheet" href="communitycss/freeboard.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
-	$(document).ready(function(){
+	$(document).ready(function() {
 		console.log("들어옴");
-		
-		$("#all").click(function(){
+
+		$("#all").click(function() {
 			$(location).attr('href', "freeboardView.freeb")
 		})
-		$("#chat").click(function(){
+		$("#chat").click(function() {
 			$(location).attr('href', "ajax01.freeb")
 		})
-		$("#humor").click(function(){
+		$("#humor").click(function() {
 			$(location).attr('href', "ajax02.freeb")
 		})
-		$("#beast").click(function(){
+		$("#beast").click(function() {
 			$(location).attr('href', "ajax03.freeb")
 		})
-		$("#write").click(function(){
+		$("#write").click(function() {
 			$(location).attr('href', "community/freeboardWrite.jsp");
 		})
 	})
 </script>
 </head>
 <body>
-<div class="container">
-	<table class="table table-hover">
-		<thead  class="head" id="head">
-		<tr>
-			<div class="headSelect">
-				<button type="button" id="all">전체</button><button type="button" id="chat">잡담</button><button type="button" id="humor">유머</button><button type="button" id="beast">동물</button>
-			</div>
-		</tr>
-			<tr>
-				<td id="no">No.</td>
-				<td id="header">말머리</td>
-				<td id="title">제목</td>
-				<td id="writer">작성자</td>
-				<td id="date">작성일</td>
-				<td id="view">조회</td>
-				<td id="like">추천</td>
-			</tr>
-		</thead>
+	<div class="container">
+		<table class="table table-hover">
+			<thead class="head" id="head">
+				<tr>
+					<td colspan=7>
+						<div class="headSelect">
+							<button type="button" id="all">전체</button>
+							<button type="button" id="chat">잡담</button>
+							<button type="button" id="humor">유머</button>
+							<button type="button" id="beast">동물</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="no">No.</td>
+					<td id="header">말머리</td>
+					<td id="title">제목</td>
+					<td id="writer">작성자</td>
+					<td id="date">작성일</td>
+					<td id="view">조회</td>
+					<td id="like">추천</td>
+				</tr>
+			</thead>
 
-		<c:choose>
-			<c:when test="${result.size() > 0}">
-				<c:forEach var="item" items="${result}">
-					<tbody id="body_a">
-						<tr>
-							<td id="no">${item.seq}
-							<td id="header">${item.header}
-							<td id="title"><a href="BoardFree_Controller.freeb?no=${item.seq}" class="no-uline">${item.title}</a>
-							<td id="writer">${item.writer}
-							<td id="date">${item.writedate}
-							<td id="view">${item.viewcount}
-							<td id="like">${item.like}
+			<c:choose>
+				<c:when test="${result.size() > 0}">
+					<c:forEach var="item" items="${result}">
+						<tbody id="body_a">
+							<tr>
+								<td id="no">${item.seq}
+								<td id="header">${item.header}
+								<td id="title"><a
+									href="BoardFree_Controller.freeb?no=${item.seq}"
+									class="no-uline">${item.title}</a>
+								<td id="writer">${item.writer}
+								<td id="date">${item.writedate}
+								<td id="view">${item.viewcount}
+								<td id="like">${item.like}
+							</tr>
+						</tbody>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tbody id="body_b">
+						<tr id="shit">
+							<td id="nothing" colspan=7>표시할 내용이 없습니다.</td>
 						</tr>
 					</tbody>
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-			<tbody id="body_b">
-				<tr id="shit">
-					<td id="nothing" colspan=7>표시할 내용이 없습니다.</td>
-				</tr>
-			</tbody>
-			</c:otherwise>
-		</c:choose>
+				</c:otherwise>
+			</c:choose>
 		</table>
-		<div id="bottom">
-			${navi}
-			<input type=button id="write" value="글 쓰기">
+		<div id="bottom" align=center>
+			${navi}</div> <div id="btn"><input type=button id="write" value="글 쓰기">
 		</div>
 	</div>
 

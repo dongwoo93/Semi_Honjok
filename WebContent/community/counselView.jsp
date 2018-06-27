@@ -63,7 +63,7 @@
 						<tr>
 							<td id="no">${item.seq}
 							<td id="header">${item.header}
-							<td id="title"><a href="BoardFree_Controller?no=${item.seq}" class="no-uline">${item.title}</a>
+							<td id="title"><a href="CounselController.coun?no=${item.seq}" class="no-uline">${item.title}</a>
 							<td id="writer">${item.writer}
 							<td id="date">${item.writedate}
 							<td id="view">${item.viewcount}
@@ -82,7 +82,7 @@
 		</c:choose>
 		</table>
 		<div id="bottom">
-			<%-- <% dao.getPageNavi(currentPage)%> --%>
+			${navi}
 			<input type=button id="write" value="글 쓰기">
 		</div>
 	</div>
