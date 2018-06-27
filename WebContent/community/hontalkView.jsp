@@ -43,6 +43,10 @@
 	         }, function() {
 	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
 	         });
+		$(window).scroll(function() {
+			var $nav = $("#navbar");
+			  $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		});
 	})
 	
 </script>	
@@ -51,7 +55,7 @@
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 <img src="imges/coffee.png" width=60 height=60>
-   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Hollo</a>
+   <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
    <ul class="nav navbar-nav">
       <li class="nav-item"></li>
       <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
