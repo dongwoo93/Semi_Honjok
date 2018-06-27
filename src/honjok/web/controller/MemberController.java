@@ -28,12 +28,12 @@ public class MemberController extends HttpServlet {
 			MemberDAO dao = new MemberDAO();
 			boolean isRedirect = true;
 			String dst = null;
-			System.out.println("ssss");
+
 
 
 			if(command.equals("/signup.mem")) {
 				
-System.out.println("들어온다");
+
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
 				String name = request.getParameter("name");
@@ -43,16 +43,18 @@ System.out.println("들어온다");
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
 
-				System.out.println(id);
-				System.out.println(name);
+			    
 
 
 
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
+				
 
 				isRedirect = false;
 				dst = "index.jsp";
+				
+				
 
 
 			} else if(command.equals("/idcheck.mem")) {
@@ -60,6 +62,7 @@ System.out.println("들어온다");
 
 
 				boolean result = dao.isIdExist(id);
+				
 
 				if(result) {
 					String check = "아이디가 중복되었습니다";
@@ -68,7 +71,7 @@ System.out.println("들어온다");
 					return;
 
 				} else {
-					String check = "사용가능합니다";
+					String check = "중복되지 않아,사용가능합니다";
 					out.println(check);
 					return;
 
@@ -90,7 +93,7 @@ System.out.println("들어온다");
 
 
 		} catch(Exception e) {
-			e.printStackTrace();
+
 		}
 	}
 

@@ -10,9 +10,25 @@ import kh.web.dbutils.DBUtils;
 
 public class MemberDAO {
 	
+	public int deleteData(String id)throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "delete from member where id = ?";	
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, id);
+
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();	
+		return result;
+	}
+	
+	
+	
+	
 	public boolean isIdExist(String id)throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from member where member_id = ?";
+		String sql = "select * from member where id = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		ResultSet rs = pstat.executeQuery();
