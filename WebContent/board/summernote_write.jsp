@@ -4,48 +4,47 @@
 <head>
 	<meta charset="uft-8" />
 	<title>summernote</title>
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-	
-	<link href="./dist/summernote.css" rel="stylesheet">
-	<script src="./dist/summernote.js"></script>
-    
+	<!-- include jquery -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<!-- include Bootstrap and fontawesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+<!-- include summernote css/js-->
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+<!-- include summernote plugin-->
+<script type="text/javascript" src="summernote-map-plugin.js"></script>
 	<script type="text/javascript">
         /* summernote에서 이미지 업로드시 실행할 함수 */
-	 	function sendFile(file, editor) {
-            // 파일 전송을 위한 폼생성
-	 		data = new FormData();
-	 	    data.append("uploadFile", file);
-	 	    $.ajax({ // ajax를 통해 파일 업로드 처리
-	 	        data : data,
-	 	        type : "POST",
-	 	        url : "./summernote_imageUpload.jsp",
-	 	        cache : false,
-	 	        contentType : false,
-	 	        processData : false,
-	 	        success : function(data) { // 처리가 성공할 경우
-                    // 에디터에 이미지 출력
-	 	        	$(editor).summernote('editor.insertImage', data.url);
-	 	        }
-	 	    });
-	 	}
+	 	
 	</script>
 </head>
 <body>
 	<h1>summernote</h1>
 	<form name="writeForm" action="./summernote_insert.jsp" method="post">
 		<textarea id="summernote">Hello Summernote</textarea>
+		</form>
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({ // summernote를 사용하기 위한 선언
                     height: 400,
-					callbacks: { // 콜백을 사용
-                        // 이미지를 업로드할 경우 이벤트를 발생
-					    onImageUpload: function(files, editor, welEditable) {
-						    sendFile(files[0], this);
-						}
-					}
+					
+                map: {
+                    apiKey: 'GOOGLE_MAP_API_BROWSER_KEY',
+                    // This will be used when map is initialized in the dialog.
+                    center: {
+                      lat: -33.8688,
+                      lng: 151.2195
+                    },
+                    zoom: 13
+                },
+                toolbar: [
+                    ['insert',  'map']]
+                
 				});
 			});
 		</script>

@@ -38,13 +38,13 @@ public class BoardTipController extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-
+				System.out.println(currentPageString);
 				String navi = dao.getPageNavi(currentPage);
 				result = dao.selectNaviData(currentPage*8-7,currentPage*8);
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("board", result);
 				request.setAttribute("navi", navi);
-				request.setAttribute("page", currentPageString);
+				request.setAttribute("page", currentPage);
 				/*for(int i =0; result.size()>i;i++) {
 					System.out.println(result.get(i).getContents());
 				}*/

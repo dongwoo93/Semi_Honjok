@@ -7,14 +7,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap 4 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="boardcss/boardtipcss.css" type="text/css">
-<script>
-	
-</script>
+
 
 </head>
 <body>
@@ -22,7 +20,7 @@
 		<c:choose>
 			<c:when test="${board.size() > 0}">
 				<c:forEach var="tmp" items="${board}">
-					<div class="col-sm-3" id="card1">
+					<div class="col-sm-2" id="card1">
 						<div class="card">
 							<img class="card-img-top" src="files/${tmp.systemFileName}"
 								alt="Card image cap"><br>
@@ -40,9 +38,13 @@
 			</c:when>
 		</c:choose>
 
+	</div><br>
+	<div class="container">
+		<ul class="pagination">${navi}</ul>
 	</div>
-	<div class="col-lg-12" align="center">
-		<div>${navi}</div>
-	</div>
+	<script>
+	 /*document.getElementById("${page}").style.fontWeight = "bold";
+	 document.getElementById("${page}").removeAttribute("href");*/
+	</script>
 </body>
 </html>
