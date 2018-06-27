@@ -28,7 +28,7 @@
 								alt="Card image cap">
 							<div class="card-body">
 								<h5 class="card-title">${tmp.title}</h5>
-								<p class="card-text">${tmp.contents}</p>
+								<%-- <p class="card-text">${tmp.contents}</p> --%>
 								<p class="card-text">
 									<small class="text-muted">${tmp.writedate}</small>
 								</p>

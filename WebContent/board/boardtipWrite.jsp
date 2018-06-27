@@ -28,14 +28,13 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
 <link rel="stylesheet" href="/boardcss/boardwritecss.css"
 	type="text/css">
-	<!-- include summernote plugin-->
-<script type="text/javascript" src="summernote-map-plugin.js"></script>
+	
 <script>
 
 
 $(document).ready(function() {
 	
-	
+});
 	/* $("#listButton").click(function() {
 	  setInterval(function() { 
 	   $.ajax({
@@ -59,24 +58,12 @@ $(document).ready(function() {
 
 	}); */
 	
-	/* function sendFile(file) {
-		var form_data = new FormData();
-		form_data.append('img', document.getElementById('file').files[0]);
-		$.ajax({
-			data : form_data,
-			type : "POST",
-			url : '../boardWrite',
-			cache : false,
-			contentType : false,
-			enctype : 'multipart/form-data',
-			processData : false,
-		});
-	} */
+	
 </script>
 
 </head>
 <body>
-	<form action="../boardWrite" method="post" enctype="multipart/form-data">
+	<form action="editor.tw" method="post" enctype="multipart/form-data">
 		<div id="wrapper">
 			<div class="form-row" style="padding-left: 14px;">
 				<div class="form-group col-md-2">
@@ -140,18 +127,44 @@ $(document).ready(function() {
 			</div>
 			
 			<script>
-				$('#summernote').summernote({
-					placeholder : '내용',
-					//width : 1500,
-					//height : 300, // set editor height
-					minHeight : 300, // set minimum height of editor
-					maxHeight : null, // set maximum height of editor
-					focus : true,
-				/* 	  codemirror: { // codemirror options
-						    theme: 'paper'
-						  } */
-						  
-				});
+			$('#summernote').summernote({
+				placeholder : '내용',
+				//width : 1500,
+				//height : 300, // set editor height
+				minHeight : 300, // set minimum height of editor
+				maxHeight : null, // set maximum height of editor
+				focus : true,
+				callbacks : {
+		            // 이미지를 업로드 할 때 이벤트 발생
+		            onImageUpload : function(files, editor, welEditable) {
+		                sendFile(files[0], this);
+		            }
+		        }
+			/* codemirror: { // codemirror options
+		    theme: 'paper'
+		  } */
+					  
+			});
+			
+			 
+			function sendFile(file, editor) {
+					var data = new FormData();
+					data.append("uploadFile", file);
+					$.ajax({
+						data : data,
+						type : "POST",
+						url : 'upload.tw',
+						cache : false,
+						contentType : false,
+						/* enctype : 'multipart/form-data', */
+						processData : false,
+						success : function(data) {
+							// 에디터에 이미지 출력(아직은 안합니다.)
+							$(editor).summernote('editor.insertImage', data.url);
+						}
+					});
+				}
+			
 			</script>
 			<div class="col-sm-3">
 				<input type="file" name="file" id="file">
