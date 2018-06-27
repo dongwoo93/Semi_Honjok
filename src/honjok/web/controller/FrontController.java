@@ -52,6 +52,8 @@ public class FrontController extends HttpServlet {
 				response.getWriter().flush();
 				response.getWriter().close();
 				return;
+			}else if(command.equals("/latest.com")) {
+				
 			}
 		}catch (Exception e) {
 			

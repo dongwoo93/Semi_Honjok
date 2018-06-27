@@ -9,7 +9,6 @@
 function loca() {
 	location.href = "../hollo.com";
 }
-	
 </script>
 </head>
 <body onload="loca()">
