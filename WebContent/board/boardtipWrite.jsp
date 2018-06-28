@@ -64,13 +64,13 @@ $(document).ready(function() {
 </head>
 <body>
 	<form action="../editor.tw" method="post" enctype="multipart/form-data">
-		<div id="wrapper">
+		<div class="container">
 			<div class="form-row" style="padding-left: 14px;">
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-3">
 					<label for="sel1">카테고리</label> 
 					<select class="form-control"
 						id="sel1" name="category" onchange="categoryChange(this)">
-						<option>카테고리를 선택해주세요</option>
+						<option>카테고리를 선택하세요</option>
 						<option value="꿀팁">꿀팁</option>
 						<option value="요리">요리</option>
 						<option value="인테리어">인테리어</option>
@@ -78,7 +78,7 @@ $(document).ready(function() {
 						<option value="맛집">맛집</option>
 					</select>
 				</div>
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-3">
 					<label for="sel2">말머리</label> 
 					<select class="form-control" id="sel2" name="subject">
 						<option value="꿀팁">말머리를 선택하세요</option>
@@ -89,10 +89,10 @@ $(document).ready(function() {
 		
 				function categoryChange(e) {
 					var sel2_꿀팁 = [ "생활", "부동산", "자유" ];
-					var sel2_요리 = [ "한식", "중식", "양식", "분식" ];
+					var sel2_요리 = [ "초간단 요리", "일반 요리"];
 					var sel2_인테리어 = [ "가구", "소품" ];
 					var sel2_여행 = [ "국내여행", "해외여행" ];
-					var sel2_맛집 = [ "서울", "인천", "경기", "부산" ];
+					var sel2_맛집 = [ "서울", "인천&경기", "충청도", "경상도", "전라도" ];
 					var target = document.getElementById("sel2");
 
 					if (e.value == "꿀팁")
@@ -117,14 +117,14 @@ $(document).ready(function() {
 				}
 			</script>
 			
-			<div class="form-group col-md-5">
-				<label for="formGroupExampleInput">제목</label> <input type="text"
-					class="form-control" name="title" placeholder="제목">
-			</div>
-			
-			<div class="form-group col-md-8">
-				<textarea id="summernote" name="summernote"></textarea>
-			</div>
+				<div class="form-group col-md-7">
+					<label for="formGroupExampleInput">제목</label> <input type="text"
+						class="form-control" name="title" placeholder="제목">
+				</div>
+
+				<div class="form-group col-md-9">
+					<textarea id="summernote" name="summernote"></textarea>
+				</div>
 			
 			<script>
 			$('#summernote').summernote({
@@ -174,7 +174,6 @@ $(document).ready(function() {
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
-
 		</div>
 	</form>
 	

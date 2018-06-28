@@ -28,7 +28,7 @@ public class BoardTipController extends HttpServlet {
 			String command = requestURI.substring(contextPath.length());
 			BoardTipDAO dao = new BoardTipDAO();
 			//System.out.println(command);
-			if(command.equals("/select.tip")) {
+			if(command.equals("/selectNavi.tip")) {
 				int currentPage = 0;
 
 				String currentPageString = request.getParameter("currentPage");
@@ -38,7 +38,7 @@ public class BoardTipController extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-				System.out.println(currentPageString);
+				System.out.println("∆‰¿Ã¡ˆ " + currentPage);
 				String navi = dao.getPageNavi(currentPage);
 				result = dao.selectNaviData(currentPage*8-7,currentPage*8);
 				response.setCharacterEncoding("UTF-8");
@@ -50,6 +50,14 @@ public class BoardTipController extends HttpServlet {
 				}*/
 				isRedirect = false;
 				dst = "board/boardtip.jsp";
+			}else if(command.equals("/selectView.tip")) {
+				List<BoardDTO> result = new ArrayList<>();
+				String seq = request.getParameter("seq");
+				result = dao.selectAllData(seq);
+				response.setCharacterEncoding("UTF-8");
+				request.setAttribute("result", result);
+				isRedirect = false;
+				dst = "board/boardView.jsp";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

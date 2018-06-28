@@ -108,14 +108,12 @@ public class BoardTipDAO {
 
 		for(int i = startNavi; i <= endNavi; i++) {
 			if(currentPage == i) {
-				sb.append("<li class='page-item active'><a class='page-link' href='select.tip?currentPage="+i+"' id='+i+'>" + i + "</a></li>");
+				sb.append("<li class='page-item active'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
 				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+"> <b>" + i + "</b> </a>");
 			}else {
-				sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				sb.append("<li class='page-item'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
 				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+">" + i + " </a>");
 			}
-
-
 		}
 
 		if(needNext) {
@@ -131,13 +129,11 @@ public class BoardTipDAO {
 		return sb.toString();
 	}
 	
-	public List<BoardDTO> selectAllData(int startNum, int endNum) throws Exception{
+	public List<BoardDTO> selectAllData(String seq) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_tip.*, row_number() over(order by tip_writedate desc) as num from board_tip)\r\n" + 
-				"where num between ? and ?";
+		String sql = "select * from board_tip where tip_seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, startNum);
-		pstat.setInt(2, endNum);
+		pstat.setInt(1, Integer.parseInt(seq));
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
 		
@@ -145,7 +141,7 @@ public class BoardTipDAO {
 		while(rs.next()) {
 			StringBuffer sb = new StringBuffer();
 			BoardDTO dto = new BoardDTO();
-			dto.setSeq(rs.getString(1));
+			dto.setSeq(String.valueOf(rs.getInt(1)));
 			dto.setCategory(rs.getString(2));
 			dto.setSubject(rs.getString(3));
 			dto.setTitle(rs.getString(4));
@@ -165,7 +161,7 @@ public class BoardTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			System.out.println(dto.getContents());
+			//System.out.println(dto.getContents());
 			list.add(dto);
 		}
 		pstat.close();
@@ -182,13 +178,12 @@ public class BoardTipDAO {
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
-		System.out.println(startNum);
-		System.out.println(endNum);
+		System.out.println("startNum: " + startNum);
+		System.out.println("endNum: " + endNum);
 		
 		while(rs.next()) {
-			StringBuffer sb = new StringBuffer();
 			BoardDTO dto = new BoardDTO();
-			dto.setSeq(rs.getString(1));
+			dto.setSeq(String.valueOf(rs.getInt(1)));
 			dto.setCategory(rs.getString(2));
 			dto.setSubject(rs.getString(3));
 			dto.setTitle(rs.getString(4));
@@ -199,6 +194,7 @@ public class BoardTipDAO {
 			dto.setSystemFileName(rs.getString(9));
 			dto.setOriginalFileName(rs.getString(10));
 			list.add(dto);
+			System.out.println("seq" + dto.getSeq());
 		}
 		pstat.close();
 		con.close();
