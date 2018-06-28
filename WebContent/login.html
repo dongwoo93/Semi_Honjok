@@ -82,29 +82,6 @@
 		
 	}
 	
-	
-	
-		
-	
-	
-	
-	$("#kaout").click(function() {
-		
-		Kakao.init('7b5cebd6ff38bcc35f50a75797895963'); //카카오에서 제공 myceo.co.kr 수정
-		Kakao.Auth.logout(
-				   Kakao.API.request({ 
-	                   url: '/v1/user/logout', 
-	                   success: function(res) { 
-	                            
-	                         console.log("로그아웃됨");
-	                   }, 
-	                   fail: function(error) { 
-	                          console.log(JSON.stringify(error)); 
-	                   } 
-	            }); 
-		);
-	})
-	
 	  
   </script>
 
