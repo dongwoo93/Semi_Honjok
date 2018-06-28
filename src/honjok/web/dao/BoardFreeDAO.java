@@ -560,5 +560,16 @@ public class BoardFreeDAO {
 
 		return result;
 	}
-
+	public int UpdateViewCount(int seq, int viewCount) throws Exception {
+	      Connection con = DBUtils.getConnection();
+	      String sql = "update board_free set free_viewcount=? where free_seq=?";
+	      PreparedStatement pstat = con.prepareStatement(sql);
+	      pstat.setInt(1, viewCount);
+	      pstat.setInt(2, seq);
+	      int result = pstat.executeUpdate();
+	      con.commit();
+	      pstat.close();
+	      con.close();
+	      return result;
+	   }
 }

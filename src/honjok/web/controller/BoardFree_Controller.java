@@ -35,6 +35,11 @@ public class BoardFree_Controller extends HttpServlet {
 			String contextPath = request.getContextPath();
 
 			String command = requestURI.substring(contextPath.length());
+			
+			String id = (String)request.getSession().getAttribute("loginId");
+            request.getSession().setAttribute("login", "È÷¿À½º");
+            String count = request.getParameter("count");
+			
 
 			if(command.equals("/test.freeb")) {
 				int currentPage = 0;
@@ -105,7 +110,6 @@ public class BoardFree_Controller extends HttpServlet {
 				response.getWriter().flush();
 				response.getWriter().close();
 				
-				String id = (String)request.getAttribute("loginId");
 				String title = mr.getParameter("title");
 				String writer = mr.getParameter("writer");
 				String contents = mr.getParameter("contents");
@@ -185,12 +189,15 @@ public class BoardFree_Controller extends HttpServlet {
 				System.out.println(seq);
 
 				BoardFreeDAO dao = new BoardFreeDAO();
-				System.out.println("1");
 				List<BoardFreeDTO> result = dao.readData(seq);
-				System.out.println("2");
-
+				
+				if (!id.equals(result.get(0).getWriter())) {
+	                int viewCount = Integer.parseInt(count) + 1;
+	                dao.UpdateViewCount(seq, viewCount);
+	             }
+				
 				request.setAttribute("result", result);
-				System.out.println("3");
+				request.setAttribute("count", count);
 				isRedirect = false;
 				dst = "community/articleView.jsp";
 			}else if(command.equals("/upload.freeb")) {
