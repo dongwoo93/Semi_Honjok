@@ -10,12 +10,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#fix").click(function() {
+			$(location).attr('href', "fix.jsp?no=${seq}")
+		})
+		$("#delete").click(function() {
+			var yes = confirm("삭제 하시겠습니까?");
+			if (yes) {
+				$(location).attr('href', "delete.jsp?no=${seq}")
+			} else {
+				return;
+			}
 
+		})
+		$("#back").click(function() {
+			$(location).attr('href', "freeboardView.jsp")
+		})
+	})
+
+	/* document.getElementById("comment").onclick = function() {
+		formid.submit();
+	} */
+</script>
 </head>
 <body>
 
 	<div class="container">
-		<form method=post action="comment.jsp" id=formid>
+		<form method=post action="comment.freeb" id=formid>
 			<table class="table table-hover">
 				<tbody class="head" id="head">
 					<tr>
@@ -61,31 +84,13 @@
 						<th width=80px height=40px>댓글입력</th>
 						<td><input type="text" id="comment" name=comment size=75px
 							placeholder="고소각 잘 재라.">
-						<button id="confirm">확인</button></td>
+							<button id="confirm">확인</button></td>
 					</tr>
 				</tbody>
 			</table>
 
 		</form>
 	</div>
-	<script>
-		document.getElementById("fix").onclick = function() {
-			location.href = "fix.jsp?no=${seq}";
-		}
-		document.getElementById("delete").onclick = function() {
-			var yes = confirm("삭제 하시겠습니까?");
-			if (yes == true) {
-				location.href = "delete.jsp?no=${seq}";
-			} else {
-				return;
-			}
-		}
-		document.getElementById("back").onclick = function() {
-			location.href = "freeboardView.jsp";
-		}
-		document.getElementById("comment").onclick = function() {
-			formid.submit();
-		}
-	</script>
+
 </body>
 </html>

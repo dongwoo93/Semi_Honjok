@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import honjok.web.dto.BoardFreeDTO;
+import honjok.web.dto.CommentFreeDTO;
 import kh.web.dbutils.DBUtils;
 
 public class BoardFreeDAO {	
-	
-/*	public static void main(String[] args) throws Exception {
+
+	/*	public static void main(String[] args) throws Exception {
 		new BoardFreeDAO().selectData();
 	}*/
-	
+
 	public List<BoardFreeDTO> selectData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_free.*, row_number() over(order by free_writedate desc) as num from board_free) where num between ? and ?";
@@ -60,7 +61,7 @@ public class BoardFreeDAO {
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
-	List<BoardFreeDTO> list = new ArrayList<>();
+		List<BoardFreeDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
 			BoardFreeDTO dto = new BoardFreeDTO();
@@ -221,7 +222,7 @@ public class BoardFreeDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
-		
+
 		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
 		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
 		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
@@ -232,8 +233,8 @@ public class BoardFreeDAO {
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
-		
-		
+
+
 
 		if(currentPage < 1) {
 			currentPage = 1;
@@ -248,7 +249,7 @@ public class BoardFreeDAO {
 			endNavi = pageTotalCount;
 		}
 
-		
+
 		boolean needPrev = true;
 		boolean needNext = true;
 
@@ -261,7 +262,7 @@ public class BoardFreeDAO {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(needPrev) {
 			sb.append("<a href='test.freeb?currentPage="+(startNavi-1)+"'< </a>");
 		}
@@ -277,7 +278,7 @@ public class BoardFreeDAO {
 		}
 
 		System.out.println(sb.toString());
-		
+
 		String result = sb.toString();
 		con.close();
 		pstat.close();
@@ -290,7 +291,7 @@ public class BoardFreeDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
-		
+
 		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
 		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
 		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
@@ -301,8 +302,8 @@ public class BoardFreeDAO {
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
-		
-		
+
+
 
 		if(currentPage < 1) {
 			currentPage = 1;
@@ -317,7 +318,7 @@ public class BoardFreeDAO {
 			endNavi = pageTotalCount;
 		}
 
-		
+
 		boolean needPrev = true;
 		boolean needNext = true;
 
@@ -330,7 +331,7 @@ public class BoardFreeDAO {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(needPrev) {
 			sb.append("<a href='freeboardView.freeb?currentPage="+(startNavi-1)+"'< </a>");
 		}
@@ -346,7 +347,7 @@ public class BoardFreeDAO {
 		}
 
 		System.out.println(sb.toString());
-		
+
 		String result = sb.toString();
 		con.close();
 		pstat.close();
@@ -359,7 +360,7 @@ public class BoardFreeDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
-		
+
 		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
 		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
 		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
@@ -370,8 +371,8 @@ public class BoardFreeDAO {
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
-		
-		
+
+
 
 		if(currentPage < 1) {
 			currentPage = 1;
@@ -386,7 +387,7 @@ public class BoardFreeDAO {
 			endNavi = pageTotalCount;
 		}
 
-		
+
 		boolean needPrev = true;
 		boolean needNext = true;
 
@@ -399,7 +400,7 @@ public class BoardFreeDAO {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(needPrev) {
 			sb.append("<a href='ajax01.freeb?currentPage="+(startNavi-1)+"'< </a>");
 		}
@@ -415,7 +416,7 @@ public class BoardFreeDAO {
 		}
 
 		System.out.println(sb.toString());
-		
+
 		String result = sb.toString();
 		con.close();
 		pstat.close();
@@ -428,7 +429,7 @@ public class BoardFreeDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
-		
+
 		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
 		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
 		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
@@ -439,8 +440,8 @@ public class BoardFreeDAO {
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
-		
-		
+
+
 
 		if(currentPage < 1) {
 			currentPage = 1;
@@ -455,7 +456,7 @@ public class BoardFreeDAO {
 			endNavi = pageTotalCount;
 		}
 
-		
+
 		boolean needPrev = true;
 		boolean needNext = true;
 
@@ -468,7 +469,7 @@ public class BoardFreeDAO {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(needPrev) {
 			sb.append("<a href='ajax02.freeb?currentPage="+(startNavi-1)+"'< </a>");
 		}
@@ -484,7 +485,7 @@ public class BoardFreeDAO {
 		}
 
 		System.out.println(sb.toString());
-		
+
 		String result = sb.toString();
 		con.close();
 		pstat.close();
@@ -497,7 +498,7 @@ public class BoardFreeDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
-		
+
 		int recordTotalCount = rs.getInt("totalCount");//전체 글(레코드)의 갯수를 저장하는 변수
 		int recordCountPerPage = 10; // 한 페이지에 게시글이 표시되는 갯수
 		int naviCountPerPage = 10; // 한 페이지에 표시되는 네이게이터의 갯수
@@ -508,8 +509,8 @@ public class BoardFreeDAO {
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
-		
-		
+
+
 
 		if(currentPage < 1) {
 			currentPage = 1;
@@ -524,7 +525,7 @@ public class BoardFreeDAO {
 			endNavi = pageTotalCount;
 		}
 
-		
+
 		boolean needPrev = true;
 		boolean needNext = true;
 
@@ -537,7 +538,7 @@ public class BoardFreeDAO {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		if(needPrev) {
 			sb.append("<a href='ajax03.freeb?currentPage="+(startNavi-1)+"'< </a>");
 		}
@@ -553,7 +554,7 @@ public class BoardFreeDAO {
 		}
 
 		System.out.println(sb.toString());
-		
+
 		String result = sb.toString();
 		con.close();
 		pstat.close();
@@ -561,15 +562,94 @@ public class BoardFreeDAO {
 		return result;
 	}
 	public int UpdateViewCount(int seq, int viewCount) throws Exception {
-	      Connection con = DBUtils.getConnection();
-	      String sql = "update board_free set free_viewcount=? where free_seq=?";
-	      PreparedStatement pstat = con.prepareStatement(sql);
-	      pstat.setInt(1, viewCount);
-	      pstat.setInt(2, seq);
-	      int result = pstat.executeUpdate();
-	      con.commit();
-	      pstat.close();
-	      con.close();
-	      return result;
-	   }
+		Connection con = DBUtils.getConnection();
+		String sql = "update board_free set free_viewcount=? where free_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, viewCount);
+		pstat.setInt(2, seq);
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+	public int insertComment(CommentFreeDTO dto) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "insert into comment_free values(comment_free_seq.nextval,?,?,sysdate,?)";
+		PreparedStatement pstat = con.prepareStatement(sql);
+
+		pstat.setInt(1, dto.getBoard_free_seq());
+		pstat.setString(2, dto.getCommu_free_text());
+		pstat.setString(3, dto.getFree_ip());
+
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;		
+	}
+	public List<CommentFreeDTO> selectComment(int seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from comment_free where comment_free_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, seq);
+		ResultSet rs = pstat.executeQuery();
+		List<CommentFreeDTO> list = new ArrayList<>();
+		while(rs.next()) {
+			CommentFreeDTO dto = new CommentFreeDTO();
+			dto.setComment_free_seq(rs.getInt(1));
+			dto.setBoard_free_seq(rs.getInt(2));
+			dto.setCommu_free_text(rs.getString(3));
+			dto.setFree_writedate(rs.getString(4));
+			dto.setFree_ip(rs.getString(5));
+			list.add(dto);
+		}
+		con.commit();
+		pstat.close();
+		con.close();
+		return list;
+	}
+	public int deleteData(int seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "delete from board_free where free_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, seq);
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+	public int modifyData(BoardFreeDTO dto) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "update board_free set free_title=?, free_contents=?, free_writedate=sysdate where seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, dto.getTitle());
+		pstat.setString(2, dto.getContents());
+		pstat.setInt(3, dto.getSeq());
+
+		int result = pstat.executeUpdate();
+
+		pstat.close();
+		con.commit();
+		con.close();
+		return result;
+	}
+	public BoardFreeDTO modifyRead(int seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select title, contents from board_free where seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, seq);
+		ResultSet rs = pstat.executeQuery();
+
+		BoardFreeDTO dto = new BoardFreeDTO();
+		if(rs.next()) {
+			dto.setTitle(rs.getString("title"));
+			dto.setContents(rs.getString("contents"));
+		}
+		rs.close();
+		pstat.close();
+		con.close();
+		return dto;
+	}
 }

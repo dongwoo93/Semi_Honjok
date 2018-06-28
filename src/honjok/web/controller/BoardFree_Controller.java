@@ -19,6 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.BoardFreeDAO;
 import honjok.web.dto.BoardFreeDTO;
+import honjok.web.dto.CommentFreeDTO;
 
 @WebServlet("*.freeb")
 public class BoardFree_Controller extends HttpServlet {
@@ -36,8 +37,8 @@ public class BoardFree_Controller extends HttpServlet {
 
 			String command = requestURI.substring(contextPath.length());
 			
-			String id = (String)request.getSession().getAttribute("loginId");
-            request.getSession().setAttribute("login", "히오스");
+//			String id = (String)request.getSession().getAttribute("loginId");
+			String id = "히오스";
             String count = request.getParameter("count");
 			
 
@@ -233,6 +234,31 @@ public class BoardFree_Controller extends HttpServlet {
 				response.getWriter().flush();
 				response.getWriter().close();
 				return;
+			}else if(command.equals("/comment.freeb")) {
+				String no = request.getParameter("no");
+				int seq = Integer.parseInt(no);
+				
+				BoardFreeDAO dao = new BoardFreeDAO();
+				CommentFreeDTO dto = new CommentFreeDTO();
+				
+				String boardseq = request.getParameter("board_free_seq");
+				int boardfreeseq = Integer.parseInt(boardseq);
+				String text = request.getParameter("commu_free_text");
+				String ip = request.getRemoteAddr();
+				
+				dto.setBoard_free_seq(boardfreeseq);
+				dto.setCommu_free_text(text);
+				dto.setFree_ip(ip);
+				
+				int result = dao.insertComment(dto);
+				
+				request.setAttribute("result", result);
+				isRedirect = false;
+				dst = "community/articleView.jsp";				
+			}else if(command.equals("/fix.freeb")) {
+				
+			}else if(command.equals("/delete.freeb")) {
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
