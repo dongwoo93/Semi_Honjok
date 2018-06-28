@@ -8,10 +8,13 @@ import java.net.URL;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class navertest {
+public class NaverLoginTest {
 
     public static void main(String[] args) {
-        String token = "AAAANhYGzXK46utLrbNIT/8ji9AYK6dIVNLIM+PJpLJGfT0vF9/wOHXJA2fxjEnlSi9nDMx8WfJYjG9oiwLXvhnYn4o"
+        
+    	
+    	
+    	String token = "AAAANhYGzXK46utLrbNIT/8ji9AYK6dIVNLIM+PJpLJGfT0vF9/wOHXJA2fxjEnlSi9nDMx8WfJYjG9oiwLXvhnYn4o"
         		+ "="
         		+ "";// 네이버 로그인 접근 토큰;
         String header = "Bearer " + token; // Bearer 다음에 공백 추가
