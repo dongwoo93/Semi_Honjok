@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 </head>
 <body>
+ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 <img src="imges/coffee.png" width=60 height=60>
    <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
@@ -434,6 +435,7 @@
 	</div>
 	</footer>
 	<script>
+	
 AOS.init({
 	  duration: 1200,
 	});

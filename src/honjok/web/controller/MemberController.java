@@ -32,8 +32,6 @@ public class MemberController extends HttpServlet {
 
 
 			if(command.equals("/signup.mem")) {
-				
-
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
 				String name = request.getParameter("name");
@@ -42,28 +40,16 @@ public class MemberController extends HttpServlet {
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
-
-			    
-
-
-
+				
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
-				
 
 				isRedirect = false;
-				dst = "index.jsp";
-				
-				
-
+				dst = "signup.jsp";
 
 			} else if(command.equals("/idcheck.mem")) {
 				String id= request.getParameter("value");
-
-
 				boolean result = dao.isIdExist(id);
-				
-
 				if(result) {
 					String check = "아이디가 중복되었습니다";
 					out.println(check);
@@ -83,8 +69,7 @@ public class MemberController extends HttpServlet {
 
 			if (isRedirect) {
 				response.sendRedirect(dst);
-			} else {
-
+			} else {				
 				RequestDispatcher rd = request.getRequestDispatcher(dst);
 				rd.forward(request, response);
 			}

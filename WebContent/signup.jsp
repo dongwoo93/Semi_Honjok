@@ -1,7 +1,7 @@
 <%@page import="honjok.web.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf8"
 	pageEncoding="utf8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto|Courgette|Pacifico:400,700"
 	rel="stylesheet">
-<title>Bootstrap Start Free Trail Sign up Form</title>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -306,8 +306,15 @@ body {
 </head>
 
 <body>
-	<div class="signup-form">
-
+	<c:choose>
+	<c:when test="${result>0}">
+		<script>
+			alert("회원 가입 완료!");			
+			location.href = "hollo.com";
+		</script>
+	</c:when>
+	<c:otherwise>
+		<div class="signup-form">
 		<form id="registerForm" action="signup.mem" method="post">
 			<div class="form-header">
 				<h2>Hollo</h2>
@@ -624,6 +631,9 @@ body {
 			이미 아이디가 있으신가요? <a href="login.html">로그인</a>
 		</div>
 	</div>
+	</c:otherwise>
+	</c:choose>
+	
 
 </body>
 
