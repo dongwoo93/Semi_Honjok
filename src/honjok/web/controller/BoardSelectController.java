@@ -19,7 +19,7 @@ import honjok.web.dto.BoardDTO;
 @WebServlet("/BoardSelectController")
 public class BoardSelectController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardWriteDAO dao = new BoardWriteDAO();
+		/*BoardWriteDAO dao = new BoardWriteDAO();
 		boolean isRedirect = true;
 		String dst = "null";
 		try {
@@ -35,7 +35,7 @@ public class BoardSelectController extends HttpServlet {
 		}else {
 		RequestDispatcher rd = request.getRequestDispatcher(dst);
 		rd.forward(request, response);
-		}
+		}*/
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

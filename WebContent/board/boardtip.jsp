@@ -14,7 +14,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="boardcss/boardtipcss.css" type="text/css">
 
-
 </head>
 <body>
 	<div class="container-fluid">
@@ -46,7 +45,14 @@
 
 		</div>
 		<br>
-		<ul class="pagination">${navi}</ul>
+		<div class="row text-center">
+        <div class="col-md-2" style="margin:auto">
+          <ul class="pagination">
+            ${navi}
+          </ul>
+        </div>
+      </div>
+		<%-- <ul class="pagination">${navi}</ul> --%>
 	</div>
 	<script>
 		/*document.getElementById("${page}").style.fontWeight = "bold";

@@ -1,5 +1,6 @@
 package honjok.web.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,38 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("result", result);
 				isRedirect = false;
 				dst = "board/boardView.jsp";
+			}else if(command.equals("/delete.tip")) {
+				
+				String seq = request.getParameter("seq");
+				String systemFileName = dao.getSystemFileName(seq);
+				System.out.println(systemFileName);
+				
+				if(!(systemFileName.equals(""))) {
+					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Semi_Honjok
+					File file = new File("Semi_Honjok\\files\\"+systemFileName);
+					System.out.println(file.getAbsolutePath());
+			        
+			        if(file.exists() ){
+			            if(file.delete()){
+			                System.out.println("파일삭제 성공");
+			                int result = dao.deleteData(seq);
+							if(result > 0) {
+								System.out.println("삭제 완료");
+							}else {
+								System.out.println("삭제 실패");
+							}
+							dst = "board/boardtip.jsp";
+			            }else{
+			                System.out.println("파일삭제 실패");
+			            }
+			        }else{
+			            System.out.println("파일이 존재하지 않습니다.");
+			        }
+				}
+				dst = "selectNavi.tip";
+
+			}else if(command.equals("/modify.tip")) {
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 </head>
 <body>
-	<form action="../editor.tw" method="post" enctype="multipart/form-data">
+	<form action="../editor.tw" method="post" enctype="multipart/form-data" >
 		<div class="container">
 			<div class="form-row" style="padding-left: 14px;">
 				<div class="form-group col-md-3">
@@ -117,16 +117,27 @@ $(document).ready(function() {
 				}
 			</script>
 			
-				<div class="form-group col-md-7">
+				<div class="form-group col-md-8">
 					<label for="formGroupExampleInput">제목</label> <input type="text"
 						class="form-control" name="title" placeholder="제목">
 				</div>
 
-				<div class="form-group col-md-9">
+				<div class="form-group col-md-12">
 					<textarea id="summernote" name="summernote"></textarea>
 				</div>
 			
-			<script>
+			
+			<div class="col-sm-3">
+				<input type="file" name="file">
+			</div><br>
+			
+			<div class="col-sm-3">
+				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
+				<input type="submit" class="btn btn-primary" style="padding:0px;margin:0px;" value="submit">
+			</div>
+		</div>
+	</form>
+	<script>
 			$('#summernote').summernote({
 				placeholder : '내용',
 				//width : 1500,
@@ -153,10 +164,10 @@ $(document).ready(function() {
 					$.ajax({
 						data : data,
 						type : "POST",
-						url : '../upload.tw',
+						url : '../upload.img',
 						cache : false,
 						contentType : false,
-						/* enctype : 'multipart/form-data', */
+						//enctype : 'multipart/form-data',
 						processData : false,
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
@@ -164,18 +175,12 @@ $(document).ready(function() {
 						}
 					});
 				}
-			
+			function sendContents() {
+			       $("#summernote").html($("#summernote").summernote('code'));
+			       document.writeContents.submit();
+			   }
+
 			</script>
-			<div class="col-sm-3">
-				<input type="file" name="file" id="file">
-			</div><br>
-			
-			<div class="col-sm-3">
-				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</div>
-	</form>
 	
 </body>
 </html>

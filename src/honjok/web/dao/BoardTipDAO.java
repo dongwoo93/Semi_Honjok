@@ -29,8 +29,9 @@ public class BoardTipDAO {
 		String sql = "insert into board_tip values(?, ?, ?, ?, ?, 0, 0, sysdate, ?, ?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());
-		//con.setAutoCommit(false);
-
+		con.setAutoCommit(false);
+		System.out.println("DAO 들어옴");
+		System.out.println(dto.getContents());
 		pstat.setInt(1, Integer.parseInt(dto.getSeq()));
 		pstat.setString(2, dto.getCategory());
 		pstat.setString(3, dto.getSubject());
@@ -42,8 +43,9 @@ public class BoardTipDAO {
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();
-		//con.setAutoCommit(true);
+		con.setAutoCommit(true);
 		con.close();
+		
 		return result;
 	}
 	
@@ -200,5 +202,28 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
-	
+	public String getSystemFileName(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select tip_systemFileName from board_tip where tip_seq = ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, Integer.parseInt(seq));
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String systemFileName = rs.getString("tip_systemFileName");
+		rs.close();
+		pstat.close();
+		con.close();
+		return systemFileName;
+	}
+	public int deleteData(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "delete from board_tip where tip_seq = ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, Integer.parseInt(seq));
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
 }
