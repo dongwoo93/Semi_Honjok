@@ -113,10 +113,10 @@ public class Board_Controller extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
+				
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
+				
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -145,7 +145,6 @@ public class Board_Controller extends HttpServlet {
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
 				int seq = Integer.parseInt(no);
-				System.out.println(seq);
 
 				BoardDAO dao = new BoardDAO();
 				List<BoardUserDTO> result = dao.readData(seq);
@@ -182,10 +181,10 @@ public class Board_Controller extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
+				
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
+
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -222,9 +221,9 @@ public class Board_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(isRedirect) {
-			System.out.println("�ι�°�� ��");
+
 		}else {
-			System.out.println("���⵵��");
+
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);
 		}

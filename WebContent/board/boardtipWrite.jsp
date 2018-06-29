@@ -5,117 +5,209 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- include libraries(jQuery, bootstrap) -->
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+<script type="text/javascript"
+	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+<script type="text/javascript"
+	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+<script type="text/javascript"
+	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+<link rel="stylesheet" href="../boardcss/boardwritecss.css"
+	type="text/css">
+	
 <script>
-	$('#clickBtn').on('click', function(event) {
-		if ($('#divText').text().length == 0) {
-			alert('글자를 입력해주세요.')
-		} else {
-			var sendData = $('#divText').text();
-			alert(sendData);
-		}
 
+
+$(document).ready(function() {
+	
+});
+	/* $("#listButton").click(function() {
+	  setInterval(function() { 
+	   $.ajax({
+	      type : 'post',
+	      url : '../boardWrite',
+	      dataType : 'text',
+	      data : $("#summernote").val(),
+	      success : function(data) {
+	        // $("#listDiv").html(data);
+	      }
+	   });
+	  }, 5000);
+	   var title = $("#title").val();
+	  $.ajax({
+		  url:'../boardWrite',
+		  type:"post",
+		  data: {title:title}
+		  
+	  });
 	})
-</script>
-<style>
-[contenteditable=true]:empty:before {
-	content: attr(placeholder);
-	display: block; /* For Firefox */
-}
 
-div[contenteditable=true] {
-	border: 1px solid #ddd;
-	background-color: #fdfdfd;
-	color: #333;
-	font-size: 12px;
-	width: 300px;
-	padding: 5px;
-}
-</style>
+	}); */
+	
+	
+</script>
+
 </head>
 <body>
-	<div id="divText" contenteditable="true" placeholder="여기에 글자를 입력해주세요."></div>
-	<button type="button" id="clickBtn">확인</button>
-	<p id="status">File API & FileReader API not supported</p>
-	<p>
-		<input type=file>
-	</p>
-	<p>Select an image from your machine to read the contents of the
-		file without using a server</p>
-	<div id="holder"></div>
-	<article>
-		<p id="status">File API & FileReader API not supported</p>
-		<p>
-			<input type=file>
-		</p>
-		<p>Select an image from your machine to read the contents of the
-			file without using a server</p>
-		<div id="holder"></div>
-		<a href="data:image/jpeg;base64,/9j/4AAQSkZ..."
-			download="filename.jpg"></a>
-	</article>
-	<script>
-		var upload = document.getElementsByTagName('input')[0], holder = document
-				.getElementById('holder'), state = document
-				.getElementById('status');
+	<form action="../editor.tw" method="post" enctype="multipart/form-data" >
+		<div class="container" style="padding-top:6%;">
+			<div class="form-row" style="padding-left: 14px;">
+				<div class="form-group col-md-3">
+					<label for="sel1">카테고리</label> 
+					<select class="form-control"
+						id="sel1" name="category" onchange="categoryChange(this)">
+						<option>카테고리를 선택하세요</option>
+						<option value="꿀팁">꿀팁</option>
+						<option value="요리">요리</option>
+						<option value="인테리어">인테리어</option>
+						<option value="여행">여행</option>
+						<option value="맛집">맛집</option>
+						<option value="쇼핑몰">쇼핑몰</option>
+					</select>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="sel2">말머리</label> 
+					<select class="form-control" id="sel2" name="subject">
+						<option value="꿀팁">말머리를 선택하세요</option>
+					</select>
+				</div>
+			</div>
+			<script>
+		
+				function categoryChange(e) {
+					var sel2_꿀팁 = [ "생활", "부동산", "자유" ];
+					var sel2_요리 = [ "초간단 요리", "일반 요리"];
+					var sel2_인테리어 = [ "가구", "소품" ];
+					var sel2_여행 = [ "국내여행", "해외여행" ];
+					var sel2_맛집 = [ "서울", "인천&경기", "충청도", "경상도", "전라도" ];
+					var sel2_쇼핑몰 = [ "쇼핑" ];
+					var target = document.getElementById("sel2");
 
-		if (typeof window.FileReader === 'undefined') {
-			state.className = 'fail';
-		} else {
-			state.className = 'success';
-			state.innerHTML = 'File API & FileReader available';
-		}
+					if (e.value == "꿀팁")
+						var d = sel2_꿀팁;
+					else if (e.value == "요리")
+						var d = sel2_요리;
+					else if (e.value == "인테리어")
+						var d = sel2_인테리어;
+					else if (e.value == "여행")
+						var d = sel2_여행;
+					else if (e.value == "맛집")
+						var d = sel2_맛집;
+					else if (e.value == "쇼핑몰")
+						var d = sel2_쇼핑몰;
+					target.options.length = 0;
 
-		upload.onchange = function(e) {
-			e.preventDefault();
-
-			var file = upload.files[0], reader = new FileReader();
-			reader.onload = function(event) {
-				var img = new Image();
-				img.src = event.target.result;
-				// note: no onload required since we've got the dataurl...I think! :)
-				if (img.width > 560) { // holder width
-					img.width = 560;
+					for (x in d) {
+						var opt = document.createElement("option");
+						opt.value = d[x];
+						opt.innerHTML = d[x];
+						target.appendChild(opt);
+					}
 				}
-				holder.innerHTML = '';
-				/* $("#contents").append("<img src="+ img + ">"); */
+			</script>
+			
+				<div class="form-group col-md-8">
+					<label for="formGroupExampleInput">제목</label> <input type="text"
+						class="form-control" name="title" placeholder="제목">
+				</div>
 
+				<div class="form-group col-md-12">
+					<textarea id="summernote" name="summernote"></textarea>
+				</div>
 				
+			
+			<div class="col-sm-3">
+				<input type="file" name="file">
+			</div><br>
+			
+			<div class="col-sm-3">
+				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
+				<input type="submit" class="btn btn-primary" value="submit">
+			</div>
+		</div>
+	</form>
+	<script>
+	
+	
+	
+	
+			$('#summernote').summernote({
+				placeholder : '내용',
+				//width : 1500,
+				//height : 300, // set editor height
+				minHeight : 300, // set minimum height of editor
+				maxHeight : null, // set maximum height of editor
+				focus : true,
+				callbacks : {
+		            // 이미지를 업로드 할 때 이벤트 발생
+		            onImageUpload : function(files, editor, welEditable) {
+		                sendFile(files[0], this);
+		            },
+		            onMediaDelete : function(target) {
+	            	    //alert(target[0].src); 
+	                	deleteFile(target[0].src);
+	            	}
+		        }
+			
 				
-				divText.appendChild(img);
+			/* codemirror: { // codemirror options
+		    theme: 'paper'
+		  } */
+					  
+			});
+			
+			function deleteFile(src) {
+				var result = src.split("/files/");
+				console.log(result);
+			    $.ajax({
+			        data: {src : result[1]},
+			        type: "POST",
+			        url: "../deleteImg.img", // replace with your url
+			        cache: false,
+			        success: function(resp) {
+			            //console.log(resp);
+			        }
+			    });
+			}
+			
+			function sendFile(file, editor) {
+					var data = new FormData();
+					data.append("uploadFile", file);
+					$.ajax({
+						data : data,
+						type : "POST",
+						url : '../upload.img',
+						cache : false,
+						contentType : false,
+						//enctype : 'multipart/form-data',
+						processData : false,
+						success : function(data) {
+							// 에디터에 이미지 출력(아직은 안합니다.)
+							$(editor).summernote('editor.insertImage', data.url);
+							var array = new Array();
+						}
+					});
+				}
+			function sendContents() {
+			       $("#summernote").html($("#summernote").summernote('code'));
+			       document.writeContents.submit();
+			   }
 
-			};
-			reader.readAsDataURL(file);
-
-			return false;
-		};
-		var img = document.images[0];
-		img.onclick = function() {
-		    // atob to base64_decode the data-URI
-		    var image_data = atob(img.src.split(',')[1]);
-		    // Use typed arrays to convert the binary data to a Blob
-		    var arraybuffer = new ArrayBuffer(image_data.length);
-		    var view = new Uint8Array(arraybuffer);
-		    for (var i=0; i<image_data.length; i++) {
-		        view[i] = image_data.charCodeAt(i) & 0xff;
-		    }
-		    try {
-		        // This is the recommended method:
-		        var blob = new Blob([arraybuffer], {type: 'application/octet-stream'});
-		    } catch (e) {
-		        // The BlobBuilder API has been deprecated in favour of Blob, but older
-		        // browsers don't know about the Blob constructor
-		        // IE10 also supports BlobBuilder, but since the `Blob` constructor
-		        //  also works, there's no need to add `MSBlobBuilder`.
-		        var bb = new (window.WebKitBlobBuilder || window.MozBlobBuilder);
-		        bb.append(arraybuffer);
-		        var blob = bb.getBlob('application/octet-stream'); // <-- Here's the Blob
-		    }
-
-		    // Use the URL object to create a temporary URL
-		    var url = (window.webkitURL || window.URL).createObjectURL(blob);
-		    location.href = url; // <-- Download!
-		};
-	</script>
+			</script>
+	
 </body>
 </html>

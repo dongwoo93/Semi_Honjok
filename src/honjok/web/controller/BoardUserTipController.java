@@ -98,10 +98,8 @@ public class BoardUserTipController extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -185,7 +183,6 @@ public class BoardUserTipController extends HttpServlet {
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
 				int seq = Integer.parseInt(no);
-				System.out.println(seq);
 
 				BoardUserTipDAO dao = new BoardUserTipDAO();
 				List<BoardUserDTO> result = dao.readData(seq);
@@ -222,10 +219,8 @@ public class BoardUserTipController extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -267,7 +262,6 @@ public class BoardUserTipController extends HttpServlet {
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);
-			System.out.println("³¢¿ä¿Ê");
 		}
 	}
 

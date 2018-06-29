@@ -11,7 +11,7 @@ import java.util.List;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.BoardUserTipDTO;
 import honjok.web.dto.CommentFreeDTO;
-import kh.web.dbutils.DBUtils;
+import honjok.web.dbutils.DBUtils;
 
 public class BoardUserTipDAO {
 	public List<BoardUserDTO> selectData(int startNum, int endNum) throws Exception{
@@ -284,7 +284,6 @@ public class BoardUserTipDAO {
 			sb.append("<a href='test.freeb?currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
 
 		String result = sb.toString();
 		con.close();
@@ -353,7 +352,6 @@ public class BoardUserTipDAO {
 			sb.append("<a href='freeboardView.freeb?currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
 
 		String result = sb.toString();
 		con.close();
@@ -422,7 +420,6 @@ public class BoardUserTipDAO {
 			sb.append("<a href='ajax01.freeb?currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
 
 		String result = sb.toString();
 		con.close();
@@ -491,7 +488,6 @@ public class BoardUserTipDAO {
 			sb.append("<a href='ajax02.freeb?currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
 
 		String result = sb.toString();
 		con.close();
@@ -560,7 +556,6 @@ public class BoardUserTipDAO {
 			sb.append("<a href='ajax03.freeb?currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
 
 		String result = sb.toString();
 		con.close();

@@ -41,7 +41,6 @@ public class StatisticsData {
 		}
 		try {
 			array = (JSONArray) jsonparser.parse(readUrl);
-			System.out.println(readUrl);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
