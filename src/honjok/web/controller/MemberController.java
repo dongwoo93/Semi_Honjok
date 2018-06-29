@@ -63,7 +63,21 @@ public class MemberController extends HttpServlet {
 
 				}
 
+			} else if(command.equals("/memberout.mem")) {
+				
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+				System.out.println("들어왔다2");
+				int result = dao.deleteData(id,pw);
+				request.setAttribute("result", result);
+				isRedirect = false;
+				System.out.println("3");
+				dst = "hollo.com";
+				System.out.println("4");
 			}
+			
+			
+			
 
 
 

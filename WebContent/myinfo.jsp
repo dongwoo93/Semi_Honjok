@@ -164,7 +164,7 @@ CSS from v3 snipp
 					<i class="fa-id-card-o"></i>
 				</div>
 				<div class="span10">
-					<strong id="id" name="id">in님!</strong><br> <span
+					<strong id="id" name="id">id님!</strong><br> <span
 						class="text-muted">회원님반갑습니다 : )</span>
 				</div>
 				<div class="span1 dropdown-user" data-for=".cyruxx">
