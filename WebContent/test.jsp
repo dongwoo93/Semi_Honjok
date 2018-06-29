@@ -218,18 +218,111 @@
 							<br>
 						</div>
 					
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="매트리스.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 바디럽 마약 매트리스  </p>
+									<p class="item-price"> 89,000원</p>
+									<p class="item-shortdesc">침대위 토퍼처럼 사용하는 신개념 마약 매트리스</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
+						
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="스탠드.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 스피아노 안나 플로어 장스탠드  </p>
+									<p class="item-price"> 38,320원</p>
+									<p class="item-shortdesc">모던하면서 심플한 디자인으로 어느곳에 두어도 포인트</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
 					
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="빔프로젝터.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 가정용 소형 미니 빔 프로젝터 </p>
+									<p class="item-price"> 93,500원</p>
+									<p class="item-shortdesc">삼각대 거치 가능한 프로젝터로 어디서든 자유롭게</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
 					
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="소주잔.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 술맛이달다 로자비소주잔 4P세트 </p>
+									<p class="item-price"> 12,900원</p>
+									<p class="item-shortdesc">수제도자기 로자비, 손님이나 친구가 왔을때 안성맞춤</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
 					
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="전기포트.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 쿠첸 프리미엄 전기포트 </p>
+									<p class="item-price"> 47,200원</p>
+									<p class="item-shortdesc">가열과 보온을 동시에! 전국 안심서비스 국민포트</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
 					
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="효자손.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 대나무 효자손 </p>
+									<p class="item-price"> 5,800원</p>
+									<p class="item-shortdesc">혼자 있을때 가려움을 시원하게 해결해줄 효자손 </p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
 					
-					
-					
-					
-					
-					
-					
-					
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="전기포트.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 쿠첸 프리미엄 전기포트 </p>
+									<p class="item-price"> 47,200원</p>
+									<p class="item-shortdesc">가열과 보온을 동시에! 전국 안심서비스 국민포트</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
+							
 					
 					
 					
