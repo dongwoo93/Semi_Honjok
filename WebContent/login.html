@@ -15,41 +15,78 @@
 <script src="https://apis.google.com/js/api:client.js"></script>
 
 <script>
-window.onload = function() {
-	
-}
+
   var googleUser = {};
   var startApp = function() {
-	  console.log("들어옴");
+	  
 	    gapi.load('auth2', function(){
-	    	console.log("들어옴2");
+	    	
 	      // Retrieve the singleton for the GoogleAuth library and set up the client.
 	      auth2 = gapi.auth2.init({
-	        client_id: '593657004380-rjfrfo1tpfg9uqv1cbp5udckbmu8sqgr.apps.googleusercontent.com',
+	        client_id: '593657004380-quv6o52kji1ov5cabpji96q95nn2afkn.apps.googleusercontent.com',
 	        cookiepolicy: 'single_host_origin',
 	        // Request scopes in addition to 'profile' and 'email'
 	        //scope: 'additional_scope'z
 	      });
 	      attachSignin(document.getElementById('customBtn'));
 	    });
-	    console.log("나감");
+	    
 	  };
 
 	  function attachSignin(element) {
 		    
 		    auth2.attachClickHandler(element, {},
 		        function(googleUser) {
-		          document.getElementById('name').innerText = "Signed in: " +
-		              googleUser.getBasicProfile().getName();
+		        console.log("들어옴")   
+		        var name = googleUser.getBasicProfile().getName();  
+		        var id = googleUser.getBasicProfile().getId();   
+		        var email = googleUser.getBasicProfile().getEmail(); 
+		        		   		        
+		        location.href = "google.do?id="+id+"&email="+email+"&name="+name;
+		        
 		        }, function(error) {
-		          alert(JSON.stringify(error, undefined, 2));
+		          	
+		        	alert(JSON.stringify(error, undefined, 2 ));
 		        });
 		  }
+	  
+	  
+	var kakaologin = function() {
+		
+		  Kakao.init('7b5cebd6ff38bcc35f50a75797895963');    
+		  
+		  Kakao.Auth.login({ 
+		     success: function() { 
+		            // 로그인 성공시, API를 호출합니다. 
+		            Kakao.API.request({ 
+		                   url: '/v1/user/me', 
+		                   success: function(res) { 
+		                            
+		                         var id = JSON.stringify(res.id)
+		                         var email = JSON.stringify(res.kaccount_email) 
+		                         var name = JSON.stringify(res.properties.nickname) 
+		                              
+		                           
+		                          console.log(id+email+name); 
+		                       	  location.href="kakaotest.do?id="+id+"&email="+email+"&name="+name; 
+		                   }, 
+		                   fail: function(error) { 
+		                          console.log(JSON.stringify(error)); 
+		                   } 
+		            }); 
+		     }, 
+		     fail: function(err) { 
+		            console.log(JSON.stringify(err)); 
+		     } 
+		}); 
+		
+	}
+	
+	  
   </script>
 
 
 <style type="text/css">
-
 .form-control {
 	min-height: 41px;
 	background: #fff;
@@ -199,7 +236,6 @@ window.onload = function() {
 	max-width: 320px;
 	max-height: 200px;
 }
-
 </style>
 
 
@@ -210,89 +246,66 @@ window.onload = function() {
 		<div class="modal-dialog">
 
 			<div class="modal-content">
-	
-					<div class="login-form">
-						<form action="/examples/actions/confirmation.php" method="post">
-							<div class="avatar">
-								<img src="avatar.png" alt="Avatar" />
-							</div>
-							<h2 class="text-center">Member Login</h2>
-							<div class="social-btn text-center">
-								<a href="naverlogin.jsp" onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
-								<img src="naver.PNG" style="width: 100%; height: 55px; cursor: pointer;">
-								</a>
-								<a href="javascript:loginWithKakao()">
-								<img src="kakao.png" style="width: 100%; height: 55px; cursor: pointer;">
-								</a>
-								<a href="javascript:startApp()" id="customBtn">  
-								<img src="google.png" style="width: 100%; height: 55px; cursor: pointer;">
-								</a>
-		
-							</div>
-							<div class="or-seperator">
-								<i>or</i>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" name="username"
-									placeholder="UserID" required="required">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" name="password"
-									placeholder="Password" required="required">
-							</div>
-							<div class="form-group">
-								<button type="submit"
-									class="btn btn-primary btn-lg btn-block login-btn">Sign In</button>
-							</div>
-							<p class="text-center small">
-								<a href="#">Forgot Password?</a>
-							</p>
-						</form>
-					
-					</div>
-			
+
+				<div class="login-form">
+					<form action="/examples/actions/confirmation.php" method="post">
+						<div class="avatar">
+							<img src="avatar.png" alt="Avatar" />
+						</div>
+						<h2 class="text-center">Member Login</h2>
+						<div class="social-btn text-center">
+							<a href="naver.do"
+								onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
+								<img src="naver.PNG"
+								style="width: 100%; height: 55px; cursor: pointer;">
+							</a>
+							<!-- <a href="javascript:loginWithKakao()"> -->
+							<a href="javascript:kakaologin()"> <img src="kakao.png"
+								style="width: 100%; height: 55px; cursor: pointer;">
+							</a> <a href="javascript:startApp()" id="customBtn"
+								data-onsuccess="onSignIn"> <img src="google.png"
+								style="width: 100%; height: 55px; cursor: pointer;">
+							</a>
+
+						</div>
+						<div class="or-seperator">
+							<i>or</i>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" name="username"
+								placeholder="UserID" required="required">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="password"
+								placeholder="Password" required="required">
+						</div>
+						<div class="form-group">
+							<button type="submit"
+								class="btn btn-primary btn-lg btn-block login-btn">Sign
+								In</button>
+						</div>
+						<p class="text-center small">
+							<a href="#">Forgot Password?</a>
+						</p>
+					</form>
+
+				</div>
+
 			</div>
 
 		</div>
 	</div>
 
-	
-	
-	<button type="button" data-toggle="modal" data-target="#myModal">Open
-		Modal</button> <br><br>
-		
-	<button type="button" id="kaout">카카오 로그아웃</button>	
-	
-	<script type='text/javascript'>
-    
-    Kakao.init('7b5cebd6ff38bcc35f50a75797895963');
-    function loginWithKakao() {
-      // 로그인 창을 띄웁니다.
-      Kakao.Auth.login({
-        success: function(authObj) {
-          alert(JSON.stringify(authObj));
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-        }
-      });
-    };
-    
-    $("#kaout").click(function() {
-		function Ktout() {
-			KaKao.Auth.logout(function() {
-				setTimeout(function() {
-					location.href="http://localhost:8080/Semi_Honjok/login.html"
-			},1000);
-		});
-	
-	}
-    	
-	})
-    
-	</script>
-	  <script>startApp();</script>
+	<div id="name"></div>
 
-	
+	<button type="button" data-toggle="modal" data-target="#myModal">Open Modal</button>
+	<br>
+	<br>
+
+	<button type="button" id="kaout">카카오 로그아웃</button>
+
+	<script>startApp();</script>
+
+
 </body>
 </html>
