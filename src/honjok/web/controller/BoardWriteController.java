@@ -42,12 +42,12 @@ public class BoardWriteController extends HttpServlet {
 		if(!f.exists()){
 			f.mkdir();
 		}
-		int maxSize = 1024 * 1024 * 100; // ÃÖ´ë »çÀÌÁî
-		String enc = "utf8"; // ÇÑ±Û
+		int maxSize = 1024 * 1024 * 100; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		String enc = "utf8"; // ï¿½Ñ±ï¿½
 		/*System.out.println("1: " + realPath);
 		System.out.println("2: " + f.getCanonicalPath());
 		System.out.println("3: " + f.getPath());
-		System.out.println("ÀúÀåµÈ°æ·Î : " + f.getAbsolutePath());*/
+		System.out.println("ï¿½ï¿½ï¿½ï¿½È°ï¿½ï¿½ : " + f.getAbsolutePath());*/
 		MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc,
 				new DefaultFileRenamePolicy());
 		Enumeration<String> names = mr.getFileNames();
@@ -61,7 +61,7 @@ public class BoardWriteController extends HttpServlet {
 		String contents = mr.getParameter("summernote");
 
 
-		System.out.println("names while¹® µé¾î¿È: " + names);
+		System.out.println("names whileï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + names);
 		String paramName = names.nextElement();
 		System.out.println("paramName: " + paramName);
 		String originalFileName = mr.getOriginalFileName(paramName);
@@ -73,7 +73,7 @@ public class BoardWriteController extends HttpServlet {
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		try {
 			if(originalFileName != null) {
-				System.out.println("²ÜÆÁ µé¾î¿È");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				String seq = tipDAO.getBoardSeq();
 				System.out.println(seq);
 				BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -81,17 +81,17 @@ public class BoardWriteController extends HttpServlet {
 				AdminFileDAO fileDAO = new AdminFileDAO();
 				int fileResult = fileDAO.insertThum_FileName(seq, systemFileName, originalFileName);
 				if(result > 0) {
-					System.out.println("µ¥ÀÌÅÍ ¾÷·Îµå ¼º°ø");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 					if(fileResult > 0) {
-						System.out.println("ÆÄÀÏ ¾÷·Îµå ¼º°ø");
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 					}else {
-						System.out.println("½æ³×ÀÏ ¾÷·Îµå ½ÇÆÐ");
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 					}
 				}else {
-					System.out.println("µ¥ÀÌÅÍ ¾÷·Îµå ½ÇÆÐ");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 				}
 			}else {
-				System.out.println("½æ³×ÀÏ ÀÌ¹ÌÁö null");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ null");
 			}
 
 		} catch (Exception e) {
@@ -136,11 +136,11 @@ public class BoardWriteController extends HttpServlet {
 		//String contents = sb.toString();
 		//System.out.println(contents);
 
-		/*if(category.equals("²ÜÆÁ")) {
+		/*if(category.equals("ï¿½ï¿½ï¿½ï¿½")) {
 				BoardTipDAO tipDAO = new BoardTipDAO();
 				try {
 
-						System.out.println("²ÜÆÁ µé¾î¿È");
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 						String seq = tipDAO.getBoardSeq();
 						System.out.println(seq);
 						BoardDTO dto = new BoardDTO(seq, category, subject, title, contents, systemFileName, originalFileName);
@@ -151,7 +151,7 @@ public class BoardWriteController extends HttpServlet {
 					e.printStackTrace();
 				}
 				dst = "hollo.com";
-			}else if(category.equals("¿ä¸®")) {
+			}else if(category.equals("ï¿½ä¸®")) {
 
 			}
 		 */

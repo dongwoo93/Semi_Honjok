@@ -12,7 +12,7 @@ import honjok.web.dto.BoardFreeDTO;
 public class BoardFreeDAO {
 	public List<BoardFreeDTO> selectData() throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_free.*, row_number() over(order by free_writedate desc) as num from board_free";
+		String sql = "select board_user.*, row_number() over(order by user_writedate desc) as num from board_user";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		

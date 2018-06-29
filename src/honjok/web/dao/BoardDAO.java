@@ -8,15 +8,41 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import honjok.web.dto.BoardFreeDTO;
 import honjok.web.dto.BoardUserDTO;
-import honjok.web.dto.BoardUserTipDTO;
 import honjok.web.dto.CommentFreeDTO;
 import kh.web.dbutils.DBUtils;
 
-public class BoardUserTipDAO {
+public class BoardDAO {	
+	public List<BoardUserDTO> selectFree() throws Exception {
+
+		Connection con = DBUtils.getConnection();
+		String sql = "select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free'";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>(); 
+		
+		
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			list.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return list;
+	
+	}
 	public List<BoardUserDTO> selectData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -41,11 +67,11 @@ public class BoardUserTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -54,7 +80,7 @@ public class BoardUserTipDAO {
 	}
 	public List<BoardUserDTO> selectHeader1Data(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip' and user_header='ï¿½ä¸®') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='Àâ´ã') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -79,11 +105,11 @@ public class BoardUserTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -92,7 +118,7 @@ public class BoardUserTipDAO {
 	}
 	public List<BoardUserDTO> selectHeader2Data(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category=tip' and user_header='ï¿½ï¿½È°') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='À¯¸Ó') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -117,11 +143,11 @@ public class BoardUserTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -130,7 +156,7 @@ public class BoardUserTipDAO {
 	}
 	public List<BoardUserDTO> selectHeader3Data(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip' and user_header='ï¿½ï¿½ï¿½ï¿½') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='µ¿¹°') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -155,11 +181,11 @@ public class BoardUserTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -168,7 +194,7 @@ public class BoardUserTipDAO {
 	}
 	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_user values(user_seq.nextval,user_tip_seq.nextval,?,?,?,?,?,sysdate,?,?)";
+		String sql = "insert into board_user values(user_seq.nextval,user_free_seq.nextval,?,?,?,?,?,sysdate,?,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());		
 
@@ -212,11 +238,11 @@ public class BoardUserTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -225,17 +251,17 @@ public class BoardUserTipDAO {
 	}
 	public String getPageNavi(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_category='tip'";
+		String sql = "select count(*) totalCount from board_user where user_category='free'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
+		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
+		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
+		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -294,17 +320,17 @@ public class BoardUserTipDAO {
 	}
 	public String getPageNavi2(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_category='tip'";
+		String sql = "select count(*) totalCount from board_user where user_category='free'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
+		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
+		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
+		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -363,17 +389,17 @@ public class BoardUserTipDAO {
 	}
 	public String getPageNavi3(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_header = 'ï¿½ï¿½È°'";
+		String sql = "select count(*) totalCount from board_user where user_header = 'Àâ´ã'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
+		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
+		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
+		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -432,17 +458,17 @@ public class BoardUserTipDAO {
 	}
 	public String getPageNavi4(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_header = 'ï¿½ï¿½ï¿½ï¿½'";
+		String sql = "select count(*) totalCount from board_user where user_header = 'À¯¸Ó'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
+		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
+		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
+		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -501,17 +527,17 @@ public class BoardUserTipDAO {
 	}
 	public String getPageNavi5(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_header = 'ï¿½ä¸®'";
+		String sql = "select count(*) totalCount from board_user where user_header = 'µ¿¹°'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
+		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
+		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
+		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
