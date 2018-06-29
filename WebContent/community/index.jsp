@@ -441,6 +441,12 @@ AOS.init({
 
 	<script type="text/javascript">
 	$(document).ready(function() {
+		
+		$('.carousel').carousel({
+			  interval: 3000
+			})
+		
+		
 		function numberWithCommas(x) {
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}

@@ -27,32 +27,45 @@
 <script
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="communitycss/hontalkView.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="communitycss/Footer-with-button-logo.css">
+<link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 
 <script>
-	$(document).ready(function(){
-		$('ul.nav li.dropdown').hover(function() {
-	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-	         }, function() {
-	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-	         });
-		$(window).scroll(function() {
-			var $nav = $("#navbar");
-			  $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-		});
-	})
-	
-</script>	
-	
+	$(document).ready(
+			function() {
+				
+				$('.carousel').carousel({
+					  interval: 3000
+					})
+				
+				
+				$('ul.nav li.dropdown').hover(
+						function() {
+							$(this).find('.dropdown-menu').stop(true, true)
+									.delay(200).fadeIn(500);
+						},
+						function() {
+							$(this).find('.dropdown-menu').stop(true, true)
+									.delay(200).fadeOut(500);
+						});
+				$(window).scroll(
+						function() {
+							var $nav = $("#navbar");
+							$nav.toggleClass('scrolled',
+									$(this).scrollTop() > $nav.height());
+						});
+			})
+</script>
+
 </head>
 <body>
+<<<<<<< Updated upstream
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 <img src="imges/coffee.png" width=60 height=60>
    <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
@@ -94,27 +107,70 @@
       <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
    </ul>
    </nav>
+=======
+	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+	<img src="imges/coffee.png" width=60 height=60> <a
+		class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
+	<ul class="nav navbar-nav">
+		<li class="nav-item"></li>
+		<li class="dropdown"><a class="dropdown-toggle nav-link"
+			id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
+				<li class="dropdown-item"><a href="#">고민상담</a></li>
+				<li class="dropdown-item"><a href="#">질문/답변</a></li>
+				<li class="dropdown-item"><a href="#">혼팁</a></li>
+				<li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
+			</ul></li>
+		<li class="dropdown nav-item"><a href="#"
+			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">전체보기</a></li>
+				<li class="dropdown-item"><a href="#">청소</a></li>
+				<li class="dropdown-item"><a href="#">라이프</a></li>
+				<li class="dropdown-item"><a href="#">경제적</a></li>
+			</ul></li>
+		<li class="dropdown nav-item"><a href="#"
+			class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">초간단요리</a></li>
+				<li class="dropdown-item"><a href="#">일반요리</a></li>
+			</ul></li>
+		<li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
+		</li>
+		<li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
+		</li>
+	</ul>
+	<ul class="nav navbar-nav ml-auto">
+		<li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+		<li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+	</ul>
+	</nav>
+>>>>>>> Stashed changes
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="imges/sky.jpg" alt="Los Angeles" width="1200"
-					height="700">
+				<img src="imges/sky.jpg" alt="Los Angeles" width="1200" height="700">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
 					<p>We had such a great time in LA!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="imges/nature-3042751_1280.jpg" alt="Chicago"
-					width="1200" height="700">
+				<img src="imges/nature-3042751_1280.jpg" alt="Chicago" width="1200"
+					height="700">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
 					<p>Thank you, Chicago!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="imges/hiker-1149898_1280.jpg" alt="New York"
-					width="1200" height="700">
+				<img src="imges/hiker-1149898_1280.jpg" alt="New York" width="1200"
+					height="700">
 				<div class="carousel-caption">
 					<h3>New York</h3>
 					<p>We love the Big Apple!</p>
@@ -139,19 +195,29 @@
 						<th>작성자</th>
 					</tr>
 				</thead>
+				<c:choose>
+					<c:when test="${result.size() > 0}">
+						<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
+							varStatus="status">
+							<tbody>
 
-				<tbody>
-					<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
-						varStatus="status">
-						<tr>
-							<td class="td-contents">${item.seq}</td>
-							<td class="td-contents">${item.title}</td>
-							<td class="td-contents">${item.contents}</td>
-							<td class="td-contents">${item.writer}</td>
-						</tr>
-					</c:forEach>
-
-				</tbody>
+								<tr>
+									<td class="td-contents">${item.seq}</td>
+									<td class="td-contents">${item.title}</td>
+									<td class="td-contents">${item.contents}</td>
+									<td class="td-contents">${item.writer}</td>
+								</tr>
+							</tbody>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tbody>
+							<tr>
+								<td colspan="4">표시할 내용이 없습니다.</td>
+							</tr>
+						</tbody>
+					</c:otherwise>
+				</c:choose>
 			</table>
 
 		</div>
