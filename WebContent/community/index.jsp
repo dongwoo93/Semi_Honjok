@@ -64,7 +64,7 @@
       </li>
       <li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
       </li>
-      <li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
+      <li class="nav-item"><a href="TestController" class="catego nav-link">혼족쇼핑</a>
       </li>
    </ul>
    <ul class="nav navbar-nav ml-auto">
