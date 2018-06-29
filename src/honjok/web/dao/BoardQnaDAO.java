@@ -11,7 +11,7 @@ import java.util.List;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
 import honjok.web.dto.BoardUserDTO;
-import kh.web.dbutils.DBUtils;
+import honjok.web.dbutils.DBUtils;
 
 public class BoardQnaDAO {	
 	public List<BoardUserDTO> selectData(int startNum, int endNum) throws Exception{
@@ -54,7 +54,7 @@ public class BoardQnaDAO {
 	}
 	public List<BoardUserDTO> selectChatData(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_header='���') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_header='占쏙옙占�') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -92,7 +92,7 @@ public class BoardQnaDAO {
 	}
 	public List<BoardUserDTO> selectHumorData(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_header='����') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_header='占쏙옙占쏙옙') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -130,7 +130,7 @@ public class BoardQnaDAO {
 	}
 	public List<BoardUserDTO> selectBeastData(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_header='����') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_header='占쏙옙占쏙옙') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
@@ -230,12 +230,12 @@ public class BoardQnaDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//��ü ��(���ڵ�)�� ������ �����ϴ� ����
-		int recordCountPerPage = 10; // �� �������� �Խñ��� ǥ�õǴ� ����
-		int naviCountPerPage = 10; // �� �������� ǥ�õǴ� ���̰������� ����
-		int pageTotalCount = 0; // ��ü�� �� �������� ������ ������
+		int recordTotalCount = rs.getInt("totalCount");//占쏙옙체 占쏙옙(占쏙옙占쌘듸옙)占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙
+		int recordCountPerPage = 10; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쌉시깍옙占쏙옙 표占시되댐옙 占쏙옙占쏙옙
+		int naviCountPerPage = 10; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 표占시되댐옙 占쏙옙占싱곤옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+		int pageTotalCount = 0; // 占쏙옙체占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10���� ������ �������� ����
+		if(recordTotalCount % recordCountPerPage > 0) { //10占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -284,7 +284,6 @@ public class BoardQnaDAO {
 			sb.append("<a href='test.freeb?currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
 
 		String result = sb.toString();
 		con.close();

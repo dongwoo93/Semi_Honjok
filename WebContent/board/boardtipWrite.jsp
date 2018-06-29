@@ -136,7 +136,7 @@ $(document).ready(function() {
 			
 			<div class="col-sm-3">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
-				<input type="submit" class="btn btn-primary" style="padding:0px;margin:0px;" value="submit">
+				<input type="submit" class="btn btn-primary" value="submit">
 			</div>
 		</div>
 	</form>

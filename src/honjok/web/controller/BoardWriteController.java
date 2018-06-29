@@ -36,18 +36,12 @@ public class BoardWriteController extends HttpServlet {
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
 		// getServletContext()
-		System.out.println("realPath: " + realPath);
 		File f = new File(realPath);
-		//System.out.println(command);
 		if(!f.exists()){
 			f.mkdir();
 		}
 		int maxSize = 1024 * 1024 * 100; // �ִ� ������
 		String enc = "utf8"; // �ѱ�
-		/*System.out.println("1: " + realPath);
-		System.out.println("2: " + f.getCanonicalPath());
-		System.out.println("3: " + f.getPath());
-		System.out.println("����Ȱ�� : " + f.getAbsolutePath());*/
 		MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc,
 				new DefaultFileRenamePolicy());
 		Enumeration<String> names = mr.getFileNames();
@@ -63,11 +57,8 @@ public class BoardWriteController extends HttpServlet {
 
 		System.out.println("names while�� ����: " + names);
 		String paramName = names.nextElement();
-		System.out.println("paramName: " + paramName);
 		String originalFileName = mr.getOriginalFileName(paramName);
 		String systemFileName = mr.getFilesystemName(paramName);
-		System.out.println("submit file1" + systemFileName);
-		System.out.println("submit file2" + originalFileName);
 
 
 		BoardTipDAO tipDAO = new BoardTipDAO();
@@ -81,17 +72,12 @@ public class BoardWriteController extends HttpServlet {
 				AdminFileDAO fileDAO = new AdminFileDAO();
 				int fileResult = fileDAO.insertThum_FileName(seq, systemFileName, originalFileName);
 				if(result > 0) {
-					System.out.println("������ ���ε� ����");
 					if(fileResult > 0) {
-						System.out.println("���� ���ε� ����");
 					}else {
-						System.out.println("����� ���ε� ����");
 					}
 				}else {
-					System.out.println("������ ���ε� ����");
 				}
 			}else {
-				System.out.println("����� �̹��� null");
 			}
 
 		} catch (Exception e) {

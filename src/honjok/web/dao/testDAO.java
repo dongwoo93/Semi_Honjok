@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import honjok.web.dto.BoardDTO;
-import kh.web.dbutils.DBUtils;
+import honjok.web.dbutils.DBUtils;
 
 public class testDAO {
 	public List<BoardDTO> boardSelect() throws Exception{

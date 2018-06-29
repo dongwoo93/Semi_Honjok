@@ -30,8 +30,6 @@ public class BoardTipDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());
 		con.setAutoCommit(false);
-		System.out.println("DAO 들어옴");
-		System.out.println(dto.getContents());
 		pstat.setInt(1, Integer.parseInt(dto.getSeq()));
 		pstat.setString(2, dto.getCategory());
 		pstat.setString(3, dto.getSubject());
@@ -81,10 +79,6 @@ public class BoardTipDAO {
 			endNavi = pageTotalCount;
 		}
 
-		//		System.out.println("占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 : " + currentPage);
-		//		System.out.println("占쌓븝옙占쏙옙占쏙옙占� 占쏙옙占쏙옙 : " + startNavi);
-		//		System.out.println("占쌓븝옙占쏙옙占쏙옙占� 占쏙옙 : " + endNavi);
-
 		boolean needPrev = true;
 		boolean needNext = true;
 
@@ -122,7 +116,6 @@ public class BoardTipDAO {
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
 		
-		//		System.out.println(sb.toString());
 		
 		pstat.close();
 		con.close();
@@ -159,7 +152,6 @@ public class BoardTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			//System.out.println(dto.getContents());
 			list.add(dto);
 		}
 		pstat.close();
@@ -176,8 +168,6 @@ public class BoardTipDAO {
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
-		System.out.println("startNum: " + startNum);
-		System.out.println("endNum: " + endNum);
 		
 		while(rs.next()) {
 			BoardDTO dto = new BoardDTO();
@@ -190,7 +180,6 @@ public class BoardTipDAO {
 			dto.setLike(rs.getInt(7));
 			dto.setWritedate(rs.getString(8));
 			list.add(dto);
-			System.out.println("seq" + dto.getSeq());
 		}
 		pstat.close();
 		con.close();
