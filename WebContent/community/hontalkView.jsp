@@ -69,12 +69,12 @@
       <li class="dropdown nav-item"><a href="#"
          class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">전체보기</a></li>
+            <li class="dropdown-item"><a href="selectNavi.tip">전체보기</a></li>
             <li class="dropdown-item"><a href="#">청소</a></li>
             <li class="dropdown-item"><a href="#">라이프</a></li>
             <li class="dropdown-item"><a href="#">경제적</a></li>
          </ul></li>
-      <li class="dropdown nav-item"><a href="#"
+      <li class="dropdown nav-item"><a href="board/boardtipWrite.jsp"
          class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
          <ul class="dropdown-menu">
             <li class="dropdown-item"><a href="#">초간단요리</a></li>

@@ -9,7 +9,7 @@
 	height: 430px;
 }
 
-.col-sm-3 {
+.col-sm-2 {
 	padding: 0;
 	min-width: 400px;
 	min-height: 430px;
@@ -30,4 +30,16 @@
 	white-space: nowrap;
 	width: 250px;
 	height: 30px;
+}
+.navi {
+	text-decoration: none;
+	color: black;
+}
+
+.navi:hover {
+	text-decoration: underline;
+}
+img {
+	width: 400px;
+	height: 280px;
 }
