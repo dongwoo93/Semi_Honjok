@@ -133,7 +133,7 @@ $(document).ready(function() {
 			<div class="col-sm-3">
 				<input type="file" name="file">
 			</div><br>
-			
+			<input type="text" id="contentsImg">
 			<div class="col-sm-3">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<input type="submit" class="btn btn-primary" value="submit">
@@ -172,6 +172,7 @@ $(document).ready(function() {
 			
 			function deleteFile(src) {
 				var result = src.split("/files/");
+				$("#hidden").replace(src,"");
 				console.log(result);
 			    $.ajax({
 			        data: {src : result[1]},
@@ -198,7 +199,7 @@ $(document).ready(function() {
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							var array = new Array();
+							$("#hidden").text(data.url);
 						}
 					});
 				}
