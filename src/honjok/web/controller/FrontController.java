@@ -1,8 +1,6 @@
 package honjok.web.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +36,7 @@ public class FrontController extends HttpServlet {
 			
 			if(command.equals("/hollo.com")) {
 				
-				dst = "/community/index.jsp";
+				dst = "/community/index.jsp";	
 				
 			}else if(command.equals("/data.com")) {
 				JSONArray result = std.getOneTotal();
