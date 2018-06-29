@@ -33,7 +33,7 @@
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 <img src="imges/coffee.png" width=60 height=60>
-   <a class="navbar-brand" href="#" style="color: white; font-size: 26px;">Hollo</a>
+   <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
    <ul class="nav navbar-nav">
       <li class="nav-item"></li>
       <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
@@ -47,12 +47,12 @@
       <li class="dropdown nav-item"><a href="#"
          class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">전체보기</a></li>
+            <li class="dropdown-item"><a href="selectNavi.tip">전체보기</a></li>
             <li class="dropdown-item"><a href="#">청소</a></li>
             <li class="dropdown-item"><a href="#">라이프</a></li>
             <li class="dropdown-item"><a href="#">경제적</a></li>
          </ul></li>
-      <li class="dropdown nav-item"><a href="#"
+      <li class="dropdown nav-item"><a id="cook" href="board/boardtipWrite.jsp"
          class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
          <ul class="dropdown-menu">
             <li class="dropdown-item"><a href="#">초간단요리</a></li>
@@ -508,9 +508,15 @@ AOS.init({
 		    });
 		    a = 1;
 		  }
+		  var $nav = $("#navbar");
+		  $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 		});
 		
 		$('#hontalkView').click(function () {
+	          window.location = $(this).attr('href');
+	      });
+		
+		$('#cook').click(function () {
 	          window.location = $(this).attr('href');
 	      });
 		

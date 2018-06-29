@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.BoardFreeDTO;
-import kh.web.dbutils.DBUtils;
 
 public class BoardFreeDAO {
 	public List<BoardFreeDTO> selectData() throws Exception{

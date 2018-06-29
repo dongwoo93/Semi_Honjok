@@ -19,7 +19,7 @@ public class PayController extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String pName = "[¸¶Áö¸·Æ¯°¡] ¿£µ¹Æê ·¯ºí¸®ÇÁ¸±T °­¾ÆÁöÆ¼¼ÅÃ÷(ÇÎÅ©) S~2XL °­¾ÆÁö¿Ê ¹Î¼Ò¸Å ³ª½ÃÆ¼";
+		String pName = "[ë§ˆì§€ë§‰íŠ¹ê°€] ì—”ëŒí« ëŸ¬ë¸”ë¦¬í”„ë¦´T ê°•ì•„ì§€í‹°ì…”ì¸ (í•‘í¬) S~2XL ê°•ì•„ì§€ì˜· ë¯¼ì†Œë§¤ ë‚˜ì‹œí‹°";
 		String price = "12900";
 		System.out.println(pName);
 		System.out.println(price);
@@ -27,7 +27,7 @@ public class PayController extends HttpServlet {
 		request.setAttribute("name1", pName);
 		request.setAttribute("price1", price);
 		
-		String dst = "NewFile.jsp";
+		String dst = "pay.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(dst);
 		rd.forward(request, response);
