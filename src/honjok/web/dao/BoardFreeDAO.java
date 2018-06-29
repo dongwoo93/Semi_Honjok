@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.BoardFreeDTO;
-import kh.web.dbutils.DBUtils;
 
 public class BoardFreeDAO {
 	public List<BoardFreeDTO> selectData() throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_free.*, row_number() over(order by free_writedate desc) as num from board_free";
+		String sql = "select board_user.*, row_number() over(order by user_writedate desc) as num from board_user";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		

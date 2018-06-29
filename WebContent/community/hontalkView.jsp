@@ -60,21 +60,21 @@
       <li class="nav-item"></li>
       <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
-            <li class="dropdown-item"><a href="#">고민상담</a></li>
-            <li class="dropdown-item"><a href="#">질문/답변</a></li>
-            <li class="dropdown-item"><a href="#">혼팁</a></li>
-            <li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=free">자유게시판</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=coun">고민상담</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=qna">질문/답변</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=tip">혼팁</a></li>
+            <li class="dropdown-item"><a href="">베스트Ʈ</a></li>
          </ul></li>
       <li class="dropdown nav-item"><a href="#"
          class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">전체보기</a></li>
+            <li class="dropdown-item"><a href="selectNavi.tip">전체보기</a></li>
             <li class="dropdown-item"><a href="#">청소</a></li>
             <li class="dropdown-item"><a href="#">라이프</a></li>
             <li class="dropdown-item"><a href="#">경제적</a></li>
          </ul></li>
-      <li class="dropdown nav-item"><a href="#"
+      <li class="dropdown nav-item"><a href="board/boardtipWrite.jsp"
          class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
          <ul class="dropdown-menu">
             <li class="dropdown-item"><a href="#">초간단요리</a></li>
@@ -126,7 +126,7 @@
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="#">자유게시판</a>
+				<a href="boardView.freeb?cat=free">자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
@@ -144,9 +144,10 @@
 					<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
 						varStatus="status">
 						<tr>
-							<td class="td-contents">${item.free_seq}</td>
-							<td class="td-contents">${item.free_contents}</td>
-							<td class="td-contents">${item.free_writer}</td>
+							<td class="td-contents">${item.seq}</td>
+							<td class="td-contents">${item.title}</td>
+							<td class="td-contents">${item.contents}</td>
+							<td class="td-contents">${item.writer}</td>
 						</tr>
 					</c:forEach>
 
@@ -157,7 +158,7 @@
 
 		<div id="free2">
 			<h5>
-				<a href="#">질문/답변</a>
+				<a href="boardView.freeb?cat=qna">질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -283,7 +284,7 @@
 
 		<div id="free4">
 			<h5>
-				<a href="#">고민상담</a>
+				<a href="boardView.freeb?cat=coun">고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -328,7 +329,7 @@
 
 		<div id="free5">
 			<h5>
-				<a href="#">혼팁</a>
+				<a href="boardView.freeb?cat=tip">혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
