@@ -1,4 +1,4 @@
-#all {
+.header{
 	border-radius: 3px;
 	background-color: #555555;
 	font-size: 12px;
@@ -7,52 +7,7 @@
 	color: white;
 }
 
-#all:hover {
-	background-color: white;
-    color: #555555;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-#chat {
-	border-radius: 3px;
-	background-color: #555555;
-	font-size: 12px;
-	transition-duration: 0.4s;
-	padding: 10px 24px;
-	color: white;
-}
-
-#chat:hover {
-	background-color: white;
-    color: #555555;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-#humor {
-	border-radius: 3px;
-	background-color: #555555;
-	font-size: 12px;
-	transition-duration: 0.4s;
-	padding: 10px 24px;
-	color: white;
-}
-
-#humor:hover {
-	background-color: white;
-    color: #555555;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-#beast {
-	border-radius: 3px;
-	background-color: #555555;
-	font-size: 12px;
-	transition-duration: 0.4s;
-	padding: 10px 24px;
-	color: white;
-}
-
-#beast:hover {
+.header:hover{
 	background-color: white;
     color: #555555;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);

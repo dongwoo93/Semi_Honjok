@@ -73,11 +73,11 @@
       <li class="nav-item"></li>
       <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
-            <li class="dropdown-item"><a href="#">고민상담</a></li>
-            <li class="dropdown-item"><a href="#">질문/답변</a></li>
-            <li class="dropdown-item"><a href="#">혼팁</a></li>
-            <li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=free">자유게시판</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=coun">고민상담</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=qna">질문/답변</a></li>
+            <li class="dropdown-item"><a href="boardView.freeb?cat=tip">혼팁</a></li>
+            <li class="dropdown-item"><a href="">베스트Ʈ</a></li>
          </ul></li>
       <li class="dropdown nav-item"><a href="#"
          class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
@@ -182,7 +182,7 @@
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="freeboardView.freeb?cat=free">자유게시판</a>
+				<a href="boardView.freeb?cat=free">자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
@@ -224,7 +224,7 @@
 
 		<div id="free2">
 			<h5>
-				<a href="freeboardView.freeb?cat=qna">질문/답변</a>
+				<a href="boardView.freeb?cat=qna">질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -350,7 +350,7 @@
 
 		<div id="free4">
 			<h5>
-				<a href="freeboardView.freeb?cat=coun">고민상담</a>
+				<a href="boardView.freeb?cat=coun">고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -395,7 +395,7 @@
 
 		<div id="free5">
 			<h5>
-				<a href="freeboardView.freeb?cat=tip">혼팁</a>
+				<a href="boardView.freeb?cat=tip">혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
