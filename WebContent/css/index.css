@@ -1,3 +1,38 @@
+.navbar-nav {
+	margin-left: 50px;
+}
+
+.dropdown-toggle::after {
+	display: none;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: white;
+}
+
+#navbar .navbar-brand {
+	color: white; 
+}
+
+#navbar {
+	transition: background-color 200ms linear;
+}
+
+
+
+#navbar.scrolled {
+	background-color: #dee2e6 !important;
+	transition: background-color 200ms linear;
+}
+
+#navbar.scrolled .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar.scrolled .navbar-brand {
+	color: black;
+}
+
 
 
 .dropdown-menu {
@@ -46,4 +81,28 @@
 	text-align: center;
 	float: left;
 	margin-top: 70px;
+}
+
+.count {
+	font-size: 46px;
+	margin: 0;
+	padding: 0;
+	font-weight: 300;
+	line-height: 1;
+}
+
+.counter-title {
+	display: block;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0;
+	margin: 5px 0 0 0;
+	opacity: 0.8;
+}
+
+.container {
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
 }
