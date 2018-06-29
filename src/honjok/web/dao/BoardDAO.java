@@ -10,7 +10,7 @@ import java.util.List;
 
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
-import kh.web.dbutils.DBUtils;
+import honjok.web.dbutils.DBUtils;
 
 public class BoardDAO {	
 	public List<BoardUserDTO> selectFree() throws Exception {
@@ -240,7 +240,7 @@ public class BoardDAO {
 			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
+
 
 		String result = sb.toString();
 		con.close();
@@ -312,7 +312,7 @@ public class BoardDAO {
 			sb.append("<a href='boardView.freeb?cat="+category+"&head="+header+"&currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
+	
 
 		String result = sb.toString();
 		con.close();

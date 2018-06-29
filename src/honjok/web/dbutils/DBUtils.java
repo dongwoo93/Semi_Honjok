@@ -1,4 +1,4 @@
-package kh.web.dbutils;
+package honjok.web.dbutils;
 
 import java.sql.Connection;
 
