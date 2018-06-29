@@ -8,31 +8,28 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import honjok.web.dto.BoardFreeDTO;
+import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
 import kh.web.dbutils.DBUtils;
 
-public class BoardFreeDAO {	
-
-	/*	public static void main(String[] args) throws Exception {
-		new BoardFreeDAO().selectData();
-	}*/
-
-	public List<BoardFreeDTO> selectData(int startNum, int endNum) throws Exception{
+public class BoardDAO {	
+	public List<BoardUserDTO> selectData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_free.*, row_number() over(order by free_writedate desc) as num from board_free) where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
-		List<BoardFreeDTO> list = new ArrayList<>();
+		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
-			BoardFreeDTO dto = new BoardFreeDTO();
+			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
-			dto.setTitle(rs.getString(2));
-			dto.setWriter(rs.getString(3));
-			Reader instream = rs.getCharacterStream("free_contents");
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -43,32 +40,34 @@ public class BoardFreeDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(5));
-			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
-			dto.setIp(rs.getString(9));
+			dto.setHeader(rs.getString(6));
+			dto.setViewcount(rs.getInt(7));
+			dto.setLike(rs.getInt(8));
+			dto.setWritedate(rs.getString(9));
+			dto.setIp(rs.getString(10));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public List<BoardFreeDTO> selectChatData(int startNum, int endNum) throws Exception {
+	public List<BoardUserDTO> selectHeader1Data(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_free.*, row_number() over(order by free_writedate desc) as num from board_free where free_header='잡담') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='잡담') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
-		List<BoardFreeDTO> list = new ArrayList<>();
+		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
-			BoardFreeDTO dto = new BoardFreeDTO();
+			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
-			dto.setTitle(rs.getString(2));
-			dto.setWriter(rs.getString(3));
-			Reader instream = rs.getCharacterStream("free_contents");
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -79,32 +78,34 @@ public class BoardFreeDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(5));
-			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
-			dto.setIp(rs.getString(9));
+			dto.setHeader(rs.getString(6));
+			dto.setViewcount(rs.getInt(7));
+			dto.setLike(rs.getInt(8));
+			dto.setWritedate(rs.getString(9));
+			dto.setIp(rs.getString(10));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public List<BoardFreeDTO> selectHumorData(int startNum, int endNum) throws Exception {
+	public List<BoardUserDTO> selectHeader2Data(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_free.*, row_number() over(order by free_writedate desc) as num from board_free where free_header='유머') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='유머') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
-		List<BoardFreeDTO> list = new ArrayList<>();
+		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
-			BoardFreeDTO dto = new BoardFreeDTO();
+			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
-			dto.setTitle(rs.getString(2));
-			dto.setWriter(rs.getString(3));
-			Reader instream = rs.getCharacterStream("free_contents");
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -115,32 +116,34 @@ public class BoardFreeDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(5));
-			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
-			dto.setIp(rs.getString(9));
+			dto.setHeader(rs.getString(6));
+			dto.setViewcount(rs.getInt(7));
+			dto.setLike(rs.getInt(8));
+			dto.setWritedate(rs.getString(9));
+			dto.setIp(rs.getString(10));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public List<BoardFreeDTO> selectBeastData(int startNum, int endNum) throws Exception {
+	public List<BoardUserDTO> selectHeader3Data(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_free.*, row_number() over(order by free_writedate desc) as num from board_free where free_header='동물') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='동물') where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
-		List<BoardFreeDTO> list = new ArrayList<>();
+		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
-			BoardFreeDTO dto = new BoardFreeDTO();
+			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
-			dto.setTitle(rs.getString(2));
-			dto.setWriter(rs.getString(3));
-			Reader instream = rs.getCharacterStream("free_contents");
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -151,29 +154,30 @@ public class BoardFreeDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(5));
-			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
-			dto.setIp(rs.getString(9));
+			dto.setHeader(rs.getString(6));
+			dto.setViewcount(rs.getInt(7));
+			dto.setLike(rs.getInt(8));
+			dto.setWritedate(rs.getString(9));
+			dto.setIp(rs.getString(10));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public int insertData(BoardFreeDTO dto) throws Exception {
+	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_free values(board_free_seq.nextval,?,?,?,?,sysdate,?,?)";
+		String sql = "insert into board_user values(user_seq.nextval,user_free_seq.nextval,?,?,?,?,?,sysdate,?,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());		
 
-		pstat.setString(1, dto.getTitle());
-		pstat.setString(2, dto.getWriter());
-		pstat.setCharacterStream(3, sr, dto.getContents().length());
-		pstat.setString(4, dto.getHeader());
-		pstat.setString(5, dto.getWritedate());
-		pstat.setString(6, dto.getIp());
+		pstat.setString(1, dto.getCategory());
+		pstat.setString(2, dto.getTitle());
+		pstat.setString(3, dto.getWriter());
+		pstat.setCharacterStream(4, sr, dto.getContents().length());
+		pstat.setString(5, dto.getHeader());
+		pstat.setString(6, dto.getWritedate());
+		pstat.setString(7, dto.getIp());
 
 		int result = pstat.executeUpdate();
 		con.commit();
@@ -181,20 +185,22 @@ public class BoardFreeDAO {
 		con.close();
 		return result;		
 	}
-	public List<BoardFreeDTO> readData(int seq) throws Exception {
+	public List<BoardUserDTO> readData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from board_free where free_seq=?";
+		String sql = "select * from board_user where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, seq);
 		ResultSet rs = pstat.executeQuery();
-		List<BoardFreeDTO> list = new ArrayList<>();
+		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
 		while(rs.next()) {
-			BoardFreeDTO dto = new BoardFreeDTO();
+			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
-			dto.setTitle(rs.getString(2));
-			dto.setWriter(rs.getString(3));
-			Reader instream = rs.getCharacterStream("free_contents");
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -205,11 +211,11 @@ public class BoardFreeDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(5));
-			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
-			dto.setIp(rs.getString(9));
+			dto.setHeader(rs.getString(6));
+			dto.setViewcount(rs.getInt(7));
+			dto.setLike(rs.getInt(8));
+			dto.setWritedate(rs.getString(9));
+			dto.setIp(rs.getString(10));
 			list.add(dto);
 		}
 		pstat.close();
@@ -218,7 +224,7 @@ public class BoardFreeDAO {
 	}
 	public String getPageNavi(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_free";
+		String sql = "select count(*) totalCount from board_user where user_category='free'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -287,7 +293,7 @@ public class BoardFreeDAO {
 	}
 	public String getPageNavi2(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_free";
+		String sql = "select count(*) totalCount from board_user where user_category='free'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -356,7 +362,7 @@ public class BoardFreeDAO {
 	}
 	public String getPageNavi3(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_free where free_header = '잡담'";
+		String sql = "select count(*) totalCount from board_user where user_header = '잡담'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -425,7 +431,7 @@ public class BoardFreeDAO {
 	}
 	public String getPageNavi4(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_free where free_header = '유머'";
+		String sql = "select count(*) totalCount from board_user where user_header = '유머'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -494,7 +500,7 @@ public class BoardFreeDAO {
 	}
 	public String getPageNavi5(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_free where free_header = '동물'";
+		String sql = "select count(*) totalCount from board_user where user_header = '동물'";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -563,7 +569,7 @@ public class BoardFreeDAO {
 	}
 	public int UpdateViewCount(int seq, int viewCount) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "update board_free set free_viewcount=? where free_seq=?";
+		String sql = "update board_user set user_viewcount=? where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, viewCount);
 		pstat.setInt(2, seq);
@@ -575,7 +581,7 @@ public class BoardFreeDAO {
 	}
 	public int insertComment(CommentFreeDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into comment_free values(comment_free_seq.nextval,?,?,sysdate,?)";
+		String sql = "insert into comment_free values(comment_user_seq.nextval,?,?,sysdate,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 
 		pstat.setInt(1, dto.getBoard_free_seq());
@@ -611,7 +617,7 @@ public class BoardFreeDAO {
 	}
 	public int deleteData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "delete from board_free where free_seq=?";
+		String sql = "delete from board_user where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, seq);
 		int result = pstat.executeUpdate();
@@ -620,9 +626,9 @@ public class BoardFreeDAO {
 		con.close();
 		return result;
 	}
-	public int modifyData(BoardFreeDTO dto) throws Exception {
+	public int modifyData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "update board_free set free_title=?, free_contents=?, free_writedate=sysdate where seq=?";
+		String sql = "update board_user set user_title=?, user_contents=?, user_writedate=sysdate where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, dto.getTitle());
 		pstat.setString(2, dto.getContents());
@@ -635,17 +641,17 @@ public class BoardFreeDAO {
 		con.close();
 		return result;
 	}
-	public BoardFreeDTO modifyRead(int seq) throws Exception {
+	public BoardUserDTO modifyRead(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select title, contents from board_free where seq=?";
+		String sql = "select user_title, user_contents from board_user where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, seq);
 		ResultSet rs = pstat.executeQuery();
 
-		BoardFreeDTO dto = new BoardFreeDTO();
+		BoardUserDTO dto = new BoardUserDTO();
 		if(rs.next()) {
-			dto.setTitle(rs.getString("title"));
-			dto.setContents(rs.getString("contents"));
+			dto.setTitle(rs.getString("user_title"));
+			dto.setContents(rs.getString("user_contents"));
 		}
 		rs.close();
 		pstat.close();

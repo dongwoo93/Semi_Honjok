@@ -17,10 +17,10 @@ import org.json.simple.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import honjok.web.dao.BoardFreeDAO;
 import honjok.web.dao.CounselDAO;
-import honjok.web.dto.BoardFreeDTO;
-import honjok.web.dto.CounselDTO;
+import honjok.web.dao.CounselDAO;
+import honjok.web.dto.BoardUserDTO;
+import honjok.web.dto.CommentFreeDTO;
 
 /**
  * Servlet implementation class CounselController
@@ -39,7 +39,10 @@ public class CounselController extends HttpServlet {
 			String contextPath = request.getContextPath();
 
 			String command = requestURI.substring(contextPath.length());
-
+//			String id = (String)request.getSession().getAttribute("loginId");
+			String id = "È÷¿À½º";
+			String count = request.getParameter("count");
+			
 			if(command.equals("/test.coun")) {
 				int currentPage = 0;
 				String currentPageString = request.getParameter("currentPage");
@@ -50,7 +53,7 @@ public class CounselController extends HttpServlet {
 					currentPage = Integer.parseInt(currentPageString);
 				}
 				CounselDAO dao = new CounselDAO();
-				List<CounselDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -69,7 +72,7 @@ public class CounselController extends HttpServlet {
 					currentPage = Integer.parseInt(currentPageString);
 				}
 				CounselDAO dao = new CounselDAO();
-				List<CounselDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -79,7 +82,7 @@ public class CounselController extends HttpServlet {
 				dst = "community/counselView.jsp";
 			}else if(command.equals("/counselWrite.coun")) {
 				CounselDAO dao = new CounselDAO();
-				CounselDTO dto = new CounselDTO();
+				BoardUserDTO dto = new BoardUserDTO();
 
 				String realPath = request.getServletContext().getRealPath("/files/");
 
@@ -110,7 +113,6 @@ public class CounselController extends HttpServlet {
 				response.getWriter().flush();
 				response.getWriter().close();
 
-				String id = (String)request.getAttribute("loginId");
 				String title = mr.getParameter("title");
 				String writer = mr.getParameter("writer");
 				String contents = mr.getParameter("contents");
@@ -138,7 +140,7 @@ public class CounselController extends HttpServlet {
 					currentPage = Integer.parseInt(currentPageString);
 				}
 				CounselDAO dao = new CounselDAO();
-				List<CounselDTO> result = dao.selectHeader1Data(currentPage*10-9,currentPage*10);
+				List<BoardUserDTO> result = dao.selectHeader1Data(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -157,7 +159,7 @@ public class CounselController extends HttpServlet {
 					currentPage = Integer.parseInt(currentPageString);
 				}
 				CounselDAO dao = new CounselDAO();
-				List<CounselDTO> result = dao.selectHeader2Data(currentPage*10-9,currentPage*10);
+				List<BoardUserDTO> result = dao.selectHeader2Data(currentPage*10-9,currentPage*10);
 
 				request.setAttribute("result", result);
 				String navi = dao.getPageNavi(currentPage);
@@ -175,7 +177,7 @@ public class CounselController extends HttpServlet {
 					currentPage = Integer.parseInt(currentPageString);
 				}
 				CounselDAO dao = new CounselDAO();
-				List<CounselDTO> result = dao.selectHeader3Data(currentPage*10-9,currentPage*10);
+				List<BoardUserDTO> result = dao.selectHeader3Data(currentPage*10-9,currentPage*10);
 
 				request.setAttribute("result", result);
 				String navi = dao.getPageNavi(currentPage);
@@ -185,7 +187,7 @@ public class CounselController extends HttpServlet {
 				dst = "community/counselView.jsp";
 			}else if(command.equals("/upload.coun")) {
 				CounselDAO dao = new CounselDAO();
-				CounselDTO dto = new CounselDTO();
+				BoardUserDTO dto = new BoardUserDTO();
 
 				String realPath = request.getServletContext().getRealPath("/files/");
 
@@ -221,11 +223,36 @@ public class CounselController extends HttpServlet {
 				int seq = Integer.parseInt(no);
 
 				CounselDAO dao = new CounselDAO();
-				List<CounselDTO> result = dao.readData(seq);
+				List<BoardUserDTO> result = dao.readData(seq);
 
 				request.setAttribute("result", result);
 				isRedirect = false;
 				dst = "community/articleView.jsp";
+			}else if(command.equals("/comment.freeb")) {
+				String no = request.getParameter("no");
+				int seq = Integer.parseInt(no);
+
+				CounselDAO dao = new CounselDAO();
+				CommentFreeDTO dto = new CommentFreeDTO();
+
+				String boardseq = request.getParameter("board_free_seq");
+				int Boardseq = Integer.parseInt(boardseq);
+				String text = request.getParameter("commu_free_text");
+				String ip = request.getRemoteAddr();
+
+				dto.setBoard_free_seq(Boardseq);
+				dto.setCommu_free_text(text);
+				dto.setFree_ip(ip);
+
+				int result = dao.insertComment(dto);
+
+				request.setAttribute("result", result);
+				isRedirect = false;
+				dst = "community/articleView.jsp";
+			}else if(command.equals("/fix.freeb")) {
+
+			}else if(command.equals("/delete.freeb")) {
+
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

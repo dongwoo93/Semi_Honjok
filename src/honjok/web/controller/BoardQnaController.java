@@ -17,10 +17,8 @@ import org.json.simple.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import honjok.web.dao.BoardFreeDAO;
 import honjok.web.dao.BoardQnaDAO;
-import honjok.web.dto.BoardFreeDTO;
-import honjok.web.dto.BoardQnaDTO;
+import honjok.web.dto.BoardUserDTO;
 
 @WebServlet("*.qna")
 public class BoardQnaController extends HttpServlet {
@@ -45,7 +43,7 @@ public class BoardQnaController extends HttpServlet {
 					currentPage = Integer.parseInt(currentPageString);
 				}
 				BoardQnaDAO dao = new BoardQnaDAO();
-				List<BoardQnaDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -55,7 +53,7 @@ public class BoardQnaController extends HttpServlet {
 				dst = "community/qnaView.jsp";
 			}else if(command.equals("/qnaWrite.qna")) {
 				BoardQnaDAO dao = new BoardQnaDAO();
-				BoardQnaDTO dto = new BoardQnaDTO();
+				BoardUserDTO dto = new BoardUserDTO();
 
 				String realPath = request.getServletContext().getRealPath("/files/");
 
@@ -106,7 +104,7 @@ public class BoardQnaController extends HttpServlet {
 				dst = "qnaResult.jsp";
 			}else if(command.equals("/upload.qna")) {
 				BoardQnaDAO dao = new BoardQnaDAO();
-				BoardQnaDTO dto = new BoardQnaDTO();
+				BoardUserDTO dto = new BoardUserDTO();
 
 				String realPath = request.getServletContext().getRealPath("/files/");
 
@@ -143,7 +141,7 @@ public class BoardQnaController extends HttpServlet {
 
 				BoardQnaDAO dao = new BoardQnaDAO();
 
-				List<BoardQnaDTO> result = dao.readData(seq);
+				List<BoardUserDTO> result = dao.readData(seq);
 
 				request.setAttribute("result", result);
 				isRedirect = false;
@@ -160,10 +158,7 @@ public class BoardQnaController extends HttpServlet {
 			rd.forward(request, response);
 		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

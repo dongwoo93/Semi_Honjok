@@ -17,17 +17,15 @@ import org.json.simple.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import honjok.web.dao.BoardFreeDAO;
-import honjok.web.dto.BoardFreeDTO;
+import honjok.web.dao.BoardDAO;
+import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
 
 @WebServlet("*.freeb")
-public class BoardFree_Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class Board_Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isRedirect = true;
 		String dst = null;
-
 
 		request.setCharacterEncoding("utf8");
 
@@ -36,12 +34,10 @@ public class BoardFree_Controller extends HttpServlet {
 			String contextPath = request.getContextPath();
 
 			String command = requestURI.substring(contextPath.length());
-			
 //			String id = (String)request.getSession().getAttribute("loginId");
 			String id = "È÷¿À½º";
             String count = request.getParameter("count");
 			
-
 			if(command.equals("/test.freeb")) {
 				int currentPage = 0;
 				String currentPageString = request.getParameter("currentPage");
@@ -51,8 +47,8 @@ public class BoardFree_Controller extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				BoardDAO dao = new BoardDAO();
+				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -69,8 +65,8 @@ public class BoardFree_Controller extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
+				BoardDAO dao = new BoardDAO();
+				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi2(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -79,8 +75,8 @@ public class BoardFree_Controller extends HttpServlet {
 				isRedirect = false;
 				dst = "community/freeboardView.jsp";
 			}else if(command.equals("/freeboardWrite.freeb")) {
-				BoardFreeDAO dao = new BoardFreeDAO();
-				BoardFreeDTO dto = new BoardFreeDTO();
+				BoardDAO dao = new BoardDAO();
+				BoardUserDTO dto = new BoardUserDTO();
 
 				String realPath = request.getServletContext().getRealPath("/files/");
 
@@ -139,8 +135,8 @@ public class BoardFree_Controller extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.selectChatData(currentPage*10-9,currentPage*10);
+				BoardDAO dao = new BoardDAO();
+				List<BoardUserDTO> result = dao.selectHeader1Data(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi3(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -157,8 +153,8 @@ public class BoardFree_Controller extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.selectHumorData(currentPage*10-9,currentPage*10);
+				BoardDAO dao = new BoardDAO();
+				List<BoardUserDTO> result = dao.selectHeader2Data(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi4(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -175,8 +171,8 @@ public class BoardFree_Controller extends HttpServlet {
 				}else {
 					currentPage = Integer.parseInt(currentPageString);
 				}
-				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.selectBeastData(currentPage*10-9,currentPage*10);
+				BoardDAO dao = new BoardDAO();
+				List<BoardUserDTO> result = dao.selectHeader3Data(currentPage*10-9,currentPage*10);
 				String navi = dao.getPageNavi4(currentPage);
 
 				request.setAttribute("navi", navi);
@@ -184,13 +180,13 @@ public class BoardFree_Controller extends HttpServlet {
 
 				isRedirect = false;
 				dst = "community/freeboardView.jsp";
-			}else if(command.equals("/BoardFree_Controller.freeb")) {
+			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
 				int seq = Integer.parseInt(no);
 				System.out.println(seq);
 
-				BoardFreeDAO dao = new BoardFreeDAO();
-				List<BoardFreeDTO> result = dao.readData(seq);
+				BoardDAO dao = new BoardDAO();
+				List<BoardUserDTO> result = dao.readData(seq);
 				
 				if (!id.equals(result.get(0).getWriter())) {
 	                int viewCount = Integer.parseInt(count) + 1;
@@ -202,8 +198,8 @@ public class BoardFree_Controller extends HttpServlet {
 				isRedirect = false;
 				dst = "community/articleView.jsp";
 			}else if(command.equals("/upload.freeb")) {
-				BoardFreeDAO dao = new BoardFreeDAO();
-				BoardFreeDTO dto = new BoardFreeDTO();
+				BoardDAO dao = new BoardDAO();
+				BoardUserDTO dto = new BoardUserDTO();
 
 				String realPath = request.getServletContext().getRealPath("/files/");
 
@@ -238,15 +234,15 @@ public class BoardFree_Controller extends HttpServlet {
 				String no = request.getParameter("no");
 				int seq = Integer.parseInt(no);
 				
-				BoardFreeDAO dao = new BoardFreeDAO();
+				BoardDAO dao = new BoardDAO();
 				CommentFreeDTO dto = new CommentFreeDTO();
 				
 				String boardseq = request.getParameter("board_free_seq");
-				int boardfreeseq = Integer.parseInt(boardseq);
+				int Boardseq = Integer.parseInt(boardseq);
 				String text = request.getParameter("commu_free_text");
 				String ip = request.getRemoteAddr();
 				
-				dto.setBoard_free_seq(boardfreeseq);
+				dto.setBoard_free_seq(Boardseq);
 				dto.setCommu_free_text(text);
 				dto.setFree_ip(ip);
 				
