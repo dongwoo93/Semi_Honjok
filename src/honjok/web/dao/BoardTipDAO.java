@@ -14,7 +14,7 @@ import honjok.web.dto.BoardDTO;
 public class BoardTipDAO {
 	public String getBoardSeq() throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_tip_seq.nextval from dual";
+		String sql = "select admin_board_seq.nextval from dual";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -26,7 +26,7 @@ public class BoardTipDAO {
 	
 	public int insertData(BoardDTO dto) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_tip values(?, ?, ?, ?, ?, 0, 0, sysdate, ?, ?)";
+		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, 0, sysdate)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());
 		con.setAutoCommit(false);
@@ -37,8 +37,6 @@ public class BoardTipDAO {
 		pstat.setString(3, dto.getSubject());
 		pstat.setString(4, dto.getTitle());
 		pstat.setCharacterStream(5, sr, dto.getContents().length());
-		pstat.setString(6, dto.getSystemFileName());
-		pstat.setString(7, dto.getOriginalFileName());
 
 		int result = pstat.executeUpdate();
 		con.commit();
@@ -51,7 +49,7 @@ public class BoardTipDAO {
 	
 	public String getPageNavi(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_tip";
+		String sql = "select count(*) totalCount from admin_board";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -133,7 +131,7 @@ public class BoardTipDAO {
 	
 	public List<BoardDTO> selectAllData(String seq) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from board_tip where tip_seq = ?";
+		String sql = "select * from admin_board where seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
 		ResultSet rs = pstat.executeQuery();
@@ -150,9 +148,7 @@ public class BoardTipDAO {
 			dto.setViewcount(rs.getInt(6));
 			dto.setLike(rs.getInt(7));
 			dto.setWritedate(rs.getString(8));
-			dto.setSystemFileName(rs.getString(9));
-			dto.setOriginalFileName(rs.getString(10));
-			Reader instream = rs.getCharacterStream("tip_contents");
+			Reader instream = rs.getCharacterStream("contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -173,7 +169,7 @@ public class BoardTipDAO {
 	
 	public List<BoardDTO> selectNaviData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_tip.*, row_number() over(order by tip_writedate desc) as num from board_tip)\r\n" + 
+		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board)\r\n" + 
 				"where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
@@ -193,8 +189,6 @@ public class BoardTipDAO {
 			dto.setViewcount(rs.getInt(6));
 			dto.setLike(rs.getInt(7));
 			dto.setWritedate(rs.getString(8));
-			dto.setSystemFileName(rs.getString(9));
-			dto.setOriginalFileName(rs.getString(10));
 			list.add(dto);
 			System.out.println("seq" + dto.getSeq());
 		}
@@ -202,22 +196,10 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
-	public String getSystemFileName(String seq) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select tip_systemFileName from board_tip where tip_seq = ?";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, Integer.parseInt(seq));
-		ResultSet rs = pstat.executeQuery();
-		rs.next();
-		String systemFileName = rs.getString("tip_systemFileName");
-		rs.close();
-		pstat.close();
-		con.close();
-		return systemFileName;
-	}
+	
 	public int deleteData(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "delete from board_tip where tip_seq = ?";
+		String sql = "delete from admin_board where seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
 		int result = pstat.executeUpdate();

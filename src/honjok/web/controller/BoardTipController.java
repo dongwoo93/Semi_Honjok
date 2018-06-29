@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardTipDAO;
+import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
 
 
@@ -28,12 +30,14 @@ public class BoardTipController extends HttpServlet {
 			String contextPath = request.getContextPath();
 			String command = requestURI.substring(contextPath.length());
 			BoardTipDAO dao = new BoardTipDAO();
+			AdminFileDAO fileDAO = new AdminFileDAO();
 			//System.out.println(command);
 			if(command.equals("/selectNavi.tip")) {
 				int currentPage = 0;
 
 				String currentPageString = request.getParameter("currentPage");
 				List<BoardDTO> result = new ArrayList<>();
+				List<AdminFilesDTO> fileResult = new ArrayList<>();
 				if (currentPageString == null) {
 					currentPage = 1;
 				}else {
@@ -42,13 +46,15 @@ public class BoardTipController extends HttpServlet {
 				System.out.println("ÆäÀÌÁö " + currentPage);
 				String navi = dao.getPageNavi(currentPage);
 				result = dao.selectNaviData(currentPage*8-7,currentPage*8);
+				fileResult = fileDAO.getThum_sysFileName(); 
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("board", result);
+				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				/*for(int i =0; result.size()>i;i++) {
-					System.out.println(result.get(i).getContents());
-				}*/
+				for(int i =0; fileResult.size()>i;i++) {
+					System.out.println(fileResult.get(i).getThum_sysFileName());
+				}
 				isRedirect = false;
 				dst = "board/boardtip.jsp";
 			}else if(command.equals("/selectView.tip")) {
@@ -60,15 +66,14 @@ public class BoardTipController extends HttpServlet {
 				isRedirect = false;
 				dst = "board/boardView.jsp";
 			}else if(command.equals("/delete.tip")) {
-				
 				String seq = request.getParameter("seq");
-				String systemFileName = dao.getSystemFileName(seq);
+				String systemFileName = fileDAO.isExsitThum_sysFile(seq);
 				System.out.println(systemFileName);
 				
 				if(!(systemFileName.equals(""))) {
-					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Semi_Honjok
-					File file = new File("Semi_Honjok\\files\\"+systemFileName);
-					System.out.println(file.getAbsolutePath());
+					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Semi_Honjok
+					String realPath = request.getServletContext().getRealPath("/files/");
+					File file = new File(realPath + "/"+ systemFileName);
 			        
 			        if(file.exists() ){
 			            if(file.delete()){

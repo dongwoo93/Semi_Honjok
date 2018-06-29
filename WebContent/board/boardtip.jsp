@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +22,11 @@
 		<div class="card-deck">
 			<c:choose>
 				<c:when test="${board.size() > 0}">
-					<c:forEach var="tmp" items="${board}">
+					<c:forEach var="tmp" items="${board}" varStatus="status">
 						<div class="col-lg-3" id="card1">
 							<div class="card">
 								<a href="selectView.tip?seq=${tmp.seq}"><img
-									class="card-img-top" src="files/${tmp.systemFileName}"
+									class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}"
 									alt="Card image cap"></a><br>
 								<div class="card-body">
 									<h5 class="card-title">
@@ -41,6 +43,11 @@
 						</div>
 					</c:forEach>
 				</c:when>
+				<c:otherwise>
+				<div class="container">
+				<div class="col-lg-15" style="text-align:center; padding-top:40%;"><b>표시할 내용이 없습니다.</b></div>
+				</div>
+				</c:otherwise>
 			</c:choose>
 
 		</div>
