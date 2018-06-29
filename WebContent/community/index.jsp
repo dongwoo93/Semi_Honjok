@@ -25,11 +25,21 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/api:client.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Francois+One:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 </head>
+
+
+
 <body>
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 <img src="imges/coffee.png" width=60 height=60>
@@ -68,8 +78,8 @@
       </li>
    </ul>
    <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+      <li class="nav-item"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
+      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal">Login</button></li>
    </ul>
    </nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
@@ -433,6 +443,64 @@
 		<p>&#xA9; 2018 Copyright Text</p>
 	</div>
 	</footer>
+	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+
+				<div class="login-form">
+					<form action="/examples/actions/confirmation.php" method="post">
+						<div class="avatar">
+							<img src="avatar.png" alt="Avatar" />
+						</div>
+						<h2 class="text-center">Member Login</h2>
+						<div class="social-btn text-center">
+							<a href="naver.do"
+								onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
+								<img src="naver.PNG"
+								style="width: 100%; height: 55px; cursor: pointer;">
+							</a>
+							<!-- <a href="javascript:loginWithKakao()"> -->
+							<a href="javascript:kakaologin()"> <img src="kakao.png"
+								style="width: 100%; height: 55px; cursor: pointer;">
+							</a> <a href="javascript:startApp()" id="customBtn"
+								data-onsuccess="onSignIn"> <img src="google.png"
+								style="width: 100%; height: 55px; cursor: pointer;">
+							</a>
+
+						</div>
+						<div class="or-seperator">
+							<i>or</i>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" name="username"
+								placeholder="UserID" required="required">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="password"
+								placeholder="Password" required="required">
+						</div>
+						<div class="form-group">
+							<button type="submit"
+								class="btn btn-primary btn-lg btn-block login-btn">Sign
+								In</button>
+						</div>
+						<p class="text-center small">
+							<a href="#">Forgot Password?</a>
+						</p>
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div id="name"></div>
+	
+	
 	<script>
 	
 AOS.init({
@@ -522,6 +590,74 @@ AOS.init({
 	      });
 		
 	});
+	
+	
+	
+	 var googleUser = {};
+	  var startApp = function() {
+		  
+		    gapi.load('auth2', function(){
+		    	
+		      // Retrieve the singleton for the GoogleAuth library and set up the client.
+		      auth2 = gapi.auth2.init({
+		        client_id: '593657004380-quv6o52kji1ov5cabpji96q95nn2afkn.apps.googleusercontent.com',
+		        cookiepolicy: 'single_host_origin',
+		        // Request scopes in addition to 'profile' and 'email'
+		        //scope: 'additional_scope'z
+		      });
+		      attachSignin(document.getElementById('customBtn'));
+		    });
+		    
+		  };
+
+		  function attachSignin(element) {
+			    
+			    auth2.attachClickHandler(element, {},
+			        function(googleUser) {
+			        console.log("들어옴")   
+			        var name = googleUser.getBasicProfile().getName();  
+			        var id = googleUser.getBasicProfile().getId();   
+			        var email = googleUser.getBasicProfile().getEmail(); 
+			        		   		        
+			        location.href = "google.do?id="+id+"&email="+email+"&name="+name;
+			        
+			        }, function(error) {
+			          	
+			        	alert(JSON.stringify(error, undefined, 2 ));
+			        });
+			  }
+		  
+		  
+		var kakaologin = function() {
+			
+			  Kakao.init('7b5cebd6ff38bcc35f50a75797895963');    
+			  
+			  Kakao.Auth.login({ 
+			     success: function() { 
+			            // 로그인 성공시, API를 호출합니다. 
+			            Kakao.API.request({ 
+			                   url: '/v1/user/me', 
+			                   success: function(res) { 
+			                            
+			                         var id = JSON.stringify(res.id)
+			                         var email = JSON.stringify(res.kaccount_email) 
+			                         var name = JSON.stringify(res.properties.nickname) 
+			                              
+			                           
+			                          console.log(id+email+name); 
+			                       	  location.href="kakaotest.do?id="+id+"&email="+email+"&name="+name; 
+			                   }, 
+			                   fail: function(error) { 
+			                          console.log(JSON.stringify(error)); 
+			                   } 
+			            }); 
+			     }, 
+			     fail: function(err) { 
+			            console.log(JSON.stringify(err)); 
+			     } 
+			}); 
+			
+		}
 </script>
 </body>
 </html>
