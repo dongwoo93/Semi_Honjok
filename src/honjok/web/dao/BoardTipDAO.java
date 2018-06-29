@@ -14,7 +14,7 @@ import honjok.web.dto.BoardDTO;
 public class BoardTipDAO {
 	public String getBoardSeq() throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_tip_seq.nextval from dual";
+		String sql = "select admin_board_seq.nextval from dual";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -26,30 +26,28 @@ public class BoardTipDAO {
 	
 	public int insertData(BoardDTO dto) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_tip values(?, ?, ?, ?, ?, 0, 0, sysdate, ?, ?)";
+		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, 0, sysdate)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());
-		//con.setAutoCommit(false);
-
+		con.setAutoCommit(false);
 		pstat.setInt(1, Integer.parseInt(dto.getSeq()));
 		pstat.setString(2, dto.getCategory());
 		pstat.setString(3, dto.getSubject());
 		pstat.setString(4, dto.getTitle());
 		pstat.setCharacterStream(5, sr, dto.getContents().length());
-		pstat.setString(6, dto.getSystemFileName());
-		pstat.setString(7, dto.getOriginalFileName());
 
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();
-		//con.setAutoCommit(true);
+		con.setAutoCommit(true);
 		con.close();
+		
 		return result;
 	}
 	
 	public String getPageNavi(int currentPage) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_tip";
+		String sql = "select count(*) totalCount from admin_board";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
@@ -80,10 +78,6 @@ public class BoardTipDAO {
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
-
-		//		System.out.println("占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 : " + currentPage);
-		//		System.out.println("占쌓븝옙占쏙옙占쏙옙占� 占쏙옙占쏙옙 : " + startNavi);
-		//		System.out.println("占쌓븝옙占쏙옙占쏙옙占� 占쏙옙 : " + endNavi);
 
 		boolean needPrev = true;
 		boolean needNext = true;
@@ -122,7 +116,6 @@ public class BoardTipDAO {
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
 		
-		//		System.out.println(sb.toString());
 		
 		pstat.close();
 		con.close();
@@ -131,7 +124,7 @@ public class BoardTipDAO {
 	
 	public List<BoardDTO> selectAllData(String seq) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from board_tip where tip_seq = ?";
+		String sql = "select * from admin_board where seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
 		ResultSet rs = pstat.executeQuery();
@@ -148,9 +141,7 @@ public class BoardTipDAO {
 			dto.setViewcount(rs.getInt(6));
 			dto.setLike(rs.getInt(7));
 			dto.setWritedate(rs.getString(8));
-			dto.setSystemFileName(rs.getString(9));
-			dto.setOriginalFileName(rs.getString(10));
-			Reader instream = rs.getCharacterStream("tip_contents");
+			Reader instream = rs.getCharacterStream("contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
 			// fetch data  
@@ -161,7 +152,6 @@ public class BoardTipDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			//System.out.println(dto.getContents());
 			list.add(dto);
 		}
 		pstat.close();
@@ -171,15 +161,13 @@ public class BoardTipDAO {
 	
 	public List<BoardDTO> selectNaviData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_tip.*, row_number() over(order by tip_writedate desc) as num from board_tip)\r\n" + 
+		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board)\r\n" + 
 				"where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
-		System.out.println("startNum: " + startNum);
-		System.out.println("endNum: " + endNum);
 		
 		while(rs.next()) {
 			BoardDTO dto = new BoardDTO();
@@ -191,14 +179,22 @@ public class BoardTipDAO {
 			dto.setViewcount(rs.getInt(6));
 			dto.setLike(rs.getInt(7));
 			dto.setWritedate(rs.getString(8));
-			dto.setSystemFileName(rs.getString(9));
-			dto.setOriginalFileName(rs.getString(10));
 			list.add(dto);
-			System.out.println("seq" + dto.getSeq());
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
 	
+	public int deleteData(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "delete from admin_board where seq = ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, Integer.parseInt(seq));
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
 }

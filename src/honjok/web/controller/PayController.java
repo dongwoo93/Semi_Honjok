@@ -19,10 +19,8 @@ public class PayController extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String pName = "[마지막특가] 엔돌펫 러블리프릴T 강아지티셔츠(핑크) S~2XL 강아지옷 민소매 나시티";
+		String pName = "[留덉�留됲듅媛�] �뿏�룎�렖 �윭釉붾━�봽由큈 媛뺤븘吏��떚�뀛痢�(�븨�겕) S~2XL 媛뺤븘吏��샆 誘쇱냼留� �굹�떆�떚";
 		String price = "12900";
-		System.out.println(pName);
-		System.out.println(price);
 		
 		request.setAttribute("name1", pName);
 		request.setAttribute("price1", price);

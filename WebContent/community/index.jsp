@@ -38,7 +38,7 @@
       <li class="nav-item"></li>
       <li class="dropdown"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="freeboardView.freeb">자유게시판</a></li>
+            <li class="dropdown-item"><a href="hontalkView.freeb">자유게시판</a></li>
             <li class="dropdown-item"><a href="#">고민상담</a></li>
             <li class="dropdown-item"><a href="#">질문/답변</a></li>
             <li class="dropdown-item"><a href="#">혼팁</a></li>

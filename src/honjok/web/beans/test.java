@@ -14,15 +14,15 @@ public class test {
 public static void main(String[] args) throws Exception {
 
 
-	String query = URLEncoder.encode("그램","UTF-8");
-	String clientID="M9FvHhH5VgxJcEDBzzJv"; //네이버 개발자 센터에서 발급받은 clientID입력
-	String clientSecret = "qYLgCR8ihe";        //네이버 개발자 센터에서 발급받은 clientSecret입력
+	String query = URLEncoder.encode("洹몃옩","UTF-8");
+	String clientID="M9FvHhH5VgxJcEDBzzJv"; //�꽕�씠踰� 媛쒕컻�옄 �꽱�꽣�뿉�꽌 諛쒓툒諛쏆� clientID�엯�젰
+	String clientSecret = "qYLgCR8ihe";        //�꽕�씠踰� 媛쒕컻�옄 �꽱�꽣�뿉�꽌 諛쒓툒諛쏆� clientSecret�엯�젰
 
-	URL url = new URL("https://openapi.naver.com/v1/search/shop.json?query="+query+"&display=100"); //API 기본정보의 요청 url을 복사해오고 필수인 query를 적어줍니당! 
+	URL url = new URL("https://openapi.naver.com/v1/search/shop.json?query="+query+"&display=100"); //API 湲곕낯�젙蹂댁쓽 �슂泥� url�쓣 蹂듭궗�빐�삤怨� �븘�닔�씤 query瑜� �쟻�뼱以띾땲�떦! 
 
 
 
-	URLConnection urlConn=url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체 
+	URLConnection urlConn=url.openConnection(); //openConnection �빐�떦 �슂泥��뿉 ���빐�꽌 �벝 �닔 �엳�뒗 connection 媛앹껜 
 
 
 
@@ -48,7 +48,6 @@ public static void main(String[] args) throws Exception {
 	JsonParser parser = new JsonParser();
 	JsonObject json = parser.parse(response.toString()).getAsJsonObject();
 	JsonArray arr = json.get("items").getAsJsonArray();
-	System.out.println(arr);
 
 
 }
