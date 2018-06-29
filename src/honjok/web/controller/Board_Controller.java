@@ -18,6 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.BoardDAO;
+import honjok.web.dto.BoardDTO;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
 
@@ -56,7 +57,21 @@ public class Board_Controller extends HttpServlet {
 
 				isRedirect = false;
 				dst = "community/freeboardView.jsp";
-			}else if(command.equals("/freeboardView.freeb")) {
+			}else if(command.equals("/hontalkView.freeb")){
+	            BoardDAO dao = new BoardDAO();
+	            System.out.println("들어온다");
+	            
+	            List<BoardUserDTO> result = dao.selectFree();
+	            
+	            request.setAttribute("result", result);
+
+	            isRedirect=false;
+	            dst = "/community/hontalkView.jsp";
+	            
+			}
+			else if(command.equals("/freeboardView.freeb")) {
+				String category = request.getParameter("cat");
+				
 				int currentPage = 0;
 				String currentPageString = request.getParameter("currentPage");
 

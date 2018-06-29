@@ -126,7 +126,7 @@
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="#">자유게시판</a>
+				<a href="freeboardView.freeb?cat=free">자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
@@ -144,9 +144,10 @@
 					<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
 						varStatus="status">
 						<tr>
-							<td class="td-contents">${item.free_seq}</td>
-							<td class="td-contents">${item.free_contents}</td>
-							<td class="td-contents">${item.free_writer}</td>
+							<td class="td-contents">${item.seq}</td>
+							<td class="td-contents">${item.title}</td>
+							<td class="td-contents">${item.contents}</td>
+							<td class="td-contents">${item.writer}</td>
 						</tr>
 					</c:forEach>
 
@@ -157,7 +158,7 @@
 
 		<div id="free2">
 			<h5>
-				<a href="#">질문/답변</a>
+				<a href="freeboardView.freeb?cat=qna">질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -283,7 +284,7 @@
 
 		<div id="free4">
 			<h5>
-				<a href="#">고민상담</a>
+				<a href="freeboardView.freeb?cat=coun">고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -328,7 +329,7 @@
 
 		<div id="free5">
 			<h5>
-				<a href="#">혼팁</a>
+				<a href="freeboardView.freeb?cat=tip">혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"

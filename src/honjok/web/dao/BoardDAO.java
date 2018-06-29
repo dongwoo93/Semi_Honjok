@@ -8,11 +8,38 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import honjok.web.dto.BoardFreeDTO;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
 import kh.web.dbutils.DBUtils;
 
 public class BoardDAO {	
+	public List<BoardUserDTO> selectFree() throws Exception {
+
+		Connection con = DBUtils.getConnection();
+		String sql = "select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free'";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>(); 
+		
+		
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			list.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return list;
+	
+	}
 	public List<BoardUserDTO> selectData(int startNum, int endNum) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between ? and ?";
@@ -40,11 +67,11 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -78,11 +105,11 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -116,11 +143,11 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -154,11 +181,11 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
@@ -211,11 +238,11 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
