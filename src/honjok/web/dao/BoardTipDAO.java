@@ -52,10 +52,10 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		int recordTotalCount = rs.getInt(1);
-		// rs.getInt("totalCount");  占쏙옙체 占쏙옙(占쏙옙占쌘듸옙) 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙
-		int recordCountPerPage = 8; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌉시깍옙占쏙옙 占쏘개 占쏙옙占싹곤옙占쏙옙
-		int naviCountPerPage = 10; // 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌓븝옙占쏙옙占쏙옙叩占� 占쏘개占쏙옙 占쏙옙占싹곤옙占쏙옙
-		int pageTotalCount = 0; // 占쏙옙체占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占심곤옙占쏙옙占쏙옙
+		// rs.getInt("totalCount");  �뜝�룞�삕泥� �뜝�룞�삕(�뜝�룞�삕�뜝�뙓�벝�삕) �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕
+		int recordCountPerPage = 8; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃�떆源띿삕�뜝�룞�삕 �뜝�룜媛� �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
+		int naviCountPerPage = 10; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룜媛쒎뜝�룞�삕 �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
+		int pageTotalCount = 0; // �뜝�룞�삕泥닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떖怨ㅼ삕�뜝�룞�삕�뜝�룞�삕
 
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
@@ -68,13 +68,13 @@ public class BoardTipDAO {
 			currentPage = 1;
 		}else if(currentPage > pageTotalCount) {
 			currentPage = pageTotalCount;
-		} // 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌘듸옙
+		} // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�뙓�벝�삕
 
 		//-----------------------------------------------------
 
 
-		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //占쌓븝옙占쏙옙占쏙옙叩占� 占쏙옙占쏙옙 占싹댐옙 占쏙옙
-		int endNavi = startNavi + (naviCountPerPage - 1); // 占쌓븝옙占쏙옙占쏙옙占� 占쏙옙 占쏙옙
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //�뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룞�삕�뜝�룞�삕 �뜝�떦�뙋�삕 �뜝�룞�삕
+		int endNavi = startNavi + (naviCountPerPage - 1); // �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕 �뜝�룞�삕
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
@@ -184,6 +184,16 @@ public class BoardTipDAO {
 		pstat.close();
 		con.close();
 		return list;
+	}
+	public String selectData(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select tip_systemFileName from board_tip where tip_seq = ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, Integer.parseInt(seq));
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String systemFileName = rs.getString("tip_systemFileName");
+		return systemFileName;
 	}
 	
 	public int deleteData(String seq) throws Exception {

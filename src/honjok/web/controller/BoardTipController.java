@@ -76,6 +76,10 @@ public class BoardTipController extends HttpServlet {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
 				result = dao.selectAllData(seq);
+				System.out.println(seq);
+				for(int i =0; result.size()>i;i++) {
+					System.out.println(result.get(i).getSubject());
+				}
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("result", result);
 				isRedirect = false;
