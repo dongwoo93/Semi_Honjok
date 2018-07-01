@@ -42,12 +42,42 @@
 			<thead class="head" id="head">
 				<tr>
 					<td colspan=7>
-						<div class="headSelect">
-							<button type="button" id="all">전체</button>
-							<button type="button" id="chat">잡담</button>
-							<button type="button" id="humor">유머</button>
-							<button type="button" id="beast">동물</button>
+					<c:choose>
+					 <c:when test="${cat eq 'free'}">
+					 <div class="headSelect">
+							<a href="boardView.freeb?cat=free"><button class="header" type="button" id="all">전체</button></a>
+							<a href="boardView.freeb?cat=free&head=잡담"><button class="header" type="button" id="chat">잡담</button></a>
+							<a href="boardView.freeb?cat=free&head=유머"><button class="header" type="button" id="humor">유머</button></a>
+							<a href="boardView.freeb?cat=free&head=동물"><button class="header" type="button" id="beast">동물</button></a>
 						</div>
+					 </c:when>
+					  <c:when test="${cat eq 'qna'}">
+					  <div class="headSelect">
+							<a href="boardView.freeb?cat=qna"><button class="header" type="button" id="all">전체</button></a>
+						</div>
+					  </c:when>
+					   <c:when test="${cat eq 'tip'}">
+					   <div class="headSelect">
+							<a href="boardView.freeb?cat=tip"><button class="header" type="button" id="all">전체</button></a>
+							<a href="boardView.freeb?cat=tip&head=생활"><button class="header" type="button" id="chat">생활</button></a>
+							<a href="boardView.freeb?cat=tip&head=레시피"><button class="header" type="button" id="humor">레시피</button></a>
+							<a href="boardView.freeb?cat=tip&head=맛집"><button class="header" type="button" id="beast">맛집</button></a>
+							<a href="boardView.freeb?cat=tip&head=여행"><button class="header" type="button" id="beast">여행</button></a>
+						</div>
+					   </c:when>
+					    <c:when test="${cat eq 'coun'}">
+					    <div class="headSelect">
+							<a href="boardView.freeb?cat=coun"><button class="header" type="button" id="all">전체</button></a>
+							<a href="boardView.freeb?cat=coun&head=취미"><button class="header" type="button" id="chat">취미</button></a>
+							<a href="boardView.freeb?cat=coun&head=게임"><button class="header" type="button" id="humor">게임</button></a>
+							<a href="boardView.freeb?cat=coun&head=이성"><button class="header" type="button" id="beast">이성</button></a>
+							<a href="boardView.freeb?cat=coun&head=인생"><button class="header" type="button" id="beast">인생</button></a>
+							<a href="boardView.freeb?cat=coun&head=친구"><button class="header" type="button" id="beast">친구</button></a>
+							<a href="boardView.freeb?cat=coun&head=컴플렉스"><button class="header" type="button" id="beast">컴플렉스</button></a>
+						</div>
+					    </c:when>
+					</c:choose>
+						
 					</td>
 				</tr>
 				<tr>
@@ -60,7 +90,7 @@
 					<td id="like">추천</td>
 				</tr>
 			</thead>
-
+			
 			<c:choose>
 				<c:when test="${result.size() > 0}">
 					<c:forEach var="item" items="${result}">

@@ -66,7 +66,7 @@ public class AdminFileDAO {
 	
 	public int insertThum_FileName(String seq, String systemFileName, String originalFileName) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into admin_files values(?, admin_files_seq.nextval, null, ?, ?)";
+		String sql = "insert into admin_files values(?, admin_files_seq.nextval, ?, ?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
 		pstat.setString(2, systemFileName);
