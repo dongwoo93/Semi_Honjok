@@ -10,15 +10,42 @@ import java.util.List;
 
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.CommentFreeDTO;
-import kh.web.dbutils.DBUtils;
+import honjok.web.dbutils.DBUtils;
 
 public class BoardDAO {	
-	public List<BoardUserDTO> selectData(int startNum, int endNum) throws Exception{
+	public List<BoardUserDTO> selectFree() throws Exception {
+
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between ? and ?";
+		String sql = "select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free'";
+		
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, startNum);
-		pstat.setInt(2, endNum);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>(); 
+		
+		
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			list.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return list;
+	
+	}
+	public List<BoardUserDTO> selectData(int startNum, int endNum, String category) throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category=?) where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setInt(2, startNum);
+		pstat.setInt(3, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
@@ -40,23 +67,26 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public List<BoardUserDTO> selectHeader1Data(int startNum, int endNum) throws Exception {
+	
+	public List<BoardUserDTO> selectData2(int startNum, int endNum, String category, String header) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='Àâ´ã') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category=? and user_header=?) where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, startNum);
-		pstat.setInt(2, endNum);
+		pstat.setString(1, category);
+		pstat.setString(2, header);
+		pstat.setInt(3, startNum);
+		pstat.setInt(4, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>();
 		StringBuffer sb = new StringBuffer();
@@ -78,93 +108,18 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public List<BoardUserDTO> selectHeader2Data(int startNum, int endNum) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='À¯¸Ó') where num between ? and ?";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, startNum);
-		pstat.setInt(2, endNum);
-		ResultSet rs = pstat.executeQuery();
-		List<BoardUserDTO> list = new ArrayList<>();
-		StringBuffer sb = new StringBuffer();
-		while(rs.next()) {
-			BoardUserDTO dto = new BoardUserDTO();
-			dto.setSeq(rs.getInt(1));
-			dto.setCat_seq(rs.getInt(2));
-			dto.setCategory(rs.getString(3));
-			dto.setTitle(rs.getString(4));
-			dto.setWriter(rs.getString(5));
-			Reader instream = rs.getCharacterStream("user_contents");
-			char[] buffer = new char[1024];  // create temporary buffer for read
-			int length = 0;   // length of characters read
-			// fetch data  
-			while ((length = instream.read(buffer)) != -1)  {
-				for (int i=0; i<length; i++){
-					sb.append(buffer[i]);
-				} 
-			}
-			instream.close();// Close input stream
-			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
-			list.add(dto);
-		}
-		pstat.close();
-		con.close();
-		return list;
-	}
-	public List<BoardUserDTO> selectHeader3Data(int startNum, int endNum) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free' and user_header='µ¿¹°') where num between ? and ?";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, startNum);
-		pstat.setInt(2, endNum);
-		ResultSet rs = pstat.executeQuery();
-		List<BoardUserDTO> list = new ArrayList<>();
-		StringBuffer sb = new StringBuffer();
-		while(rs.next()) {
-			BoardUserDTO dto = new BoardUserDTO();
-			dto.setSeq(rs.getInt(1));
-			dto.setCat_seq(rs.getInt(2));
-			dto.setCategory(rs.getString(3));
-			dto.setTitle(rs.getString(4));
-			dto.setWriter(rs.getString(5));
-			Reader instream = rs.getCharacterStream("user_contents");
-			char[] buffer = new char[1024];  // create temporary buffer for read
-			int length = 0;   // length of characters read
-			// fetch data  
-			while ((length = instream.read(buffer)) != -1)  {
-				for (int i=0; i<length; i++){
-					sb.append(buffer[i]);
-				} 
-			}
-			instream.close();// Close input stream
-			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
-			list.add(dto);
-		}
-		pstat.close();
-		con.close();
-		return list;
-	}
+	
 	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "insert into board_user values(user_seq.nextval,user_free_seq.nextval,?,?,?,?,?,sysdate,?,?)";
@@ -185,6 +140,7 @@ public class BoardDAO {
 		con.close();
 		return result;		
 	}
+	
 	public List<BoardUserDTO> readData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from board_user where user_seq=?";
@@ -211,30 +167,31 @@ public class BoardDAO {
 			}
 			instream.close();// Close input stream
 			dto.setContents(sb.toString());
-			dto.setHeader(rs.getString(6));
-			dto.setViewcount(rs.getInt(7));
-			dto.setLike(rs.getInt(8));
-			dto.setWritedate(rs.getString(9));
-			dto.setIp(rs.getString(10));
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			dto.setWritedate(rs.getString(10));
+			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
 		pstat.close();
 		con.close();
 		return list;
 	}
-	public String getPageNavi(int currentPage) throws Exception {
+	public String getPageNavi(int currentPage, String category) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_category='free'";
+		String sql = "select count(*) totalCount from board_user where user_category=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
-		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
-		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
+		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
+		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -270,20 +227,20 @@ public class BoardDAO {
 		StringBuilder sb = new StringBuilder();
 
 		if(needPrev) {
-			sb.append("<a href='test.freeb?currentPage="+(startNavi-1)+"'< </a>");
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(startNavi-1)+"'< </a>");
 		}
 		for(int i = startNavi;i <= endNavi;i++) {
 			if(currentPage == i) {
-				sb.append("<a href='test.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> <b>" + i + "</b></a>");
 			}else {
-				sb.append("<a href='test.freeb?currentPage=" + i + "'> " + i + "</a>");
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> " + i + "</a>");
 			}
 		}
 		if(needNext) {
-			sb.append("<a href='test.freeb?currentPage="+(endNavi+1)+"'>></a>");
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
+
 
 		String result = sb.toString();
 		con.close();
@@ -291,19 +248,22 @@ public class BoardDAO {
 
 		return result;
 	}
-	public String getPageNavi2(int currentPage) throws Exception {
+	
+	public String getPageNavi2(int currentPage, String category, String header) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_category='free'";
+		String sql = "select count(*) totalCount from board_user where user_category=? and user_header=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, header);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 
-		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
-		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
-		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
+		int recordTotalCount = rs.getInt("totalCount");//ï¿½ï¿½Ã¼ ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int recordCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int naviCountPerPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int pageTotalCount = 0; // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
+		if(recordTotalCount % recordCountPerPage > 0) { //10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 		}else {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
@@ -339,20 +299,20 @@ public class BoardDAO {
 		StringBuilder sb = new StringBuilder();
 
 		if(needPrev) {
-			sb.append("<a href='freeboardView.freeb?currentPage="+(startNavi-1)+"'< </a>");
+			sb.append("<a href='boardView.freeb?cat="+category+"&head="+header+"&currentPage="+(startNavi-1)+"'< </a>");
 		}
 		for(int i = startNavi;i <= endNavi;i++) {
 			if(currentPage == i) {
-				sb.append("<a href='freeboardView.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
+				sb.append("<a href='boardView.freeb?cat="+category+"&head="+header+"&currentPage=" + i + "'> <b>" + i + "</b></a>");
 			}else {
-				sb.append("<a href='freeboardView.freeb?currentPage=" + i + "'> " + i + "</a>");
+				sb.append("<a href='boardView.freeb?cat="+category+"&head="+header+"&currentPage=" + i + "'> " + i + "</a>");
 			}
 		}
 		if(needNext) {
-			sb.append("<a href='freeboardView.freeb?currentPage="+(endNavi+1)+"'>></a>");
+			sb.append("<a href='boardView.freeb?cat="+category+"&head="+header+"&currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-		System.out.println(sb.toString());
+	
 
 		String result = sb.toString();
 		con.close();
@@ -360,213 +320,7 @@ public class BoardDAO {
 
 		return result;
 	}
-	public String getPageNavi3(int currentPage) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_header = 'Àâ´ã'";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		ResultSet rs = pstat.executeQuery();
-		rs.next();
-
-		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
-		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
-		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
-
-		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
-			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-		}else {
-			pageTotalCount = recordTotalCount / recordCountPerPage;
-		}
-
-
-
-		if(currentPage < 1) {
-			currentPage = 1;
-		}else if(currentPage > pageTotalCount) {
-			currentPage = pageTotalCount;
-		}
-
-		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
-		int endNavi = startNavi + (naviCountPerPage - 1);
-
-		if(endNavi > pageTotalCount) {
-			endNavi = pageTotalCount;
-		}
-
-
-		boolean needPrev = true;
-		boolean needNext = true;
-
-		if(startNavi == 1) {
-			needPrev = false;
-		}
-
-		if(endNavi == pageTotalCount) {
-			needNext = false;
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		if(needPrev) {
-			sb.append("<a href='ajax01.freeb?currentPage="+(startNavi-1)+"'< </a>");
-		}
-		for(int i = startNavi;i <= endNavi;i++) {
-			if(currentPage == i) {
-				sb.append("<a href='ajax01.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
-			}else {
-				sb.append("<a href='ajax01.freeb?currentPage=" + i + "'> " + i + "</a>");
-			}
-		}
-		if(needNext) {
-			sb.append("<a href='ajax01.freeb?currentPage="+(endNavi+1)+"'>></a>");
-		}
-
-		System.out.println(sb.toString());
-
-		String result = sb.toString();
-		con.close();
-		pstat.close();
-
-		return result;
-	}
-	public String getPageNavi4(int currentPage) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_header = 'À¯¸Ó'";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		ResultSet rs = pstat.executeQuery();
-		rs.next();
-
-		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
-		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
-		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
-
-		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
-			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-		}else {
-			pageTotalCount = recordTotalCount / recordCountPerPage;
-		}
-
-
-
-		if(currentPage < 1) {
-			currentPage = 1;
-		}else if(currentPage > pageTotalCount) {
-			currentPage = pageTotalCount;
-		}
-
-		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
-		int endNavi = startNavi + (naviCountPerPage - 1);
-
-		if(endNavi > pageTotalCount) {
-			endNavi = pageTotalCount;
-		}
-
-
-		boolean needPrev = true;
-		boolean needNext = true;
-
-		if(startNavi == 1) {
-			needPrev = false;
-		}
-
-		if(endNavi == pageTotalCount) {
-			needNext = false;
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		if(needPrev) {
-			sb.append("<a href='ajax02.freeb?currentPage="+(startNavi-1)+"'< </a>");
-		}
-		for(int i = startNavi;i <= endNavi;i++) {
-			if(currentPage == i) {
-				sb.append("<a href='ajax02.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
-			}else {
-				sb.append("<a href='ajax02.freeb?currentPage=" + i + "'> " + i + "</a>");
-			}
-		}
-		if(needNext) {
-			sb.append("<a href='ajax02.freeb?currentPage="+(endNavi+1)+"'>></a>");
-		}
-
-		System.out.println(sb.toString());
-
-		String result = sb.toString();
-		con.close();
-		pstat.close();
-
-		return result;
-	}
-	public String getPageNavi5(int currentPage) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from board_user where user_header = 'µ¿¹°'";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		ResultSet rs = pstat.executeQuery();
-		rs.next();
-
-		int recordTotalCount = rs.getInt("totalCount");//ÀüÃ¼ ±Û(·¹ÄÚµå)ÀÇ °¹¼ö¸¦ ÀúÀåÇÏ´Â º¯¼ö
-		int recordCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ °Ô½Ã±ÛÀÌ Ç¥½ÃµÇ´Â °¹¼ö
-		int naviCountPerPage = 10; // ÇÑ ÆäÀÌÁö¿¡ Ç¥½ÃµÇ´Â ³×ÀÌ°ÔÀÌÅÍÀÇ °¹¼ö
-		int pageTotalCount = 0; // ÀüÃ¼°¡ ¸î ÆäÀÌÁö·Î ±¸¼ºµÉ °ÍÀÎÁö
-
-		if(recordTotalCount % recordCountPerPage > 0) { //10À¸·Î ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ½
-			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-		}else {
-			pageTotalCount = recordTotalCount / recordCountPerPage;
-		}
-
-
-
-		if(currentPage < 1) {
-			currentPage = 1;
-		}else if(currentPage > pageTotalCount) {
-			currentPage = pageTotalCount;
-		}
-
-		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
-		int endNavi = startNavi + (naviCountPerPage - 1);
-
-		if(endNavi > pageTotalCount) {
-			endNavi = pageTotalCount;
-		}
-
-
-		boolean needPrev = true;
-		boolean needNext = true;
-
-		if(startNavi == 1) {
-			needPrev = false;
-		}
-
-		if(endNavi == pageTotalCount) {
-			needNext = false;
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		if(needPrev) {
-			sb.append("<a href='ajax03.freeb?currentPage="+(startNavi-1)+"'< </a>");
-		}
-		for(int i = startNavi;i <= endNavi;i++) {
-			if(currentPage == i) {
-				sb.append("<a href='ajax03.freeb?currentPage=" + i + "'> <b>" + i + "</b></a>");
-			}else {
-				sb.append("<a href='ajax03.freeb?currentPage=" + i + "'> " + i + "</a>");
-			}
-		}
-		if(needNext) {
-			sb.append("<a href='ajax03.freeb?currentPage="+(endNavi+1)+"'>></a>");
-		}
-
-		System.out.println(sb.toString());
-
-		String result = sb.toString();
-		con.close();
-		pstat.close();
-
-		return result;
-	}
+	
 	public int UpdateViewCount(int seq, int viewCount) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "update board_user set user_viewcount=? where user_seq=?";

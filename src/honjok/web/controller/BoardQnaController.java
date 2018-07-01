@@ -74,10 +74,9 @@ public class BoardQnaController extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
+				
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -125,10 +124,10 @@ public class BoardQnaController extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
+				
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
+				
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());

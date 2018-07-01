@@ -2,6 +2,7 @@ package honjok.web.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -35,45 +36,60 @@ public class Board_Controller extends HttpServlet {
 
 			String command = requestURI.substring(contextPath.length());
 //			String id = (String)request.getSession().getAttribute("loginId");
-			String id = "È÷¿À½º";
+			String id = "ížˆì˜¤ìŠ¤";
             String count = request.getParameter("count");
 			
-			if(command.equals("/test.freeb")) {
-				int currentPage = 0;
-				String currentPageString = request.getParameter("currentPage");
+			if(command.equals("/hontalkView.freeb")){
+	            BoardDAO dao = new BoardDAO();
+	            
+	            List<BoardUserDTO> result = dao.selectFree();
+	            
+	            request.setAttribute("result", result);
 
-				if(currentPageString == null){
-					currentPage = 1;
+	            isRedirect=false;
+	            dst = "/community/hontalkView.jsp";
+	            
+			}
+			else if(command.equals("/boardView.freeb")) {
+				String category = request.getParameter("cat");
+				String header = request.getParameter("head");
+				List<BoardUserDTO> result = new ArrayList<>();
+				String navi;
+				if(header!= null) {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					BoardDAO dao = new BoardDAO();
+					result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
+					
+					navi = dao.getPageNavi2(currentPage, category, header);
 				}else {
-					currentPage = Integer.parseInt(currentPageString);
-				}
-				BoardDAO dao = new BoardDAO();
-				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
-				String navi = dao.getPageNavi(currentPage);
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
 
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					BoardDAO dao = new BoardDAO();
+					result = dao.selectData(currentPage*10-9,currentPage*10, category);
+					navi = dao.getPageNavi(currentPage, category);
+				}
+				
+				System.out.println(result);
+				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
 
 				isRedirect = false;
 				dst = "community/freeboardView.jsp";
-			}else if(command.equals("/freeboardView.freeb")) {
-				int currentPage = 0;
-				String currentPageString = request.getParameter("currentPage");
-
-				if(currentPageString == null){
-					currentPage = 1;
-				}else {
-					currentPage = Integer.parseInt(currentPageString);
-				}
-				BoardDAO dao = new BoardDAO();
-				List<BoardUserDTO> result = dao.selectData(currentPage*10-9,currentPage*10);
-				String navi = dao.getPageNavi2(currentPage);
-
-				request.setAttribute("navi", navi);
-				request.setAttribute("result", result);
-
-				isRedirect = false;
-				dst = "community/freeboardView.jsp";
+				
 			}else if(command.equals("/freeboardWrite.freeb")) {
 				BoardDAO dao = new BoardDAO();
 				BoardUserDTO dto = new BoardUserDTO();
@@ -97,10 +113,10 @@ public class Board_Controller extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
+				
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
+				
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -126,64 +142,9 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result", result);
 				isRedirect = false; 
 				dst = "freeboardResult.jsp";
-			}else if(command.equals("/ajax01.freeb")) {
-				int currentPage = 0;
-				String currentPageString = request.getParameter("currentPage");
-
-				if(currentPageString == null){
-					currentPage = 1;
-				}else {
-					currentPage = Integer.parseInt(currentPageString);
-				}
-				BoardDAO dao = new BoardDAO();
-				List<BoardUserDTO> result = dao.selectHeader1Data(currentPage*10-9,currentPage*10);
-				String navi = dao.getPageNavi3(currentPage);
-
-				request.setAttribute("navi", navi);
-				request.setAttribute("result", result);
-
-				isRedirect = false;
-				dst = "community/freeboardView.jsp";
-			}else if(command.equals("/ajax02.freeb")) {
-				int currentPage = 0;
-				String currentPageString = request.getParameter("currentPage");
-
-				if(currentPageString == null){
-					currentPage = 1;
-				}else {
-					currentPage = Integer.parseInt(currentPageString);
-				}
-				BoardDAO dao = new BoardDAO();
-				List<BoardUserDTO> result = dao.selectHeader2Data(currentPage*10-9,currentPage*10);
-				String navi = dao.getPageNavi4(currentPage);
-
-				request.setAttribute("navi", navi);
-				request.setAttribute("result", result);
-
-				isRedirect = false;
-				dst = "community/freeboardView.jsp";
-			}else if(command.equals("/ajax03.freeb")) {
-				int currentPage = 0;
-				String currentPageString = request.getParameter("currentPage");
-
-				if(currentPageString == null){
-					currentPage = 1;
-				}else {
-					currentPage = Integer.parseInt(currentPageString);
-				}
-				BoardDAO dao = new BoardDAO();
-				List<BoardUserDTO> result = dao.selectHeader3Data(currentPage*10-9,currentPage*10);
-				String navi = dao.getPageNavi4(currentPage);
-
-				request.setAttribute("navi", navi);
-				request.setAttribute("result", result);
-
-				isRedirect = false;
-				dst = "community/freeboardView.jsp";
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
 				int seq = Integer.parseInt(no);
-				System.out.println(seq);
 
 				BoardDAO dao = new BoardDAO();
 				List<BoardUserDTO> result = dao.readData(seq);
@@ -220,10 +181,10 @@ public class Board_Controller extends HttpServlet {
 					systemFileName = mr.getFilesystemName(paramName);
 				}
 				realPath = contextPath + "/files/" + systemFileName;
-				System.out.println(realPath);
+				
 				JSONObject json = new JSONObject();
 				json.put("url", realPath);
-				System.out.println(json.toJSONString());
+
 				response.setCharacterEncoding("utf8");
 				response.setContentType("application/json");
 				response.getWriter().println(json.toJSONString());
@@ -260,9 +221,9 @@ public class Board_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(isRedirect) {
-			System.out.println("µÎ¹øÂ°·Î ¿È");
+
 		}else {
-			System.out.println("¿©±âµµ¿È");
+
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);
 		}
