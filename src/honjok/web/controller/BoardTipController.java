@@ -77,7 +77,7 @@ public class BoardTipController extends HttpServlet {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
 				int viewcount = Integer.parseInt(request.getParameter("viewcount")) + 1;
-				System.out.println("뷰카운트: " + viewcount);
+				System.out.println("viewcount: " + viewcount);
 				int upResult = dao.UpdateViewCount(seq, viewcount);
 				if(upResult > 0) {
 					result = dao.selectAllData(seq);
@@ -93,8 +93,8 @@ public class BoardTipController extends HttpServlet {
 			}
 			else if(command.equals("/delete.tip")) {
 				String seq = request.getParameter("seq");
-				String systemFileName = fileDAO.isExsitThum_sysFile(seq);
-
+				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
+				String systemFileName = fileDTO.getThum_sysFileName();
 				if(!(systemFileName.equals(""))) {
 					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Semi_Honjok
 					String realPath = request.getServletContext().getRealPath("/files/");
@@ -114,7 +114,18 @@ public class BoardTipController extends HttpServlet {
 				}
 				dst = "selectNaviCat.tip";
 			}else if(command.equals("/modify.tip")) {
-
+				List<BoardDTO> result = new ArrayList<>();
+				String seq = request.getParameter("seq");
+				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
+				result = dao.selectAllData(seq);
+				/*for(int i =0; result.size()>i;i++) {
+					System.out.println(result.get(i).getSubject());
+				}*/
+				response.setCharacterEncoding("UTF-8");
+				request.setAttribute("result", result);
+				request.setAttribute("thumbnail", fileDTO);
+				isRedirect = false;
+				dst = "board/boardtipmodify.jsp";
 			}else if(command.equals("/selectNaviSub.tip")){
 				String category = request.getParameter("category");
 				String subject = request.getParameter("subject");

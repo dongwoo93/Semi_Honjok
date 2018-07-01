@@ -82,7 +82,7 @@ $(document).ready(function() {
 				<div class="form-group col-md-3">
 					<label for="sel2">말머리</label> 
 					<select class="form-control" id="sel2" name="subject">
-						<option value="꿀팁">말머리를 선택하세요</option>
+						<option>말머리를 선택하세요</option>
 					</select>
 				</div>
 			</div>
@@ -131,7 +131,7 @@ $(document).ready(function() {
 				
 			
 			<div class="form-group col-md-8">
-				<label for="formGroupExampleInput">썸네일 이미지</label>
+				<label for="formGroupExampleInput">썸네일 이미지</label><br>
 				<input type="file" name="file">
 			</div><br>
 			<input type="text" id="imgBackUp" name="contentsImg">

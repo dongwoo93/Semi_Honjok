@@ -9,7 +9,13 @@ public class AdminFilesDTO {
 	private String thum_orgFileName;
 	
 	public AdminFilesDTO() {}
-
+	
+	public AdminFilesDTO(String thum_sysFileName, String thum_orgFileName) {
+		super();
+		this.thum_sysFileName = thum_sysFileName;
+		this.thum_orgFileName = thum_orgFileName;
+	}
+	
 	public AdminFilesDTO(String article_no, String category, String subject, String thum_sysFileName,
 			String thum_orgFileName) {
 		super();

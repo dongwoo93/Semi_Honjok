@@ -75,18 +75,21 @@ public class AdminFileDAO {
 	}
 	
 	
-	public String isExsitThum_sysFile(String seq) throws Exception {
+	public AdminFilesDTO isExsitThum_sysFile(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select thum_sysFileName from admin_files where files_seq = ?";
+		String sql = "select thum_sysFileName, thum_orgFileName from admin_files where files_seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
 		ResultSet rs = pstat.executeQuery();
-		rs.next();
-		String thum_sysFileName = rs.getString("thum_sysFileName");
+		AdminFilesDTO fileDTO = new AdminFilesDTO();
+		while(rs.next()) {
+		fileDTO.setThum_sysFileName(rs.getString("thum_sysFileName"));
+	    fileDTO.setThum_orgFileName(rs.getString("thum_orgFileName")); ;
+		}
 		rs.close();
 		pstat.close();
 		con.close();
-		return thum_sysFileName;
+		return fileDTO;
 	}
 	
 	public List<AdminFilesDTO> getNote_sysFileName(String seq) throws Exception{

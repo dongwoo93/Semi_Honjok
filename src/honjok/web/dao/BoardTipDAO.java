@@ -318,11 +318,11 @@ public class BoardTipDAO {
 		con.close();
 		return result;
 	}
-	public int UpdateViewCount(String seq, int viewCount) throws Exception {
+	public int UpdateViewCount(String seq, int viewcount) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "update board_user set user_viewcount=? where user_seq=?";
+		String sql = "update admin_board set viewcount=? where seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, viewCount);
+		pstat.setInt(1, viewcount);
 		pstat.setInt(2, Integer.parseInt(seq));
 		int result = pstat.executeUpdate();
 		con.commit();

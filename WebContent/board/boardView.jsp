@@ -26,7 +26,8 @@
 			$(location).attr('href', 'delete.tip?seq='+seq);
 		})
 		$("#modify").click(function(){
-			$(location).attr('href', 'modify.tip');
+			var seq = $("#seq").text();
+			$(location).attr('href', 'modify.tip?seq='+seq);
 		})
 	})
 </script>
