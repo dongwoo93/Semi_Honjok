@@ -71,7 +71,6 @@
 				},
 
 				success : function(response) {
-					console.log(response);
 					$("#chkmsg").text(response);
 
 				},
@@ -177,7 +176,9 @@
 
 			},
 			submitHandler : function(frm) {
+
 				frm.submit(); //유효성 검사를 통과시 전송
+
 			},
 			success : function(e) {
 
