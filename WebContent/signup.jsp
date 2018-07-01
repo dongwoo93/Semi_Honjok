@@ -41,6 +41,26 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		$.validator.addMethod("phone", function(phone_number, element) {
+			phone_number = phone_number.replace(/\s+/g, ""); 
+			return this.optional(element) || phone_number.length > 9 &&
+				phone_number.match(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/);
+		}, "Please specify a valid phone number");
+		
+		$.validator.addMethod("names", function(names, element){
+			return this.optional(element) || names.length > 1 && names.match(/^[가-힣]+$/);
+		});
+		
+		$.validator.addMethod("ids",function(ids, element){
+			return this.optional(element) || ids.match(/^[a-z](?=.*[a-z0-9])(?=.*[0-9]).[a-z0-9]{4,20}$/);
+		});
+		
+		$.validator.addMethod("pass",function(pass,element){
+			return this.optional(element) || pass.match(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,20}$/);
+		})
+		
+		
 		$("#id").keyup(function() {
 			var val = $("#id").val();
 			$.ajax({
@@ -66,23 +86,30 @@
 			rules : {
 				id : {
 					required : true,
-					minlength : 3,
-					maxlength : 12,
+					minlength : 6,
+					maxlength : 20,
+					ids : true,
+
 				},
-				pw : "required",
+				pw : {
+					required : true,
+					rangelength: [8, 20],
+					pass : true
+				},
 				pw2 : {
 					required : true,
 					equalTo : '#pw'
 				},
 				name : {
 					required : true,
-
+					names : true,
 				},
 				phone : {
 					required : true,
 					digits : true,
 					minlength : 3,
 					maxlength : 13,
+					phone: true
 
 				},
 				email : {
@@ -103,11 +130,17 @@
 			messages : {
 				id : {
 					required : "아이디를  입력해주세요.",
-					minlength : "아이디는 최소3글자 이상입니다.",
-					maxlength : "범위를 초과하였습니다."
+					minlength : "아이디는 최소6글자 이상입니다.",
+					maxlength : "범위를 초과하였습니다. (20자리 이하로 입력해주세요)",
+					ids : "영문+숫자 조합으로 6자리이상 20자리 이하로 입력해주세요",
+
 
 				},
-				pw : "암호를 입력하시오.",
+				pw : {
+					required : "암호를 입력하시오.",
+					rangelength: $.validator.format("패스워드 최소 8글자 이상 20글자 이하로 입력하세요."),
+					pass : "최소 1개의 숫자 혹은 특수문자를 포함시켜야 합니다."
+				},
 				pw2 : {
 					required : "비밀번호확인을 입력해주세요.",
 					equalTo : "비밀번호가일치하지않습니다"
@@ -115,12 +148,14 @@
 
 				name : {
 					required : "이름을 입력해주세요.",
+					names : "한글로 입력해주세요(2글자 이상)"
 
 				},
 				phone : {
 					required : "전화번호를 입력해주세요.",
 					digits : "숫자만 입력해주세요",
 					minlength : "전화번호형식이아닙니다.",
+					phone : "휴대폰 형식에 맞게 입력해주세염."
 
 				},
 				email : {

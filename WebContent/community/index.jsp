@@ -52,7 +52,7 @@
             <li class="dropdown-item"><a href="#">고민상담</a></li>
             <li class="dropdown-item"><a href="#">질문/답변</a></li>
             <li class="dropdown-item"><a href="#">혼팁</a></li>
-            <li class="dropdown-item"><a href="#">베스트Ʈ</a></li>
+            <li class="dropdown-item"><a href="#">베스트</a></li>
          </ul></li>
       <li class="dropdown nav-item"><a href="#"
          class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
@@ -79,7 +79,7 @@
    </ul>
    <ul class="nav navbar-nav ml-auto">
       <li class="nav-item"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
-      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal">Login</button></li>
+      <li class="nav-item"><button type="button" id="loginbt" class="nav-link" data-toggle="modal" data-target="#myModal">Login</button></li>
    </ul>
    </nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">

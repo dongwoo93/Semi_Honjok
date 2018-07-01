@@ -253,3 +253,9 @@
 	max-width: 320px;
 	max-height: 200px;
 }
+
+#loginbt{
+	outline: none;
+	background:none;
+	border:none;
+}
