@@ -130,10 +130,11 @@ $(document).ready(function() {
 				</div>
 				
 			
-			<div class="col-sm-3">
+			<div class="form-group col-md-8">
+				<label for="formGroupExampleInput">썸네일 이미지</label>
 				<input type="file" name="file">
 			</div><br>
-			
+			<input type="text" id="imgBackUp" name="contentsImg">
 			<div class="col-sm-3">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<input type="submit" class="btn btn-primary" value="submit">
@@ -171,6 +172,7 @@ $(document).ready(function() {
 			});
 			
 			function deleteFile(src) {
+				console.log(src);
 				var result = src.split("/files/");
 				console.log(result);
 			    $.ajax({
@@ -187,6 +189,7 @@ $(document).ready(function() {
 			function sendFile(file, editor) {
 					var data = new FormData();
 					data.append("uploadFile", file);
+					console.log(file);
 					$.ajax({
 						data : data,
 						type : "POST",
@@ -198,7 +201,8 @@ $(document).ready(function() {
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							var array = new Array();
+							console.log(data);
+							$("#imgBackUp").val($("#imgBackUp").val() + data.systemFileName + ",");
 						}
 					});
 				}

@@ -48,13 +48,19 @@ public class BoardWriteController extends HttpServlet {
 		boolean isRedirect = true;
 		String dst = null;
 		System.out.println("names: " + names);
-
+		
 		String title = mr.getParameter("title");
 		String category = mr.getParameter("category");
 		String subject = mr.getParameter("subject");
 		String contents = mr.getParameter("summernote");
-
-
+		String contentsImg = mr.getParameter("contentsImg");
+		/*List<>
+		String[] splitImgName = contentsImg.split(".");
+		
+		while() {
+			
+		}
+*/
 		System.out.println("names while�� ����: " + names);
 		String paramName = names.nextElement();
 		String originalFileName = mr.getOriginalFileName(paramName);
@@ -64,7 +70,6 @@ public class BoardWriteController extends HttpServlet {
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		try {
 			if(originalFileName != null) {
-				System.out.println("���� ����");
 				String seq = tipDAO.getBoardSeq();
 				System.out.println(seq);
 				BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
