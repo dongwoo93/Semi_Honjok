@@ -29,13 +29,13 @@ public class ThumbnailImgController extends HttpServlet {
 			//String line = null;
 			String realPath = request.getServletContext().getRealPath("/files/");
 			// getServletContext()
-			//System.out.println("Ã³À½ realPath: " + realPath);
+			//System.out.println("Ã³ï¿½ï¿½ realPath: " + realPath);
 			File f = new File(realPath);
 			if(!f.exists()){
 				f.mkdir();
 			}
-			int maxSize = 1024 * 1024 * 100; // ÃÖ´ë »çÀÌÁî
-			String enc = "utf8"; // ÇÑ±Û
+			int maxSize = 1024 * 1024 * 100; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			String enc = "utf8"; // ï¿½Ñ±ï¿½
 
 			MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
 			Enumeration<String> files = mr.getFileNames();
@@ -43,9 +43,9 @@ public class ThumbnailImgController extends HttpServlet {
 			String originalFileName = mr.getOriginalFileName(file);
 			String systemFileName =  mr.getFilesystemName(file);
 
-			realPath = "/files/" + systemFileName;
+			realPath =contextPath + "/files/" + systemFileName;
 			//System.out.println("contextPath: " + contextPath);
-			//System.out.println("¸®¾óÆÐ½º2: " + realPath);
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½2: " + realPath);
 			JSONObject json = new JSONObject();
 			json.put("url", realPath);
 			json.put("systemFileName", systemFileName);
@@ -67,11 +67,11 @@ public class ThumbnailImgController extends HttpServlet {
 
 			if(file.exists() ){
 				if(file.delete()){
-					System.out.println("ÆÄÀÏ»èÁ¦ ¼º°ø");
+					System.out.println("ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					//int result = dao.deleteData(seq);
 				}
 			}else{
-				System.out.println("ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 			}
 			return;
 		}

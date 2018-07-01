@@ -45,10 +45,90 @@ public class BoardTipDAO {
 		return result;
 	}
 	
-	public String getPageNavi(int currentPage) throws Exception {
+	public String getPageNaviAll(int currentPage, String category) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select count(*) totalCount from admin_board";
+		String sql = "select count(*) totalCount from admin_board where category=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		int recordTotalCount = rs.getInt(1);
+		// rs.getInt("totalCount");  �뜝�룞�삕泥� �뜝�룞�삕(�뜝�룞�삕�뜝�뙓�벝�삕) �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕
+		int recordCountPerPage = 8; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃�떆源띿삕�뜝�룞�삕 �뜝�룜媛� �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
+		int naviCountPerPage = 10; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룜媛쒎뜝�룞�삕 �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
+		int pageTotalCount = 0; // �뜝�룞�삕泥닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떖怨ㅼ삕�뜝�룞�삕�뜝�룞�삕
+
+		if(recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		} // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�뙓�벝�삕
+
+		//-----------------------------------------------------
+
+
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //�뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룞�삕�뜝�룞�삕 �뜝�떦�뙋�삕 �뜝�룞�삕
+		int endNavi = startNavi + (naviCountPerPage - 1); // �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕 �뜝�룞�삕
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if(needPrev) {
+			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>"+"Previous"+"</a></li>");
+			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + "<span class='sr-only'>"+"Previous"+"</span></a></li>");
+
+			//sb.append("<a href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>" + "< " + " </a>");
+		}
+
+
+		for(int i = startNavi; i <= endNavi; i++) {
+			if(currentPage == i) {
+				sb.append("<li class='page-item active'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+"> <b>" + i + "</b> </a>");
+			}else {
+				sb.append("<li class='page-item'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+">" + i + " </a>");
+			}
+		}
+
+		if(needNext) {
+			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + "Next" + "</a></li>");
+			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
+			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
+		}
+		
+		
+		pstat.close();
+		con.close();
+		return sb.toString();
+	}
+	
+	public String getPageNavi(int currentPage, String category, String subject) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from admin_board where category=? and subject=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, subject);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		int recordTotalCount = rs.getInt(1);
@@ -159,13 +239,15 @@ public class BoardTipDAO {
 		return list;
 	}
 	
-	public List<BoardDTO> selectNaviData(int startNum, int endNum) throws Exception{
+	public List<BoardDTO> selectNaviData(int startNum, int endNum, String category, String subject) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board)\r\n" + 
+		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board where category=? and subject=?)\r\n" + 
 				"where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, startNum);
-		pstat.setInt(2, endNum);
+		pstat.setString(1, category);
+		pstat.setString(2, subject);
+		pstat.setInt(3, startNum);
+		pstat.setInt(4, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
 		
@@ -185,6 +267,35 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
+	
+	public List<BoardDTO> selectNaviAllData(int startNum, int endNum, String category) throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board where category=?)\r\n" + 
+				"where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setInt(2, startNum);
+		pstat.setInt(3, endNum);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardDTO> list = new ArrayList<>();
+		
+		while(rs.next()) {
+			BoardDTO dto = new BoardDTO();
+			dto.setSeq(String.valueOf(rs.getInt(1)));
+			dto.setCategory(rs.getString(2));
+			dto.setSubject(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setContents("");
+			dto.setViewcount(rs.getInt(6));
+			dto.setLike(rs.getInt(7));
+			dto.setWritedate(rs.getString(8));
+			list.add(dto);
+		}
+		pstat.close();
+		con.close();
+		return list;
+	}
+	
 	public String selectData(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select tip_systemFileName from board_tip where tip_seq = ?";
@@ -201,6 +312,18 @@ public class BoardTipDAO {
 		String sql = "delete from admin_board where seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+	public int UpdateViewCount(String seq, int viewCount) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "update board_user set user_viewcount=? where user_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, viewCount);
+		pstat.setInt(2, Integer.parseInt(seq));
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();

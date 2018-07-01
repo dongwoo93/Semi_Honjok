@@ -3,11 +3,33 @@ package honjok.web.dto;
 public class AdminFilesDTO {
 	private String article_no;
 	private String file_seq;
-	private String note_sysFileName;
+	private String category;
+	private String subject;
 	private String thum_sysFileName;
 	private String thum_orgFileName;
 	
 	public AdminFilesDTO() {}
+
+	public AdminFilesDTO(String article_no, String category, String subject, String thum_sysFileName,
+			String thum_orgFileName) {
+		super();
+		this.article_no = article_no;
+		this.category = category;
+		this.subject = subject;
+		this.thum_sysFileName = thum_sysFileName;
+		this.thum_orgFileName = thum_orgFileName;
+	}
+
+	public AdminFilesDTO(String article_no, String file_seq, String category, String subject, String thum_sysFileName,
+			String thum_orgFileName) {
+		super();
+		this.article_no = article_no;
+		this.file_seq = file_seq;
+		this.category = category;
+		this.subject = subject;
+		this.thum_sysFileName = thum_sysFileName;
+		this.thum_orgFileName = thum_orgFileName;
+	}
 
 	public String getArticle_no() {
 		return article_no;
@@ -25,12 +47,20 @@ public class AdminFilesDTO {
 		this.file_seq = file_seq;
 	}
 
-	public String getNote_sysFileName() {
-		return note_sysFileName;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setNote_sysFileName(String note_sysFileName) {
-		this.note_sysFileName = note_sysFileName;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 	public String getThum_sysFileName() {
@@ -48,23 +78,5 @@ public class AdminFilesDTO {
 	public void setThum_orgFileName(String thum_orgFileName) {
 		this.thum_orgFileName = thum_orgFileName;
 	}
-
-	public AdminFilesDTO(String article_no, String file_seq, String thum_sysFileName) {
-		super();
-		this.article_no = article_no;
-		this.file_seq = file_seq;
-		this.thum_sysFileName = thum_sysFileName;
-	}
-
-	public AdminFilesDTO(String article_no, String file_seq, String note_sysFileName, String thum_sysFileName,
-			String thum_orgFileName) {
-		super();
-		this.article_no = article_no;
-		this.file_seq = file_seq;
-		this.note_sysFileName = note_sysFileName;
-		this.thum_sysFileName = thum_sysFileName;
-		this.thum_orgFileName = thum_orgFileName;
-	}
-	
 	
 }

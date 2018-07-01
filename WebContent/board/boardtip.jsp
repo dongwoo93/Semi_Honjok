@@ -27,7 +27,7 @@
 									alt="Card image cap"></a><br>
 								<div class="card-body">
 									<h5 class="card-title">
-										<a href="selectView.tip?seq=${tmp.seq}">${tmp.title}</a>
+										<a href="selectView.tip?seq=${tmp.seq}&viewcount=${tmp.viewcount}">${tmp.title}</a>
 									</h5>
 									<br>
 									<%-- <p class="card-text">${tmp.contents}</p> --%>

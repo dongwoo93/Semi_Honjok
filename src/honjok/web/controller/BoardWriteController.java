@@ -11,13 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardTipDAO;
+import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
 
 
@@ -29,8 +28,8 @@ public class BoardWriteController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String requestURI = request.getRequestURI();
-		String contextPath = request.getContextPath();
+		/*String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();*/
 
 		//StringBuffer sb = new StringBuffer();
 		//String line = null;
@@ -48,7 +47,7 @@ public class BoardWriteController extends HttpServlet {
 		boolean isRedirect = true;
 		String dst = null;
 		System.out.println("names: " + names);
-		
+
 		String title = mr.getParameter("title");
 		String category = mr.getParameter("category");
 		String subject = mr.getParameter("subject");
@@ -56,27 +55,28 @@ public class BoardWriteController extends HttpServlet {
 		String contentsImg = mr.getParameter("contentsImg");
 		/*List<>
 		String[] splitImgName = contentsImg.split(".");
-		
+
 		while() {
-			
+
 		}
-*/
+		 */
 		System.out.println("names while�� ����: " + names);
 		String paramName = names.nextElement();
 		String originalFileName = mr.getOriginalFileName(paramName);
 		String systemFileName = mr.getFilesystemName(paramName);
 
-
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		try {
-			if(originalFileName != null) {
+			if(systemFileName != null) {
 				String seq = tipDAO.getBoardSeq();
 				System.out.println(seq);
 				BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 				int result = tipDAO.insertData(dto);
 				AdminFileDAO fileDAO = new AdminFileDAO();
-				int fileResult = fileDAO.insertThum_FileName(seq, systemFileName, originalFileName);
+
 				if(result > 0) {
+					AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
+					int fileResult = fileDAO.insertThumb_FileName(fileDTO);
 					if(fileResult > 0) {
 					}else {
 					}
