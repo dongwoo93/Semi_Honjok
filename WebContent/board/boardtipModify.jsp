@@ -60,7 +60,7 @@
 
 </head>
 <body>
-	<form action="../notemodify.tw" method="post" enctype="multipart/form-data">
+	<form action="notemodify.tw" method="post" enctype="multipart/form-data">
 		<div class="container" style="padding-top: 6%;">
 			<c:forEach var="item" items="${result}">
 				<input type="hidden" name="seq" value="${item.seq}">

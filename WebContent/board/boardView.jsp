@@ -42,9 +42,7 @@ text-align:
 </head>
 <body>
 	<div class="container">
-
 		<c:forEach var="item" items="${result}">
-			
 			<span class="col-sm-3">${item.title}</span><span class="cos-sm-2" id="seq">${item.seq}</span>
 			<span class="col-sm-3"><button type="button"
 					class="btn btn-info" id="modify">수정</button></span>

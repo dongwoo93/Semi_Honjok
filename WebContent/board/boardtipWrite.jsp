@@ -30,8 +30,6 @@
 	type="text/css">
 	
 <script>
-
-
 $(document).ready(function() {
 	
 });
@@ -57,8 +55,6 @@ $(document).ready(function() {
 	})
 
 	}); */
-	
-	
 </script>
 
 </head>
@@ -142,10 +138,6 @@ $(document).ready(function() {
 		</div>
 	</form>
 	<script>
-	
-	
-	
-	
 			$('#summernote').summernote({
 				placeholder : '내용',
 				//width : 1500,
@@ -158,12 +150,15 @@ $(document).ready(function() {
 		            onImageUpload : function(files, editor, welEditable) {
 		                sendFile(files[0], this);
 		            },
-		            onMediaDelete : function(target) {
+		            /* onMediaDelete : function(target) {
 	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
-	            	}
+	            	} */
+	            	onMediaDelete : function($target, editor, $editable) {
+	                    alert($target.context.dataset.filename);         
+	                    target.remove();
+	                }
 		        }
-			
 				
 			/* codemirror: { // codemirror options
 		    theme: 'paper'
@@ -212,6 +207,5 @@ $(document).ready(function() {
 			   }
 
 			</script>
-	
 </body>
 </html>

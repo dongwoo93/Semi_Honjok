@@ -31,6 +31,7 @@ public class BoardWriteController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
+		System.out.println(command);
 		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
@@ -66,7 +67,7 @@ public class BoardWriteController extends HttpServlet {
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		if(command.equals("/editor.tw")) {
 			try {
-				if(systemFileName != null) {
+				if(systemFileName != null && !(title.equals(""))) {
 					String seq = tipDAO.getBoardSeq();
 					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -89,28 +90,32 @@ public class BoardWriteController extends HttpServlet {
 			}
 			dst = "hollo.com";
 		}else if(command.equals("/notemodify.tw")) {
+			System.out.println("수정 들어옴");
 			try {
 				if(systemFileName != null) {
-					String seq = request.getParameter("seq");
+					System.out.println("수정 2 들어옴");
+					String seq = mr.getParameter("seq");
+					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.updateData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
 
 					if(result > 0) {
+						System.out.println("2번" + seq);
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {
-						}else {
-						}
-					}else {
-					}
-				}else {
-				}
+						}else {}
+					}else {}
+				}else {}
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+			
+			dst = "hollo.com";
+			isRedirect = false;
 		}
-		dst = "hollo.com";
+		
 
 
 		/*if(command.equals("/upload.tw")) {

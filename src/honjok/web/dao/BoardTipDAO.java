@@ -27,7 +27,7 @@ public class BoardTipDAO {
 	
 	public int insertData(BoardDTO dto) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, 0, sysdate)";
+		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, sysdate)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());
 		con.setAutoCommit(false);
@@ -54,10 +54,10 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		int recordTotalCount = rs.getInt(1);
-		// rs.getInt("totalCount");  �뜝�룞�삕泥� �뜝�룞�삕(�뜝�룞�삕�뜝�뙓�벝�삕) �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕
-		int recordCountPerPage = 8; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃�떆源띿삕�뜝�룞�삕 �뜝�룜媛� �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
-		int naviCountPerPage = 10; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룜媛쒎뜝�룞�삕 �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
-		int pageTotalCount = 0; // �뜝�룞�삕泥닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떖怨ㅼ삕�뜝�룞�삕�뜝�룞�삕
+		// rs.getInt("totalCount");  
+		int recordCountPerPage = 8; 
+		int naviCountPerPage = 10; 
+		int pageTotalCount = 0; 
 
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
@@ -70,13 +70,12 @@ public class BoardTipDAO {
 			currentPage = 1;
 		}else if(currentPage > pageTotalCount) {
 			currentPage = pageTotalCount;
-		} // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�뙓�벝�삕
+		} 
 
 		//-----------------------------------------------------
 
-
-		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //�뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룞�삕�뜝�룞�삕 �뜝�떦�뙋�삕 �뜝�룞�삕
-		int endNavi = startNavi + (naviCountPerPage - 1); // �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕 �뜝�룞�삕
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; 
+		int endNavi = startNavi + (naviCountPerPage - 1); 
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
@@ -97,10 +96,8 @@ public class BoardTipDAO {
 		if(needPrev) {
 			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>"+"Previous"+"</a></li>");
 			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + "<span class='sr-only'>"+"Previous"+"</span></a></li>");
-
 			//sb.append("<a href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>" + "< " + " </a>");
 		}
-
 
 		for(int i = startNavi; i <= endNavi; i++) {
 			if(currentPage == i) {
@@ -117,7 +114,6 @@ public class BoardTipDAO {
 			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
-		
 		
 		pstat.close();
 		con.close();
@@ -133,10 +129,10 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		int recordTotalCount = rs.getInt(1);
-		// rs.getInt("totalCount");  �뜝�룞�삕泥� �뜝�룞�삕(�뜝�룞�삕�뜝�뙓�벝�삕) �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕
-		int recordCountPerPage = 8; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃�떆源띿삕�뜝�룞�삕 �뜝�룜媛� �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
-		int naviCountPerPage = 10; // �뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룜媛쒎뜝�룞�삕 �뜝�룞�삕�뜝�떦怨ㅼ삕�뜝�룞�삕
-		int pageTotalCount = 0; // �뜝�룞�삕泥닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떖怨ㅼ삕�뜝�룞�삕�뜝�룞�삕
+		// rs.getInt("totalCount");  
+		int recordCountPerPage = 8; 
+		int naviCountPerPage = 10; 
+		int pageTotalCount = 0; 
 
 		if(recordTotalCount % recordCountPerPage > 0) {
 			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
@@ -144,18 +140,14 @@ public class BoardTipDAO {
 			pageTotalCount = recordTotalCount / recordCountPerPage;
 		}
 
-
 		if(currentPage < 1) {
 			currentPage = 1;
 		}else if(currentPage > pageTotalCount) {
 			currentPage = pageTotalCount;
-		} // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�뙋�삕 �뜝�뙓�벝�삕
+		} 
 
-		//-----------------------------------------------------
-
-
-		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; //�뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�룴�뜝占� �뜝�룞�삕�뜝�룞�삕 �뜝�떦�뙋�삕 �뜝�룞�삕
-		int endNavi = startNavi + (naviCountPerPage - 1); // �뜝�뙎釉앹삕�뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕 �뜝�룞�삕
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1; 
+		int endNavi = startNavi + (naviCountPerPage - 1);
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
@@ -197,7 +189,6 @@ public class BoardTipDAO {
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
 		
-		
 		pstat.close();
 		con.close();
 		return sb.toString();
@@ -211,7 +202,6 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
 		
-		
 		while(rs.next()) {
 			StringBuffer sb = new StringBuffer();
 			BoardDTO dto = new BoardDTO();
@@ -220,8 +210,7 @@ public class BoardTipDAO {
 			dto.setSubject(rs.getString(3));
 			dto.setTitle(rs.getString(4));
 			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
+			dto.setWritedate(rs.getString(7));
 			Reader instream = rs.getCharacterStream("contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
@@ -260,8 +249,7 @@ public class BoardTipDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setContents("");
 			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
+			dto.setWritedate(rs.getString(7));
 			list.add(dto);
 		}
 		pstat.close();
@@ -288,8 +276,7 @@ public class BoardTipDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setContents("");
 			dto.setViewcount(rs.getInt(6));
-			dto.setLike(rs.getInt(7));
-			dto.setWritedate(rs.getString(8));
+			dto.setWritedate(rs.getString(7));
 			list.add(dto);
 		}
 		pstat.close();
@@ -297,7 +284,7 @@ public class BoardTipDAO {
 		return list;
 	}
 	
-	public String selectData(String seq) throws Exception {
+	/*public String selectData(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select tip_systemFileName from board_tip where tip_seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
@@ -306,7 +293,7 @@ public class BoardTipDAO {
 		rs.next();
 		String systemFileName = rs.getString("tip_systemFileName");
 		return systemFileName;
-	}
+	}*/
 	
 	public int deleteData(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();

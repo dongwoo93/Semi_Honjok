@@ -128,12 +128,13 @@ public class AdminFileDAO {
 	
 	public int updateThumb_FileName(AdminFilesDTO fileDTO) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "update admin_files set category=?, subject=?, thum_sysFileName=?, thum_orgFileName=? where seq=?";
+		String sql = "update admin_files set category=?, subject=?, thum_sysFileName=?, thum_orgFileName=? where article_no=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setString(2, fileDTO.getCategory());
-		pstat.setString(3, fileDTO.getSubject());
-		pstat.setString(4, fileDTO.getThum_sysFileName());
-		pstat.setString(5, fileDTO.getThum_orgFileName());
+		pstat.setString(1, fileDTO.getCategory());
+		pstat.setString(2, fileDTO.getSubject());
+		pstat.setString(3, fileDTO.getThum_sysFileName());
+		pstat.setString(4, fileDTO.getThum_orgFileName());
+		pstat.setInt(5, Integer.parseInt(fileDTO.getArticle_no()));
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();
