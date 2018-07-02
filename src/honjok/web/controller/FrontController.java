@@ -34,7 +34,6 @@ public class FrontController extends HttpServlet {
 		
 			
 			if(command.equals("/hollo.com")) {
-				
 				dst = "/community/index.jsp";	
 				
 			}else if(command.equals("/data.com")) {
@@ -72,7 +71,7 @@ public class FrontController extends HttpServlet {
 				return;
 			}
 		}catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher(dst);
