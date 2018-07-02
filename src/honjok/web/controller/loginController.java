@@ -37,6 +37,8 @@ public class loginController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		response.setCharacterEncoding("utf8");
 		
+		MemberDAO dao = new MemberDAO();
+		
 
 		try {
 			String requestURI = request.getRequestURI();
@@ -55,8 +57,6 @@ public class loginController extends HttpServlet {
 					email = email.replace("\"", "");
 					name = name.replace("\"", "");
 
-					testDAO dao = new testDAO();
-
 					boolean result = dao.idCheck(id);
 
 					if(result) {
@@ -73,7 +73,7 @@ public class loginController extends HttpServlet {
 				}
 
 			}else if(command.equals("/naver.do")) {
-				System.out.println("naver.do ����");
+
 				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //���ø����̼� Ŭ���̾�Ʈ ���̵�";
 				String redirectURI = URLEncoder.encode("http://192.168.20.9:8080/Semi_Honjok/navertest", "UTF-8");
 				SecureRandom random = new SecureRandom();
@@ -99,7 +99,7 @@ public class loginController extends HttpServlet {
 				String access = request.getParameter("access");
 				String token1 = access;
 
-				System.out.println(token1+"");
+
 
 				String header = "Bearer " + token1; // Bearer ������ ���� �߰�
 				try {
@@ -127,10 +127,10 @@ public class loginController extends HttpServlet {
 					JSONParser jsPars = new JSONParser();
 					String Alldata = response1.toString();
 					JSONObject jsOBj = (JSONObject)jsPars.parse(Alldata);           
-					System.out.println(response1.toString());
+
 
 					String member = jsOBj.get("response").toString();
-					System.out.println(member);
+
 
 					JSONObject jsOBj2 = (JSONObject)jsPars.parse(member);
 					String id = jsOBj2.get("id").toString();
@@ -139,7 +139,6 @@ public class loginController extends HttpServlet {
 					String email = jsOBj2.get("email").toString();
 
 
-					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
@@ -153,7 +152,7 @@ public class loginController extends HttpServlet {
 					dst = "naverclose.jsp";
 
 				} catch (Exception e) {
-					System.out.println(e);
+
 				}
 			}else if(command.equals("/google.do")) {
 
@@ -164,8 +163,6 @@ public class loginController extends HttpServlet {
 					String email = request.getParameter("email");
 					String name = request.getParameter("name");
 
-
-					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
@@ -187,14 +184,12 @@ public class loginController extends HttpServlet {
 				
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
-				
-				System.out.println(id + pw);
-				MemberDAO dao = new MemberDAO();
+
 				boolean result = dao.idpwCheck(id, pw);
 				String resultStr = String.valueOf(result);
 						
 				dst = "hollo.com";
-				System.out.println(result);
+
 				
 				JSONObject o1 = new JSONObject();
 				o1.put("result", resultStr);
@@ -224,7 +219,7 @@ public class loginController extends HttpServlet {
 		}
 		if(isRedirect) {
 			response.sendRedirect(dst);
-			System.out.println("트루다");
+
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);

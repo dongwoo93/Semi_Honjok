@@ -90,7 +90,7 @@ public class Board_Controller extends HttpServlet {
 					navi = dao.getPageNavi(currentPage, category);
 				}
 				
-				System.out.println(result);
+
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
@@ -167,7 +167,6 @@ public class Board_Controller extends HttpServlet {
 				}
 				LikeDTO likeDto = like.SelectLike(no, id);
 				String likeStat = likeDto.getLikeCheck();
-				System.out.println(likeStat);
 				int seq = Integer.parseInt(no);
 
 				BoardDAO dao = new BoardDAO();
@@ -183,7 +182,6 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result", result);
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
-				System.out.println("제목 :" + result.get(0).getTitle());
 				request.setAttribute("count", count);
 				request.setAttribute("likeStat", likeStat);
 				isRedirect = false;
@@ -279,7 +277,7 @@ public class Board_Controller extends HttpServlet {
 				BoardDAO dao = new BoardDAO();
 				BoardUserDTO dto = new BoardUserDTO();
 				
-				System.out.println(seq);
+
 				
 //				List<BoardUserDTO> free = dao.selectFree();
 //	            List<BoardUserDTO> qna = dao.selectQna();
