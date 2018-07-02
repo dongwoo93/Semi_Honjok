@@ -255,22 +255,33 @@ public class Board_Controller extends HttpServlet {
 				isRedirect = false;
 				dst = "community/modifyResult";
 			}else if(command.equals("/delete.freeb")) {
-				String articleseq = request.getParameter("seq");
+				String articleseq = request.getParameter("no");
+				String category = request.getParameter("cat");
 				int seq = Integer.parseInt(articleseq);
-				
 				BoardDAO dao = new BoardDAO();
 				BoardUserDTO dto = new BoardUserDTO();
 				
+				System.out.println(seq);
+				
+//				List<BoardUserDTO> free = dao.selectFree();
+//	            List<BoardUserDTO> qna = dao.selectQna();
+//	            List<BoardUserDTO> counsel = dao.selectCounsel();
+//	            List<BoardUserDTO> tip = dao.selectTip();
+	            
 				int result = dao.deleteData(seq);
-				request.setAttribute("result", result);
+//				request.setAttribute("result", result);
+//				request.setAttribute("free", free);
+//	            request.setAttribute("qna", qna);
+//	            request.setAttribute("counsel", counsel);
+//	            request.setAttribute("tip", tip);
 				isRedirect = false;
-				dst = "community/freeboardView.jsp";
+				dst = "boardView.freeb?cat="+category;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		if(isRedirect) {
-
+			response.sendRedirect(dst);
 		}else {
 
 			RequestDispatcher rd = request.getRequestDispatcher(dst);

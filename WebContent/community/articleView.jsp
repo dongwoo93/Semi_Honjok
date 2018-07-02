@@ -16,7 +16,7 @@
 		$("#delete").click(function() {
 			var yes = confirm("삭제 하시겠습니까?");
 			if (yes) {
-				$(location).attr('href', "delete.jsp?no=${no}")
+				$(location).attr('href', "delete.freeb?no=${no}&cat=${result[0].category}")
 			} else {
 				return;
 			}
@@ -36,6 +36,7 @@
 
 	<div class="container">
 		<form method=post action="comment.freeb" id=formid>
+		<%-- <input type="hidden" id="cat" value="${result[0]. }"> --%>
 			<table class="table table-hover">
 				<tbody class="head" id="head">
 					<tr>

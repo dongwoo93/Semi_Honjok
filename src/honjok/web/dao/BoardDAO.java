@@ -121,7 +121,7 @@ public class BoardDAO {
 	}
 	public List<BoardUserDTO> selectData(int startNum, int endNum, String category) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category=?) where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=?) where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, category);
 		pstat.setInt(2, startNum);
@@ -161,7 +161,7 @@ public class BoardDAO {
 	
 	public List<BoardUserDTO> selectData2(int startNum, int endNum, String category, String header) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category=? and user_header=?) where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_header=?) where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, category);
 		pstat.setString(2, header);
