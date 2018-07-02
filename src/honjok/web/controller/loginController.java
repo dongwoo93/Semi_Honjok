@@ -37,6 +37,8 @@ public class loginController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		response.setCharacterEncoding("utf8");
 		
+		MemberDAO dao = new MemberDAO();
+		
 
 		try {
 			String requestURI = request.getRequestURI();
@@ -54,8 +56,6 @@ public class loginController extends HttpServlet {
 
 					email = email.replace("\"", "");
 					name = name.replace("\"", "");
-
-					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
@@ -139,7 +139,6 @@ public class loginController extends HttpServlet {
 					String email = jsOBj2.get("email").toString();
 
 
-					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
@@ -165,8 +164,6 @@ public class loginController extends HttpServlet {
 					String name = request.getParameter("name");
 
 
-					testDAO dao = new testDAO();
-
 					boolean result = dao.idCheck(id);
 
 					if(result) {
@@ -189,7 +186,6 @@ public class loginController extends HttpServlet {
 				String pw = request.getParameter("pw");
 				
 				System.out.println(id + pw);
-				MemberDAO dao = new MemberDAO();
 				boolean result = dao.idpwCheck(id, pw);
 				String resultStr = String.valueOf(result);
 						
