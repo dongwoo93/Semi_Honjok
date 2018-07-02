@@ -15,13 +15,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
+<head>
+    <meta charset="UTF-8">
+    <title>내정보</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
 
-    <script type="text/javascript">
-    </script>
-    
+
+    <style>
+        .panel {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0);
+            border-radius: 5px 5px 5px 5px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .panel-primary {
+            border-color: #428BCA;
+        }
+
 
     <style>
         .panel {
@@ -55,21 +74,7 @@
             margin-top: 0;
         }
 
-        .panel-body:before,
-        .panel-body:after {
-            content: " ";
-            display: table;
-        }
 
-        .panel-body:before,
-        .panel-body:after {
-            content: " ";
-            display: table;
-        }
-
-        .panel-body:after {
-            clear: both;
-        }
 
         .panel-body {
             padding: 15px;
@@ -77,8 +82,8 @@
 
         .panel-footer {
             background-color: #F5F5F5;
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
             border-top: 1px solid #DDDDDD;
             padding: 20px 14px;
         } //
@@ -109,12 +114,21 @@
         }
 
         . span6:stongid {
-            font-size: 15px;
+            font-size: 16px;
         }
     </style>
 </head>
 
-<body>
+    <div class="row-fluid user-infos cyruxx">
+        <div class="span10 offset1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">내 정보</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row-fluid">
+                        <div class="span3" align=center>
+                            <i class="fa fa-child" style="font-size: 140px;"></i>
 
 
 
@@ -135,11 +149,11 @@
                             <table class="table table-condensed table-responsive table-user-information">
                                 <tbody>
                                     <tr>
-                                        <td>이름:</td>
+                                        <td>이름</td>
                                         <td id="name" name="name">${result.name}</td>
                                     </tr>
                                     <tr>
-                                        <td>전화번호:</td>
+                                        <td>전화번호</td>
                                         <td id="phone" name="phone">${result.phone}</td>
                                     </tr>
                                     <tr>
