@@ -40,17 +40,17 @@ public class MemberDAO {
 	
 	public int deleteData(String id, String pw)throws Exception{
 		Connection con = DBUtils.getConnection();
-		
-		String sql = "delete from member where member_id=? and member_pw=?";	
+		String sql = "delete * from member where member_id=?, member_pw =?";	
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		pstat.setString(2, pw);
-		int rs = pstat.executeUpdate();
+
+		int result = pstat.executeUpdate();
 		
 		con.commit();
 		pstat.close();
-		con.close();
-		return rs;
+		con.close();	
+		return result;
 	}
 	
 	
@@ -71,9 +71,6 @@ public class MemberDAO {
 		return result;
 
 	}
-	
-	
-	
 	public int insertData(String id, String pw, String name, String phone, String email,String zipcode,String address,String gender) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "insert into member values(?,?,?,?,?,?,?,?)";
@@ -97,34 +94,32 @@ public class MemberDAO {
 
 	}
 	
-	public ArrayList<MemberDTO> outputData(String id) throws Exception{
-		
+	public MemberDTO outputData(String id) throws Exception{
+		MemberDTO dto = new MemberDTO();
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from member where member_id=?";	
-		
+		String sql = "select * from member";		
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setString(1, id);
-		ResultSet rs = pstat.executeQuery();	
+
 		
-        ArrayList<MemberDTO> al = new ArrayList<>();
+		ResultSet rs = pstat.executeQuery();	
+
 		while(rs.next()) {
-			MemberDTO dto = new MemberDTO();
-			dto.setId(rs.getString(1));
-			dto.setPw(rs.getString(2));
-			dto.setName(rs.getString(3));
-			dto.setPhone(rs.getString(4));
-			dto.setEmail(rs.getString(5));
-			dto.setZipcode(rs.getString(6));
-			dto.setAddress(rs.getString(7));
-			dto.setGender(rs.getString(8));
-			al.add(dto);
+			dto.setId(rs.getString("id"));
+			dto.setPw(rs.getString("pw"));
+			dto.setName(rs.getString("name"));
+			dto.setPhone(rs.getString("phone"));
+			dto.setEmail(rs.getString("email"));
+			dto.setZipcode(rs.getString("zipcode"));
+			dto.setAddress(rs.getString("address"));
+			dto.setGender(rs.getString("gender"));
+
 		}	
 
 		con.commit();
 		pstat.close();	
 		con.close();
-		
-		return al;
+
+		return dto;
 	}
 	
 	
@@ -167,6 +162,49 @@ public class MemberDAO {
 		con.close();
 		
 
+		
+		return result;
+	}
+	
+	public int googleInsertData(String id, String name, String email) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "insert into member values(?,null,?,null,?,null,null,null,'google')";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, id);
+		pstat.setString(2, name);
+		pstat.setString(3, email);
+		
+		int result = pstat.executeUpdate();
+		
+		con.commit();
+		pstat.close();
+		con.close();
+		
+
+		
+		return result;
+		
+	}
+	
+	public boolean idCheck(String id) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from member where member_id = ?";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, id);
+		ResultSet rs = pstat.executeQuery();
+		
+		boolean result = false;
+		
+		if(rs.next()) {
+			result = true;
+		}
+		
+		pstat.close();
+		con.close();
+		rs.close();
 		
 		return result;
 	}
