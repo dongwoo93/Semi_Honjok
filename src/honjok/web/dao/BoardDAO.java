@@ -8,15 +8,95 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import honjok.web.dto.BoardUserDTO;
-import honjok.web.dto.CommentFreeDTO;
 import honjok.web.dbutils.DBUtils;
+import honjok.web.dto.BoardUserDTO;
 
 public class BoardDAO {	
 	public List<BoardUserDTO> selectFree() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free'";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 4";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>(); 
+		
+		
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			list.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return list;
+	
+	}
+	
+	public List<BoardUserDTO> selectQna() throws Exception {
+
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='qna') where num between 1 and 4";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>(); 
+		
+		
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			list.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return list;
+	
+	}
+	
+	public List<BoardUserDTO> selectCounsel() throws Exception {
+
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='coun') where num between 1 and 4";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>(); 
+		
+		
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			list.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return list;
+	
+	}
+	
+	public List<BoardUserDTO> selectTip() throws Exception {
+
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between 1 and 4";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		
@@ -333,42 +413,8 @@ public class BoardDAO {
 		con.close();
 		return result;
 	}
-	public int insertComment(CommentFreeDTO dto) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "insert into comment_free values(comment_user_seq.nextval,?,?,sysdate,?)";
-		PreparedStatement pstat = con.prepareStatement(sql);
-
-		pstat.setInt(1, dto.getBoard_free_seq());
-		pstat.setString(2, dto.getCommu_free_text());
-		pstat.setString(3, dto.getFree_ip());
-
-		int result = pstat.executeUpdate();
-		con.commit();
-		pstat.close();
-		con.close();
-		return result;		
-	}
-	public List<CommentFreeDTO> selectComment(int seq) throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select * from comment_free where comment_free_seq=?";
-		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, seq);
-		ResultSet rs = pstat.executeQuery();
-		List<CommentFreeDTO> list = new ArrayList<>();
-		while(rs.next()) {
-			CommentFreeDTO dto = new CommentFreeDTO();
-			dto.setComment_free_seq(rs.getInt(1));
-			dto.setBoard_free_seq(rs.getInt(2));
-			dto.setCommu_free_text(rs.getString(3));
-			dto.setFree_writedate(rs.getString(4));
-			dto.setFree_ip(rs.getString(5));
-			list.add(dto);
-		}
-		con.commit();
-		pstat.close();
-		con.close();
-		return list;
-	}
+	
+	
 	public int deleteData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "delete from board_user where user_seq=?";
@@ -382,11 +428,13 @@ public class BoardDAO {
 	}
 	public int modifyData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "update board_user set user_title=?, user_contents=?, user_writedate=sysdate where user_seq=?";
+		String sql = "update board_user set user_title=?, user_contents=?, user_header=? where user_category=? and user_cat_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, dto.getTitle());
 		pstat.setString(2, dto.getContents());
-		pstat.setInt(3, dto.getSeq());
+		pstat.setString(3, dto.getHeader());
+		pstat.setString(4, dto.getCategory());
+		pstat.setInt(5, dto.getSeq());
 
 		int result = pstat.executeUpdate();
 

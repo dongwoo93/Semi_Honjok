@@ -141,13 +141,12 @@
 				</thead>
 
 				<tbody>
-					<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
-						varStatus="status">
+					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
-							<td class="td-contents">${item.seq}</td>
-							<td class="td-contents">${item.title}</td>
-							<td class="td-contents">${item.contents}</td>
-							<td class="td-contents">${item.writer}</td>
+							<td class="td-contents">${free.seq}</td>
+							<td class="td-contents">${free.title}</td>
+							<td class="td-contents">${free.contents}</td>
+							<td class="td-contents">${free.writer}</td>
 						</tr>
 					</c:forEach>
 
@@ -173,30 +172,15 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td class="td-contents">제목이다</td>
-						<td class="td-contents">내용이다</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td class="td-contents">95</td>
-						<td class="td-contents">$12,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td class="td-contents">150</td>
-						<td class="td-contents">$20,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td class="td-contents">50</td>
-						<td class="td-contents">$30,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
+					<c:forEach var="qna" items="${qna}" varStatus="status">
+						<tr>
+							<td class="td-contents">${qna.seq}</td>
+							<td class="td-contents">${qna.title}</td>
+							<td class="td-contents">${qna.contents}</td>
+							<td class="td-contents">${qna.writer}</td>
+						</tr>
+					</c:forEach>
+
 				</tbody>
 			</table>
 		</div>
@@ -299,30 +283,15 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td class="td-contents">제목이다</td>
-						<td class="td-contents">내용이다</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td class="td-contents">95</td>
-						<td class="td-contents">$12,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td class="td-contents">150</td>
-						<td class="td-contents">$20,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td class="td-contents">50</td>
-						<td class="td-contents">$30,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
+					<c:forEach var="counsel" items="${counsel}" varStatus="status">
+						<tr>
+							<td class="td-contents">${counsel.seq}</td>
+							<td class="td-contents">${counsel.title}</td>
+							<td class="td-contents">${counsel.contents}</td>
+							<td class="td-contents">${counsel.writer}</td>
+						</tr>
+					</c:forEach>
+
 				</tbody>
 			</table>
 		</div>
@@ -344,30 +313,15 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td class="td-contents">제목이다</td>
-						<td class="td-contents">내용이다</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td class="td-contents">95</td>
-						<td class="td-contents">$12,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td class="td-contents">150</td>
-						<td class="td-contents">$20,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td class="td-contents">50</td>
-						<td class="td-contents">$30,000.00</td>
-						<td class="td-contents">작성자다</td>
-					</tr>
+					<c:forEach var="tip" items="${tip}" varStatus="status">
+						<tr>
+							<td class="td-contents">${tip.seq}</td>
+							<td class="td-contents">${tip.title}</td>
+							<td class="td-contents">${tip.contents}</td>
+							<td class="td-contents">${tip.writer}</td>
+						</tr>
+					</c:forEach>
+
 				</tbody>
 			</table>
 		</div>
