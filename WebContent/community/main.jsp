@@ -12,6 +12,5 @@ function loca() {
 </script>
 </head>
 <body onload="loca()">
-
 </body>
 </html>

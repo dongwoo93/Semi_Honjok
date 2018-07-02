@@ -18,9 +18,12 @@ import org.json.simple.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import honjok.web.dao.BoardCommentDAO;
 import honjok.web.dao.BoardDAO;
+import honjok.web.dao.BoardLikeDAO;
+import honjok.web.dto.BoardCommentDTO;
 import honjok.web.dto.BoardUserDTO;
-import honjok.web.dto.CommentFreeDTO;
+import honjok.web.dto.LikeDTO;
 
 @WebServlet("*.freeb")
 public class Board_Controller extends HttpServlet {
@@ -33,7 +36,6 @@ public class Board_Controller extends HttpServlet {
 		try {
 			String requestURI = request.getRequestURI();
 			String contextPath = request.getContextPath();
-
 			String command = requestURI.substring(contextPath.length());
 //			String id = (String)request.getSession().getAttribute("loginId");
 			String id = "히오스";
@@ -42,9 +44,15 @@ public class Board_Controller extends HttpServlet {
 			if(command.equals("/hontalkView.freeb")){
 	            BoardDAO dao = new BoardDAO();
 	            
-	            List<BoardUserDTO> result = dao.selectFree();
+	            List<BoardUserDTO> free = dao.selectFree();
+	            List<BoardUserDTO> qna = dao.selectQna();
+	            List<BoardUserDTO> counsel = dao.selectCounsel();
+	            List<BoardUserDTO> tip = dao.selectTip();
 	            
-	            request.setAttribute("result", result);
+	            request.setAttribute("free", free);
+	            request.setAttribute("qna", qna);
+	            request.setAttribute("counsel", counsel);
+	            request.setAttribute("tip", tip);
 
 	            isRedirect=false;
 	            dst = "/community/hontalkView.jsp";
@@ -82,7 +90,7 @@ public class Board_Controller extends HttpServlet {
 					navi = dao.getPageNavi(currentPage, category);
 				}
 				
-				System.out.println(result);
+
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
@@ -144,10 +152,27 @@ public class Board_Controller extends HttpServlet {
 				dst = "freeboardResult.jsp";
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
+				id = "ykng10";
+
+				request.setAttribute("id", id);
+				BoardLikeDAO like = new BoardLikeDAO();
+				try {
+					boolean result = like.LikeExist(no, id);
+					if(!result) {
+						int insertLike = like.insertData(no, id);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				LikeDTO likeDto = like.SelectLike(no, id);
+				String likeStat = likeDto.getLikeCheck();
 				int seq = Integer.parseInt(no);
 
 				BoardDAO dao = new BoardDAO();
 				List<BoardUserDTO> result = dao.readData(seq);
+				BoardCommentDAO comment = new BoardCommentDAO();
+				List<BoardCommentDTO> result2 = comment.selectComment(seq);
 				
 				if (!id.equals(result.get(0).getWriter())) {
 	                int viewCount = Integer.parseInt(count) + 1;
@@ -155,7 +180,10 @@ public class Board_Controller extends HttpServlet {
 	             }
 				
 				request.setAttribute("result", result);
+				request.setAttribute("result2", result2);
+				request.setAttribute("no", no);
 				request.setAttribute("count", count);
+				request.setAttribute("likeStat", likeStat);
 				isRedirect = false;
 				dst = "community/articleView.jsp";
 			}else if(command.equals("/upload.freeb")) {
@@ -192,36 +220,84 @@ public class Board_Controller extends HttpServlet {
 				response.getWriter().close();
 				return;
 			}else if(command.equals("/comment.freeb")) {
-				String no = request.getParameter("no");
-				int seq = Integer.parseInt(no);
 				
-				BoardDAO dao = new BoardDAO();
-				CommentFreeDTO dto = new CommentFreeDTO();
 				
-				String boardseq = request.getParameter("board_free_seq");
-				int Boardseq = Integer.parseInt(boardseq);
-				String text = request.getParameter("commu_free_text");
+				BoardCommentDAO dao = new BoardCommentDAO();
+				
+				String boardseq = request.getParameter("no");
+				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
+				String writer = "끼욧";
 				
-				dto.setBoard_free_seq(Boardseq);
-				dto.setCommu_free_text(text);
-				dto.setFree_ip(ip);
+				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
 				int result = dao.insertComment(dto);
 				
+				isRedirect = false;
+				dst = "Board_Controller.freeb?no="+boardseq+"&count="+count;		
+			}else if(command.equals("/fix.freeb")) {
+				String seq = request.getParameter("no");
+				int articleseq = Integer.parseInt(seq);
+				
+				BoardDAO dao = new BoardDAO();
+				
+				BoardUserDTO result = dao.modifyRead(articleseq);
 				request.setAttribute("result", result);
 				isRedirect = false;
-				dst = "community/articleView.jsp";				
-			}else if(command.equals("/fix.freeb")) {
+				dst = "community/usermodify.jsp";
+			}else if(command.equals("/fixcomplete.freeb")) {
+				BoardDAO dao = new BoardDAO();
+				BoardUserDTO dto = new BoardUserDTO();
 				
+				String article_seq = request.getParameter("seq");
+				int articleseq = Integer.parseInt(article_seq);
+				String categoryseq = request.getParameter("cat_seq");
+				int cat_seq = Integer.parseInt(categoryseq);
+				
+				String header = request.getParameter("header");
+				String title = request.getParameter("title");
+				String contents = request.getParameter("contents");
+				String category = request.getParameter("category");
+				
+				dto.setSeq(articleseq);
+				dto.setCat_seq(cat_seq);
+				dto.setHeader(header);
+				dto.setTitle(title);
+				dto.setContents(contents);
+				dto.setCategory(category);
+				
+				int result = dao.modifyData(dto);
+				request.setAttribute("result", result);
+				isRedirect = false;
+				dst = "community/modifyResult";
 			}else if(command.equals("/delete.freeb")) {
+				String articleseq = request.getParameter("no");
+				String category = request.getParameter("cat");
+				int seq = Integer.parseInt(articleseq);
+				BoardDAO dao = new BoardDAO();
+				BoardUserDTO dto = new BoardUserDTO();
 				
+
+				
+//				List<BoardUserDTO> free = dao.selectFree();
+//	            List<BoardUserDTO> qna = dao.selectQna();
+//	            List<BoardUserDTO> counsel = dao.selectCounsel();
+//	            List<BoardUserDTO> tip = dao.selectTip();
+	            
+				int result = dao.deleteData(seq);
+//				request.setAttribute("result", result);
+//				request.setAttribute("free", free);
+//	            request.setAttribute("qna", qna);
+//	            request.setAttribute("counsel", counsel);
+//	            request.setAttribute("tip", tip);
+				isRedirect = false;
+				dst = "boardView.freeb?cat="+category;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		if(isRedirect) {
-
+			response.sendRedirect(dst);
 		}else {
 
 			RequestDispatcher rd = request.getRequestDispatcher(dst);

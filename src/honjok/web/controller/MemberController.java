@@ -49,17 +49,17 @@ public class MemberController extends HttpServlet {
 				isRedirect = false;
 				dst = "signup.jsp";
 
+
 			} else if(command.equals("/idcheck.mem")) {
 				String id= request.getParameter("value");
 				boolean result = dao.isIdExist(id);
 				if(result) {
-					String check = "아이디가 중복되었습니다";
+					String check = "이미 존재하는 아이디입니다.";
 					out.println(check);
-					System.out.println(check);
 					return;
 
 				} else {
-					String check = "중복되지 않아,사용가능합니다";
+					String check = "사용할 수 있는 아이디 입니다.";
 					out.println(check);
 					return;
 

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import honjok.web.dao.MemberDAO;
 import testDAO.testDAO;
 
 
@@ -32,12 +33,17 @@ public class loginController extends HttpServlet {
 		boolean isRedirect = true;
 		String dst = null;
 
+		
 		request.setCharacterEncoding("utf8");
+		response.setCharacterEncoding("utf8");
+		
+		MemberDAO dao = new MemberDAO();
+		
 
 		try {
-
 			String requestURI = request.getRequestURI();
 			String contextPath = request.getContextPath();
+
 
 			String command = requestURI.substring(contextPath.length());
 			if(command.equals("/kakaotest.do")) {
@@ -51,22 +57,15 @@ public class loginController extends HttpServlet {
 					email = email.replace("\"", "");
 					name = name.replace("\"", "");
 
-
-					System.out.println(id);
-					System.out.println(email);
-					System.out.println(name);
-
-					testDAO dao = new testDAO();
-
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("°¡ÀÔµÈ°æ¿ì ±×³É Áö³ª°¨");
+
 					}else {
 						dao.kakaoInsertData(id, name, email);
-						System.out.println("°¡ÀÔ¾ÈµÈ°æ¿ì ÁøÀÔ È¸¿ø°¡ÀÔÇÊ¿ä");
-					}         
 
+					}         
+					request.getSession().setAttribute("loginId", id);
 					dst = "hollo.com";
 
 				}catch(Exception e) {
@@ -74,8 +73,8 @@ public class loginController extends HttpServlet {
 				}
 
 			}else if(command.equals("/naver.do")) {
-				System.out.println("naver.do µé¾î¿È");
-				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌµð°ª";
+
+				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½";
 				String redirectURI = URLEncoder.encode("http://192.168.20.9:8080/Semi_Honjok/navertest", "UTF-8");
 				SecureRandom random = new SecureRandom();
 				String state = new BigInteger(130, random).toString();
@@ -94,15 +93,15 @@ public class loginController extends HttpServlet {
 
 			}else if(command.equals("/abc.do")) {
 
-				PrintWriter out = response.getWriter();
+				
 				response.setContentType("text/html; charset=utf-8");
 
 				String access = request.getParameter("access");
 				String token1 = access;
 
-				System.out.println(token1+"");
 
-				String header = "Bearer " + token1; // Bearer ´ÙÀ½¿¡ °ø¹é Ãß°¡
+
+				String header = "Bearer " + token1; // Bearer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 				try {
 					String apiURL = "https://openapi.naver.com/v1/nid/me";
 					URL url = new URL(apiURL);
@@ -111,12 +110,12 @@ public class loginController extends HttpServlet {
 					con.setRequestProperty("Authorization", header);
 					int responseCode = con.getResponseCode();
 					BufferedReader br;
-					if(responseCode==200) { // Á¤»ó È£Ãâ
+					if(responseCode==200) { // ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 						br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-						System.out.println("Á¤»óÈ£Ãâ");
-					} else {  // ¿¡·¯ ¹ß»ý
+
+					} else {  // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
 						br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-						System.out.println("¿¡·¯¹ß»ý");
+
 					}
 					String inputLine;
 					StringBuffer response1 = new StringBuffer();
@@ -128,10 +127,10 @@ public class loginController extends HttpServlet {
 					JSONParser jsPars = new JSONParser();
 					String Alldata = response1.toString();
 					JSONObject jsOBj = (JSONObject)jsPars.parse(Alldata);           
-					System.out.println(response1.toString());
+
 
 					String member = jsOBj.get("response").toString();
-					System.out.println(member);
+
 
 					JSONObject jsOBj2 = (JSONObject)jsPars.parse(member);
 					String id = jsOBj2.get("id").toString();
@@ -139,52 +138,41 @@ public class loginController extends HttpServlet {
 					String gender = jsOBj2.get("gender").toString();
 					String email = jsOBj2.get("email").toString();
 
-					System.out.println(id);
-					System.out.println(name);
-					System.out.println(gender);
-					System.out.println(email);	
 
-					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("°¡ÀÔµÈ°æ¿ì ±×³É Áö³ª°¨");
+
 					}else {
 						dao.naverInserData(id, name, email, gender);
-						System.out.println("°¡ÀÔ¾ÈµÈ°æ¿ì ÁøÀÔ È¸¿ø°¡ÀÔÇÊ¿ä");
+
 					}         
 
 					dst = "naverclose.jsp";
 
 				} catch (Exception e) {
-					System.out.println(e);
+
 				}
 			}else if(command.equals("/google.do")) {
 
 				try {
 
-					System.out.println("±¸±ÛÁøÀÔ");
 
 					String id = request.getParameter("id");
 					String email = request.getParameter("email");
 					String name = request.getParameter("name");
 
-					System.out.println(id);
-					System.out.println(email);
-					System.out.println(name);
-
-					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("°¡ÀÔµÈ°æ¿ì ±×³É Áö³ª°¨");
+
 					}else {
 						dao.googleInsertData(id, name, email);
-						System.out.println("°¡ÀÔ¾ÈµÈ°æ¿ì ÁøÀÔ È¸¿ø°¡ÀÔÇÊ¿ä");
-					}         
 
+					}         
+					
 					dst = "hollo.com";
 
 				}catch(Exception e) {
@@ -192,6 +180,38 @@ public class loginController extends HttpServlet {
 				}
 
 
+			}else if(command.equals("/login.do")) {
+				
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+
+				boolean result = dao.idpwCheck(id, pw);
+				String resultStr = String.valueOf(result);
+						
+				dst = "hollo.com";
+
+				
+				JSONObject o1 = new JSONObject();
+				o1.put("result", resultStr);
+				
+				response.setCharacterEncoding("utf8");
+				response.setContentType("application/json");
+				if(result) {
+					request.getSession().setAttribute("loginId", id);
+					response.getWriter().print(o1);
+					response.getWriter().flush();
+					response.getWriter().close();
+					return;
+				}else {
+					response.getWriter().print(o1);
+					response.getWriter().flush();
+					response.getWriter().close();
+					return;
+				}
+				
+			}else if(command.equals("/logout.do")) {
+				request.getSession().invalidate();
+				dst = "hollo.com";
 			}
 
 		}catch(Exception e) {
@@ -199,6 +219,7 @@ public class loginController extends HttpServlet {
 		}
 		if(isRedirect) {
 			response.sendRedirect(dst);
+
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);

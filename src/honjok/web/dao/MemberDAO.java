@@ -13,6 +13,31 @@ import honjok.web.dto.MemberDTO;
 
 public class MemberDAO {
 	
+	public boolean idpwCheck(String id, String pw)throws Exception{
+		boolean b = false;
+		Connection con = DBUtils.getConnection();
+		
+		String sql = "select * from member where member_id=? and member_pw=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, id);
+		pstat.setString(2, pw);
+		
+		ResultSet rs = pstat.executeQuery();
+		
+		if(rs.next()) {
+			b=true;
+		}
+
+		
+		rs.close();
+		con.close();
+		pstat.close();
+		
+		return b;
+		
+	}
+	
 	public int deleteData(String id, String pw)throws Exception{
 		Connection con = DBUtils.getConnection();
 		
@@ -102,8 +127,49 @@ public class MemberDAO {
 		return al;
 	}
 	
+	
+	public int kakaoInsertData(String id, String name, String email) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "insert into member values(?,null,?,null,?,null,null,null,'kakao')";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, id);
+		pstat.setString(2, name);
+		pstat.setString(3, email);
+		
+		int result = pstat.executeUpdate();
+		
+		con.commit();
+		pstat.close();
+		con.close();
 
+		
+		return result;
+		
+	}
+	
+	public int naverInserData(String id, String name, String email, String gender) throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "insert into member values(?,null,?,null,?,null,null,?,'naver')";
+		
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, id);
+		pstat.setString(2, name);
+		pstat.setString(3, email);
+		pstat.setString(4, gender);
+		
+		int result = pstat.executeUpdate();
+		
+		con.commit();
+		pstat.close();
+		con.close();
+		
 
+		
+		return result;
+	}
 	
 	public int updateData(String id,String pw,String name,String phone,String email,String zipcode,String address) throws Exception{
 		Connection con = DBUtils.getConnection();
