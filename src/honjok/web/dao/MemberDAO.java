@@ -13,13 +13,11 @@ public class MemberDAO {
 	
 	public boolean idpwCheck(String id, String pw)throws Exception{
 		boolean b = false;
-		System.out.println("여기에 들어옴");
 		Connection con = DBUtils.getConnection();
 		
-		System.out.println("들어옴");
 		String sql = "select * from member where member_id=? and member_pw=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
-		System.out.println("db에서 오류남");
+		
 		pstat.setString(1, id);
 		pstat.setString(2, pw);
 		
@@ -27,10 +25,8 @@ public class MemberDAO {
 		
 		if(rs.next()) {
 			b=true;
-			System.out.println("들어오냐");
 		}
-		System.out.println(b);
-		System.out.println("뭐야");
+
 		
 		rs.close();
 		con.close();
