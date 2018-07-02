@@ -13,7 +13,7 @@ public class MemberDAO {
 	
 	public int deleteData(String id, String pw)throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "delete * from member where id=?, pw =?";	
+		String sql = "delete * from member where member_id=?, member_pw =?";	
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		pstat.setString(2, pw);
@@ -31,7 +31,7 @@ public class MemberDAO {
 	
 	public boolean isIdExist(String id)throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from member where id =?";
+		String sql = "select * from member where member_id =?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		ResultSet rs = pstat.executeQuery();
