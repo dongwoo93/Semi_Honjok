@@ -91,7 +91,7 @@
 					<p>We had such a great time in LA!</p>
 				</div>
 			</div>	
-			<!-- <div class="carousel-item">
+			 <div class="carousel-item">
 				<img src="imges/뒷모습.jpg" alt="Chicago">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
@@ -104,7 +104,7 @@
 					<h3>New York</h3>
 					<p>We love the Big Apple!</p>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</div>
 	<div>

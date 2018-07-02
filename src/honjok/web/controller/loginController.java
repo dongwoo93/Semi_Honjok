@@ -35,7 +35,6 @@ public class loginController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 
 		try {
-
 			String requestURI = request.getRequestURI();
 			String contextPath = request.getContextPath();
 
@@ -61,10 +60,10 @@ public class loginController extends HttpServlet {
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("°¡ÀÔµÈ°æ¿ì ±×³É Áö³ª°¨");
+						System.out.println("ï¿½ï¿½ï¿½ÔµÈ°ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 					}else {
 						dao.kakaoInsertData(id, name, email);
-						System.out.println("°¡ÀÔ¾ÈµÈ°æ¿ì ÁøÀÔ È¸¿ø°¡ÀÔÇÊ¿ä");
+						System.out.println("ï¿½ï¿½ï¿½Ô¾ÈµÈ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½");
 					}         
 
 					dst = "hollo.com";
@@ -74,8 +73,8 @@ public class loginController extends HttpServlet {
 				}
 
 			}else if(command.equals("/naver.do")) {
-				System.out.println("naver.do µé¾î¿È");
-				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌµð°ª";
+				System.out.println("naver.do ï¿½ï¿½ï¿½ï¿½");
+				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½";
 				String redirectURI = URLEncoder.encode("http://192.168.20.9:8080/Semi_Honjok/navertest", "UTF-8");
 				SecureRandom random = new SecureRandom();
 				String state = new BigInteger(130, random).toString();
@@ -102,7 +101,7 @@ public class loginController extends HttpServlet {
 
 				System.out.println(token1+"");
 
-				String header = "Bearer " + token1; // Bearer ´ÙÀ½¿¡ °ø¹é Ãß°¡
+				String header = "Bearer " + token1; // Bearer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 				try {
 					String apiURL = "https://openapi.naver.com/v1/nid/me";
 					URL url = new URL(apiURL);
@@ -111,12 +110,12 @@ public class loginController extends HttpServlet {
 					con.setRequestProperty("Authorization", header);
 					int responseCode = con.getResponseCode();
 					BufferedReader br;
-					if(responseCode==200) { // Á¤»ó È£Ãâ
+					if(responseCode==200) { // ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 						br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-						System.out.println("Á¤»óÈ£Ãâ");
-					} else {  // ¿¡·¯ ¹ß»ý
+						System.out.println("ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½");
+					} else {  // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
 						br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-						System.out.println("¿¡·¯¹ß»ý");
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½");
 					}
 					String inputLine;
 					StringBuffer response1 = new StringBuffer();
@@ -149,10 +148,10 @@ public class loginController extends HttpServlet {
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("°¡ÀÔµÈ°æ¿ì ±×³É Áö³ª°¨");
+						System.out.println("ï¿½ï¿½ï¿½ÔµÈ°ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 					}else {
 						dao.naverInserData(id, name, email, gender);
-						System.out.println("°¡ÀÔ¾ÈµÈ°æ¿ì ÁøÀÔ È¸¿ø°¡ÀÔÇÊ¿ä");
+						System.out.println("ï¿½ï¿½ï¿½Ô¾ÈµÈ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½");
 					}         
 
 					dst = "naverclose.jsp";
@@ -164,7 +163,7 @@ public class loginController extends HttpServlet {
 
 				try {
 
-					System.out.println("±¸±ÛÁøÀÔ");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 					String id = request.getParameter("id");
 					String email = request.getParameter("email");
@@ -179,10 +178,10 @@ public class loginController extends HttpServlet {
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("°¡ÀÔµÈ°æ¿ì ±×³É Áö³ª°¨");
+						System.out.println("ï¿½ï¿½ï¿½ÔµÈ°ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 					}else {
 						dao.googleInsertData(id, name, email);
-						System.out.println("°¡ÀÔ¾ÈµÈ°æ¿ì ÁøÀÔ È¸¿ø°¡ÀÔÇÊ¿ä");
+						System.out.println("ï¿½ï¿½ï¿½Ô¾ÈµÈ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½");
 					}         
 
 					dst = "hollo.com";
