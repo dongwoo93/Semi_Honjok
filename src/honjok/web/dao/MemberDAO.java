@@ -11,9 +11,34 @@ import honjok.web.dbutils.DBUtils;
 
 public class MemberDAO {
 	
+	public boolean idpwCheck(String id, String pw)throws Exception{
+		boolean b = false;
+		Connection con = DBUtils.getConnection();
+		
+		String sql = "select * from member where member_id=? and member_pw=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, id);
+		pstat.setString(2, pw);
+		
+		ResultSet rs = pstat.executeQuery();
+		
+		if(rs.next()) {
+			b=true;
+		}
+
+		
+		rs.close();
+		con.close();
+		pstat.close();
+		
+		return b;
+		
+	}
+	
 	public int deleteData(String id, String pw)throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "delete * from member where id=?, pw =?";	
+		String sql = "delete * from member where member_id=?, member_pw =?";	
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		pstat.setString(2, pw);
@@ -31,7 +56,7 @@ public class MemberDAO {
 	
 	public boolean isIdExist(String id)throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from member where id =?";
+		String sql = "select * from member where member_id =?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		ResultSet rs = pstat.executeQuery();
