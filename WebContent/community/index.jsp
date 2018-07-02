@@ -450,7 +450,7 @@
 			<div class="modal-content">
 
 				<div class="login-form">
-					<form action="/examples/actions/confirmation.php" method="post">
+					<form action="login.do" method="post">
 						<div class="avatar">
 							<img src="avatar.png" alt="Avatar" />
 						</div>
@@ -483,8 +483,8 @@
 						</div>
 						<div class="form-group">
 							<button type="submit"
-								class="btn btn-primary btn-lg btn-block login-btn">Sign
-								In</button>
+								class="btn btn-primary btn-lg btn-block login-btn">LOGIN
+								</button>
 						</div>
 						<p class="text-center small">
 							<a href="#">Forgot Password?</a>

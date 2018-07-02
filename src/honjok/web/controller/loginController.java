@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import honjok.web.dao.MemberDAO;
 import testDAO.testDAO;
 
 
@@ -50,11 +51,6 @@ public class loginController extends HttpServlet {
 
 					email = email.replace("\"", "");
 					name = name.replace("\"", "");
-
-
-					System.out.println(id);
-					System.out.println(email);
-					System.out.println(name);
 
 					testDAO dao = new testDAO();
 
@@ -139,10 +135,6 @@ public class loginController extends HttpServlet {
 					String gender = jsOBj2.get("gender").toString();
 					String email = jsOBj2.get("email").toString();
 
-					System.out.println(id);
-					System.out.println(name);
-					System.out.println(gender);
-					System.out.println(email);	
 
 					testDAO dao = new testDAO();
 
@@ -170,9 +162,6 @@ public class loginController extends HttpServlet {
 					String email = request.getParameter("email");
 					String name = request.getParameter("name");
 
-					System.out.println(id);
-					System.out.println(email);
-					System.out.println(name);
 
 					testDAO dao = new testDAO();
 
@@ -192,6 +181,22 @@ public class loginController extends HttpServlet {
 				}
 
 
+			}else if(command.equals("/login.do")) {
+				String id = request.getParameter("username");
+				String pw = request.getParameter("password");
+				System.out.println(id);
+				System.out.println(pw);
+				MemberDAO dao = new MemberDAO();
+				boolean result = dao.idpwCheck(id, pw);
+				
+				System.out.println(result);
+				
+				if(result) {
+					dst = "hollo.com";
+				}else {
+					System.out.println("½ÇÆÐ");
+				}
+				
 			}
 
 		}catch(Exception e) {
