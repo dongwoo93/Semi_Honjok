@@ -27,7 +27,7 @@ public class BoardTipDAO {
 	
 	public int insertData(BoardDTO dto) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, sysdate)";
+		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, sysdate, 0)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());
 		con.setAutoCommit(false);
@@ -211,6 +211,7 @@ public class BoardTipDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setViewcount(rs.getInt(6));
 			dto.setWritedate(rs.getString(7));
+			dto.setLikeit(rs.getInt(8));
 			Reader instream = rs.getCharacterStream("contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
 			int length = 0;   // length of characters read
@@ -250,6 +251,7 @@ public class BoardTipDAO {
 			dto.setContents("");
 			dto.setViewcount(rs.getInt(6));
 			dto.setWritedate(rs.getString(7));
+			dto.setLikeit(rs.getInt(8));
 			list.add(dto);
 		}
 		pstat.close();
@@ -277,6 +279,7 @@ public class BoardTipDAO {
 			dto.setContents("");
 			dto.setViewcount(rs.getInt(6));
 			dto.setWritedate(rs.getString(7));
+			dto.setLikeit(rs.getInt(8));
 			list.add(dto);
 		}
 		pstat.close();
