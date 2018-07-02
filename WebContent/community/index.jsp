@@ -103,23 +103,21 @@
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="imges/sky.jpg" alt="Los Angeles" width="1200" height="700">
+				<img src="imges/헬퍼.jpg" alt="Los Angeles">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
 					<p>We had such a great time in LA!</p>
 				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="imges/nature-3042751_1280.jpg" alt="Chicago" width="1200"
-					height="700">
+			</div>	
+			 <div class="carousel-item">
+				<img src="imges/뒷모습.jpg" alt="Chicago">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
 					<p>Thank you, Chicago!</p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="imges/hiker-1149898_1280.jpg" alt="New York" width="1200"
-					height="700">
+				<img src="imges/불꽃.jpg" alt="New York">
 				<div class="carousel-caption">
 					<h3>New York</h3>
 					<p>We love the Big Apple!</p>
