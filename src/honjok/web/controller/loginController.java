@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import honjok.web.dao.MemberDAO;
 import testDAO.testDAO;
 
 
@@ -32,11 +33,15 @@ public class loginController extends HttpServlet {
 		boolean isRedirect = true;
 		String dst = null;
 
+		
 		request.setCharacterEncoding("utf8");
+		response.setCharacterEncoding("utf8");
+		
 
 		try {
 			String requestURI = request.getRequestURI();
 			String contextPath = request.getContextPath();
+
 
 			String command = requestURI.substring(contextPath.length());
 			if(command.equals("/kakaotest.do")) {
@@ -50,22 +55,17 @@ public class loginController extends HttpServlet {
 					email = email.replace("\"", "");
 					name = name.replace("\"", "");
 
-
-					System.out.println(id);
-					System.out.println(email);
-					System.out.println(name);
-
 					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("���ԵȰ�� �׳� ������");
+
 					}else {
 						dao.kakaoInsertData(id, name, email);
-						System.out.println("���ԾȵȰ�� ���� ȸ�������ʿ�");
-					}         
 
+					}         
+					request.getSession().setAttribute("loginId", id);
 					dst = "hollo.com";
 
 				}catch(Exception e) {
@@ -93,7 +93,7 @@ public class loginController extends HttpServlet {
 
 			}else if(command.equals("/abc.do")) {
 
-				PrintWriter out = response.getWriter();
+				
 				response.setContentType("text/html; charset=utf-8");
 
 				String access = request.getParameter("access");
@@ -112,10 +112,10 @@ public class loginController extends HttpServlet {
 					BufferedReader br;
 					if(responseCode==200) { // ���� ȣ��
 						br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-						System.out.println("����ȣ��");
+
 					} else {  // ���� �߻�
 						br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-						System.out.println("�����߻�");
+
 					}
 					String inputLine;
 					StringBuffer response1 = new StringBuffer();
@@ -138,20 +138,16 @@ public class loginController extends HttpServlet {
 					String gender = jsOBj2.get("gender").toString();
 					String email = jsOBj2.get("email").toString();
 
-					System.out.println(id);
-					System.out.println(name);
-					System.out.println(gender);
-					System.out.println(email);	
 
 					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("���ԵȰ�� �׳� ������");
+
 					}else {
 						dao.naverInserData(id, name, email, gender);
-						System.out.println("���ԾȵȰ�� ���� ȸ�������ʿ�");
+
 					}         
 
 					dst = "naverclose.jsp";
@@ -163,27 +159,23 @@ public class loginController extends HttpServlet {
 
 				try {
 
-					System.out.println("��������");
 
 					String id = request.getParameter("id");
 					String email = request.getParameter("email");
 					String name = request.getParameter("name");
 
-					System.out.println(id);
-					System.out.println(email);
-					System.out.println(name);
 
 					testDAO dao = new testDAO();
 
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-						System.out.println("���ԵȰ�� �׳� ������");
+
 					}else {
 						dao.googleInsertData(id, name, email);
-						System.out.println("���ԾȵȰ�� ���� ȸ�������ʿ�");
-					}         
 
+					}         
+					
 					dst = "hollo.com";
 
 				}catch(Exception e) {
@@ -191,6 +183,40 @@ public class loginController extends HttpServlet {
 				}
 
 
+			}else if(command.equals("/login.do")) {
+				
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+				
+				System.out.println(id + pw);
+				MemberDAO dao = new MemberDAO();
+				boolean result = dao.idpwCheck(id, pw);
+				String resultStr = String.valueOf(result);
+						
+				dst = "hollo.com";
+				System.out.println(result);
+				
+				JSONObject o1 = new JSONObject();
+				o1.put("result", resultStr);
+				
+				response.setCharacterEncoding("utf8");
+				response.setContentType("application/json");
+				if(result) {
+					request.getSession().setAttribute("loginId", id);
+					response.getWriter().print(o1);
+					response.getWriter().flush();
+					response.getWriter().close();
+					return;
+				}else {
+					response.getWriter().print(o1);
+					response.getWriter().flush();
+					response.getWriter().close();
+					return;
+				}
+				
+			}else if(command.equals("/logout.do")) {
+				request.getSession().invalidate();
+				dst = "hollo.com";
 			}
 
 		}catch(Exception e) {
@@ -198,6 +224,7 @@ public class loginController extends HttpServlet {
 		}
 		if(isRedirect) {
 			response.sendRedirect(dst);
+			System.out.println("트루다");
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher(dst);
 			rd.forward(request, response);
