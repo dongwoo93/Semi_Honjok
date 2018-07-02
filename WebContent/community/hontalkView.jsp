@@ -65,7 +65,6 @@
 
 </head>
 <body>
-<<<<<<< Updated upstream
 <nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 <img src="imges/coffee.png" width=60 height=60>
    <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
@@ -107,7 +106,6 @@
       <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
    </ul>
    </nav>
-=======
 	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
 	<img src="imges/coffee.png" width=60 height=60> <a
 		class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
@@ -150,7 +148,6 @@
 		<li class="nav-item"><a href="#" class="nav-link">Login</a></li>
 	</ul>
 	</nav>
->>>>>>> Stashed changes
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -195,11 +192,6 @@
 						<th>작성자</th>
 					</tr>
 				</thead>
-				<c:choose>
-					<c:when test="${result.size() > 0}">
-						<c:forEach var="item" items="${result}" begin="0" end="3" step="1"
-							varStatus="status">
-							<tbody>
 
 				<tbody>
 					<c:forEach var="free" items="${free}" varStatus="status">
