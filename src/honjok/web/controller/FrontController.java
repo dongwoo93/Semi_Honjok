@@ -13,8 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import honjok.web.beans.StatisticsData;
-import honjok.web.dao.BoardFreeDAO;
-import honjok.web.dto.BoardFreeDTO;
+import honjok.web.dao.BoardLikeDAO;
 import honjok.web.dto.LikeDTO;
 
 /**
@@ -55,18 +54,17 @@ public class FrontController extends HttpServlet {
 				
 			}else if(command.equals("/like.com")) {
 				int update = 0;
-				int update2 = 0;
 				String boardseq = request.getParameter("boardno");
 				String id = request.getParameter("memberid");
-				BoardFreeDAO dao = new BoardFreeDAO();
-				LikeDTO like = dao.SelectLike(boardseq, id);
+				BoardLikeDAO likeDao = new BoardLikeDAO();
+				LikeDTO like = likeDao.SelectLike(boardseq, id);
 				String likeStat = like.getLikeCheck();
 				if(likeStat.equals("1")) {
 					System.out.println("들어옴1");
-					update = dao.UpdateLike(boardseq, id, "0");
+					update = likeDao.UpdateLike(boardseq, id, "0");
 				}else {
 					System.out.println("들어옴2");
-					update2 = dao.UpdateLike(boardseq, id, "1");
+					update = likeDao.UpdateLike(boardseq, id, "1");
 				}
 				
 				response.setCharacterEncoding("UTF-8");
