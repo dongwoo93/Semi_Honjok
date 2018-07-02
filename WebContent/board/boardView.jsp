@@ -21,40 +21,86 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#delete").click(function(){
+		$("#delete").click(function() {
 			var seq = $("#seq").text();
-			$(location).attr('href', 'delete.tip?seq='+seq);
+			$(location).attr('href', 'delete.tip?seq=' + seq);
 		})
-		$("#modify").click(function(){
+		$("#modify").click(function() {
 			var seq = $("#seq").text();
-			$(location).attr('href', 'modify.tip?seq='+seq);
+			$(location).attr('href', 'modify.tip?seq=' + seq);
+		})
+
+		$("#like").click(function() {
+			$.ajax({
+				url : "admin_like.com",
+				type : "get",
+				data : {
+					boardno : "${no}",
+					memberid : "${id}"
+				},
+				success : function(resp) {
+					$("#likecancel").show();
+					$("#like").hide();
+				},
+				error : function() {
+					console.log("에러 발생!");
+				}
+			})
+		})
+		$("#likecancel").click(function() {
+			$.ajax({
+				url : "admin_like.com",
+				type : "get",
+				data : {
+					boardno : "${no}",
+					memberid : "${id}"
+				},
+				success : function(resp) {
+					$("#like").show();
+					$("#likecancel").hide();
+				},
+				error : function() {
+					console.log("에러 발생!");
+				}
+			})
 		})
 	})
 </script>
 
 <style>
-
 .container {
-position:relative;
-text-align:
+	position: relative;
+	text-align:
 }
 </style>
 </head>
 <body>
 	<div class="container">
-		<c:forEach var="item" items="${result}">
-			<span class="col-sm-3">${item.title}</span><span class="cos-sm-2" id="seq">${item.seq}</span>
+		<%-- <c:forEach var="item" items="${result}"> --%>
+			<span class="col-sm-3">${result[0].title}</span>
+			<span class="cos-sm-2" id="seq">${result[0].seq}</span>
 			<span class="col-sm-3"><button type="button"
 					class="btn btn-info" id="modify">수정</button></span>
 			<span class="col-sm-3"><button type="button"
 					class="btn btn-danger" id="delete">삭제</button></span>
 			<div>-------------------------------------------------------------------------------</div>
-			<div class="col-lg-9">${item.contents}</div>
+			<div class="col-lg-9">${result[0].contents}</div>
 			<div>-------------------------------------------------------------------------------</div>
-			<span class="cos-sm-2">${item.like}</span>
-			<span class="cos-sm-2">${item.viewcount}</span>
-			<span class="cos-sm-2">${item.writedate}</span>
-		</c:forEach>
+			<span class="cos-sm-2">
+				<c:choose>
+					<c:when test="${likeStat == 0}">
+					<button type="button" id=like>좋아요</button>
+					<button type="button" id=likecancel style="display: none">좋아요 취소</button>
+					</c:when>
+					<c:otherwise>
+					<button type="button" id=likecancel>좋아요 취소</button>
+					<button type="button" id=like style="display: none">좋아요</button>
+					</c:otherwise>
+					</c:choose>
+			</span>
+			<span class="cos-sm-2">${result[0].viewcount}</span>
+			<span class="cos-sm-2">${result[0].writedate}</span>
+		<%-- </c:forEach> --%>
 	</div>
 
 </body>

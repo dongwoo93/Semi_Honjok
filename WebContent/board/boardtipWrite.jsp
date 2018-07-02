@@ -85,7 +85,7 @@ $(document).ready(function() {
 			<script>
 		
 				function categoryChange(e) {
-					var sel2_꿀팁 = [ "생활", "부동산", "자유" ];
+					var sel2_꿀팁 = [ "청소", "라이프", "경제적" ];
 					var sel2_요리 = [ "초간단 요리", "일반 요리"];
 					var sel2_인테리어 = [ "가구", "소품" ];
 					var sel2_여행 = [ "국내여행", "해외여행" ];

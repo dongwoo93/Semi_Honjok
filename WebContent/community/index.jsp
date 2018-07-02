@@ -47,7 +47,8 @@
 
 <body>
 	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-	<img src="imges/coffee.png" width=60 height=60> <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
+	<img src="imges/coffee.png" width=60 height=60> <a
+		class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
 	<ul class="nav navbar-nav">
 		<li class="nav-item"></li>
 		<li class="dropdown"><a class="dropdown-toggle nav-link"
@@ -59,13 +60,18 @@
 				<li class="dropdown-item"><a href="#">혼팁</a></li>
 				<li class="dropdown-item"><a href="#">베스트</a></li>
 			</ul></li>
-		<li class="dropdown nav-item"><a href="#"
+		<li class="dropdown nav-item"><a
+			href="selectNaviCat.tip?category='꿀팁'"
 			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
 			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="selectNavi.tip">전체보기</a></li>
-				<li class="dropdown-item"><a href="#">청소</a></li>
-				<li class="dropdown-item"><a href="#">라이프</a></li>
-				<li class="dropdown-item"><a href="#">경제적</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviCat.tip?category=꿀팁">전체보기</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
 			</ul></li>
 		<li class="dropdown nav-item"><a id="cook"
 			href="board/boardtipWrite.jsp" class="dropdown-toggle nav-link"
@@ -108,8 +114,8 @@
 					<h3>Los Angeles</h3>
 					<p>We had such a great time in LA!</p>
 				</div>
-			</div>	
-			 <div class="carousel-item">
+			</div>
+			<div class="carousel-item">
 				<img src="imges/뒷모습.jpg" alt="Chicago">
 				<div class="carousel-caption">
 					<h3>Chicago</h3>
@@ -525,7 +531,8 @@
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(
+		$(document)
+				.ready(
 						function() {
 							function numberWithCommas(x) {
 								return x.toString().replace(
@@ -681,7 +688,7 @@
 							$('#cook').click(function() {
 								window.location = $(this).attr('href');
 							});
-							
+
 							$('#logoutbt').click(function() {
 								$(location).attr('href', 'logout.do');
 							});
@@ -741,7 +748,8 @@
 							var email = JSON.stringify(res.kaccount_email)
 							var name = JSON.stringify(res.properties.nickname)
 							console.log(id + email + name);
-							location.href = "kakaotest.do?id="+id+"&email="+email+"&name="+name;
+							location.href = "kakaotest.do?id=" + id + "&email="
+									+ email + "&name=" + name;
 						},
 						fail : function(error) {
 							console.log(JSON.stringify(error));
