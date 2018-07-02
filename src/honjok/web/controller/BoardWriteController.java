@@ -20,7 +20,7 @@ import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
 
 
-@WebServlet("/editor.tw")
+@WebServlet("*.tw")
 public class BoardWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,9 +28,9 @@ public class BoardWriteController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		/*String requestURI = request.getRequestURI();
-		String contextPath = request.getContextPath();*/
-
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = requestURI.substring(contextPath.length());
 		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
@@ -46,13 +46,12 @@ public class BoardWriteController extends HttpServlet {
 		Enumeration<String> names = mr.getFileNames();
 		boolean isRedirect = true;
 		String dst = null;
-		System.out.println("names: " + names);
-
+		
 		String title = mr.getParameter("title");
 		String category = mr.getParameter("category");
 		String subject = mr.getParameter("subject");
 		String contents = mr.getParameter("summernote");
-		String contentsImg = mr.getParameter("contentsImg");
+		//String contentsImg = mr.getParameter("contentsImg");
 		/*List<>
 		String[] splitImgName = contentsImg.split(".");
 
@@ -60,33 +59,56 @@ public class BoardWriteController extends HttpServlet {
 
 		}
 		 */
-		System.out.println("names while�� ����: " + names);
 		String paramName = names.nextElement();
 		String originalFileName = mr.getOriginalFileName(paramName);
 		String systemFileName = mr.getFilesystemName(paramName);
 
 		BoardTipDAO tipDAO = new BoardTipDAO();
-		try {
-			if(systemFileName != null) {
-				String seq = tipDAO.getBoardSeq();
-				System.out.println(seq);
-				BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
-				int result = tipDAO.insertData(dto);
-				AdminFileDAO fileDAO = new AdminFileDAO();
+		if(command.equals("/editor.tw")) {
+			try {
+				if(systemFileName != null) {
+					String seq = tipDAO.getBoardSeq();
+					System.out.println(seq);
+					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
+					int result = tipDAO.insertData(dto);
+					AdminFileDAO fileDAO = new AdminFileDAO();
 
-				if(result > 0) {
-					AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
-					int fileResult = fileDAO.insertThumb_FileName(fileDTO);
-					if(fileResult > 0) {
+					if(result > 0) {
+						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
+						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
+						if(fileResult > 0) {
+						}else {
+						}
 					}else {
 					}
 				}else {
 				}
-			}else {
-			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dst = "hollo.com";
+		}else if(command.equals("/notemodify.tw")) {
+			try {
+				if(systemFileName != null) {
+					String seq = request.getParameter("seq");
+					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
+					int result = tipDAO.updateData(dto);
+					AdminFileDAO fileDAO = new AdminFileDAO();
+
+					if(result > 0) {
+						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
+						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
+						if(fileResult > 0) {
+						}else {
+						}
+					}else {
+					}
+				}else {
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		dst = "hollo.com";
 

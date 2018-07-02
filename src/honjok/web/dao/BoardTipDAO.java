@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import honjok.web.dbutils.DBUtils;
+import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
 
 public class BoardTipDAO {
@@ -330,4 +331,23 @@ public class BoardTipDAO {
 		con.close();
 		return result;
 	}
+	public int updateData(BoardDTO dto) throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "update admin_board set category=?, subject=?, title=?, contents=? where seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		StringReader sr = new StringReader(dto.getContents());
+		con.setAutoCommit(false);
+		pstat.setString(1, dto.getCategory());
+		pstat.setString(2, dto.getSubject());
+		pstat.setString(3, dto.getTitle());
+		pstat.setCharacterStream(4, sr, dto.getContents().length());
+		pstat.setInt(5, Integer.parseInt(dto.getSeq()));
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.setAutoCommit(true);
+		con.close();
+		return result;
+	}
+	
 }

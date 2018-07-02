@@ -60,14 +60,15 @@
 
 </head>
 <body>
-	<form action="../editor.tw" method="post" enctype="multipart/form-data">
+	<form action="../notemodify.tw" method="post" enctype="multipart/form-data">
 		<div class="container" style="padding-top: 6%;">
 			<c:forEach var="item" items="${result}">
+				<input type="hidden" name="seq" value="${item.seq}">
 				<div class="form-row" style="padding-left: 14px;">
 					<div class="form-group col-md-3">
 						<label for="sel1">카테고리</label> <select class="form-control"
 							id="sel1" name="category" onchange="categoryChange(this)">
-							<option value="${item.category }">${item.category }</option>
+							<option value="${item.category}">${item.category}</option>
 							<option value="꿀팁">꿀팁</option>
 							<option value="요리">요리</option>
 							<option value="인테리어">인테리어</option>
@@ -79,7 +80,7 @@
 					<div class="form-group col-md-3">
 						<label for="sel2">말머리</label> <select class="form-control"
 							id="sel2" name="subject">
-							<option value="${item.subject }">${item.subject }</option>
+							<option value="${item.subject}">${item.subject}</option>
 						</select>
 					</div>
 
@@ -88,11 +89,11 @@
 				<div class="form-group col-md-8">
 					<label for="formGroupExampleInput">제목</label> <input type="text"
 						class="form-control" name="title" placeholder="제목"
-						value="${item.title }">
+						value="${item.title}">
 				</div>
 
 				<div class="form-group col-md-12">
-					<textarea id="summernote" name="summernote">${item.contents }</textarea>
+					<textarea id="summernote" name="summernote">${item.contents}</textarea>
 				</div>
 			</c:forEach>
 

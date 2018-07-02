@@ -68,14 +68,17 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				/*for(int i =0; fileResult.size()>i;i++) {
-					System.out.println(fileResult.get(i).getThum_sysFileName());
-				}*/
+				for(int i =0; fileResult.size()>i;i++) {
+					System.out.println(result.get(i).getViewcount());
+				}
 				isRedirect = false;
 				dst = "board/boardtip.jsp";
 			}else if(command.equals("/selectView.tip")) {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
+				String view = request.getParameter("viewcount");
+				System.out.println("view 시퀀스: " + seq);
+				System.out.println("파라미터: " + view);
 				int viewcount = Integer.parseInt(request.getParameter("viewcount")) + 1;
 				System.out.println("viewcount: " + viewcount);
 				int upResult = dao.UpdateViewCount(seq, viewcount);
@@ -121,11 +124,12 @@ public class BoardTipController extends HttpServlet {
 				/*for(int i =0; result.size()>i;i++) {
 					System.out.println(result.get(i).getSubject());
 				}*/
+				
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("result", result);
 				request.setAttribute("thumbnail", fileDTO);
 				isRedirect = false;
-				dst = "board/boardtipmodify.jsp";
+				dst = "board/boardtipModify.jsp";
 			}else if(command.equals("/selectNaviSub.tip")){
 				String category = request.getParameter("category");
 				String subject = request.getParameter("subject");

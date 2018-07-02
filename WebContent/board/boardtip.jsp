@@ -22,7 +22,7 @@
 					<c:forEach var="tmp" items="${board}" varStatus="status">
 						<div class="col-lg-3" id="card1">
 							<div class="card">
-								<a href="selectView.tip?seq=${tmp.seq}"><img
+								<a href="selectView.tip?seq=${tmp.seq}&viewcount=${tmp.viewcount}"><img
 									class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}"
 									alt="Card image cap"></a><br>
 								<div class="card-body">
