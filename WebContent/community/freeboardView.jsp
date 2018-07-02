@@ -98,7 +98,7 @@
 								<td id="no">${item.seq}
 								<td id="header">${item.header}
 								<td id="title"><a
-									href="BoardFree_Controller.freeb?no=${item.seq}&count=${item.viewcount}"
+									href="Board_Controller.freeb?no=${item.seq}&count=${item.viewcount}"
 									class="no-uline">${item.title}</a>
 								<td id="writer">${item.writer}
 								<td id="date">${item.writedate}
