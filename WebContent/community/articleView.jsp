@@ -9,13 +9,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-	<script
+<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="communitycss/articleView.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-	<script
+<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script>
 	$(document)
@@ -36,52 +36,60 @@
 												return;
 											}
 
-		})
-		$("#back").click(function() {
-			$(location).attr('href', "freeboardView.jsp")
-		})
-		
-		$("#like").click(function() {
-			if('${id}' == 'nonmember') {
-				alert("로그인을 해주세요");
-				
-			}else {
-				$.ajax({
-					url:"like.com",
-					type:"get",
-					data:{boardno:"${no}", memberid:"${id}", likecount:"${result[0].like}"},
-					success:function(resp) {
-						$("#likecancel").show();
-						$("#like").hide();
-						$("#likespan").text(resp);
-					},
-					error : function() {
-						console.log("에러 발생!");
-					}
-				})
-			}
-	
-})
-$("#likecancel").click(function() {
-	$.ajax({
-		url:"like.com",
-		type:"get",
-		data:{boardno:"${no}", memberid:"${id}", likecount:"${result[0].like}"},
-		success:function(resp) {
-			$("#like").show();
-			$("#likecancel").hide();
-			$("#likespan").text(resp);
-		},
-		error : function() {
-			console.log("에러 발생!");
-		}
-	})
-})
-	})
+										})
+						$("#back").click(function() {
+							$(location).attr('href', "freeboardView.jsp")
+						})
 
-	/* document.getElementById("comment").onclick = function() {
-		formid.submit();
-	} */
+						$("#like").click(function() {
+							if ('${id}' == 'nonmember') {
+								alert("로그인을 해주세요");
+
+							} else {
+								$.ajax({
+									url : "like.com",
+									type : "get",
+									data : {
+										boardno : "${no}",
+										memberid : "${id}",
+										likecount : "${result[0].like}"
+									},
+									success : function(resp) {
+										$("#likecancel").show();
+										$("#like").hide();
+										$("#likespan").text(resp);
+									},
+									error : function() {
+										console.log("에러 발생!");
+									}
+								})
+							}
+
+						})
+						$("#likecancel").click(function() {
+							$.ajax({
+								url : "like.com",
+								type : "get",
+								data : {
+									boardno : "${no}",
+									memberid : "${id}",
+									likecount : "${result[0].like}"
+								},
+								success : function(resp) {
+									$("#like").show();
+									$("#likecancel").hide();
+									$("#likespan").text(resp);
+								},
+								error : function() {
+									console.log("에러 발생!");
+								}
+							})
+						})
+					})
+
+			/* document.getElementById("comment").onclick = function() {
+				formid.submit();
+			} */
 </script>
 </head>
 <body>
@@ -105,44 +113,58 @@ $("#likecancel").click(function() {
 						<td colspan=3 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
+						<td align=center colspan=4>
+							<c:choose>
+								<c:when test="${likeStat == 0}">
+									<button type="button" id=like>좋아요</button>
+									<button type="button" id=likecancel style="display: none">좋아요
+										취소</button>
+									<span id=likespan>${result[0].like}</span>
+								</c:when>
+								<c:otherwise>
+									<button type="button" id=likecancel>좋아요 취소</button>
+									<button type="button" id=like style="display: none">좋아요</button>
+									<span id=likespan>${result[0].like}</span>
+								</c:otherwise>
+							</c:choose></td>
+					</tr>
+					<tr>
 						<td width=100px height=20px>첨부파일</td>
 						<td colspan=3></td>
 					</tr>
 					<tr>
 						<td width=100px height=20px>작성자IP</td>
-						<th colspan=3>${result[0].ip}</th>
-					<tr align=right>
+						<th colspan=3>${result[0].ip}</th><tr ali gn=right>
 
-						
-					<td colspan=3 height=20px>
-					<c:choose>
-					<c:when test="${likeStat == 0}">
-					<button type="button" id=like>좋아요</button>
-					<button type="button" id=likecancel style="display: none">좋아요 취소</button>
-					<span id=likespan>${result[0].like}</span>
+
+						<td colspan=4 height=20px align=right>
+							<button type="button" id=fix>수정</button>
+							<button type="button" id=delete>삭제</button>
+							<button type="button" id=back>목록</button>
+						</td>
+
+						<!-- <td colspan=3 height=20px><button type="button" id=back>목록</button></td> -->
+						<c:choose>
+							<c:when test="${result2.size() > 0}">
+								<c:forEach var="result2" items="${result2}">
+									<tr>
+										<td width=100px height=20px>${result2.comment_writer}</td>
+										<td colspan=2>${result2.comment_content}</td>
+										<td><b id="date">${result2.comment_wridate}</b></td>
+									</tr>
+								</c:forEach>
 					</c:when>
-					<c:otherwise>
-					<button type="button" id=likecancel>좋아요 취소</button>
-					<button type="button" id=like style="display: none">좋아요</button>
-					<span id=likespan>${result[0].like}</span>
-					</c:otherwise>
 					</c:choose>
-					
-					
-					<button type="button" id=fix>수정</button>
-					<button type="button" id=delete>삭제</button>
-					<button type="button" id=back>뒤로</button></td>
-			
-					<td colspan=3 height=20px><button type="button" id=back>뒤로</button></td>
-		
 					<tr>
-						<th width=80px height=40px>세션ID</th>
+						<th width=80px height=40px>${sessionScope.loginId}</th>
 						<form action="comment.freeb" method="post">
 							<input type="hidden" id="seq" name=count value="${count}">
 							<input type="hidden" id="seq" name=no value="${result[0].seq}">
-						<td colspan=2><textarea id="comment" name=comment
-								placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="100" rows="2"></textarea></td>
-						<td><input type="submit" value="확인" id="confirm" name="confirm"></td>
+							<td colspan=2><textarea id="comment" name=comment
+													placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110"
+													rows="2"></textarea></td>
+							<td><input type="submit" value="확인" id="confirm"
+												name="confirm"></td>
 						</form>
 					</tr>
 					<tr align=right>
@@ -150,13 +172,14 @@ $("#likecancel").click(function() {
 						<%-- <c:when test="${result>0}"> --%>
 						<td colspan=4 height=20px><button type="button" id=fix>수정</button>
 							<button type="button" id=delete>삭제</button>
-							<button type="button" id=back>뒤로</button></td>
+							<button type="button" id=back>목록</button></td>
 						<%-- </c:when> --%>
 						<%-- <c:otherwise> --%>
-						<!-- <td colspan=4 height=20px><button type="button" id=back>뒤로</button></td> -->
+						<!-- <td colspan=4 height=20px><button type="button" id=back>목록</button></td> -->
 						<%-- </c:otherwise>
 		</c:choose> --%>
 					</tr>
+				
 				</tbody>
 			</table>
 

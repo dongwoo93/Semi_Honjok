@@ -188,7 +188,7 @@ public class Board_Controller extends HttpServlet {
 	                int viewCount = Integer.parseInt(count) + 1;
 	                dao.UpdateViewCount(seq, viewCount);
 	             }
-				
+				System.out.println(result2.get(0).getComment_wridate());
 				request.setAttribute("result", result);
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
@@ -238,10 +238,12 @@ public class Board_Controller extends HttpServlet {
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
 				String writer = (String)request.getSession().getAttribute("loginId");
-				
+				System.out.println(writer);
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
 				int result = dao.insertComment(dto);
+				
+				request.setAttribute("result", result);
 				
 				isRedirect = false;
 				dst = "Board_Controller.freeb?no="+boardseq+"&count="+count;		
