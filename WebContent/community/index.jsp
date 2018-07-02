@@ -91,7 +91,7 @@
 	<c:choose>
 		<c:when test="${sessionScope.loginId != null}">
 			<ul class="nav navbar-nav ml-auto">
-				<li class="nav-item"><a href="" class="nav-link">My Page</a></li>
+				<li class="nav-item"><a href="mypage.jsp" class="nav-link">My Page</a></li>
 				<li class="nav-item"><button type="button" id="logoutbt"
 						class="nav-link">Logout</button></li>
 			</ul>
