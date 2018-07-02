@@ -90,10 +90,9 @@ public class BoardWriteController extends HttpServlet {
 			}
 			dst = "hollo.com";
 		}else if(command.equals("/notemodify.tw")) {
-			System.out.println("¼öÁ¤ µé¾î¿È");
 			try {
 				if(systemFileName != null) {
-					System.out.println("¼öÁ¤ 2 µé¾î¿È");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½ï¿½");
 					String seq = mr.getParameter("seq");
 					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -101,7 +100,7 @@ public class BoardWriteController extends HttpServlet {
 					AdminFileDAO fileDAO = new AdminFileDAO();
 
 					if(result > 0) {
-						System.out.println("2¹ø" + seq);
+						System.out.println("2ï¿½ï¿½" + seq);
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {

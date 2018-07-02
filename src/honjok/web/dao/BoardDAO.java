@@ -18,7 +18,6 @@ public class BoardDAO {
 		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 4";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
-		
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>(); 
 		
@@ -29,6 +28,7 @@ public class BoardDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
+			dto.setViewcount(rs.getInt(8));
 			list.add(dto);
 		}
 		

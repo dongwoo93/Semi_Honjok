@@ -1,3 +1,16 @@
+body{
+	background-color:#e8e5e5;
+}
+
+.atagcolor{
+	color:#514c4c;
+	text-decoration: none;
+}
+
+.atagcolor:hover{
+	text-decoration: none;
+}
+
 .navbar-nav{
 	margin-left: 50px;
 }
@@ -86,7 +99,7 @@
 #free3{
 	float:left;
 	padding-left:150px;
-	padding-top: 20px;
+	padding-top: 0px;
 }
 #free4{
 	padding-left:30px;
@@ -97,7 +110,7 @@
 }
 
 #free5{
-	padding-left:30px;
+	padding-left:12px;
 	float:left;
 	position: absolute;
 	margin-top:350px;

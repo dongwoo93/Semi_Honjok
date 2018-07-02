@@ -179,7 +179,7 @@
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="boardView.freeb?cat=free">자유게시판</a>
+				<a href="boardView.freeb?cat=free" class="atagcolor">자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
@@ -197,7 +197,7 @@
 					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
 							<td class="td-contents">${free.seq}</td>
-							<td class="td-contents">${free.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${free.seq}&count=${free.viewcount}">${free.title}</a></td>
 							<td class="td-contents">${free.contents}</td>
 							<td class="td-contents">${free.writer}</td>
 						</tr>
@@ -210,7 +210,7 @@
 
 		<div id="free2">
 			<h5>
-				<a href="boardView.freeb?cat=qna">질문/답변</a>
+				<a href="boardView.freeb?cat=qna" class="atagcolor">질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -228,7 +228,7 @@
 					<c:forEach var="qna" items="${qna}" varStatus="status">
 						<tr>
 							<td class="td-contents">${qna.seq}</td>
-							<td class="td-contents">${qna.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${qna.seq}&count=${qna.viewcount}">${qna.title}</a></td>
 							<td class="td-contents">${qna.contents}</td>
 							<td class="td-contents">${qna.writer}</td>
 						</tr>
@@ -240,7 +240,7 @@
 
 		<div id="free3">
 			<h5>
-				<a href="#">베스트</a>
+				<a href="#" class="atagcolor">베스트</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -315,13 +315,19 @@
 						<td>$30,000.00</td>
 						<td>작성자다</td>
 					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>50</td>
+						<td>$30,000.00</td>
+						<td>작성자다</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
 
 		<div id="free4">
 			<h5>
-				<a href="boardView.freeb?cat=coun">고민상담</a>
+				<a href="boardView.freeb?cat=coun" class="atagcolor">고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -339,7 +345,7 @@
 					<c:forEach var="counsel" items="${counsel}" varStatus="status">
 						<tr>
 							<td class="td-contents">${counsel.seq}</td>
-							<td class="td-contents">${counsel.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${counsel.seq}&count=${counsel.viewcount}">${counsel.title}</a></td>
 							<td class="td-contents">${counsel.contents}</td>
 							<td class="td-contents">${counsel.writer}</td>
 						</tr>
@@ -351,7 +357,7 @@
 
 		<div id="free5">
 			<h5>
-				<a href="boardView.freeb?cat=tip">혼팁</a>
+				<a href="boardView.freeb?cat=tip" class="atagcolor">혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -369,7 +375,7 @@
 					<c:forEach var="tip" items="${tip}" varStatus="status">
 						<tr>
 							<td class="td-contents">${tip.seq}</td>
-							<td class="td-contents">${tip.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${tip.seq}&count=${tip.viewcount}">${tip.title}</a></td>
 							<td class="td-contents">${tip.contents}</td>
 							<td class="td-contents">${tip.writer}</td>
 						</tr>

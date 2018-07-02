@@ -48,7 +48,7 @@ public class Board_Controller extends HttpServlet {
 	            List<BoardUserDTO> qna = dao.selectQna();
 	            List<BoardUserDTO> counsel = dao.selectCounsel();
 	            List<BoardUserDTO> tip = dao.selectTip();
-	            
+	            System.out.println(free);
 	            request.setAttribute("free", free);
 	            request.setAttribute("qna", qna);
 	            request.setAttribute("counsel", counsel);
