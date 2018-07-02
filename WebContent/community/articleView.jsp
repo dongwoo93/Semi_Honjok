@@ -25,6 +25,35 @@
 		$("#back").click(function() {
 			$(location).attr('href', "freeboardView.jsp")
 		})
+		
+		$("#like").click(function() {
+	$.ajax({
+		url:"like.com",
+		type:"get",
+		data:{boardno:"${no}", memberid:"${id}"},
+		success:function(resp) {
+			$("#likecancel").show();
+			$("#like").hide();
+		},
+		error : function() {
+			console.log("에러 발생!");
+		}
+	})
+})
+$("#likecancel").click(function() {
+	$.ajax({
+		url:"like.com",
+		type:"get",
+		data:{boardno:"${no}", memberid:"${id}"},
+		success:function(resp) {
+			$("#like").show();
+			$("#likecancel").hide();
+		},
+		error : function() {
+			console.log("에러 발생!");
+		}
+	})
+})
 	})
 
 	/* document.getElementById("comment").onclick = function() {
@@ -65,14 +94,26 @@
 						<td colspan=2>${result[0].ip}</td>
 					<tr align=right>
 
-						 <%-- <c:choose> --%>
-			<%-- <c:when test="${result>0}"> --%>
-					<td colspan=3 height=20px><button type="button" id=fix>수정</button> <button type="button" id=delete>삭제</button> <button type="button" id=back>뒤로</button></td>
-			<%-- </c:when> --%>
-						<%-- <c:otherwise> --%>
+						
+					<td colspan=3 height=20px>
+					<c:choose>
+					<c:when test="${likeStat == 0}">
+					<button type="button" id=like>좋아요</button>
+					<button type="button" id=likecancel style="display: none">좋아요 취소</button>
+					</c:when>
+					<c:otherwise>
+					<button type="button" id=likecancel>좋아요 취소</button>
+					<button type="button" id=like style="display: none">좋아요</button>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					<button type="button" id=fix>수정</button>
+					<button type="button" id=delete>삭제</button>
+					<button type="button" id=back>뒤로</button></td>
+			
 					<td colspan=3 height=20px><button type="button" id=back>뒤로</button></td>
-			<%-- </c:otherwise>
-		</c:choose> --%>
+		
 					<tr>
 						<th width=80px height=40px>ID</th>
 						<td>댓글</td>

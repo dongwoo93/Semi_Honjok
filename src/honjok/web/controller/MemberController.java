@@ -73,11 +73,6 @@ public class MemberController extends HttpServlet {
 				dst = "hollo.com";
 			}
 			
-			
-			
-
-
-
 			if (isRedirect) {
 				response.sendRedirect(dst);
 			} else {				
