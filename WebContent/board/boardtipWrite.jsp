@@ -30,8 +30,6 @@
 	type="text/css">
 	
 <script>
-
-
 $(document).ready(function() {
 	
 });
@@ -57,8 +55,6 @@ $(document).ready(function() {
 	})
 
 	}); */
-	
-	
 </script>
 
 </head>
@@ -82,7 +78,7 @@ $(document).ready(function() {
 				<div class="form-group col-md-3">
 					<label for="sel2">말머리</label> 
 					<select class="form-control" id="sel2" name="subject">
-						<option value="꿀팁">말머리를 선택하세요</option>
+						<option>말머리를 선택하세요</option>
 					</select>
 				</div>
 			</div>
@@ -130,10 +126,11 @@ $(document).ready(function() {
 				</div>
 				
 			
-			<div class="col-sm-3">
+			<div class="form-group col-md-8">
+				<label for="formGroupExampleInput">썸네일 이미지</label><br>
 				<input type="file" name="file">
 			</div><br>
-			
+			<input type="text" id="imgBackUp" name="contentsImg">
 			<div class="col-sm-3">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<input type="submit" class="btn btn-primary" value="submit">
@@ -141,10 +138,6 @@ $(document).ready(function() {
 		</div>
 	</form>
 	<script>
-	
-	
-	
-	
 			$('#summernote').summernote({
 				placeholder : '내용',
 				//width : 1500,
@@ -157,12 +150,15 @@ $(document).ready(function() {
 		            onImageUpload : function(files, editor, welEditable) {
 		                sendFile(files[0], this);
 		            },
-		            onMediaDelete : function(target) {
+		            /* onMediaDelete : function(target) {
 	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
-	            	}
+	            	} */
+	            	onMediaDelete : function($target, editor, $editable) {
+	                    alert($target.context.dataset.filename);         
+	                    target.remove();
+	                }
 		        }
-			
 				
 			/* codemirror: { // codemirror options
 		    theme: 'paper'
@@ -171,7 +167,9 @@ $(document).ready(function() {
 			});
 			
 			function deleteFile(src) {
+				console.log(src);
 				var result = src.split("/files/");
+				$("#hidden").replace(src,"");
 				console.log(result);
 			    $.ajax({
 			        data: {src : result[1]},
@@ -187,6 +185,7 @@ $(document).ready(function() {
 			function sendFile(file, editor) {
 					var data = new FormData();
 					data.append("uploadFile", file);
+					console.log(file);
 					$.ajax({
 						data : data,
 						type : "POST",
@@ -198,7 +197,8 @@ $(document).ready(function() {
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							var array = new Array();
+							console.log(data);
+							$("#imgBackUp").val($("#imgBackUp").val() + data.systemFileName + ",");
 						}
 					});
 				}
@@ -208,6 +208,5 @@ $(document).ready(function() {
 			   }
 
 			</script>
-	
 </body>
 </html>

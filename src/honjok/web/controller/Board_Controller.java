@@ -20,8 +20,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.BoardCommentDAO;
 import honjok.web.dao.BoardDAO;
+import honjok.web.dao.BoardLikeDAO;
 import honjok.web.dto.BoardCommentDTO;
 import honjok.web.dto.BoardUserDTO;
+import honjok.web.dto.LikeDTO;
 
 @WebServlet("*.freeb")
 public class Board_Controller extends HttpServlet {
@@ -34,10 +36,9 @@ public class Board_Controller extends HttpServlet {
 		try {
 			String requestURI = request.getRequestURI();
 			String contextPath = request.getContextPath();
-
 			String command = requestURI.substring(contextPath.length());
 //			String id = (String)request.getSession().getAttribute("loginId");
-			String id = "히오스";
+
             String count = request.getParameter("count");
 			
 			if(command.equals("/hontalkView.freeb")){
@@ -89,7 +90,7 @@ public class Board_Controller extends HttpServlet {
 					navi = dao.getPageNavi(currentPage, category);
 				}
 				
-				System.out.println(result);
+
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
@@ -151,6 +152,31 @@ public class Board_Controller extends HttpServlet {
 				dst = "freeboardResult.jsp";
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
+				String id = (String)request.getSession().getAttribute("loginId");
+				BoardLikeDAO like = new BoardLikeDAO();
+				if(id != null) {
+					try {
+						boolean result = like.LikeExist(no, id);
+						if(!result) {
+							int insertLike = like.insertData(no, id);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					LikeDTO likeDto = like.SelectLike(no, id);
+					String likeStat = likeDto.getLikeCheck();
+					request.setAttribute("likeStat", likeStat);
+					
+				}else {
+					id = "nonmember";
+					request.setAttribute("likeStat", "0");
+				}
+				request.setAttribute("id", id);
+				
+				
+				
 				int seq = Integer.parseInt(no);
 
 				BoardDAO dao = new BoardDAO();
@@ -166,8 +192,8 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result", result);
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
-				System.out.println("제목 :" + result.get(0).getTitle());
 				request.setAttribute("count", count);
+				
 				isRedirect = false;
 				dst = "community/articleView.jsp";
 			}else if(command.equals("/upload.freeb")) {
@@ -211,7 +237,7 @@ public class Board_Controller extends HttpServlet {
 				String boardseq = request.getParameter("no");
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
-				String writer = "끼욧";
+				String writer = (String)request.getSession().getAttribute("loginId");
 				
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
@@ -261,7 +287,7 @@ public class Board_Controller extends HttpServlet {
 				BoardDAO dao = new BoardDAO();
 				BoardUserDTO dto = new BoardUserDTO();
 				
-				System.out.println(seq);
+
 				
 //				List<BoardUserDTO> free = dao.selectFree();
 //	            List<BoardUserDTO> qna = dao.selectQna();

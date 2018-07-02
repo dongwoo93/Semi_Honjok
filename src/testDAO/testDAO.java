@@ -23,7 +23,7 @@ public class testDAO {
 	
 	public int kakaoInsertData(String id, String name, String email) throws Exception {
 		Connection con = this.getConnection();
-		String sql = "insert into test values(?,null,?,null,?,null,null,null,'kakao')";
+		String sql = "insert into member values(?,null,?,null,?,null,null,null,'kakao')";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		
@@ -36,8 +36,7 @@ public class testDAO {
 		con.commit();
 		pstat.close();
 		con.close();
-		
-		System.out.println("카카오 dao 진입 완료");
+
 		
 		return result;
 		
@@ -45,7 +44,7 @@ public class testDAO {
 	
 	public int naverInserData(String id, String name, String email, String gender) throws Exception{
 		Connection con = this.getConnection();
-		String sql = "insert into test values(?,null,?,null,?,null,null,?,'naver')";
+		String sql = "insert into member values(?,null,?,null,?,null,null,?,'naver')";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		
@@ -60,14 +59,14 @@ public class testDAO {
 		pstat.close();
 		con.close();
 		
-		System.out.println("네이버 dao 진입 완료");
+
 		
 		return result;
 	}
 	
 	public int googleInsertData(String id, String name, String email) throws Exception {
 		Connection con = this.getConnection();
-		String sql = "insert into test values(?,null,?,null,?,null,null,null,'google')";
+		String sql = "insert into member values(?,null,?,null,?,null,null,null,'google')";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		
@@ -81,7 +80,7 @@ public class testDAO {
 		pstat.close();
 		con.close();
 		
-		System.out.println("구글 dao 진입 완료");
+
 		
 		return result;
 		
@@ -89,7 +88,7 @@ public class testDAO {
 	
 	public boolean idCheck(String id) throws Exception {
 		Connection con = this.getConnection();
-		String sql = "select * from test where id = ?";
+		String sql = "select * from member where member_id = ?";
 		
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);

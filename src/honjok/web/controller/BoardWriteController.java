@@ -11,17 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardTipDAO;
+import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
 
 
-@WebServlet("/editor.tw")
+@WebServlet("*.tw")
 public class BoardWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -31,7 +30,8 @@ public class BoardWriteController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
-
+		String command = requestURI.substring(contextPath.length());
+		System.out.println(command);
 		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
@@ -47,43 +47,75 @@ public class BoardWriteController extends HttpServlet {
 		Enumeration<String> names = mr.getFileNames();
 		boolean isRedirect = true;
 		String dst = null;
-		System.out.println("names: " + names);
-
+		
 		String title = mr.getParameter("title");
 		String category = mr.getParameter("category");
 		String subject = mr.getParameter("subject");
 		String contents = mr.getParameter("summernote");
+		//String contentsImg = mr.getParameter("contentsImg");
+		/*List<>
+		String[] splitImgName = contentsImg.split(".");
 
+		while() {
 
-		System.out.println("names whileï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + names);
+		}
+		 */
 		String paramName = names.nextElement();
 		String originalFileName = mr.getOriginalFileName(paramName);
 		String systemFileName = mr.getFilesystemName(paramName);
 
-
 		BoardTipDAO tipDAO = new BoardTipDAO();
-		try {
-			if(originalFileName != null) {
-				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
-				String seq = tipDAO.getBoardSeq();
-				System.out.println(seq);
-				BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
-				int result = tipDAO.insertData(dto);
-				AdminFileDAO fileDAO = new AdminFileDAO();
-				int fileResult = fileDAO.insertThum_FileName(seq, systemFileName, originalFileName);
-				if(result > 0) {
-					if(fileResult > 0) {
+		if(command.equals("/editor.tw")) {
+			try {
+				if(systemFileName != null && !(title.equals(""))) {
+					String seq = tipDAO.getBoardSeq();
+					System.out.println(seq);
+					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
+					int result = tipDAO.insertData(dto);
+					AdminFileDAO fileDAO = new AdminFileDAO();
+
+					if(result > 0) {
+						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
+						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
+						if(fileResult > 0) {
+						}else {
+						}
 					}else {
 					}
 				}else {
 				}
-			}else {
-			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			dst = "hollo.com";
+		}else if(command.equals("/notemodify.tw")) {
+			System.out.println("¼öÁ¤ µé¾î¿È");
+			try {
+				if(systemFileName != null) {
+					System.out.println("¼öÁ¤ 2 µé¾î¿È");
+					String seq = mr.getParameter("seq");
+					System.out.println(seq);
+					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
+					int result = tipDAO.updateData(dto);
+					AdminFileDAO fileDAO = new AdminFileDAO();
+
+					if(result > 0) {
+						System.out.println("2¹ø" + seq);
+						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
+						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
+						if(fileResult > 0) {
+						}else {}
+					}else {}
+				}else {}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			dst = "hollo.com";
+			isRedirect = false;
 		}
-		dst = "hollo.com";
+		
 
 
 		/*if(command.equals("/upload.tw")) {

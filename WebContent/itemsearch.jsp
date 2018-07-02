@@ -9,7 +9,7 @@
 <script>
 $(document).ready(function() {
 	$("#search").click(function() {
-		$("#itemresult").remove();
+		$(".itemresult").remove();
 		var keyword = $("#keyword").val();
 		$.ajax({
 			url:"ShoppingController",
@@ -17,13 +17,14 @@ $(document).ready(function() {
 			data:{keyword:keyword},
 			success:function(resp) {
 				for(var i = 0; i < resp.length;i++) {
+					var productType = resp[i].productType;
 					var title = resp[i].title;
 					var link = resp[i].link;
 					var image = resp[i].image;
 					var lprice = resp[i].lprice;
 					var hprice = resp[i].hprice;
 					var mallName = resp[i].mallName
-					var line = $("<tr id=itemresult><td>" + title + "<td><a target=_blank href="+link+">이동하기</a><td id=img><img src="+image+"><td>" + lprice + "<td>" + hprice + "<td>" + mallName + "</tr>");
+					var line = $("<tr class=itemresult><td>" + title + "<td><a target=_blank href="+link+">이동하기</a><td id=img><img src="+image+"><td>" + lprice + "<td>" + hprice + "<td>" + mallName + "</tr>");
 					$("#item").after(line);
 				}
 			},
@@ -32,6 +33,32 @@ $(document).ready(function() {
 			}
 		})
 	})
+	$("#keyword").on('keyup', function (e) {
+	    if (e.keyCode == 13) {
+	    	$(".itemresult").remove();
+			var keyword = $("#keyword").val();
+			$.ajax({
+				url:"ShoppingController",
+				type:"get",
+				data:{keyword:keyword},
+				success:function(resp) {
+					for(var i = 0; i < resp.length;i++) {
+						var title = resp[i].title;
+						var link = resp[i].link;
+						var image = resp[i].image;
+						var lprice = resp[i].lprice;
+						var hprice = resp[i].hprice;
+						var mallName = resp[i].mallName
+						var line = $("<tr class=itemresult><td>" + title + "<td><a target=_blank href="+link+">이동하기</a><td id=img><img src="+image+"><td>" + lprice + "<td>" + hprice + "<td>" + mallName + "</tr>");
+						$("#item").after(line);
+					}
+				},
+				error : function() {
+					console.log("에러 발생!");
+				}
+			})
+	    }
+	});
 })
 </script>
 <style>

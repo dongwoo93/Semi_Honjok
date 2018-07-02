@@ -414,6 +414,33 @@ public class BoardDAO {
 		return result;
 	}
 	
+	public int selectLike(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_like from board_user where user_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, seq);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		
+		int result = rs.getInt(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
+	public int UpdateLikeCount(String seq, int likeCount) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "update board_user set user_like=? where user_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, likeCount);
+		pstat.setString(2, seq);
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
 	
 	public int deleteData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
