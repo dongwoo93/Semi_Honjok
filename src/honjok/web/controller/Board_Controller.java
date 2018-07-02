@@ -36,7 +36,6 @@ public class Board_Controller extends HttpServlet {
 		try {
 			String requestURI = request.getRequestURI();
 			String contextPath = request.getContextPath();
-
 			String command = requestURI.substring(contextPath.length());
 //			String id = (String)request.getSession().getAttribute("loginId");
 			String id = "히오스";
