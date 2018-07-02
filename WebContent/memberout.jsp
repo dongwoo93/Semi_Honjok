@@ -191,7 +191,7 @@ hr {
 						</div>
 						<div class="form-group">
 							<label class="control-label">패스워드</label> <input maxlength="50"
-								type="password" id="id" name="id" required="required"
+								type="password" id="pw" name="pw" required="required"
 								class="form-control" placeholder="패스워드를 입력해주세요">
 						</div>
 						<button class="btn btn-primary nextBtn btn-lg pull-right"

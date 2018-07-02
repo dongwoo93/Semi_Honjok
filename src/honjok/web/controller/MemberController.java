@@ -2,6 +2,7 @@ package honjok.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import honjok.web.dao.MemberDAO;
+import honjok.web.dto.MemberDTO;
 
 
 @WebServlet("*.mem")
@@ -40,7 +42,7 @@ public class MemberController extends HttpServlet {
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
-				
+
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
 
@@ -64,20 +66,67 @@ public class MemberController extends HttpServlet {
 				}
 
 			} else if(command.equals("/memberout.mem")) {
-				
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
-				System.out.println("들어왔다2");
+
 				int result = dao.deleteData(id,pw);
 				request.setAttribute("result", result);
 				isRedirect = false;
-				System.out.println("3");
-				dst = "hollo.com";
-				System.out.println("4");
+				if (result>0) {
+					dst = "hollo.com";
+				} else {
+
+				}
 			}
-			
-			
-			
+
+
+			else if(command.equals("/memberupdate.mem")) {
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+				String name = request.getParameter("name");
+				String phone = request.getParameter("phone");
+				String email = request.getParameter("email");
+				String zipcode = request.getParameter("zipcode");
+				String address = request.getParameter("address");
+
+
+
+
+				int result = dao.updateData(id, pw, name, phone, email, zipcode, address);
+				request.setAttribute("result", result);
+				isRedirect = false;
+
+				dst = "hollo.com";
+
+			}
+
+
+
+			else if (command.equals("/memberouputdata.mem")) {
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+				String name = request.getParameter("name");
+				String phone = request.getParameter("phone");
+				String email = request.getParameter("email");
+				String zipcode = request.getParameter("zipcode");
+				String address = request.getParameter("address");
+				String gender = request.getParameter("gender");
+                System.out.println(id);
+                System.out.println(name);
+				ArrayList<MemberDTO> result = dao.outputData(id);
+				
+				
+				request.setAttribute("result", result);
+
+
+				isRedirect = false;
+
+				dst="myinfo.jsp";
+
+			}
+
+
+
 
 
 
