@@ -538,52 +538,34 @@
 							}
 							;
 
-							$("#login")
-									.click(
-											function() {
+							$("#login").click(function() {
 
-												var id = $("#id").val();
-												var pw = $("#pass").val();
+								var id = $("#id").val();
+								var pw = $("#pass").val();
 
-												$
-														.ajax({
-															url : "login.do",
-															type : "post",
-															data : {
-																id : id,
-																pw : pw
-															},
-															success : function(
-																	data) {
-																var result = data.result;
-																if (result == 'true') {
-																	$(location)
-																			.attr(
-																					"href",
-																					"hollo.com");
-																} else {
-																	$(
-																			"#response")
-																			.text(
-																					"Incorrect ID or password!");
-																	$("#id")
-																			.val(
-																					"");
-																	$("#pass")
-																			.val(
-																					"");
-																}
-
-															},
-															error : function(
-																	response) {
-																console
-																		.log("에러다");
-																console
-																		.log(response);
-															}
-														});
-											});
+								$.ajax({
+									url : "login.do",
+									type : "post",
+									data : {
+											id : id,
+											pw : pw
+										},
+									success : function(data) {
+										var result = data.result;
+										if (result == 'true') {
+											$(location).attr("href","hollo.com");
+										} else {
+											$("#response").text("Incorrect ID or password!");
+												$("#id").val("");
+												$("#pass").val("");
+										}
+										},
+									error : function(response) {
+											console.log("에러다");
+											console.log(response);
+										}
+										});
+									});
 
 							$.ajax({
 								url : "data.com",

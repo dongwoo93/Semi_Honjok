@@ -69,7 +69,6 @@ public class BoardWriteController extends HttpServlet {
 			try {
 				if(systemFileName != null && !(title.equals(""))) {
 					String seq = tipDAO.getBoardSeq();
-					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.insertData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
@@ -92,7 +91,7 @@ public class BoardWriteController extends HttpServlet {
 		}else if(command.equals("/notemodify.tw")) {
 			try {
 				if(systemFileName != null) {
-					System.out.println("���� 2 ����");
+
 					String seq = mr.getParameter("seq");
 					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -100,7 +99,7 @@ public class BoardWriteController extends HttpServlet {
 					AdminFileDAO fileDAO = new AdminFileDAO();
 
 					if(result > 0) {
-						System.out.println("2��" + seq);
+
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {
@@ -113,6 +112,9 @@ public class BoardWriteController extends HttpServlet {
 			
 			dst = "hollo.com";
 			isRedirect = false;
+		}else if(command.equals("/map.tw")) {
+			System.out.println("들어오냐");
+			System.out.println("이것이여:"+mr.getParameter("places.place_name"));
 		}
 		
 
