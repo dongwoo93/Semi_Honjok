@@ -21,7 +21,7 @@
 
 
 #navbar.scrolled {
-	background-color: #dee2e6 !important;
+	background-color: #eef2f5 !important;
 	transition: background-color 200ms linear;
 }
 
@@ -32,8 +32,6 @@
 #navbar.scrolled .navbar-brand {
 	color: black;
 }
-
-
 
 .dropdown-menu {
 	background-color: black;
@@ -68,7 +66,7 @@
 }
 
 #wrapper {
-	height: 1200px;
+	height: 1350px;
 }
 
 .wrapper2 {
@@ -80,7 +78,7 @@
 	width: 50%;
 	text-align: center;
 	float: left;
-	margin-top: 70px;
+	margin-top: 90px;
 }
 
 .count {
@@ -106,8 +104,6 @@
 	padding-right: 0px;
 	width: 100%;
 }
-
-
 
 .form-control {
 	min-height: 41px;
@@ -179,8 +175,6 @@
 	margin-bottom: 20px;
 }
 
-
-
 .social-btn {
 	padding-bottom: 15px;
 }
@@ -190,8 +184,6 @@
 	font-size: 14px;
 	text-align: left;
 }
-
-
 
 .social-btn .btn-primary {
 	background: #507cc0;
@@ -252,4 +244,74 @@
 .modal-dialog {
 	max-width: 320px;
 	max-height: 200px;
+}
+
+.en-text {
+	font-family: 'Caveat', cursive;
+	/* font-family: 'Hi Melody', cursive;	 */
+	font-size : 40px;	
+}
+
+.wrapper2 {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size : 15px;
+}
+
+h1 {  
+	font-family: "Noto Sans KR";  
+	font-weight: 700; 
+} 
+
+
+.dropdown {
+	font-family: 'Nanum Pen Script', cursive;		
+	font-size: 30px;
+}
+
+.nav-item {
+	font-family: 'Nanum Pen Script', cursive;		
+	font-size: 30px;
+}
+
+.dropdown-item {
+	font-size: 20px;
+}
+
+.bottom-title {
+	
+}
+
+.bottom-text {
+	font-family: 'Hi Melody', cursive;
+	font-size: 26px;
+}
+
+.bottom-title {
+	font-family: 'Hi Melody', cursive;
+	font-size: 45px;
+	font-weight: 700; 
+	margin-bottom: 30px;
+}
+
+.hontalk {
+	font-family: 'Hi Melody', cursive;
+	font-size: 30px;
+	text-align: center;
+	margin: 50px 0 50px 0;	
+}
+
+.Shortcut {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
+	margin-top: 7px;
+}
+
+#button {
+ 	outline: none;
+ 	background: none;
+ 	border: none;
+ 		
+
+}
+	
 }
