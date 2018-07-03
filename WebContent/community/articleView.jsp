@@ -20,7 +20,92 @@
 
 </head>
 <body>
+<script>
+var num = 1;
 
+	$(document).ready(function() {
+						$("#fix").click(function() {
+							$(location).attr('href', "fix.freeb?no=${no}")
+						})
+						$("#delete").click(function(){
+							var yes = confirm("삭제 하시겠습니까?");
+							if (yes) {
+							$(location).attr('href',"delete.freeb?no=${no}&cat=${result[0].category}")
+							} else {
+							return;
+							}
+						})
+						$("#tolist").click(function(){
+							$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
+							})
+										
+						$("#fix2").click(function() {
+							$(location).attr('href', "fix.freeb?no=${no}")
+						})
+						$("#delete2").click(function(){
+							var yes = confirm("삭제 하시겠습니까?");
+							if (yes) {
+							$(location).attr('href',"delete.freeb?no=${no}&cat=${result[0].category}")
+							} else {
+							return;
+							}
+						})
+						$("#tolist2").click(function(){
+							$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
+						})
+						
+						/* $("#comodify").click(function(){
+							$(location).attr('href',"comodify.freeb?")
+						})*/
+						$("#codelete").click(function(){
+							$(location).attr('href',"codelete.freeb?")
+						})
+
+						$("#like").click(function() {
+							if ('${id}' == 'nonmember') {
+								alert("로그인을 해주세요");
+							} else {
+								$.ajax({
+									url : "like.com",
+									type : "get",
+									data : {
+										boardno : "${no}",
+										memberid : "${id}",
+										likecount : "${result[0].like}"
+									},
+									success : function(resp) {
+										$("#likecancel").show();
+										$("#like").hide();
+										$("#likespan").text(resp);
+									},
+									error : function() {
+										console.log("에러 발생!");
+									}
+								})
+							}
+
+						})
+						$("#likecancel").click(function() {
+							$.ajax({
+								url : "like.com",
+								type : "get",
+								data : {
+									boardno : "${no}",
+									memberid : "${id}",
+									likecount : "${result[0].like}"
+								},
+								success : function(resp) {
+									$("#like").show();
+									$("#likecancel").hide();
+									$("#likespan").text(resp);
+								},
+								error : function() {
+									console.log("에러 발생!");
+								}
+							})
+						})
+					})
+</script>
 	<div class="container">
 		<form method=post action="comment.freeb" id=formid>
 			<table class="table">
@@ -28,19 +113,19 @@
 					<tr>
 						<td width=100px>제목<input type="hidden" id="seq" name=seq
 							value="${result[0].seq}"></td>
-						<th colspan=1>[${result[0].header}]${result[0].title}</th>
-						<td width=220px><b id="date">${result[0].writedate}</b></td>
+						<th colspan=2>[${result[0].header}]${result[0].title}</th>
+						<td width=180px><b id="date">${result[0].writedate}</b></td>
 
 					</tr>
 					<tr>
 						<td width=100px height=20px>글쓴이</td>
-						<th colspan=2>${result[0].writer}</th>
+						<th colspan=3>${result[0].writer}</th>
 					</tr>
 					<tr>
-						<td colspan=3 height=400px>${result[0].contents}</td>
+						<td colspan=4 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
-						<td align=center colspan=3><c:choose>
+						<td align=center colspan=4><c:choose>
 								<c:when test="${likeStat == 0}">
 									<button type=button id=like>
 										<img src="kejang/good.jpg">
@@ -91,16 +176,29 @@
 					</c:otherwise>
 					</c:choose>
 					
-					
+
 					<c:choose>
 						<c:when test="${result2.size() > 0}">
 							<c:forEach var="result2" items="${result2}">
 								<tr>
+								
 									<td width=100px height=20px>${result2.comment_writer}</td>
-									<td colspan=1>${result2.comment_content}</td>
-									<td width=220px><b id="date">${result2.comment_wridate}<button type=button id="codelete">X</button></b></td>
-									
+									<td>${result2.comment_content}</td>
+									<td width=180px><b id="date">${result2.comment_wridate}</b></td>
+									<td id="delbtn" align=center>
+<!-- 									<button type=button id="comodify">M</button> -->
+									<script>
+                 	 				$("#delbtn:last-child").after("<button id="+num+" type=button><b>X</b></button>");
+                  					</script>
+									</td>
+		
 								</tr>
+								<script>
+                  document.getElementById(num).onclick = function() {
+                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+                  }
+                  num++;
+            </script>
 							</c:forEach>
 						</c:when>
 					</c:choose>
@@ -109,7 +207,7 @@
 						<form action="comment.freeb" method="post">
 							<input type="hidden" id="seq" name=count value="${count}">
 							<input type="hidden" id="seq" name=no value="${result[0].seq}">
-							<td colspan=1><textarea id="comment" name=comment
+							<td colspan=2><textarea id="comment" name=comment
 									placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110" rows="2"></textarea></td>
 							<td align=center><input type="submit" value="확인" id="confirm"
 								name="confirm"></td>

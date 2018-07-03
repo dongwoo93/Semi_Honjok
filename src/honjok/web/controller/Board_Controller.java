@@ -305,6 +305,16 @@ public class Board_Controller extends HttpServlet {
 //	            request.setAttribute("tip", tip);
 				isRedirect = false;
 				dst = "boardView.freeb?cat="+category;
+			}else if(command.equals("/delete_comment.freeb")) {
+				String no = request.getParameter("no");
+				String comSeq = request.getParameter("comSeq");
+				String viewCountStr = request.getParameter("count");
+				int viewCount = Integer.parseInt(viewCountStr) - 1;
+				BoardCommentDAO dao = new BoardCommentDAO();
+				int result = dao.deleteComment(Integer.parseInt(comSeq));
+				if(result > 0) {
+					dst = "Board_Controller.freeb?no="+no+"&count="+viewCount;
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
