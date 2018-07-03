@@ -65,6 +65,7 @@ public class Board_Controller extends HttpServlet {
 				String header = request.getParameter("head");
 				List<BoardUserDTO> result = new ArrayList<>();
 				String navi;
+				BoardDAO dao = new BoardDAO();
 				if(header!= null) {
 					int currentPage = 0;
 					String currentPageString = request.getParameter("currentPage");
@@ -74,9 +75,8 @@ public class Board_Controller extends HttpServlet {
 					}else {
 						currentPage = Integer.parseInt(currentPageString);
 					}
-					BoardDAO dao = new BoardDAO();
-					result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
 					
+					result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
 					navi = dao.getPageNavi2(currentPage, category, header);
 				}else {
 					int currentPage = 0;
@@ -87,15 +87,17 @@ public class Board_Controller extends HttpServlet {
 					}else {
 						currentPage = Integer.parseInt(currentPageString);
 					}
-					BoardDAO dao = new BoardDAO();
+					
 					result = dao.selectData(currentPage*10-9,currentPage*10, category);
 					navi = dao.getPageNavi(currentPage, category);
 				}
-				
+				List<BoardUserDTO> result2 = new ArrayList<>();
+				result2 = dao.selectNotice();
 
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
+				request.setAttribute("result2", result2);
 
 				isRedirect = false;
 				dst = "community/freeboardView2.jsp";
@@ -187,7 +189,7 @@ public class Board_Controller extends HttpServlet {
 	                int viewCount = Integer.parseInt(count) + 1;
 	                dao.UpdateViewCount(seq, viewCount);
 	             }
-				
+
 				request.setAttribute("result", result);
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
@@ -237,10 +239,12 @@ public class Board_Controller extends HttpServlet {
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
 				String writer = (String)request.getSession().getAttribute("loginId");
-				
+				System.out.println(writer);
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
 				int result = dao.insertComment(dto);
+				
+				request.setAttribute("result", result);
 				
 				isRedirect = false;
 				dst = "Board_Controller.freeb?no="+boardseq+"&count="+count;		

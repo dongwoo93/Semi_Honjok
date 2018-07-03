@@ -11,7 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="communitycss/freeboard.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
@@ -59,7 +60,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr style="background-color:gray">
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>

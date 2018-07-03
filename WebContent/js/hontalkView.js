@@ -14,10 +14,5 @@ $(document).ready(function() {
 							$(this).find('.dropdown-menu').stop(true, true)
 									.delay(200).fadeOut(500);
 						});
-				$(window).scroll(
-						function() {
-							var $nav = $("#navbar");
-							$nav.toggleClass('scrolled',
-									$(this).scrollTop() > $nav.height());
-						});
+				
 			})
