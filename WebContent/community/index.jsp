@@ -531,62 +531,54 @@
 	</script>
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							function numberWithCommas(x) {
 								return x.toString().replace(
 										/\B(?=(\d{3})+(?!\d))/g, ",");
+							};
+							
+							function login() {
+
+
+								var id = $("#id").val();
+								var pw = $("#pass").val();
+
+								$.ajax({
+											url : "login.do",
+											type : "post",
+											data : {
+												id : id,
+												pw : pw
+											},
+											success : function(
+													data) {
+												var result = data.result;
+												if (result == 'true') {
+													$(location).attr("href", "hollo.com");
+												} else {
+													$("#response").text("Incorrect ID or password!");
+													$("#id").val("");
+													$("#pass").val("");
+												}
+
+											},
+											error : function(
+													response) {
+												console.log("에러다");
+												console.log(response);
+											}
+										});
+							
 							}
-							;
 
-							$("#login")
-									.click(
-											function() {
-
-												var id = $("#id").val();
-												var pw = $("#pass").val();
-
-												$
-														.ajax({
-															url : "login.do",
-															type : "post",
-															data : {
-																id : id,
-																pw : pw
-															},
-															success : function(
-																	data) {
-																var result = data.result;
-																if (result == 'true') {
-																	$(location)
-																			.attr(
-																					"href",
-																					"hollo.com");
-																} else {
-																	$(
-																			"#response")
-																			.text(
-																					"Incorrect ID or password!");
-																	$("#id")
-																			.val(
-																					"");
-																	$("#pass")
-																			.val(
-																					"");
-																}
-
-															},
-															error : function(
-																	response) {
-																console
-																		.log("에러다");
-																console
-																		.log(response);
-															}
-														});
-											});
-
+							$("#login").click(login);
+							
+							$('#pass').keypress(function (e) {
+								  if (e.which == 13) {
+								   login();   //<---- Add this line
+								  }
+								});
+							
 							$.ajax({
 								url : "data.com",
 								type : "get",

@@ -247,74 +247,24 @@
 				style="width: 350px; height: 300px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
-						<th>글번호</th>
+						<th>좋아요 수</th>
 						<th>제목</th>
 						<th>내용</th>
 						<th>작성자</th>
 					</tr>
 				</thead>
-
+				
 				<tbody>
+					
+					<c:forEach var="best" items="${best}" varStatus="status">
 					<tr>
-						<th scope="row">1</th>
-						<td class="td-contents2"><a href="#">sdsdsdsd제목이다ssssdsdsddsdsd삉삉></a></td>
-						<td class="td-contents2">내용이다dddddasd</td>
-						<td class="td-contents2">작성자다asdasdasd</td>
+						<th scope="row">${best.like}</th>
+						<td class="td-contents2"><a href="#">${best.title}</a></td>
+						<td class="td-contents2">${best.contents}</td>
+						<td class="td-contents2">${best.writer}</td>
 					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td class="td-contents2">95</td>
-						<td class="td-contents2">$12,000.00</td>
-						<td class="td-contents2">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td class="td-contents2">150</td>
-						<td class="td-contents2">$20,000.00</td>
-						<td class="td-contents2">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td class="td-contents2">50</td>
-						<td class="td-contents2">$30,000.00</td>
-						<td class="td-contents2">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
+					</c:forEach>
+					
 				</tbody>
 			</table>
 		</div>
