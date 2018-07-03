@@ -141,5 +141,22 @@ public class AdminFileDAO {
 		con.close();
 		return result;
 	}
-	
+	public int insertContentsImg(String seq, String category, String subject, String[] fileList) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "insert into admin_files values(?, admin_files_seq.nextval, ?, ?, ?, ?)";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setInt(1, Integer.parseInt(seq));
+		pstat.setString(2, category);
+		pstat.setString(3, subject);
+		
+		//pstat.setString(4, fileDTO.getThum_sysFileName());
+		//pstat.setString(5, fileDTO.getThum_orgFileName());
+		int result = pstat.executeUpdate();
+		
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
 }

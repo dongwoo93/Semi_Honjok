@@ -66,9 +66,9 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				for(int i =0; fileResult.size()>i;i++) {
+				/*for(int i =0; fileResult.size()>i;i++) {
 					System.out.println(result.get(i).getViewcount());
-				}
+				}*/
 				isRedirect = false;
 				dst = "board/boardtip.jsp";
 			}else if(command.equals("/selectView.tip")) {

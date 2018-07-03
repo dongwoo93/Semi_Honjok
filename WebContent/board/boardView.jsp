@@ -81,15 +81,13 @@
 
 <style>
 #like, #likecancel {
-display: inline-block;
-	width: 5%;
-	height: 5%;
+	width: 3%;
+	height: 3%;
 	margin: 0px;
 	padding0: 0px;
 }
 
 .col-md-3 {
-	display: inline-block;
 	margin: 0px;
 	max-width: 60px;
 }
@@ -126,23 +124,23 @@ span{
 		<span class="col-md-2"> <c:choose>
 				<c:when test="${likeStat == 0}">
 					<!-- <button type="button" id=like>좋아요</button> -->
-					<span><input type="image" src="images/ios7-heart.png" id="like"></span>
+					<span><input type="image" src="images/nomal_heart.png" id="like"></span>
 					<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
-					<span><input type="image" src="images/heart-icon.png" id="likecancel"
-						style="display: none"></span>
+					<span><input type="image" src="images/heart_77931.png" id="likecancel"
+						style="display: none" style="width:4%;"></span>
 					<span id=likespan>${result[0].likeit}</span>
 				</c:when>
 				<c:otherwise>
 					<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
-					<input type="image" src="images/heart-icon.png" id="likecancel">
-					<input type="image" src="images/ios7-heart.png" id="like"
-						style="display: none">
+					<input type="image" src="images/heart_77931.png" id="likecancel">
+					<input type="image" src="images/nomal_heart.png" id="like"
+						style="display: none" style="width:4%;">
 					<!-- <button type="button" id=like style="display: none">좋아요</button> -->
 					<span id=likespan>${result[0].likeit}</span>
 				</c:otherwise>
 			</c:choose>
 		</span> <span class="col-md-8">조회수 : ${result[0].viewcount}</span>
-
+		<button type="button" onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨 위로</button>
 		<%-- </c:forEach> --%>
 	</div>
 

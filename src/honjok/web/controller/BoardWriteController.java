@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -31,7 +36,7 @@ public class BoardWriteController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		System.out.println(command);
+		//System.out.println(command);
 		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
@@ -47,11 +52,16 @@ public class BoardWriteController extends HttpServlet {
 		Enumeration<String> names = mr.getFileNames();
 		boolean isRedirect = true;
 		String dst = null;
-		
 		String title = mr.getParameter("title");
 		String category = mr.getParameter("category");
 		String subject = mr.getParameter("subject");
 		String contents = mr.getParameter("summernote");
+		String stJson = mr.getParameter("contentsImg");
+		JSONParser paser = new JSONParser();
+		JSONObject jObj = new JSONObject();
+		String[] fileList = null;
+		Object obj;
+		
 		//String contentsImg = mr.getParameter("contentsImg");
 		/*List<>
 		String[] splitImgName = contentsImg.split(".");
@@ -73,11 +83,19 @@ public class BoardWriteController extends HttpServlet {
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.insertData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
-
+					
 					if(result > 0) {
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
 						if(fileResult > 0) {
+							obj = paser.parse(stJson);
+							JSONArray jsonArray = (JSONArray)obj;
+							fileList = new String[jsonArray.size()];
+							for(int i=0;i<fileList.length;i++){
+								fileList[i] = jsonArray.get(i).toString();
+								System.out.println(fileList[i]);
+							}
+							fileDAO.insertContentsImg(seq, category, subject, fileList);
 						}else {
 						}
 					}else {
@@ -90,10 +108,10 @@ public class BoardWriteController extends HttpServlet {
 			}
 			dst = "hollo.com";
 		}else if(command.equals("/notemodify.tw")) {
-			System.out.println("¼öÁ¤ µé¾î¿È");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			try {
 				if(systemFileName != null) {
-					System.out.println("¼öÁ¤ 2 µé¾î¿È");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½ï¿½");
 					String seq = mr.getParameter("seq");
 					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -101,7 +119,7 @@ public class BoardWriteController extends HttpServlet {
 					AdminFileDAO fileDAO = new AdminFileDAO();
 
 					if(result > 0) {
-						System.out.println("2¹ø" + seq);
+						System.out.println("2ï¿½ï¿½" + seq);
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {
