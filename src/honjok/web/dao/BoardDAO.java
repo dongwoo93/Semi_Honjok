@@ -119,6 +119,28 @@ public class BoardDAO {
 			return list;
 	
 	}
+	
+	public List<BoardUserDTO> selectBest() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 11";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> result = new ArrayList<>();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			dto.setLike(rs.getInt(9));
+			result.add(dto);
+		}
+		
+			pstat.close();
+			con.close();
+			
+			return result;
+	}
+	
 	public List<BoardUserDTO> selectData(int startNum, int endNum, String category) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=?) where num between ? and ?";
