@@ -613,9 +613,7 @@
 									});
 
 							var a = 0;
-							$(window)
-									.scroll(
-											function() {
+							$(window).scroll(function() {
 												var oTop = $('#shiva').offset().top
 														- window.innerHeight;
 												if (a == 0

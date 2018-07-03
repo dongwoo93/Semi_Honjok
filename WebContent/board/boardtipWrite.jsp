@@ -604,16 +604,20 @@
 							}
 						}
 						
-
+						
 						//for(var i = 0; i < overlay.length; i++) {
 						//	if(overlay[index] != ol) {
 						//		overlay[i].setMap(null);
 						//	}
 						//}
+						
+						document.getElementById("place_name").value=places.place_name;
+						document.getElementById("category_name").value=places.category_name;
+						document.getElementById("phone").value=places.phone;
+						document.getElementById("road_address_name").value=places.road_address_name;
+						document.getElementById("address_name").value=places.address_name;
+						document.getElementById("place_url").value=places.place_url;
 
-						console.log(index);
-						console.log(places);
-						console.log(marker);
 						removeMarker2(index, places, marker);
 
 						/* 				console.log(places.place_name);
@@ -794,7 +798,14 @@
 					}
 				}
 			</script>
-			<input type="submit" class="btn btn-primary" value="submits">
+
+			<input id="place_name" type="hidden" name="places.place_name">
+			<input id="category_name" type="hidden" name="places.category_name">
+			<input id="phone" type="hidden" name="places.phone">
+			<input id="road_address_name" type="hidden" name="places.road_address_name">
+			<input id="address_name" type="hidden" name="places.address_name">
+			<input id="place_url" type="hidden" name="places.place_url">
+			<input id="" type="submit" class="btn btn-primary" value="submits">
 		</div>
 	</form>
 	<script>

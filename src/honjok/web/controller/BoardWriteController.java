@@ -16,8 +16,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardTipDAO;
+import honjok.web.dao.MapDAO;
 import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
+import honjok.web.dto.MapDTO;
 
 
 @WebServlet("*.tw")
@@ -66,12 +68,15 @@ public class BoardWriteController extends HttpServlet {
 
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		if(command.equals("/editor.tw")) {
+			String seq=null;
 			try {
 				if(systemFileName != null && !(title.equals(""))) {
-					String seq = tipDAO.getBoardSeq();
+					seq = tipDAO.getBoardSeq();
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.insertData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
+					
+					
 
 					if(result > 0) {
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
@@ -83,7 +88,25 @@ public class BoardWriteController extends HttpServlet {
 					}
 				}else {
 				}
-
+		
+				String place_name = mr.getParameter("places.place_name");
+				String category_name = mr.getParameter("places.category_name");
+				String phone = mr.getParameter("places.phone");
+				String road_address_name = mr.getParameter("places.road_address_name");
+				String address_name = mr.getParameter("places.address_name");
+				String place_url = mr.getParameter("places.place_url");
+				
+				MapDTO dto = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url);
+				MapDAO dao = new MapDAO();
+				int result = dao.insertData(dto);
+				
+				if(result>0) {
+					
+				}else {
+					
+				}
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -112,9 +135,6 @@ public class BoardWriteController extends HttpServlet {
 			
 			dst = "hollo.com";
 			isRedirect = false;
-		}else if(command.equals("/map.tw")) {
-			System.out.println("들어오냐");
-			System.out.println("이것이여:"+mr.getParameter("places.place_name"));
 		}
 		
 
