@@ -36,32 +36,6 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 
-<script>
-	$(document).ready(
-			function() {
-				
-				$('.carousel').carousel({
-					  interval: 3000
-					})
-				
-				
-				$('ul.nav li.dropdown').hover(
-						function() {
-							$(this).find('.dropdown-menu').stop(true, true)
-									.delay(200).fadeIn(500);
-						},
-						function() {
-							$(this).find('.dropdown-menu').stop(true, true)
-									.delay(200).fadeOut(500);
-						});
-				$(window).scroll(
-						function() {
-							var $nav = $("#navbar");
-							$nav.toggleClass('scrolled',
-									$(this).scrollTop() > $nav.height());
-						});
-			})
-</script>
 
 </head>
 <body>
