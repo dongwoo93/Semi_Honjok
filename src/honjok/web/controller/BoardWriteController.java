@@ -61,7 +61,7 @@ public class BoardWriteController extends HttpServlet {
 		JSONObject jObj = new JSONObject();
 		String[] fileList = null;
 		Object obj;
-		
+
 		//String contentsImg = mr.getParameter("contentsImg");
 		/*List<>
 		String[] splitImgName = contentsImg.split(".");
@@ -83,7 +83,7 @@ public class BoardWriteController extends HttpServlet {
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.insertData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
-					
+
 					if(result > 0) {
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
@@ -91,11 +91,16 @@ public class BoardWriteController extends HttpServlet {
 							obj = paser.parse(stJson);
 							JSONArray jsonArray = (JSONArray)obj;
 							fileList = new String[jsonArray.size()];
-							for(int i=0;i<fileList.length;i++){
-								fileList[i] = jsonArray.get(i).toString();
-								System.out.println(fileList[i]);
+							for(int j=0;j<fileList.length;j++){
+								fileList[j] = jsonArray.get(j).toString();
+								System.out.println(fileList[j]);
 							}
-							fileDAO.insertContentsImg(seq, category, subject, fileList);
+							int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
+							for(int i=0;i<imgUpResult.length;i++) {
+								if(imgUpResult[i] > 0) {
+									System.out.println("¼º°ø");
+								}
+							}
 						}else {
 						}
 					}else {
@@ -129,11 +134,11 @@ public class BoardWriteController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
+
 			dst = "hollo.com";
 			isRedirect = false;
 		}
-		
+
 
 
 		/*if(command.equals("/upload.tw")) {

@@ -141,19 +141,22 @@ public class AdminFileDAO {
 		con.close();
 		return result;
 	}
-	public int insertContentsImg(String seq, String category, String subject, String[] fileList) throws Exception {
+	public int[] insertContentsImg(String seq, String[] fileList) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into admin_files values(?, admin_files_seq.nextval, ?, ?, ?, ?)";
+		String sql = "insert into admin_conImg values(?, admin_conImg_seq.nextval, ?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
+		int batchSize = fileList.length;
+		int count = 0;
+		for (int i=0;i < batchSize;i++) {
+			pstat.setInt(1, Integer.parseInt(seq));
+			pstat.setString(2, fileList[i]);
+			pstat.addBatch();
+			if(++count % batchSize == 0) {
+				pstat.executeBatch();
+			}
+		}
 		
-		pstat.setInt(1, Integer.parseInt(seq));
-		pstat.setString(2, category);
-		pstat.setString(3, subject);
-		
-		//pstat.setString(4, fileDTO.getThum_sysFileName());
-		//pstat.setString(5, fileDTO.getThum_orgFileName());
-		int result = pstat.executeUpdate();
-		
+		int[] result = pstat.executeBatch();
 		con.commit();
 		pstat.close();
 		con.close();
