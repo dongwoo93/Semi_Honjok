@@ -1,23 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="honjok.web.dto.BoardUserDTO"%>
-<jsp:useBean id="dto" class="honjok.web.dto.BoardUserDTO">
-	<jsp:setProperty name="dto" property="*"></jsp:setProperty>
-</jsp:useBean>
-<jsp:useBean id="dao" class="honjok.web.dao.BoardDAO" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="communitycss/freeboard.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-</head>
-<body>
-	<div class="container">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+    
+    <%@ include file="../include/top.jsp" %>
+    <link rel="stylesheet" href="communitycss/freeboard.css">
+<script type="text/javascript" src="js/freeboardView.js"></script>
+    <div class="container">
 		<table class="table table-hover">
 			<thead class="head" id="head">
 				<tr>
@@ -69,6 +56,24 @@
 					<td id="view">조회</td>
 					<td id="like">추천</td>
 				</tr>
+			<c:choose>
+				<c:when test="${result2.size() > 0}">
+					<c:forEach var="item2" items="${result2}">
+					<tbody id="notice">
+				<tr>
+					<td id="noticeno">${item2.seq}</td>
+					<td id="noticeheader"><b>${item2.header}</b></td>
+					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
+					<td id="noticewriter"><b>${item2.writer}</b></td>
+					<td id="noticedate">${item2.writedate}</td>
+					<td id="noticeview">${item2.viewcount}</td>
+					<td id="noticelike">${item2.like}</td>
+				</tr>
+				</tbody>
+				</c:forEach>
+				</c:when>
+			</c:choose>
+				
 			</thead>
 			
 			<c:choose>
@@ -102,6 +107,4 @@
 			${navi}</div> <div id="btn"><input type=button id="write" value="글 쓰기">
 		</div>
 	</div>
-
-</body>
-</html>
+	<%@ include file="../include/bottom.jsp"%>
