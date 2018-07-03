@@ -80,7 +80,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr style="background-color:gray">
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>

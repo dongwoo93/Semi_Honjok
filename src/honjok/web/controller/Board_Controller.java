@@ -187,7 +187,7 @@ public class Board_Controller extends HttpServlet {
 	                int viewCount = Integer.parseInt(count) + 1;
 	                dao.UpdateViewCount(seq, viewCount);
 	             }
-				System.out.println(result2.get(0).getComment_wridate());
+
 				request.setAttribute("result", result);
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);

@@ -15,7 +15,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script>
 	$(document)
 			.ready(
@@ -36,8 +37,8 @@
 											}
 
 										})
-						$("#back").click(function() {
-							$(location).attr('href', "freeboardView.jsp")
+						$("#tolist").click(function() {
+							$(location).attr('href', "boardView.freeb?cat=${result[0].category}")
 						})
 
 						$("#like").click(function() {
@@ -112,17 +113,20 @@
 						<td colspan=3 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
-						<td align=center colspan=4>
-							<c:choose>
+						<td align=center colspan=4><c:choose>
 								<c:when test="${likeStat == 0}">
-									<button type="button" id=like>좋아요</button>
+									<button type=button id=like><img src="kejang/good.jpg"></button>
+									<button type=button id=likecancel style="display: none"><img src="kejang/no.png"></button>
+									<!-- <button type="button" id=like>좋아요</button>
 									<button type="button" id=likecancel style="display: none">좋아요
-										취소</button>
+										취소</button> -->
 									<span id=likespan>${result[0].like}</span>
 								</c:when>
 								<c:otherwise>
-									<button type="button" id=likecancel>좋아요 취소</button>
-									<button type="button" id=like style="display: none">좋아요</button>
+									<button type=button id=likecancel><img src="kejang/no.png"></button>
+									<button type=button id=like style="display: none"><img src="kejang/good.jpg"></button>
+									<!-- <button type="button" id=likecancel>좋아요 취소</button>
+									<button type="button" id=like style="display: none">좋아요</button> -->
 									<span id=likespan>${result[0].like}</span>
 								</c:otherwise>
 							</c:choose></td>
@@ -133,16 +137,17 @@
 					</tr>
 					<tr>
 						<td width=100px height=20px>작성자IP</td>
-						<th colspan=3>${result[0].ip}</th><tr ali gn=right>
+						<th colspan=3>${result[0].ip}</th>
+					<tr ali gn=right>
 
 
 						<td colspan=4 height=20px align=right>
 							<button type="button" id=fix>수정</button>
 							<button type="button" id=delete>삭제</button>
-							<button type="button" id=back>목록</button>
+							<button type="button" id=tolist>목록</button>
 						</td>
 
-						<!-- <td colspan=3 height=20px><button type="button" id=back>목록</button></td> -->
+						<!-- <td colspan=3 height=20px><button type="button" id=tolist>목록</button></td> -->
 						<c:choose>
 							<c:when test="${result2.size() > 0}">
 								<c:forEach var="result2" items="${result2}">
@@ -152,18 +157,17 @@
 										<td><b id="date">${result2.comment_wridate}</b></td>
 									</tr>
 								</c:forEach>
-					</c:when>
-					</c:choose>
+							</c:when>
+						</c:choose>
 					<tr>
 						<th width=80px height=40px>${sessionScope.loginId}</th>
 						<form action="comment.freeb" method="post">
 							<input type="hidden" id="seq" name=count value="${count}">
 							<input type="hidden" id="seq" name=no value="${result[0].seq}">
 							<td colspan=2><textarea id="comment" name=comment
-													placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110"
-													rows="2"></textarea></td>
+									placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110" rows="2"></textarea></td>
 							<td><input type="submit" value="확인" id="confirm"
-												name="confirm"></td>
+								name="confirm"></td>
 						</form>
 					</tr>
 					<tr align=right>
@@ -171,14 +175,14 @@
 						<%-- <c:when test="${result>0}"> --%>
 						<td colspan=4 height=20px><button type="button" id=fix>수정</button>
 							<button type="button" id=delete>삭제</button>
-							<button type="button" id=back>목록</button></td>
+							<button type="button" id=tolist>목록</button></td>
 						<%-- </c:when> --%>
 						<%-- <c:otherwise> --%>
-						<!-- <td colspan=4 height=20px><button type="button" id=back>목록</button></td> -->
+						<!-- <td colspan=4 height=20px><button type="button" id=tolist>목록</button></td> -->
 						<%-- </c:otherwise>
 		</c:choose> --%>
 					</tr>
-				
+
 				</tbody>
 			</table>
 

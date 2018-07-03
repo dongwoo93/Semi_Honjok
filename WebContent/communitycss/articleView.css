@@ -29,7 +29,7 @@
     color: #555555;
     
 }
-#back{
+#tolist{
 	border-radius: 3px;
 	background-color: #4e90fc;
 	font-family:명조;
@@ -38,7 +38,7 @@
 	
 	color: white;
 }
-#back:hover{
+#tolist:hover{
 	background-color: white;
     color: #555555;
     
