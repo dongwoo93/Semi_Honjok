@@ -60,17 +60,18 @@
 				<li class="dropdown-item"><a href="#">혼팁</a></li>
 				<li class="dropdown-item"><a href="#">베스트</a></li>
 			</ul></li>
-		<li class="dropdown nav-item"><a href="selectNaviCat.tip?category='꿀팁'"
+		<li class="dropdown nav-item"><a
+			href="selectNaviCat.tip?category='꿀팁'"
 			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
 			<ul class="dropdown-menu">
 				<li class="dropdown-item"><a
-					href="selectNaviCat.tip?category='꿀팁'">전체보기</a></li>
+					href="selectNaviCat.tip?category=꿀팁">전체보기</a></li>
 				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category='꿀팁'&subject='청소'">청소</a></li>
+					href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
 				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category='꿀팁'&subject='라이프'">라이프</a></li>
+					href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
 				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category='꿀팁'&subject='경제적'">경제적</a></li>
+					href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
 			</ul></li>
 		<li class="dropdown nav-item"><a id="cook"
 			href="board/boardtipWrite.jsp" class="dropdown-toggle nav-link"
@@ -530,43 +531,54 @@
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(
-						function() {
+		$(document).ready(function() {
 							function numberWithCommas(x) {
 								return x.toString().replace(
 										/\B(?=(\d{3})+(?!\d))/g, ",");
-							}
-							;
+							};
+							
+							function login() {
 
-							$("#login").click(function() {
 
 								var id = $("#id").val();
 								var pw = $("#pass").val();
 
 								$.ajax({
-									url : "login.do",
-									type : "post",
-									data : {
-											id : id,
-											pw : pw
-										},
-									success : function(data) {
-										var result = data.result;
-										if (result == 'true') {
-											$(location).attr("href","hollo.com");
-										} else {
-											$("#response").text("Incorrect ID or password!");
-												$("#id").val("");
-												$("#pass").val("");
-										}
-										},
-									error : function(response) {
-											console.log("에러다");
-											console.log(response);
-										}
-										});
-									});
+											url : "login.do",
+											type : "post",
+											data : {
+												id : id,
+												pw : pw
+											},
+											success : function(
+													data) {
+												var result = data.result;
+												if (result == 'true') {
+													$(location).attr("href", "hollo.com");
+												} else {
+													$("#response").text("Incorrect ID or password!");
+													$("#id").val("");
+													$("#pass").val("");
+												}
 
+											},
+											error : function(
+													response) {
+												console.log("에러다");
+												console.log(response);
+											}
+										});
+							
+							}
+
+							$("#login").click(login);
+							
+							$('#pass').keypress(function (e) {
+								  if (e.which == 13) {
+								   login();   //<---- Add this line
+								  }
+								});
+							
 							$.ajax({
 								url : "data.com",
 								type : "get",
@@ -666,7 +678,7 @@
 							$('#cook').click(function() {
 								window.location = $(this).attr('href');
 							});
-							
+
 							$('#logoutbt').click(function() {
 								$(location).attr('href', 'logout.do');
 							});
@@ -726,7 +738,8 @@
 							var email = JSON.stringify(res.kaccount_email)
 							var name = JSON.stringify(res.properties.nickname)
 							console.log(id + email + name);
-							location.href = "kakaotest.do?id="+id+"&email="+email+"&name="+name;
+							location.href = "kakaotest.do?id=" + id + "&email="
+									+ email + "&name=" + name;
 						},
 						fail : function(error) {
 							console.log(JSON.stringify(error));

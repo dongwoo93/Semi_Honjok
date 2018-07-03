@@ -110,7 +110,6 @@ public class MemberDAO {
 			dto.setZipcode(rs.getString("zipcode"));
 			dto.setAddress(rs.getString("address"));
 			dto.setGender(rs.getString("gender"));
-
 		}	
 
 		con.commit();

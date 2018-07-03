@@ -38,7 +38,7 @@ public class Board_Controller extends HttpServlet {
 			String contextPath = request.getContextPath();
 			String command = requestURI.substring(contextPath.length());
 //			String id = (String)request.getSession().getAttribute("loginId");
-			String id = "히오스";
+
             String count = request.getParameter("count");
 			
 			if(command.equals("/hontalkView.freeb")){
@@ -48,11 +48,13 @@ public class Board_Controller extends HttpServlet {
 	            List<BoardUserDTO> qna = dao.selectQna();
 	            List<BoardUserDTO> counsel = dao.selectCounsel();
 	            List<BoardUserDTO> tip = dao.selectTip();
-	            System.out.println(free);
+	            List<BoardUserDTO> best = dao.selectBest();
+	            
 	            request.setAttribute("free", free);
 	            request.setAttribute("qna", qna);
 	            request.setAttribute("counsel", counsel);
 	            request.setAttribute("tip", tip);
+	            request.setAttribute("best", best);
 
 	            isRedirect=false;
 	            dst = "/community/hontalkView.jsp";
@@ -152,21 +154,28 @@ public class Board_Controller extends HttpServlet {
 				dst = "freeboardResult.jsp";
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
-				id = "ykng10";
-
-				request.setAttribute("id", id);
+				String id = (String)request.getSession().getAttribute("loginId");
 				BoardLikeDAO like = new BoardLikeDAO();
-				try {
-					boolean result = like.LikeExist(no, id);
-					if(!result) {
-						int insertLike = like.insertData(no, id);
+				if(id != null) {
+					try {
+						boolean result = like.LikeExist(no, id);
+						if(!result) {
+							int insertLike = like.insertData(no, id);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					LikeDTO likeDto = like.SelectLike(no, id);
+					String likeStat = likeDto.getLikeCheck();
+					request.setAttribute("likeStat", likeStat);
+					
+				}else {
+					id = "nonmember";
+					request.setAttribute("likeStat", "0");
 				}
-				LikeDTO likeDto = like.SelectLike(no, id);
-				String likeStat = likeDto.getLikeCheck();
+				request.setAttribute("id", id);
 				int seq = Integer.parseInt(no);
 
 				BoardDAO dao = new BoardDAO();
@@ -183,7 +192,7 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
 				request.setAttribute("count", count);
-				request.setAttribute("likeStat", likeStat);
+				
 				isRedirect = false;
 				dst = "community/articleView.jsp";
 			}else if(command.equals("/upload.freeb")) {
@@ -227,7 +236,7 @@ public class Board_Controller extends HttpServlet {
 				String boardseq = request.getParameter("no");
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
-				String writer = "끼욧";
+				String writer = (String)request.getSession().getAttribute("loginId");
 				
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
