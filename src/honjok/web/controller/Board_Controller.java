@@ -48,11 +48,13 @@ public class Board_Controller extends HttpServlet {
 	            List<BoardUserDTO> qna = dao.selectQna();
 	            List<BoardUserDTO> counsel = dao.selectCounsel();
 	            List<BoardUserDTO> tip = dao.selectTip();
+	            List<BoardUserDTO> best = dao.selectBest();
 	            
 	            request.setAttribute("free", free);
 	            request.setAttribute("qna", qna);
 	            request.setAttribute("counsel", counsel);
 	            request.setAttribute("tip", tip);
+	            request.setAttribute("best", best);
 
 	            isRedirect=false;
 	            dst = "/community/hontalkView.jsp";
@@ -174,9 +176,6 @@ public class Board_Controller extends HttpServlet {
 					request.setAttribute("likeStat", "0");
 				}
 				request.setAttribute("id", id);
-				
-				
-				
 				int seq = Integer.parseInt(no);
 
 				BoardDAO dao = new BoardDAO();
