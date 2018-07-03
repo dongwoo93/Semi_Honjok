@@ -9,27 +9,15 @@ public class MapDTO {
 	private String road_address_name;
 	private String address_name;
 	private String place_url;
-	
+	private String x;
+	private String y;
+
 	public MapDTO() {
-		
+
 	}
-	
-	
-	public MapDTO(String board_seq, String place_name, String category_name, String phone,
-			String road_address_name, String address_name, String place_url) {
-		super();
-		this.board_seq = board_seq;
-		this.place_name = place_name;
-		this.category_name = category_name;
-		this.phone = phone;
-		this.road_address_name = road_address_name;
-		this.address_name = address_name;
-		this.place_url = place_url;
-	}
-	
-	
+
 	public MapDTO(String place_seq, String board_seq, String place_name, String category_name, String phone,
-			String road_address_name, String address_name, String place_url) {
+			String road_address_name, String address_name, String place_url, String x, String y) {
 		super();
 		this.place_seq = place_seq;
 		this.board_seq = board_seq;
@@ -39,6 +27,40 @@ public class MapDTO {
 		this.road_address_name = road_address_name;
 		this.address_name = address_name;
 		this.place_url = place_url;
+		this.x = x;
+		this.y = y;
+	}
+
+
+
+	public MapDTO(String board_seq, String place_name, String category_name, String phone, String road_address_name,
+			String address_name, String place_url, String x, String y) {
+		super();
+		this.board_seq = board_seq;
+		this.place_name = place_name;
+		this.category_name = category_name;
+		this.phone = phone;
+		this.road_address_name = road_address_name;
+		this.address_name = address_name;
+		this.place_url = place_url;
+		this.x = x;
+		this.y = y;
+	}
+
+	public String getX() {
+		return x;
+	}
+
+	public void setX(String x) {
+		this.x = x;
+	}
+
+	public String getY() {
+		return y;
+	}
+
+	public void setY(String y) {
+		this.y = y;
 	}
 
 	public String getPlace_seq() {
@@ -104,6 +126,6 @@ public class MapDTO {
 	public void setPlace_url(String place_url) {
 		this.place_url = place_url;
 	}
-	
-	
+
+
 }

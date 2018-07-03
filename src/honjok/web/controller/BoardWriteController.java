@@ -68,7 +68,7 @@ public class BoardWriteController extends HttpServlet {
 
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		if(command.equals("/editor.tw")) {
-			String seq=null;
+			String seq = null;
 			try {
 				if(systemFileName != null && !(title.equals(""))) {
 					seq = tipDAO.getBoardSeq();
@@ -95,17 +95,18 @@ public class BoardWriteController extends HttpServlet {
 				String road_address_name = mr.getParameter("places.road_address_name");
 				String address_name = mr.getParameter("places.address_name");
 				String place_url = mr.getParameter("places.place_url");
+				String x = mr.getParameter("places.x");
+				String y = mr.getParameter("places.y");
+				System.out.println(road_address_name);
 				
-				MapDTO dto = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url);
+				
+				MapDTO dto = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
 				MapDAO dao = new MapDAO();
 				int result = dao.insertData(dto);
-				
-				if(result>0) {
-					
-				}else {
-					
+				if(result <= 0) {
+					response.sendRedirect("error.html");
 				}
-				
+								
 				
 			} catch (Exception e) {
 				e.printStackTrace();

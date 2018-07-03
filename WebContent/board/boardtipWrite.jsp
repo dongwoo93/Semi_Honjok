@@ -617,6 +617,8 @@
 						document.getElementById("road_address_name").value=places.road_address_name;
 						document.getElementById("address_name").value=places.address_name;
 						document.getElementById("place_url").value=places.place_url;
+						document.getElementById("x").value=places.x;
+						document.getElementById("y").value=places.y;
 
 						removeMarker2(index, places, marker);
 
@@ -805,6 +807,8 @@
 			<input id="road_address_name" type="hidden" name="places.road_address_name">
 			<input id="address_name" type="hidden" name="places.address_name">
 			<input id="place_url" type="hidden" name="places.place_url">
+			<input id="x" type="hidden" name="places.x">
+			<input id="y" type="hidden" name="places.y">
 			<input id="" type="submit" class="btn btn-primary" value="submits">
 		</div>
 	</form>
