@@ -8,6 +8,7 @@ import java.util.List;
 
 import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.BoardCommentDTO;
+import honjok.web.dto.BoardUserDTO;
 
 public class BoardCommentDAO {
 	public List<BoardCommentDTO> selectComment(int seq) throws Exception {
@@ -50,4 +51,45 @@ public class BoardCommentDAO {
 		return result;		
 	}
 	
+	public int deleteComment(int seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "delete from board_user_comment where comment_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, seq);
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+	public int modifyData(BoardCommentDTO dto) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "update board_user_comment set comment_content=? where comment_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, dto.getComment_content());
+		pstat.setString(1, dto.getComment_seq());
+		
+		int result = pstat.executeUpdate();
+
+		pstat.close();
+		con.commit();
+		con.close();
+		return result;
+	}
+	public BoardCommentDTO modifyRead(int seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select comment_content from board_user_comment where comment_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, seq);
+		ResultSet rs = pstat.executeQuery();
+
+		BoardCommentDTO dto = new BoardCommentDTO();
+		if(rs.next()) {
+			dto.setComment_content(rs.getString("comment_content"));
+		}
+		rs.close();
+		pstat.close();
+		con.close();
+		return dto;
+	}
 }

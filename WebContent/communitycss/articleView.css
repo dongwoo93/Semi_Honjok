@@ -45,6 +45,11 @@
     
 }
 
+#comodify{
+	border-radius: 3px;
+	font-size: 5px;
+}
+
 #codelete{
 	border-radius: 3px;
 	font-size: 5px;
