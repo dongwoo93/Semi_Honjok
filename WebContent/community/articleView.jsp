@@ -99,10 +99,10 @@
 			<table class="table">
 				<tbody class="head" id="head">
 					<tr>
-						<td width=100px height=20px>제목<input type="hidden" id="seq"
+						<td width=100px>제목<input type="hidden" id="seq"
 							name=seq value="${result[0].seq}"></td>
 						<th colspan=2>[${result[0].header}]${result[0].title}</th>
-						<td><b id="date">${result[0].writedate}</b></td>
+						<td width=180px><b id="date">${result[0].writedate}</b></td>
 
 					</tr>
 					<tr>

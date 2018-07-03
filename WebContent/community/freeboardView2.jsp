@@ -47,7 +47,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr style="background-color:gray">
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
@@ -56,6 +56,24 @@
 					<td id="view">조회</td>
 					<td id="like">추천</td>
 				</tr>
+			<c:choose>
+				<c:when test="${result2.size() > 0}">
+					<c:forEach var="item2" items="${result2}">
+					<tbody id="notice">
+				<tr>
+					<td id="noticeno">${item2.seq}</td>
+					<td id="noticeheader"><b>${item2.header}</b></td>
+					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
+					<td id="noticewriter"><b>${item2.writer}</b></td>
+					<td id="noticedate">${item2.writedate}</td>
+					<td id="noticeview">${item2.viewcount}</td>
+					<td id="noticelike">${item2.like}</td>
+				</tr>
+				</tbody>
+				</c:forEach>
+				</c:when>
+			</c:choose>
+				
 			</thead>
 			
 			<c:choose>

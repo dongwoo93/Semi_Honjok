@@ -81,12 +81,10 @@ $(document).ready(function() {
 					});
 			a = 1;
 		}
-		var $nav = $("#navbar");
-		$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		
+
+
 	});
-
-
-
 });
 
 
