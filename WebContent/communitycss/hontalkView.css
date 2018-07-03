@@ -11,64 +11,10 @@ body{
 	text-decoration: none;
 }
 
-.navbar-nav{
-	margin-left: 50px;
-}
-
-.dropdown nav-item::active{
-	
-}
-
-.dropdown-item:focus, .dropdown-item:hover{
-	background-color: black;
-}
-
-.navbar-light .navbar-nav .nav-link{
-	color:white;
-}
-
-.dropdown-toggle::after{ 
-	display:none;
-}
-
-.dropdown-menu{
-	background-color:black;
-}
-.dropdown-menu > li > a{
-	color:white;
-}
-
-
 .container {
 	padding-left: 0px;
 	padding-right: 0px;
 	width: 100%;
-}
-
-#navbar{
-	color: white;
-	background: transparent;
-	z-index:1030;
-	position: fixed;
-	transition: background-color 200ms linear;
-}
-
-#navbar .navbar-brand {
-	color: white; 
-}
-
-
-#navbar.scrolled {
-	background-color: #dee2e6 !important;
-	transition: background-color 200ms linear;
-}
-
-#navbar.scrolled .navbar-nav .nav-link {
-	color: black;
-}
-
-#navbar.scrolled .navbar-brand {
-	color: black;
 }
 
 #demo {

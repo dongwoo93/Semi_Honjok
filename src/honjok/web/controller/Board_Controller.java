@@ -196,7 +196,7 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("count", count);
 				
 				isRedirect = false;
-				dst = "community/articleView.jsp";
+				dst = "community/articleView2.jsp";
 			}else if(command.equals("/upload.freeb")) {
 				BoardDAO dao = new BoardDAO();
 				BoardUserDTO dto = new BoardUserDTO();

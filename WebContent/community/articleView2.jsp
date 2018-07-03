@@ -1,27 +1,8 @@
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="communitycss/articleView.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-
-	<div class="container">
+    pageEncoding="UTF-8"%>
+    <%@ include file="../include/top.jsp" %>
+    <div style="height: 100px;"></div>
+<div class="container">
 		<form method=post action="comment.freeb" id=formid>
 			<table class="table">
 				<tbody class="head" id="head">
@@ -245,7 +226,7 @@
 
 						$("#like").click(function() {
 							if ('${id}' == 'nonmember') {
-								alert("로그인을 해주세요");
+								$('#loginbt').trigger('click');
 
 							} else {
 								$.ajax({
@@ -293,5 +274,5 @@
 				formid.submit();
 			} */
 </script>
-</body>
-</html>
+<link rel="stylesheet" href="communitycss/articleView.css">
+<%@ include file="../include/bottom.jsp"%>

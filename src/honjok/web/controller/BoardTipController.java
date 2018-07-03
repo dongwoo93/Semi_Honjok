@@ -61,7 +61,7 @@ public class BoardTipController extends HttpServlet {
 //					System.out.println(result.get(i).getViewcount());
 //				}
 				isRedirect = false;
-				dst = "board/boardtip.jsp";
+				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/selectView.tip")) {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
@@ -104,7 +104,7 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("map", map);
 				
 				isRedirect = false;
-				dst = "board/boardView.jsp";
+				dst = "board/boardView2.jsp";
 			}
 			else if(command.equals("/delete.tip")) {
 				String seq = request.getParameter("seq");
@@ -121,7 +121,7 @@ public class BoardTipController extends HttpServlet {
 							if(result > 0) {
 							}else {
 							}
-							dst = "board/boardtip.jsp";
+							dst = "board/boardtip2.jsp";
 						}else{
 						}
 					}else{
