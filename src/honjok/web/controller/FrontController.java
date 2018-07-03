@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
 		
 			
 			if(command.equals("/hollo.com")) {
-				dst = "/community/index.jsp";	
+				dst = "/community/index2.jsp";	
 				
 			}else if(command.equals("/data.com")) {
 				JSONArray result = std.getOneTotal();

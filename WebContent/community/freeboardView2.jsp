@@ -1,22 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="honjok.web.dto.BoardUserDTO"%>
-<jsp:useBean id="dto" class="honjok.web.dto.BoardUserDTO">
-	<jsp:setProperty name="dto" property="*"></jsp:setProperty>
-</jsp:useBean>
-<jsp:useBean id="dao" class="honjok.web.dao.BoardDAO" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="communitycss/freeboard.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-</head>
-<body>
-	<div class="container">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+    
+    <%@ include file="../include/top.jsp" %>
+    <link rel="stylesheet" href="communitycss/freeboard.css">
+<script type="text/javascript" src="js/freeboardView.js"></script>
+    <div class="container">
 		<table class="table table-hover">
 			<thead class="head" id="head">
 				<tr>
@@ -101,6 +89,4 @@
 			${navi}</div> <div id="btn"><input type=button id="write" value="글 쓰기">
 		</div>
 	</div>
-
-</body>
-</html>
+	<%@ include file="../include/bottom.jsp"%>

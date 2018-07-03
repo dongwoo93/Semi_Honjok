@@ -57,7 +57,7 @@ public class Board_Controller extends HttpServlet {
 	            request.setAttribute("best", best);
 
 	            isRedirect=false;
-	            dst = "/community/hontalkView.jsp";
+	            dst = "/community/hontalkView2.jsp";
 	            
 			}
 			else if(command.equals("/boardView.freeb")) {
@@ -98,7 +98,7 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result", result);
 
 				isRedirect = false;
-				dst = "community/freeboardView.jsp";
+				dst = "community/freeboardView2.jsp";
 				
 			}else if(command.equals("/freeboardWrite.freeb")) {
 				BoardDAO dao = new BoardDAO();
