@@ -227,7 +227,6 @@
 						$("#like").click(function() {
 							if ('${id}' == 'nonmember') {
 								$('#loginbt').trigger('click');
-
 							} else {
 								$.ajax({
 									url : "like.com",
