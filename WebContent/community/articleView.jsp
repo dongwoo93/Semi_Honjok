@@ -37,9 +37,37 @@
 											}
 
 										})
-						$("#tolist").click(function() {
-							$(location).attr('href', "boardView.freeb?cat=${result[0].category}")
+						$("#tolist")
+								.click(
+										function() {
+											$(location)
+													.attr('href',
+															"boardView.freeb?cat=${result[0].category}")
+										})
+										
+						$("#fix2").click(function() {
+							$(location).attr('href', "fix.freeb?no=${no}")
 						})
+						$("#delete2")
+								.click(
+										function() {
+											var yes = confirm("삭제 하시겠습니까?");
+											if (yes) {
+												$(location)
+														.attr('href',
+																"delete.freeb?no=${no}&cat=${result[0].category}")
+											} else {
+												return;
+											}
+
+										})
+						$("#tolist2")
+								.click(
+										function() {
+											$(location)
+													.attr('href',
+															"boardView.freeb?cat=${result[0].category}")
+										})
 
 						$("#like").click(function() {
 							if ('${id}' == 'nonmember') {
@@ -99,32 +127,40 @@
 			<table class="table">
 				<tbody class="head" id="head">
 					<tr>
-						<td width=100px>제목<input type="hidden" id="seq"
-							name=seq value="${result[0].seq}"></td>
-						<th colspan=2>[${result[0].header}]${result[0].title}</th>
-						<td width=180px><b id="date">${result[0].writedate}</b></td>
+						<td width=100px>제목<input type="hidden" id="seq" name=seq
+							value="${result[0].seq}"></td>
+						<th colspan=1>[${result[0].header}]${result[0].title}</th>
+						<td width=220px><b id="date">${result[0].writedate}</b></td>
 
 					</tr>
 					<tr>
 						<td width=100px height=20px>글쓴이</td>
-						<th colspan=3>${result[0].writer}</th>
+						<th colspan=2>${result[0].writer}</th>
 					</tr>
 					<tr>
 						<td colspan=3 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
-						<td align=center colspan=4><c:choose>
+						<td align=center colspan=3><c:choose>
 								<c:when test="${likeStat == 0}">
-									<button type=button id=like><img src="kejang/good.jpg"></button>
-									<button type=button id=likecancel style="display: none"><img src="kejang/no.png"></button>
+									<button type=button id=like>
+										<img src="kejang/good.jpg">
+									</button>
+									<button type=button id=likecancel style="display: none">
+										<img src="kejang/no.png">
+									</button>
 									<!-- <button type="button" id=like>좋아요</button>
 									<button type="button" id=likecancel style="display: none">좋아요
 										취소</button> -->
 									<span id=likespan>${result[0].like}</span>
 								</c:when>
 								<c:otherwise>
-									<button type=button id=likecancel><img src="kejang/no.png"></button>
-									<button type=button id=like style="display: none"><img src="kejang/good.jpg"></button>
+									<button type=button id=likecancel>
+										<img src="kejang/no.png">
+									</button>
+									<button type=button id=like style="display: none">
+										<img src="kejang/good.jpg">
+									</button>
 									<!-- <button type="button" id=likecancel>좋아요 취소</button>
 									<button type="button" id=like style="display: none">좋아요</button> -->
 									<span id=likespan>${result[0].like}</span>
@@ -138,50 +174,64 @@
 					<tr>
 						<td width=100px height=20px>작성자IP</td>
 						<th colspan=3>${result[0].ip}</th>
-					<tr ali gn=right>
-
-
+					</tr>
+					<c:choose>
+					<c:when test="${sessionScope.loginId!=null}">
+					<tr align=right>
 						<td colspan=4 height=20px align=right>
 							<button type="button" id=fix>수정</button>
 							<button type="button" id=delete>삭제</button>
 							<button type="button" id=tolist>목록</button>
 						</td>
-
-						<!-- <td colspan=3 height=20px><button type="button" id=tolist>목록</button></td> -->
-						<c:choose>
-							<c:when test="${result2.size() > 0}">
-								<c:forEach var="result2" items="${result2}">
-									<tr>
-										<td width=100px height=20px>${result2.comment_writer}</td>
-										<td colspan=2>${result2.comment_content}</td>
-										<td><b id="date">${result2.comment_wridate}</b></td>
-									</tr>
-								</c:forEach>
-							</c:when>
-						</c:choose>
+					</tr>
+					</c:when>
+					<c:otherwise>
+					<tr align=right>
+					<td colspan=4 height=20px><button type="button" id=tolist>목록</button></td>
+					</tr>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					<c:choose>
+						<c:when test="${result2.size() > 0}">
+							<c:forEach var="result2" items="${result2}">
+								<tr>
+									<td width=100px height=20px>${result2.comment_writer}</td>
+									<td colspan=1>${result2.comment_content}</td>
+									<td width=220px><b id="date">${result2.comment_wridate}<button type=button id="codelete">X</button></b></td>
+									
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 					<tr>
 						<th width=80px height=40px>${sessionScope.loginId}</th>
 						<form action="comment.freeb" method="post">
 							<input type="hidden" id="seq" name=count value="${count}">
 							<input type="hidden" id="seq" name=no value="${result[0].seq}">
-							<td colspan=2><textarea id="comment" name=comment
+							<td colspan=1><textarea id="comment" name=comment
 									placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110" rows="2"></textarea></td>
-							<td><input type="submit" value="확인" id="confirm"
+							<td align=center><input type="submit" value="확인" id="confirm"
 								name="confirm"></td>
 						</form>
 					</tr>
+					<c:choose>
+					<c:when test="${sessionScope.loginId!=null}">
 					<tr align=right>
-						<%-- <c:choose> --%>
-						<%-- <c:when test="${result>0}"> --%>
-						<td colspan=4 height=20px><button type="button" id=fix>수정</button>
-							<button type="button" id=delete>삭제</button>
-							<button type="button" id=tolist>목록</button></td>
-						<%-- </c:when> --%>
-						<%-- <c:otherwise> --%>
-						<!-- <td colspan=4 height=20px><button type="button" id=tolist>목록</button></td> -->
-						<%-- </c:otherwise>
-		</c:choose> --%>
+						<td colspan=4 height=20px align=right>
+							<button type="button" id=fix2>수정</button>
+							<button type="button" id=delete2>삭제</button>
+							<button type="button" id=tolist2>목록</button>
+						</td>
 					</tr>
+					</c:when>
+					<c:otherwise>
+					<tr align=right>
+					<td colspan=4 height=20px><button type="button" id=tolist2>목록</button></td>
+					</tr>
+					</c:otherwise>
+					</c:choose>
 
 				</tbody>
 			</table>
