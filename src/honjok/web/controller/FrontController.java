@@ -13,8 +13,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import honjok.web.beans.StatisticsData;
-import honjok.web.dao.BoardFreeDAO;
-import honjok.web.dto.BoardFreeDTO;
+import honjok.web.dao.AdminLikeDAO;
+import honjok.web.dao.BoardDAO;
+import honjok.web.dao.BoardLikeDAO;
+import honjok.web.dto.AdminLikeDTO;
 import honjok.web.dto.LikeDTO;
 
 /**
@@ -35,8 +37,7 @@ public class FrontController extends HttpServlet {
 		
 			
 			if(command.equals("/hollo.com")) {
-				
-				dst = "/community/index.jsp";	
+				dst = "/community/index2.jsp";	
 				
 			}else if(command.equals("/data.com")) {
 				JSONArray result = std.getOneTotal();
@@ -54,27 +55,59 @@ public class FrontController extends HttpServlet {
 			}else if(command.equals("/latest.com")) {
 				
 			}else if(command.equals("/like.com")) {
+				int likeResult = 0;
+				BoardDAO board = new BoardDAO();
 				int update = 0;
-				int update2 = 0;
 				String boardseq = request.getParameter("boardno");
 				String id = request.getParameter("memberid");
-				BoardFreeDAO dao = new BoardFreeDAO();
-				LikeDTO like = dao.SelectLike(boardseq, id);
+				int likeCount = board.selectLike(boardseq);
+				
+				BoardLikeDAO likeDao = new BoardLikeDAO();
+				
+				LikeDTO like = likeDao.SelectLike(boardseq, id);
 				String likeStat = like.getLikeCheck();
 				if(likeStat.equals("1")) {
 					System.out.println("들어옴1");
-					update = dao.UpdateLike(boardseq, id, "0");
+					update = likeDao.UpdateLike(boardseq, id, "0");
+					likeResult = likeCount - 1;
+					board.UpdateLikeCount(boardseq, likeResult);
 				}else {
 					System.out.println("들어옴2");
-					update2 = dao.UpdateLike(boardseq, id, "1");
+					update = likeDao.UpdateLike(boardseq, id, "1");
+					likeResult = likeCount + 1;
+					board.UpdateLikeCount(boardseq, likeResult);
 				}
 				
 				response.setCharacterEncoding("UTF-8");
-				response.getWriter().println(update);
+				response.getWriter().println(likeResult);
+				return;
+			}else if(command.equals("/admin_like.com")) {
+				int update = 0;
+				int likeResult = 0;
+				String boardseq = request.getParameter("boardno");
+				String id = request.getParameter("memberid");
+				AdminLikeDAO likeDAO = new AdminLikeDAO();
+				int likeCount = likeDAO.selectLike(boardseq);
+				AdminLikeDTO like = likeDAO.selectArticleLike(boardseq, id);
+				String likeStat = like.getLike_check();
+				if(likeStat.equals("1")) {
+					System.out.println("들어옴1");
+					update = likeDAO.UpdateLike(boardseq, id, "0");
+					likeResult = likeCount - 1;
+					likeDAO.updateLikeCount(boardseq, likeResult);
+				}else {
+					System.out.println("들어옴2");
+					update = likeDAO.UpdateLike(boardseq, id, "1");
+					likeResult = likeCount + 1;
+					likeDAO.updateLikeCount(boardseq, likeResult);
+				}
+				
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().println(likeResult);
 				return;
 			}
 		}catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher(dst);

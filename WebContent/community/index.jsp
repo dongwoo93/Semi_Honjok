@@ -23,13 +23,18 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Francois+One:400,700" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Francois+One:400,700"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
+<script type="text/javascript" src="js/index.js"></script>
 </head>
 
 
@@ -407,7 +412,8 @@
 		</div>
 		<div id="cwrapper" style="display: inline-block; margin-right: 300px;">
 			<div id="shiva">
-				<div id="c2" class="count" data-count="27.8" style="color: #ffffff !important">0</div>
+				<div id="c2" class="count" data-count="27.8"
+					style="color: #ffffff !important">0</div>
 			</div>
 			<span class="counter-title" style="color: #ffffff">%</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
@@ -474,14 +480,14 @@
 		<p>&#xA9; 2018 Copyright Text</p>
 	</div>
 	</footer>
-	
+
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
 			<div class="modal-content">
 
 				<div class="login-form">
-					<form action="/examples/actions/confirmation.php" method="post">
+					<form action="" method="post">
 						<div class="avatar">
 							<img src="avatar.png" alt="Avatar" />
 						</div>
@@ -505,23 +511,24 @@
 							<i>or</i>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="username"
+							<input type="text" id="id" class="form-control" name="username"
 								placeholder="UserID" required="required">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" name="password"
-								placeholder="Password" required="required">
+							<input type="password" id="pass" class="form-control"
+								name="password" placeholder="Password" required="required">
 						</div>
 						<div class="form-group">
-							<button type="submit"
-								class="btn btn-primary btn-lg btn-block login-btn">Sign
-								In</button>
+							<button type="button" id="login"
+								class="btn btn-primary btn-lg btn-block login-btn">LOGIN
+							</button>
 						</div>
 						<p class="text-center small">
 							<a href="#">Forgot Password?</a>
 						</p>
-					</form>
+						<p id="response"></p>
 
+					</form>
 				</div>
 
 			</div>

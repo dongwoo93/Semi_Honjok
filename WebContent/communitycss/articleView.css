@@ -1,0 +1,134 @@
+#date{
+	align:right;
+	width:200px;
+}
+#fix{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	
+	color: white;
+}
+#fix:hover{
+	background-color: white;
+    color: #555555;
+    
+    
+}
+#delete{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	
+	color: white;
+}
+#delete:hover{
+	background-color: white;
+    color: #555555;
+    
+}
+#tolist{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	
+	color: white;
+}
+#tolist:hover{
+	background-color: white;
+    color: #555555;
+    
+}
+
+#comodify{
+	border-radius: 3px;
+	font-size: 5px;
+}
+
+#codelete{
+	border-radius: 3px;
+	font-size: 5px;
+}
+
+#fix2{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	
+	color: white;
+}
+#fix2:hover{
+	background-color: white;
+    color: #555555;
+    
+}
+#delete2{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	
+	color: white;
+}
+#delete2:hover{
+	background-color: white;
+    color: #555555;
+    
+}
+#tolist2{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	
+	color: white;
+}
+#tolist2:hover{
+	background-color: white;
+    color: #555555;
+    
+}
+
+#confirm{
+	border-radius: 3px;
+	background-color: #4e90fc;
+	font-family:명조; 
+	font-size: 15px;
+	transition-duration: 0.4s;
+	padding: 10px 12px;
+	color: white;
+}
+#confirm:hover{
+	background-color: white;
+    color: #555555;
+}
+
+#navbar {
+	color: white;
+	background-color: #dee2e6 !important;
+	z-index:1030;
+	position: fixed;
+	transition: background-color 200ms linear;
+}
+
+#navbar .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar .navbar-nav .nav-link:hover {
+    color: #1e73be;
+}
+
+#navbar .navbar-brand {
+	color: black;
+}

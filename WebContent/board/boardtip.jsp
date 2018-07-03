@@ -22,12 +22,12 @@
 					<c:forEach var="tmp" items="${board}" varStatus="status">
 						<div class="col-lg-3" id="card1">
 							<div class="card">
-								<a href="selectView.tip?seq=${tmp.seq}"><img
+								<a href="selectView.tip?seq=${tmp.seq}&viewcount=${tmp.viewcount}"><img
 									class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}"
 									alt="Card image cap"></a><br>
 								<div class="card-body">
 									<h5 class="card-title">
-										<a href="selectView.tip?seq=${tmp.seq}">${tmp.title}</a>
+										<a href="selectView.tip?seq=${tmp.seq}&viewcount=${tmp.viewcount}">${tmp.title}</a>
 									</h5>
 									<br>
 									<%-- <p class="card-text">${tmp.contents}</p> --%>
@@ -50,7 +50,7 @@
 		</div>
 		<br>
 		<div class="row text-center">
-        <div class="col-md-2" style="margin:auto">
+        <div class="col-md-1" style="margin:auto">
           <ul class="pagination">
             ${navi}
           </ul>
