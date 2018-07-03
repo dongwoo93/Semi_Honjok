@@ -61,17 +61,18 @@
 				<li class="dropdown-item"><a href="#">혼팁</a></li>
 				<li class="dropdown-item"><a href="#">베스트</a></li>
 			</ul></li>
-		<li class="dropdown nav-item"><a href="selectNaviCat.tip?category='꿀팁'"
+		<li class="dropdown nav-item"><a
+			href="selectNaviCat.tip?category='꿀팁'"
 			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
 			<ul class="dropdown-menu">
 				<li class="dropdown-item"><a
-					href="selectNaviCat.tip?category='꿀팁'">전체보기</a></li>
+					href="selectNaviCat.tip?category=꿀팁">전체보기</a></li>
 				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category='꿀팁'&subject='청소'">청소</a></li>
+					href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
 				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category='꿀팁'&subject='라이프'">라이프</a></li>
+					href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
 				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category='꿀팁'&subject='경제적'">경제적</a></li>
+					href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
 			</ul></li>
 		<li class="dropdown nav-item"><a id="cook"
 			href="board/boardtipWrite.jsp" class="dropdown-toggle nav-link"

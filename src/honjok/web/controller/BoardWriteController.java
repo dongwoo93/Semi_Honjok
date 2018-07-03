@@ -16,8 +16,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardTipDAO;
+import honjok.web.dao.MapDAO;
 import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
+import honjok.web.dto.MapDTO;
 
 
 @WebServlet("*.tw")
@@ -66,13 +68,15 @@ public class BoardWriteController extends HttpServlet {
 
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		if(command.equals("/editor.tw")) {
+			String seq = null;
 			try {
 				if(systemFileName != null && !(title.equals(""))) {
-					String seq = tipDAO.getBoardSeq();
-					System.out.println(seq);
+					seq = tipDAO.getBoardSeq();
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.insertData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
+					
+					
 
 					if(result > 0) {
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
@@ -84,16 +88,34 @@ public class BoardWriteController extends HttpServlet {
 					}
 				}else {
 				}
-
+		
+				String place_name = mr.getParameter("places.place_name");
+				String category_name = mr.getParameter("places.category_name");
+				String phone = mr.getParameter("places.phone");
+				String road_address_name = mr.getParameter("places.road_address_name");
+				String address_name = mr.getParameter("places.address_name");
+				String place_url = mr.getParameter("places.place_url");
+				String x = mr.getParameter("places.x");
+				String y = mr.getParameter("places.y");
+				System.out.println(road_address_name);
+				
+				
+				MapDTO dto = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
+				MapDAO dao = new MapDAO();
+				int result = dao.insertData(dto);
+				if(result <= 0) {
+					response.sendRedirect("error.html");
+				}
+								
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			dst = "hollo.com";
 		}else if(command.equals("/notemodify.tw")) {
-			System.out.println("수정 들어옴");
 			try {
 				if(systemFileName != null) {
-					System.out.println("수정 2 들어옴");
+
 					String seq = mr.getParameter("seq");
 					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -101,7 +123,7 @@ public class BoardWriteController extends HttpServlet {
 					AdminFileDAO fileDAO = new AdminFileDAO();
 
 					if(result > 0) {
-						System.out.println("2번" + seq);
+
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {

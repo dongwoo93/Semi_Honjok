@@ -2,7 +2,6 @@
 
     
     <%@ include file="../include/top.jsp" %>
-    <link rel="stylesheet" href="communitycss/freeboard.css">
 <script type="text/javascript" src="js/freeboardView.js"></script>
     <div class="container">
 		<table class="table table-hover">
@@ -107,4 +106,5 @@
 			${navi}</div> <div id="btn"><input type=button id="write" value="글 쓰기">
 		</div>
 	</div>
+	<link rel="stylesheet" href="communitycss/freeboard.css">
 	<%@ include file="../include/bottom.jsp"%>
