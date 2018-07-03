@@ -13,6 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import honjok.web.beans.StatisticsData;
+import honjok.web.dao.AdminLikeDAO;
 import honjok.web.dao.BoardDAO;
 import honjok.web.dao.BoardLikeDAO;
 import honjok.web.dto.AdminLikeDTO;
@@ -82,21 +83,27 @@ public class FrontController extends HttpServlet {
 				return;
 			}else if(command.equals("/admin_like.com")) {
 				int update = 0;
+				int likeResult = 0;
 				String boardseq = request.getParameter("boardno");
 				String id = request.getParameter("memberid");
 				AdminLikeDAO likeDAO = new AdminLikeDAO();
-				AdminLikeDTO like = likeDAO.SelectLike(boardseq, id);
+				int likeCount = likeDAO.selectLike(boardseq);
+				AdminLikeDTO like = likeDAO.selectArticleLike(boardseq, id);
 				String likeStat = like.getLike_check();
 				if(likeStat.equals("1")) {
 					System.out.println("들어옴1");
 					update = likeDAO.UpdateLike(boardseq, id, "0");
+					likeResult = likeCount - 1;
+					likeDAO.updateLikeCount(boardseq, likeResult);
 				}else {
 					System.out.println("들어옴2");
 					update = likeDAO.UpdateLike(boardseq, id, "1");
+					likeResult = likeCount + 1;
+					likeDAO.updateLikeCount(boardseq, likeResult);
 				}
 				
 				response.setCharacterEncoding("UTF-8");
-				response.getWriter().println(update);
+				response.getWriter().println(likeResult);
 				return;
 			}
 		}catch (Exception e) {

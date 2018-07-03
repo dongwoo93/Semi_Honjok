@@ -22,11 +22,19 @@
 <script>
 	$(document).ready(function() {
 		$("#delete").click(function() {
-			var seq = $("#seq").text();
+			var seq = $
+			{
+				result[0].seq
+			}
+			;
 			$(location).attr('href', 'delete.tip?seq=' + seq);
 		})
 		$("#modify").click(function() {
-			var seq = $("#seq").text();
+			var seq = $
+			{
+				result[0].seq
+			}
+			;
 			$(location).attr('href', 'modify.tip?seq=' + seq);
 		})
 
@@ -36,11 +44,13 @@
 				type : "get",
 				data : {
 					boardno : "${no}",
-					memberid : "${id}"
+					memberid : "${id}",
+					likecount : "${result[0].likeit}"
 				},
 				success : function(resp) {
 					$("#likecancel").show();
 					$("#like").hide();
+					$("#likespan").text(resp);
 				},
 				error : function() {
 					console.log("에러 발생!");
@@ -53,11 +63,13 @@
 				type : "get",
 				data : {
 					boardno : "${no}",
-					memberid : "${id}"
+					memberid : "${id}",
+					likecount : "${result[0].likeit}"
 				},
 				success : function(resp) {
 					$("#like").show();
 					$("#likecancel").hide();
+					$("#likespan").text(resp);
 				},
 				error : function() {
 					console.log("에러 발생!");
@@ -68,38 +80,69 @@
 </script>
 
 <style>
-.container {
-	position: relative;
-	text-align:
+#like, #likecancel {
+display: inline-block;
+	width: 5%;
+	height: 5%;
+	margin: 0px;
+	padding0: 0px;
+}
+
+.col-md-3 {
+	display: inline-block;
+	margin: 0px;
+	max-width: 60px;
+}
+
+div {
+	border:1px dotted green;
+}
+.cos-md-8{
+	text-align:right;
+}
+span{
+	border:1px dotted orange;
 }
 </style>
 </head>
 <body>
 	<div class="container">
 		<%-- <c:forEach var="item" items="${result}"> --%>
-			<span class="col-sm-3">${result[0].title}</span>
-			<span class="cos-sm-2" id="seq">${result[0].seq}</span>
-			<span class="col-sm-3"><button type="button"
-					class="btn btn-info" id="modify">수정</button></span>
-			<span class="col-sm-3"><button type="button"
-					class="btn btn-danger" id="delete">삭제</button></span>
-			<div>-------------------------------------------------------------------------------</div>
-			<div class="col-lg-9">${result[0].contents}</div>
-			<div>-------------------------------------------------------------------------------</div>
-			<span class="cos-sm-2">
-				<c:choose>
-					<c:when test="${likeStat == 0}">
-					<button type="button" id=like>좋아요</button>
-					<button type="button" id=likecancel style="display: none">좋아요 취소</button>
-					</c:when>
-					<c:otherwise>
-					<button type="button" id=likecancel>좋아요 취소</button>
-					<button type="button" id=like style="display: none">좋아요</button>
-					</c:otherwise>
-					</c:choose>
-			</span>
-			<span class="cos-sm-2">${result[0].viewcount}</span>
-			<span class="cos-sm-2">${result[0].writedate}</span>
+		<div class="col-md-15">
+			<h2>${result[0].title}</h2>
+		</div>
+		<div class="col-md-12" style="text-align: right">
+			<span class="col-md-2">${result[0].writedate}</span>
+			<%-- <span class="cos-sm-2" id="seq">${result[0].seq}</span> --%>
+			<span class="col-md-3"><button type="button"
+					class="btn btn-info" id="modify">수정</button></span> <span class="col-md-3"><button
+					type="button" class="btn btn-danger" id="delete">삭제</button></span>
+		</div>
+		<hr style="height: 1">
+		
+
+		<div class="col-md-15">${result[0].contents}</div>
+		<hr style="height: 1">
+		<span class="col-md-2"> <c:choose>
+				<c:when test="${likeStat == 0}">
+					<!-- <button type="button" id=like>좋아요</button> -->
+					<span><input type="image" src="images/ios7-heart.png" id="like"></span>
+					<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
+					<span><input type="image" src="images/heart-icon.png" id="likecancel"
+						style="display: none"></span>
+					<span id=likespan>${result[0].likeit}</span>
+				</c:when>
+				<c:otherwise>
+					<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
+					<input type="image" src="images/heart-icon.png" id="likecancel">
+					<input type="image" src="images/ios7-heart.png" id="like"
+						style="display: none">
+					<!-- <button type="button" id=like style="display: none">좋아요</button> -->
+					<span id=likespan>${result[0].likeit}</span>
+				</c:otherwise>
+			</c:choose>
+		</span> <span class="col-md-8">조회수 : ${result[0].viewcount}</span>
+
 		<%-- </c:forEach> --%>
 	</div>
 

@@ -86,7 +86,7 @@ public class BoardTipController extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				AdminLikeDTO likeDTO = like.SelectLike(seq, id);
+				AdminLikeDTO likeDTO = like.selectArticleLike(seq, id);
 				String likeStat = likeDTO.getLike_check();
 				System.out.println(likeStat);
 				int viewcount = Integer.parseInt(request.getParameter("viewcount")) + 1;

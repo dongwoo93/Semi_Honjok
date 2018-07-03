@@ -25,7 +25,7 @@ public class AdminLikeDAO {
 		return isExist;
 	}
 
-	public AdminLikeDTO SelectLike(String seq, String id) throws Exception {
+	public AdminLikeDTO selectArticleLike(String seq, String id) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from admin_like where article_no=? and member_id=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
@@ -77,6 +77,33 @@ public class AdminLikeDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	public int selectLike(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select likeit from admin_board where seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, Integer.parseInt(seq));
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		
+		int result = rs.getInt(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
+	public int updateLikeCount(String seq, int likeCount) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "update admin_board set likeit=? where seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, likeCount);
+		pstat.setInt(2, Integer.parseInt(seq));
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
 		return result;
 	}
 }

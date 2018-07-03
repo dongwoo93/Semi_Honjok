@@ -5,11 +5,12 @@ import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import honjok.web.dbutils.DBUtils;
-import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
 
 public class BoardTipDAO {
@@ -24,7 +25,7 @@ public class BoardTipDAO {
 		con.close();
 		return result;
 	}
-	
+
 	public int insertData(BoardDTO dto) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "insert into admin_board values(?, ?, ?, ?, ?, 0, sysdate, 0)";
@@ -42,10 +43,10 @@ public class BoardTipDAO {
 		pstat.close();
 		con.setAutoCommit(true);
 		con.close();
-		
+
 		return result;
 	}
-	
+
 	public String getPageNaviAll(int currentPage, String category) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select count(*) totalCount from admin_board where category=?";
@@ -114,12 +115,12 @@ public class BoardTipDAO {
 			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
-		
+
 		pstat.close();
 		con.close();
 		return sb.toString();
 	}
-	
+
 	public String getPageNavi(int currentPage, String category, String subject) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select count(*) totalCount from admin_board where category=? and subject=?";
@@ -188,12 +189,12 @@ public class BoardTipDAO {
 			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
-		
+
 		pstat.close();
 		con.close();
 		return sb.toString();
 	}
-	
+
 	public List<BoardDTO> selectAllData(String seq) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from admin_board where seq = ?";
@@ -201,7 +202,7 @@ public class BoardTipDAO {
 		pstat.setInt(1, Integer.parseInt(seq));
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
-		
+
 		while(rs.next()) {
 			StringBuffer sb = new StringBuffer();
 			BoardDTO dto = new BoardDTO();
@@ -210,7 +211,13 @@ public class BoardTipDAO {
 			dto.setSubject(rs.getString(3));
 			dto.setTitle(rs.getString(4));
 			dto.setViewcount(rs.getInt(6));
-			dto.setWritedate(rs.getString(7));
+			String dt = rs.getString(7);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr); 
 			dto.setLikeit(rs.getInt(8));
 			Reader instream = rs.getCharacterStream("contents");
 			char[] buffer = new char[1024];  // create temporary buffer for read
@@ -229,7 +236,7 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
-	
+
 	public List<BoardDTO> selectNaviData(int startNum, int endNum, String category, String subject) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board where category=? and subject=?)\r\n" + 
@@ -241,7 +248,7 @@ public class BoardTipDAO {
 		pstat.setInt(4, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
-		
+
 		while(rs.next()) {
 			BoardDTO dto = new BoardDTO();
 			dto.setSeq(String.valueOf(rs.getInt(1)));
@@ -250,7 +257,13 @@ public class BoardTipDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setContents("");
 			dto.setViewcount(rs.getInt(6));
-			dto.setWritedate(rs.getString(7));
+			String dt = rs.getString(7);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr); 
 			dto.setLikeit(rs.getInt(8));
 			list.add(dto);
 		}
@@ -258,7 +271,7 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
-	
+
 	public List<BoardDTO> selectNaviAllData(int startNum, int endNum, String category) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select admin_board.*, row_number() over(order by writedate desc) as num from admin_board where category=?)\r\n" + 
@@ -269,7 +282,7 @@ public class BoardTipDAO {
 		pstat.setInt(3, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardDTO> list = new ArrayList<>();
-		
+
 		while(rs.next()) {
 			BoardDTO dto = new BoardDTO();
 			dto.setSeq(String.valueOf(rs.getInt(1)));
@@ -278,7 +291,13 @@ public class BoardTipDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setContents("");
 			dto.setViewcount(rs.getInt(6));
-			dto.setWritedate(rs.getString(7));
+			String dt = rs.getString(7);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr); 
 			dto.setLikeit(rs.getInt(8));
 			list.add(dto);
 		}
@@ -286,7 +305,7 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
-	
+
 	/*public String selectData(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select tip_systemFileName from board_tip where tip_seq = ?";
@@ -297,7 +316,7 @@ public class BoardTipDAO {
 		String systemFileName = rs.getString("tip_systemFileName");
 		return systemFileName;
 	}*/
-	
+
 	public int deleteData(String seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "delete from admin_board where seq = ?";
@@ -339,5 +358,5 @@ public class BoardTipDAO {
 		con.close();
 		return result;
 	}
-	
+
 }
