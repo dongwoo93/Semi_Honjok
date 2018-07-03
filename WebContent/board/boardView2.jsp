@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../include/top.jsp" %>
+
+<div style="margin-top:100px;"></div>
+
 <link rel="stylesheet" type="text/css" href="boardcss/boardView.css">
 <script type="text/javascript" src="js/boardView.js"></script>
 <div class="container">
@@ -20,9 +23,10 @@
 
 
 		<div class="col-md-15">${result[0].contents}</div>
-
+		
 		<div id="map" style="width: 100%; height: 350px;"></div>
-		</div>
+		<div style="height:500px;"></div>
+</div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
