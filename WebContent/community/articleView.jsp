@@ -17,6 +17,9 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
 <script>
 var num = 1;
 
@@ -103,9 +106,6 @@ var num = 1;
 						})
 					})
 </script>
-</head>
-<body>
-
 	<div class="container">
 		<form method=post action="comment.freeb" id=formid>
 			<table class="table">

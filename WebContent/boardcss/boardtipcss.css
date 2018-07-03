@@ -64,3 +64,7 @@
 	color: black;
 }
 
+.transition-width { 
+    transition: width 10s ease-out; 
+    webkit-transition: width 10s ease-out; 
+} 
