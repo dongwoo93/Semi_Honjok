@@ -1,9 +1,13 @@
-.container {
+#footercss {
 	padding-left: 0px;
 	padding-right: 0px;
 	width: 100%;
 }
-
+#container{
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
+}
 
 #myFooter {
     background-color: #3c3d41;

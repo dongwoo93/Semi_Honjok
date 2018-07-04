@@ -57,15 +57,37 @@ $(document).ready(function() {
 	$('#hontalkView').click(function() {
 		window.location = $(this).attr('href');
 	});
+	
+	$('#tip').click(function() {
+		window.location = $(this).attr('href');
+	});
 
 	$('#cook').click(function() {
 		window.location = $(this).attr('href');
 	});
+	
+	$('#interior').click(function() {
+		window.location = $(this).attr('href');
+	});
+	
+	$('#travel').click(function() {
+		window.location = $(this).attr('href');
+	});
+	
+	$('#famous').click(function() {
+		window.location = $(this).attr('href');
+	});
+	
+	$('#shopping').click(function() {
+		window.location = $(this).attr('href');
+	});
+	
 
 	$('#logoutbt').click(function() {
 		$(location).attr('href', 'logout.do');
 	});
 
+	
 	var googleUser = {};
 	var startApp = function() {gapi.load('auth2', function() {
 
