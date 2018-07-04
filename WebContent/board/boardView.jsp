@@ -22,19 +22,11 @@
 <script>
 	$(document).ready(function() {
 		$("#delete").click(function() {
-			var seq = $
-			{
-				result[0].seq
-			}
-			;
+			var seq = ${result[0].seq};
 			$(location).attr('href', 'delete.tip?seq=' + seq);
 		})
 		$("#modify").click(function() {
-			var seq = $
-			{
-				result[0].seq
-			}
-			;
+			var seq = ${result[0].seq};
 			$(location).attr('href', 'modify.tip?seq=' + seq);
 		})
 

@@ -61,7 +61,7 @@
 				<li class="dropdown-item"><a href="#">베스트</a></li>
 			</ul></li>
 		<li class="dropdown nav-item"><a
-			href="selectNaviCat.tip?category='꿀팁'"
+			href="selectNaviCat.tip?category=꿀팁"
 			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
 			<ul class="dropdown-menu">
 				<li class="dropdown-item"><a

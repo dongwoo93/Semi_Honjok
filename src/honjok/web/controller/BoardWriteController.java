@@ -89,21 +89,21 @@ public class BoardWriteController extends HttpServlet {
 						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
 						if(fileResult > 0) {
 							obj = paser.parse(stJson);
-							JSONArray jsonArray = (JSONArray)obj;
-							fileList = new String[jsonArray.size()];
-							for(int j=0;j<fileList.length;j++){
-								fileList[j] = jsonArray.get(j).toString();
-								System.out.println(fileList[j]);
-							}
-							int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
-							for(int i=0;i<imgUpResult.length;i++) {
-								if(imgUpResult[i] > 0) {
-									System.out.println("¼º°ø");
+							if(!obj.equals(null)) {
+								JSONArray jsonArray = (JSONArray)obj;
+								fileList = new String[jsonArray.size()];
+								for(int j=0;j<fileList.length;j++){
+									fileList[j] = jsonArray.get(j).toString();
 								}
+								int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
+								for(int i=0;i<imgUpResult.length;i++) {
+									if(imgUpResult[i] > 0) {
+									}
+								}
+							}else {
 							}
 						}else {
 						}
-					}else {
 					}
 				}else {
 				}
@@ -113,10 +113,8 @@ public class BoardWriteController extends HttpServlet {
 			}
 			dst = "hollo.com";
 		}else if(command.equals("/notemodify.tw")) {
-			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			try {
 				if(systemFileName != null) {
-					System.out.println("ï¿½ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½ï¿½");
 					String seq = mr.getParameter("seq");
 					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
@@ -124,10 +122,24 @@ public class BoardWriteController extends HttpServlet {
 					AdminFileDAO fileDAO = new AdminFileDAO();
 
 					if(result > 0) {
-						System.out.println("2ï¿½ï¿½" + seq);
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {
+							obj = paser.parse(stJson);
+							if(!obj.equals(null)) {
+								JSONArray jsonArray = (JSONArray)obj;
+								fileList = new String[jsonArray.size()];
+								for(int j=0;j<fileList.length;j++){
+									fileList[j] = jsonArray.get(j).toString();
+								}
+								int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
+								for(int i=0;i<imgUpResult.length;i++) {
+									if(imgUpResult[i] > 0) {
+										System.out.println("success");
+									}
+								}
+							}else {
+							}
 						}else {}
 					}else {}
 				}else {}
