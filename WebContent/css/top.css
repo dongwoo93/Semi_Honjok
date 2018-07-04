@@ -1,0 +1,230 @@
+.navbar-nav {
+	margin-left: 50px;
+}
+
+.dropdown {
+	font-family: 'Nanum Pen Script', cursive;		
+	font-size: 30px;
+}
+
+.nav-item {
+	font-family: 'Nanum Pen Script', cursive;		
+	font-size: 30px;
+}
+
+.dropdown-item {
+	font-size: 20px;
+}
+
+.dropdown-toggle::after {
+	display: none;
+}
+
+.dropdown nav-item::active{
+	
+}
+
+.dropdown-item:focus, .dropdown-item:hover{
+	background-color: black;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: white;
+}
+
+
+
+
+#navbar .navbar-brand {
+	color: white; 
+}
+
+#navbar {
+	transition: background-color 200ms linear;
+}
+
+
+
+
+
+#navbar.scrolled {
+	background-color: #eef2f5 !important;
+	transition: background-color 200ms linear;
+}
+
+#navbar.scrolled .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar.scrolled .navbar-brand {
+	color: black;
+}
+
+/* #navbar.scrolled .navbar-nav .nav-link:hover {
+    color: #1e73be;
+} */
+
+
+
+.dropdown-menu {
+	background-color: black;
+}
+
+.dropdown-menu>li>a {
+	color: white;
+}
+
+#loginbt{
+	outline: none;
+	background:none;
+	border:none;
+}
+
+#logoutbt{
+	outline: none;
+	background:none;
+	border:none;
+}
+
+.login-form a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.login-form form a {
+	color: #999;
+	text-decoration: none;
+}
+
+.login-form a:hover, .login-form form a:hover {
+	text-decoration: none;
+}
+
+.login-form form a:hover {
+	text-decoration: underline;
+}
+
+.modal-dialog {
+	max-width: 320px;
+	max-height: 200px;
+}
+
+.or-seperator {
+	height: 0;
+	margin: 0 auto 20px;
+	text-align: center;
+	border-top: 1px solid #e0e0e0;
+	width: 30%;
+}
+
+.or-seperator i {
+	padding: 0 10px;
+	font-size: 15px;
+	text-align: center;
+	background: #fff;
+	display: inline-block;
+	position: relative;
+	top: -13px;
+	z-index: 1;
+}
+
+.social-btn {
+	padding-bottom: 15px;
+}
+
+.social-btn .btn {
+	margin-bottom: 10px;
+	font-size: 14px;
+	text-align: left;
+}
+
+
+
+.social-btn .btn-primary {
+	background: #507cc0;
+}
+
+.social-btn .btn-info {
+	background: #64ccf1;
+}
+
+.social-btn .btn-danger {
+	background: #df4930;
+}
+
+.social-btn .btn i {
+	float: left;
+	margin: 1px 10px 0 5px;
+	min-width: 20px;
+	font-size: 18px;
+}
+
+.form-control {
+	min-height: 41px;
+	background: #fff;
+	border-color: #e3e3e3;
+	box-shadow: none !important;
+	border-radius: 4px;
+}
+
+.form-control:focus {
+	border-color: #99c432;
+}
+
+.login-form {
+	width: 310px;
+	margin: 0 auto;
+	padding: 100px 0 30px;
+}
+
+.login-form form {
+	color: #999;
+	border-radius: 10px;
+	margin-bottom: 15px;
+	background: #fff;
+	/* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); */
+	padding: 30px;
+	position: relative;
+}
+
+.login-form h2 {
+	font-size: 24px;
+	color: #454959;
+	margin: 45px 0 25px;
+	font-family: 'Francois One', sans-serif;
+}
+
+.login-form .avatar {
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: -50px;
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	z-index: 9;
+	background: #70c5c0;
+	padding: 15px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.login-form .avatar img {
+	width: 100%;
+}
+
+.login-form .btn {
+	color: #fff;
+	border-radius: 4px;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	border: none;
+}
+
+.login-btn {
+	font-size: 16px;
+	font-weight: bold;
+	background: #99c432;
+	margin-bottom: 20px;
+}
