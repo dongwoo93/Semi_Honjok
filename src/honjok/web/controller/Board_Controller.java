@@ -38,7 +38,7 @@ public class Board_Controller extends HttpServlet {
 			String contextPath = request.getContextPath();
 			String command = requestURI.substring(contextPath.length());
 //			String id = (String)request.getSession().getAttribute("loginId");
-			String id = "히오스";
+
             String count = request.getParameter("count");
 			
 			if(command.equals("/hontalkView.freeb")){
@@ -48,14 +48,16 @@ public class Board_Controller extends HttpServlet {
 	            List<BoardUserDTO> qna = dao.selectQna();
 	            List<BoardUserDTO> counsel = dao.selectCounsel();
 	            List<BoardUserDTO> tip = dao.selectTip();
+	            List<BoardUserDTO> best = dao.selectBest();
 	            
 	            request.setAttribute("free", free);
 	            request.setAttribute("qna", qna);
 	            request.setAttribute("counsel", counsel);
 	            request.setAttribute("tip", tip);
+	            request.setAttribute("best", best);
 
 	            isRedirect=false;
-	            dst = "/community/hontalkView.jsp";
+	            dst = "/community/hontalkView2.jsp";
 	            
 			}
 			else if(command.equals("/boardView.freeb")) {
@@ -63,6 +65,7 @@ public class Board_Controller extends HttpServlet {
 				String header = request.getParameter("head");
 				List<BoardUserDTO> result = new ArrayList<>();
 				String navi;
+				BoardDAO dao = new BoardDAO();
 				if(header!= null) {
 					int currentPage = 0;
 					String currentPageString = request.getParameter("currentPage");
@@ -72,9 +75,8 @@ public class Board_Controller extends HttpServlet {
 					}else {
 						currentPage = Integer.parseInt(currentPageString);
 					}
-					BoardDAO dao = new BoardDAO();
-					result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
 					
+					result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
 					navi = dao.getPageNavi2(currentPage, category, header);
 				}else {
 					int currentPage = 0;
@@ -85,18 +87,20 @@ public class Board_Controller extends HttpServlet {
 					}else {
 						currentPage = Integer.parseInt(currentPageString);
 					}
-					BoardDAO dao = new BoardDAO();
+					
 					result = dao.selectData(currentPage*10-9,currentPage*10, category);
 					navi = dao.getPageNavi(currentPage, category);
 				}
-				
+				List<BoardUserDTO> result2 = new ArrayList<>();
+				result2 = dao.selectNotice();
 
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
+				request.setAttribute("result2", result2);
 
 				isRedirect = false;
-				dst = "community/freeboardView.jsp";
+				dst = "community/freeboardView2.jsp";
 				
 			}else if(command.equals("/freeboardWrite.freeb")) {
 				BoardDAO dao = new BoardDAO();
@@ -152,21 +156,28 @@ public class Board_Controller extends HttpServlet {
 				dst = "freeboardResult.jsp";
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
-				id = "ykng10";
-
-				request.setAttribute("id", id);
+				String id = (String)request.getSession().getAttribute("loginId");
 				BoardLikeDAO like = new BoardLikeDAO();
-				try {
-					boolean result = like.LikeExist(no, id);
-					if(!result) {
-						int insertLike = like.insertData(no, id);
+				if(id != null) {
+					try {
+						boolean result = like.LikeExist(no, id);
+						if(!result) {
+							int insertLike = like.insertData(no, id);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					LikeDTO likeDto = like.SelectLike(no, id);
+					String likeStat = likeDto.getLikeCheck();
+					request.setAttribute("likeStat", likeStat);
+					
+				}else {
+					id = "nonmember";
+					request.setAttribute("likeStat", "0");
 				}
-				LikeDTO likeDto = like.SelectLike(no, id);
-				String likeStat = likeDto.getLikeCheck();
+				request.setAttribute("id", id);
 				int seq = Integer.parseInt(no);
 
 				BoardDAO dao = new BoardDAO();
@@ -178,14 +189,14 @@ public class Board_Controller extends HttpServlet {
 	                int viewCount = Integer.parseInt(count) + 1;
 	                dao.UpdateViewCount(seq, viewCount);
 	             }
-				
+
 				request.setAttribute("result", result);
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
 				request.setAttribute("count", count);
-				request.setAttribute("likeStat", likeStat);
+				
 				isRedirect = false;
-				dst = "community/articleView.jsp";
+				dst = "community/articleView2.jsp";
 			}else if(command.equals("/upload.freeb")) {
 				BoardDAO dao = new BoardDAO();
 				BoardUserDTO dto = new BoardUserDTO();
@@ -227,11 +238,13 @@ public class Board_Controller extends HttpServlet {
 				String boardseq = request.getParameter("no");
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
-				String writer = "끼욧";
-				
+				String writer = (String)request.getSession().getAttribute("loginId");
+				System.out.println(writer);
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
 				int result = dao.insertComment(dto);
+				
+				request.setAttribute("result", result);
 				
 				isRedirect = false;
 				dst = "Board_Controller.freeb?no="+boardseq+"&count="+count;		
@@ -292,6 +305,16 @@ public class Board_Controller extends HttpServlet {
 //	            request.setAttribute("tip", tip);
 				isRedirect = false;
 				dst = "boardView.freeb?cat="+category;
+			}else if(command.equals("/delete_comment.freeb")) {
+				String no = request.getParameter("no");
+				String comSeq = request.getParameter("comSeq");
+				String viewCountStr = request.getParameter("count");
+				int viewCount = Integer.parseInt(viewCountStr) - 1;
+				BoardCommentDAO dao = new BoardCommentDAO();
+				int result = dao.deleteComment(Integer.parseInt(comSeq));
+				if(result > 0) {
+					dst = "Board_Controller.freeb?no="+no+"&count="+viewCount;
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

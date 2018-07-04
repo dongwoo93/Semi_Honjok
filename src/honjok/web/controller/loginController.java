@@ -49,6 +49,7 @@ public class loginController extends HttpServlet {
 			if(command.equals("/kakaotest.do")) {
 
 				try {
+					
 
 					String id = request.getParameter("id");
 					String email = request.getParameter("email");

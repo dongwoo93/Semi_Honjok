@@ -5,7 +5,9 @@ import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import honjok.web.dbutils.DBUtils;
@@ -16,40 +18,41 @@ public class BoardDAO {
 
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 4";
-		
+
 		PreparedStatement pstat = con.prepareStatement(sql);
-		
+
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>(); 
-		
-		
+
+
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
+			dto.setViewcount(rs.getInt(8));
 			list.add(dto);
 		}
-		
-			pstat.close();
-			con.close();
-			
-			return list;
-	
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return list;
+
 	}
-	
+
 	public List<BoardUserDTO> selectQna() throws Exception {
 
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='qna') where num between 1 and 4";
-		
+
 		PreparedStatement pstat = con.prepareStatement(sql);
-		
+
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>(); 
-		
-		
+
+
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
@@ -58,25 +61,25 @@ public class BoardDAO {
 			dto.setContents(rs.getString(6));
 			list.add(dto);
 		}
-		
-			pstat.close();
-			con.close();
-			
-			return list;
-	
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return list;
+
 	}
-	
+
 	public List<BoardUserDTO> selectCounsel() throws Exception {
 
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='coun') where num between 1 and 4";
-		
+
 		PreparedStatement pstat = con.prepareStatement(sql);
-		
+
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>(); 
-		
-		
+
+
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
@@ -85,25 +88,25 @@ public class BoardDAO {
 			dto.setContents(rs.getString(6));
 			list.add(dto);
 		}
-		
-			pstat.close();
-			con.close();
-			
-			return list;
-	
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return list;
+
 	}
-	
+
 	public List<BoardUserDTO> selectTip() throws Exception {
 
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between 1 and 4";
-		
+
 		PreparedStatement pstat = con.prepareStatement(sql);
-		
+
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> list = new ArrayList<>(); 
-		
-		
+
+
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
@@ -112,13 +115,35 @@ public class BoardDAO {
 			dto.setContents(rs.getString(6));
 			list.add(dto);
 		}
-		
-			pstat.close();
-			con.close();
-			
-			return list;
-	
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return list;
+
 	}
+
+	public List<BoardUserDTO> selectBest() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 11";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> result = new ArrayList<>();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			dto.setLike(rs.getInt(9));
+			result.add(dto);
+		}
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return result;
+	}
+
 	public List<BoardUserDTO> selectData(int startNum, int endNum, String category) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=?) where num between ? and ?";
@@ -150,15 +175,22 @@ public class BoardDAO {
 			dto.setHeader(rs.getString(7));
 			dto.setViewcount(rs.getInt(8));
 			dto.setLike(rs.getInt(9));
-			dto.setWritedate(rs.getString(10));
+			String dt = rs.getString(10);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr);
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
 	}
-	
+
 	public List<BoardUserDTO> selectData2(int startNum, int endNum, String category, String header) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_header=?) where num between ? and ?";
@@ -191,15 +223,64 @@ public class BoardDAO {
 			dto.setHeader(rs.getString(7));
 			dto.setViewcount(rs.getInt(8));
 			dto.setLike(rs.getInt(9));
-			dto.setWritedate(rs.getString(10));
+			String dt = rs.getString(10);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr);
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
 	}
-	
+	public List<BoardUserDTO> selectNotice() throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category='notice' and user_header='공지')";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>();
+		StringBuffer sb = new StringBuffer();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
+			char[] buffer = new char[1024];  // create temporary buffer for read
+			int length = 0;   // length of characters read
+			// fetch data  
+			while ((length = instream.read(buffer)) != -1)  {
+				for (int i=0; i<length; i++){
+					sb.append(buffer[i]);
+				} 
+			}
+			instream.close();// Close input stream
+			dto.setContents(sb.toString());
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			String dt = rs.getString(10);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr);
+			dto.setIp(rs.getString(11));
+			list.add(dto);
+		}
+		rs.close();
+		pstat.close();
+		con.close();
+		return list;
+	}
 	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "insert into board_user values(user_seq.nextval,user_free_seq.nextval,?,?,?,?,?,sysdate,?,?)";
@@ -220,7 +301,7 @@ public class BoardDAO {
 		con.close();
 		return result;		
 	}
-	
+
 	public List<BoardUserDTO> readData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from board_user where user_seq=?";
@@ -254,6 +335,7 @@ public class BoardDAO {
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -323,12 +405,13 @@ public class BoardDAO {
 
 
 		String result = sb.toString();
-		con.close();
+		rs.close();
 		pstat.close();
+		con.close();
 
 		return result;
 	}
-	
+
 	public String getPageNavi2(int currentPage, String category, String header) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select count(*) totalCount from board_user where user_category=? and user_header=?";
@@ -392,15 +475,16 @@ public class BoardDAO {
 			sb.append("<a href='boardView.freeb?cat="+category+"&head="+header+"&currentPage="+(endNavi+1)+"'>></a>");
 		}
 
-	
+
 
 		String result = sb.toString();
-		con.close();
+		rs.close();
 		pstat.close();
+		con.close();
 
 		return result;
 	}
-	
+
 	public int UpdateViewCount(int seq, int viewCount) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "update board_user set user_viewcount=? where user_seq=?";
@@ -413,8 +497,36 @@ public class BoardDAO {
 		con.close();
 		return result;
 	}
-	
-	
+
+	public int selectLike(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_like from board_user where user_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, seq);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+
+		int result = rs.getInt(1);
+		rs.close();
+		pstat.close();
+		con.close();
+		return result;
+	}
+
+	public int UpdateLikeCount(String seq, int likeCount) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "update board_user set user_like=? where user_seq=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, likeCount);
+		pstat.setString(2, seq);
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+
+
 	public int deleteData(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "delete from board_user where user_seq=?";

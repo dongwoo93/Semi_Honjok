@@ -36,32 +36,6 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 
-<script>
-	$(document).ready(
-			function() {
-				
-				$('.carousel').carousel({
-					  interval: 3000
-					})
-				
-				
-				$('ul.nav li.dropdown').hover(
-						function() {
-							$(this).find('.dropdown-menu').stop(true, true)
-									.delay(200).fadeIn(500);
-						},
-						function() {
-							$(this).find('.dropdown-menu').stop(true, true)
-									.delay(200).fadeOut(500);
-						});
-				$(window).scroll(
-						function() {
-							var $nav = $("#navbar");
-							$nav.toggleClass('scrolled',
-									$(this).scrollTop() > $nav.height());
-						});
-			})
-</script>
 
 </head>
 <body>
@@ -151,26 +125,11 @@
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="imges/sky.jpg" alt="Los Angeles" width="1200" height="700">
-				<div class="carousel-caption">
-					<h3>Los Angeles</h3>
-					<p>We had such a great time in LA!</p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="imges/nature-3042751_1280.jpg" alt="Chicago" width="1200"
+				<img src="images/메인3.jpg" alt="Los Angeles" width="100%"
 					height="700">
 				<div class="carousel-caption">
-					<h3>Chicago</h3>
-					<p>Thank you, Chicago!</p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="imges/hiker-1149898_1280.jpg" alt="New York" width="1200"
-					height="700">
-				<div class="carousel-caption">
-					<h3>New York</h3>
-					<p>We love the Big Apple!</p>
+					<h3>혼톡</h3>
+					<p>혼족인 우리들만을 위한 공간</p>
 				</div>
 			</div>
 		</div>
@@ -179,7 +138,7 @@
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="boardView.freeb?cat=free">자유게시판</a>
+				<a href="boardView.freeb?cat=free" class="atagcolor">자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
@@ -197,7 +156,7 @@
 					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
 							<td class="td-contents">${free.seq}</td>
-							<td class="td-contents">${free.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${free.seq}&count=${free.viewcount}">${free.title}</a></td>
 							<td class="td-contents">${free.contents}</td>
 							<td class="td-contents">${free.writer}</td>
 						</tr>
@@ -210,7 +169,7 @@
 
 		<div id="free2">
 			<h5>
-				<a href="boardView.freeb?cat=qna">질문/답변</a>
+				<a href="boardView.freeb?cat=qna" class="atagcolor">질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -228,7 +187,7 @@
 					<c:forEach var="qna" items="${qna}" varStatus="status">
 						<tr>
 							<td class="td-contents">${qna.seq}</td>
-							<td class="td-contents">${qna.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${qna.seq}&count=${qna.viewcount}">${qna.title}</a></td>
 							<td class="td-contents">${qna.contents}</td>
 							<td class="td-contents">${qna.writer}</td>
 						</tr>
@@ -240,88 +199,38 @@
 
 		<div id="free3">
 			<h5>
-				<a href="#">베스트</a>
+				<a href="#" class="atagcolor">베스트</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 350px; height: 300px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
-						<th>글번호</th>
+						<th>좋아요 수</th>
 						<th>제목</th>
 						<th>내용</th>
 						<th>작성자</th>
 					</tr>
 				</thead>
-
+				
 				<tbody>
+					
+					<c:forEach var="best" items="${best}" varStatus="status">
 					<tr>
-						<th scope="row">1</th>
-						<td class="td-contents2"><a href="#">sdsdsdsd제목이다ssssdsdsddsdsd삉삉></a></td>
-						<td class="td-contents2">내용이다dddddasd</td>
-						<td class="td-contents2">작성자다asdasdasd</td>
+						<th scope="row">${best.like}</th>
+						<td class="td-contents2"><a href="#">${best.title}</a></td>
+						<td class="td-contents2">${best.contents}</td>
+						<td class="td-contents2">${best.writer}</td>
 					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td class="td-contents2">95</td>
-						<td class="td-contents2">$12,000.00</td>
-						<td class="td-contents2">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td class="td-contents2">150</td>
-						<td class="td-contents2">$20,000.00</td>
-						<td class="td-contents2">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td class="td-contents2">50</td>
-						<td class="td-contents2">$30,000.00</td>
-						<td class="td-contents2">작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>50</td>
-						<td>$30,000.00</td>
-						<td>작성자다</td>
-					</tr>
+					</c:forEach>
+					
 				</tbody>
 			</table>
 		</div>
 
 		<div id="free4">
 			<h5>
-				<a href="boardView.freeb?cat=coun">고민상담</a>
+				<a href="boardView.freeb?cat=coun" class="atagcolor">고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -339,7 +248,7 @@
 					<c:forEach var="counsel" items="${counsel}" varStatus="status">
 						<tr>
 							<td class="td-contents">${counsel.seq}</td>
-							<td class="td-contents">${counsel.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${counsel.seq}&count=${counsel.viewcount}">${counsel.title}</a></td>
 							<td class="td-contents">${counsel.contents}</td>
 							<td class="td-contents">${counsel.writer}</td>
 						</tr>
@@ -351,7 +260,7 @@
 
 		<div id="free5">
 			<h5>
-				<a href="boardView.freeb?cat=tip">혼팁</a>
+				<a href="boardView.freeb?cat=tip" class="atagcolor">혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -369,7 +278,7 @@
 					<c:forEach var="tip" items="${tip}" varStatus="status">
 						<tr>
 							<td class="td-contents">${tip.seq}</td>
-							<td class="td-contents">${tip.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${tip.seq}&count=${tip.viewcount}">${tip.title}</a></td>
 							<td class="td-contents">${tip.contents}</td>
 							<td class="td-contents">${tip.writer}</td>
 						</tr>

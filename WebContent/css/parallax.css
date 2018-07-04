@@ -1,7 +1,7 @@
 .black-circle {
     position: relative;
     display: table;
-    width: 100%;
+    width: 100%;  
 }
 .inner {
     text-align: center;
