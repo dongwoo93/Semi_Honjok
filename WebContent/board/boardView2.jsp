@@ -64,9 +64,7 @@
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
 	
 </div>
-<a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
-<a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
-<a id="footera"></a>
+
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
