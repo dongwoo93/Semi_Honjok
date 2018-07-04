@@ -829,10 +829,10 @@
 		            onImageUpload : function(files, editor, welEditable) {
 		                sendFile(files[0], this);
 		            },
-		            onMediaDelete : function(target) {
+		            /* onMediaDelete : function(target) {
 	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
-	            	} 
+	            	}  */
 	            	/* onMediaDelete : function($target, editor, $editable) {
 	                    alert($target.context.dataset.filename);         
 	                    target.remove();
@@ -845,7 +845,7 @@
 					  
 			});
 			
-			function deleteFile(src) {
+			/* function deleteFile(src) {
 				console.log(src);
 				var result = src.split("/files/");
 				console.log(result);
@@ -858,7 +858,7 @@
 			            //console.log(resp);
 			        }
 			    });
-			}
+			} */
 			var sysFileList=[];
 			function sendFile(file, editor) {
 					var data = new FormData();
