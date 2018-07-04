@@ -171,7 +171,6 @@ $(document).ready(function() {
 			function deleteFile(src) {
 				console.log(src);
 				var result = src.split("/files/");
-				$("#hidden").replace(src,"");
 				console.log(result);
 			    $.ajax({
 			        data: {src : result[1]},
