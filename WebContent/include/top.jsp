@@ -119,8 +119,6 @@
       <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="loginbt">Login</button></li>
    </ul>
    </nav>
-	
-		</c:choose> 
 	</ul>
 	</nav>
 
