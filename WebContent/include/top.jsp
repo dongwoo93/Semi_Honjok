@@ -32,9 +32,11 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/top.css">
 <script type="text/javascript" src="js/top.js"></script>
 </head>
@@ -46,9 +48,7 @@
 	<img src="imges/coffee.png" width=60 height=60> <a
 		class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
 	<ul class="nav navbar-nav">
-		<li class="nav-item"></li>
-		<li class="dropdown"><a class="dropdown-toggle nav-link"
-			id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
+		<li class="dropdown"><a id="hontalkView" href="hontalkView.freeb" class="catego nav-link">혼톡</a>
 			<ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="hontalkView.freeb">자유게시판</a></li>
 				<li class="dropdown-item"><a href="#">고민상담</a></li>
@@ -56,32 +56,67 @@
 				<li class="dropdown-item"><a href="#">혼팁</a></li>
 				<li class="dropdown-item"><a href="#">베스트</a></li>
 			</ul></li>
-		<li class="dropdown nav-item"><a href="selectNaviCat.tip?category='꿀팁'"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
+		<li class="dropdown"><a	id="tip" href="selectNaviCat.tip?category=꿀팁" class="catego nav-link">꿀팁</a>
 			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a
-					href="selectNaviCat.tip?category=꿀팁">전체보기</a></li>
 				<li class="dropdown-item"><a
 					href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
 				<li class="dropdown-item"><a
 					href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
 				<li class="dropdown-item"><a
 					href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
-			</ul></li>
+			</ul>
+		</li>
 		<li class="dropdown nav-item"><a id="cook"
 			href="board/boardtipWrite.jsp" class="dropdown-toggle nav-link"
 			data-toggle="dropdown">요리</a>
 			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">초간단요리</a></li>
-				<li class="dropdown-item"><a href="#">일반요리</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=요리&subject=초간단 요리">초간단 요리</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=요리&subject=일반 요리">일반 요리</a></li>
 			</ul></li>
-		<li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
+
+
+		<li class="dropdown"><a id="interior" href="selectNaviCat.tip?category=인테리어" class="catego nav-link">인테리어</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=인테리어&subject=가구">가구</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=인테리어&subject=소품">소품</a></li>
+			</ul>
 		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
+		
+
+		<li class="dropdown"><a id="travel"href="selectNaviCat.tip?category=혼족여행" class="catego nav-link">혼족여행</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족여행&subject=국내여행">국내여행</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족여행&subject=해외여행">해외여행</a></li>
+			</ul>
 		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
+		
+		
+		<li class="dropdown"><a id="famous" href="selectNaviCat.tip?category=혼족맛집" class="catego nav-link">혼족맛집</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족맛집&subject=서울">서울</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족맛집&subject=인천&경기">인천&경기</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족맛집&subject=충청도">충청도</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족맛집&subject=경상도">경상도</a></li>
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족맛집&subject=전라도">전라도</a></li>
+			</ul>
+		</li>		
+		
+		<li class="dropdown"><a id="shopping" href="selectNaviCat.tip?category=혼족쇼핑" class="catego nav-link">혼족쇼핑</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a
+					href="selectNaviSub.tip?category=혼족쇼핑&subject=쇼핑">쇼핑</a></li>
+			</ul>
 		</li>
 	</ul>
 	<c:choose>
@@ -101,7 +136,7 @@
 			</ul>
 		</c:otherwise>
 	</c:choose> </nav>
-	
+
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -155,4 +190,4 @@
 			</div>
 
 		</div>
-	</div>	
+	</div>
