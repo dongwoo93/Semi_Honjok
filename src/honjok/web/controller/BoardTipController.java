@@ -3,36 +3,25 @@ package honjok.web.controller;
 
 
 import java.io.File;
-
 import java.io.IOException;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
-
-
 import javax.servlet.RequestDispatcher;
-
 import javax.servlet.ServletException;
-
 import javax.servlet.annotation.WebServlet;
-
 import javax.servlet.http.HttpServlet;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import honjok.web.dao.AdminFileDAO;
-
+import honjok.web.dao.AdminLikeDAO;
 import honjok.web.dao.BoardTipDAO;
-
+import honjok.web.dao.MapDAO;
 import honjok.web.dto.AdminFilesDTO;
-
+import honjok.web.dto.AdminLikeDTO;
 import honjok.web.dto.BoardDTO;
+import honjok.web.dto.MapDTO;
 
 @WebServlet("*.tip")
 
@@ -68,48 +57,96 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				for(int i =0; fileResult.size()>i;i++) {
+				/*for(int i =0; fileResult.size()>i;i++) {
 					System.out.println(result.get(i).getViewcount());
-				}
+				}*/
 				isRedirect = false;
-				dst = "board/boardtip.jsp";
+				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/selectView.tip")) {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
-				String view = request.getParameter("viewcount");
-				System.out.println("view ½ÃÄö½º: " + seq);
-				System.out.println("ÆÄ¶ó¹ÌÅÍ: " + view);
+				String id = (String)request.getSession().getAttribute("loginId");
+				AdminLikeDAO like = new AdminLikeDAO();
+				
+				if(id != null) {
+					try {
+						boolean likeResult = like.LikeExist(seq, id);
+						if(!likeResult) {
+							int insertLike = like.insertData(seq, id);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					AdminLikeDTO likeDTO = like.selectArticleLike(seq, id);
+					String likeStat = likeDTO.getLike_check();
+					request.setAttribute("likeStat", likeStat);
+				}else {
+					id = "nonmember";
+					request.setAttribute("likeStat", "0");
+				}
+				
+				request.setAttribute("id", id);
+				ArrayList<MapDTO> map = new ArrayList<>();
+				MapDAO dao2 = new MapDAO();
+				
+				map = dao2.selectData(seq);
+				
+				
 				int viewcount = Integer.parseInt(request.getParameter("viewcount")) + 1;
-				System.out.println("viewcount: " + viewcount);
 				int upResult = dao.UpdateViewCount(seq, viewcount);
 				if(upResult > 0) {
 					result = dao.selectAllData(seq);
 					/*for(int i =0; result.size()>i;i++) {
 						System.out.println(result.get(i).getSubject());
-					}*/
+					}*/	
 					response.setCharacterEncoding("UTF-8");
 					request.setAttribute("result", result);
+					
+					request.setAttribute("no", seq);
+					
 				}
+				request.setAttribute("map", map);
 				
 				isRedirect = false;
-				dst = "board/boardView.jsp";
+				dst = "board/boardView2.jsp";
 			}
 			else if(command.equals("/delete.tip")) {
 				String seq = request.getParameter("seq");
+				System.out.println("delete in");
+				System.out.println("delete seq" + seq);
 				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
+				
 				String systemFileName = fileDTO.getThum_sysFileName();
+				System.out.println("systemFileName: " + systemFileName);
 				if(!(systemFileName.equals(""))) {
 					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Semi_Honjok
 					String realPath = request.getServletContext().getRealPath("/files/");
 					File file = new File(realPath + "/"+ systemFileName);
-
+					System.out.println("ë“¤ì–´ì˜´ 2");
+					System.out.println(file);
 					if(file.exists() ){
+						System.out.println("ë“¤ì–´ì˜´ 3");
 						if(file.delete()){
+							System.out.println("ë“¤ì–´ì˜´ 4");
 							int result = dao.deleteData(seq);
 							if(result > 0) {
+								System.out.println("ë“¤ì–´ì˜´ 5");
+								List<String> list = fileDAO.getNote_sysFileName(seq);
+								if(!(list.size() == 0)) {
+									System.out.println("ë“¤ì–´ì˜´6");
+									String realPath2 = request.getServletContext().getRealPath("/files/");
+									File file2 = new File(realPath2 + "/"+ systemFileName);
+
+									if(file2.exists() ){
+										if(file2.delete()){
+											System.out.println("ì„±ê³µ");
+										}
+									}
+								}
 							}else {
 							}
-							dst = "board/boardtip.jsp";
+							dst = "board/boardtip2.jsp";
 						}else{
 						}
 					}else{
@@ -154,7 +191,7 @@ public class BoardTipController extends HttpServlet {
 					System.out.println(fileResult.get(i).getThum_sysFileName());
 				}*/
 				isRedirect = false;
-				dst = "board/boardtip.jsp";
+				dst = "board/boardtip2.jsp";
 			}
 					
 

@@ -8,11 +8,12 @@ public class BoardDTO {
 	private String contents;
 	private int viewcount;
 	private String writedate;
+	private int likeit;
 	
 	public BoardDTO() {}
-
+	
 	public BoardDTO(String seq, String category, String subject, String title, String contents, int viewcount,
-			String writedate) {
+			String writedate, int likeit) {
 		super();
 		this.seq = seq;
 		this.category = category;
@@ -21,6 +22,7 @@ public class BoardDTO {
 		this.contents = contents;
 		this.viewcount = viewcount;
 		this.writedate = writedate;
+		this.likeit = likeit;
 	}
 
 	public BoardDTO(String seq, String category, String subject, String title, String contents) {
@@ -87,5 +89,15 @@ public class BoardDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
+
+	public int getLikeit() {
+		return likeit;
+	}
+
+	public void setLikeit(int likeit) {
+		this.likeit = likeit;
+	}
+	
+	
 	
 }

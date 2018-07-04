@@ -12,7 +12,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="boardcss/boardtipcss.css" type="text/css">
-
+<script>
+$(document).ready(function(){
+	$(window).resize(function(){
+		var obj = $(".col-md-3").offset();
+		/* console.log("left: " + obj.left + "px, top: " + obj.top + "px"); */
+		 
+	})
+	
+})
+	
+	
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -20,7 +31,7 @@
 			<c:choose>
 				<c:when test="${board.size() > 0}">
 					<c:forEach var="tmp" items="${board}" varStatus="status">
-						<div class="col-lg-3" id="card1">
+						<div class="col-md-3" id="card1">
 							<div class="card">
 								<a href="selectView.tip?seq=${tmp.seq}&viewcount=${tmp.viewcount}"><img
 									class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}"
@@ -50,7 +61,7 @@
 		</div>
 		<br>
 		<div class="row text-center">
-        <div class="col-md-2" style="margin:auto">
+        <div class="col-md-1" style="margin:auto">
           <ul class="pagination">
             ${navi}
           </ul>
