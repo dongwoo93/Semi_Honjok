@@ -147,6 +147,7 @@ public class AdminFileDAO {
 		int batchSize = fileList.length;
 		int count = 0;
 		for (int i=0;i < batchSize;i++) {
+			System.out.println(fileList[i]);
 			pstat.setInt(1, Integer.parseInt(seq));
 			pstat.setString(2, fileList[i]);
 			pstat.addBatch();

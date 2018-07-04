@@ -875,10 +875,10 @@
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							console.log(data.systemFileName);
-							sysFileList.push(data.systemFileName);
 							
-							//$("#imgBackUp").val($("#imgBackUp").val() + data.systemFileName);
+							sysFileList.push(data.systemFileName);
+							console.log(sysFileList[0]);
+							
 						}
 					});
 				}
@@ -911,42 +911,21 @@
 			document.getElementById("writebt").onclick = function() {
 				var result = check();
 				if(result) {
-					$("#imgBackUp").val(JSON.stringify(sysFileList));
+					var isEmpty = function(sysFileList){ 
+						if( sysFileList == "" || sysFileList == null || sysFileList == undefined || ( sysFileList != null && typeof sysFileList == "object" && !Object.keys(sysFileList).length ) ){ 
+							return false; 
+							}else{ 
+								return true; } 
+						};
+					if(isEmpty){
+						$("#imgBackUp").val(JSON.stringify(sysFileList));
+					}
+					
 					makeFunction("../editor.tw");
 				}
 			
 			}
 			
-			/* function sendContents() {
-			       $("#summernote").html($("#summernote").summernote('code'));
-			       document.writeContents.submit();
-			   } */
-
-		function sendFile(file, editor) {
-			var data = new FormData();
-			data.append("uploadFile", file);
-			console.log(file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : '../upload.img',
-				cache : false,
-				contentType : false,
-				//enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					// 에디터에 이미지 출력(아직은 안합니다.)
-					$(editor).summernote('editor.insertImage', data.url);
-					console.log(data);
-					$("#imgBackUp").val(
-							$("#imgBackUp").val() + data.systemFileName + ",");
-				}
-			});
-		}
-		function sendContents() {
-			$("#summernote").html($("#summernote").summernote('code'));
-			document.writeContents.submit();
-		}
 	</script>
 </body>
 </html>
