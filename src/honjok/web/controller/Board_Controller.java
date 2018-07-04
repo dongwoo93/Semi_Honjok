@@ -13,17 +13,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardCommentDAO;
 import honjok.web.dao.BoardDAO;
 import honjok.web.dao.BoardLikeDAO;
+import honjok.web.dao.MapDAO;
+import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardCommentDTO;
+import honjok.web.dto.BoardDTO;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.LikeDTO;
+import honjok.web.dto.MapDTO;
 
 @WebServlet("*.freeb")
 public class Board_Controller extends HttpServlet {
@@ -102,58 +109,27 @@ public class Board_Controller extends HttpServlet {
 				isRedirect = false;
 				dst = "community/freeboardView2.jsp";
 				
-			}else if(command.equals("/freeboardWrite.freeb")) {
-				BoardDAO dao = new BoardDAO();
-				BoardUserDTO dto = new BoardUserDTO();
-
-				String realPath = request.getServletContext().getRealPath("/files/");
-
-				File f = new File(realPath);
-				if(!f.exists()) {
-					f.mkdir();
+			}else if(command.equals("/writecategory.freeb")) {
+				String category = request.getParameter("cat");
+				
+				if(category.equals("free")) {
+					request.setAttribute("cat", category);
+				}else if(category.equals("coun")) {
+					request.setAttribute("cat", category);
+				}else if(category.equals("tip")) {
+					request.setAttribute("cat", category);
+				}else {
+					request.setAttribute("cat", category);
 				}
-				int maxSize = 1024 * 1024 * 100;
-				String enc = "utf8";
-
-				MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
-				Enumeration<String> files = mr.getFileNames();
-				String originalFileName = null;
-				String systemFileName = null;
-				while(files.hasMoreElements()) {
-					String paramName = files.nextElement();
-					originalFileName = mr.getOriginalFileName(paramName);
-					systemFileName = mr.getFilesystemName(paramName);
-				}
-				realPath = contextPath + "/files/" + systemFileName;
 				
-				JSONObject json = new JSONObject();
-				json.put("url", realPath);
+				isRedirect = false;
+				dst = "community/freeboardWrite.jsp";
 				
-				response.setCharacterEncoding("utf8");
-				response.setContentType("application/json");
-				response.getWriter().println(json.toJSONString());
-				response.getWriter().flush();
-				response.getWriter().close();
+			}else if(command.equals("/boardWrite.freeb")) {
 				
-				String title = mr.getParameter("title");
-				String writer = mr.getParameter("writer");
-				String contents = mr.getParameter("contents");
-				String header = mr.getParameter("header");
-				String writedate = mr.getParameter("writedate");
-				String ip = request.getRemoteAddr();
-
-				dto.setTitle(title);
-				dto.setWriter(writer);
-				dto.setContents(contents);
-				dto.setHeader(header);
-				dto.setWritedate(writedate);
-				dto.setIp(ip);
 				
-				int result = dao.insertData(dto);
 				
-				request.setAttribute("result", result);
-				isRedirect = false; 
-				dst = "freeboardResult.jsp";
+				
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
 				String id = (String)request.getSession().getAttribute("loginId");

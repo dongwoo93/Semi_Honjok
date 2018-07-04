@@ -13,7 +13,20 @@ import java.util.List;
 import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.BoardUserDTO;
 
-public class BoardDAO {	
+public class BoardDAO {
+	
+	public String getBoardSeq() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select board_user_seq.nextval from dual";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
 	public List<BoardUserDTO> selectFree() throws Exception {
 
 		Connection con = DBUtils.getConnection();
@@ -278,20 +291,21 @@ public class BoardDAO {
 		con.close();
 		return list;
 	}
+	
+	
 	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_user values(user_seq.nextval,user_free_seq.nextval,?,?,?,?,?,sysdate,?,?)";
+		String sql = "insert into board_user values(?,user_free_seq.nextval,?,?,?,?,?,default,default,sysdate,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());		
 		con.setAutoCommit(false);
-		pstat.setString(1, dto.getCategory());
-		pstat.setString(2, dto.getTitle());
-		pstat.setString(3, dto.getWriter());
-		pstat.setCharacterStream(4, sr, dto.getContents().length());
-		pstat.setString(5, dto.getHeader());
-		pstat.setString(6, dto.getWritedate());
+		pstat.setInt(1, dto.getSeq());
+		pstat.setString(2, dto.getCategory());
+		pstat.setString(3, dto.getTitle());
+		pstat.setString(4, dto.getWriter());
+		pstat.setCharacterStream(5, sr, dto.getContents().length());
+		pstat.setString(6, dto.getHeader());
 		pstat.setString(7, dto.getIp());
-
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();

@@ -12,9 +12,7 @@ $(document).ready(function() {
 		$("#beast").click(function() {
 			$(location).attr('href', "ajax03.freeb")
 		})
-		$("#write").click(function() {
-			$(location).attr('href', "community/freeboardWrite.jsp");
-		})
+		
 		$("#sbtn").click(function(){
 			$("#formid").submit();
 		})

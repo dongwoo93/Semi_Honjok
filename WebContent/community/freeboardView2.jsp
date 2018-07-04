@@ -25,21 +25,21 @@
 					   <c:when test="${cat eq 'tip'}">
 					   <div class="headSelect">
 							<a href="boardView.freeb?cat=tip"><button class="header" type="button" id="all">전체</button></a>
-							<a href="boardView.freeb?cat=tip&head=생활"><button class="header" type="button" id="chat">생활</button></a>
-							<a href="boardView.freeb?cat=tip&head=레시피"><button class="header" type="button" id="humor">레시피</button></a>
-							<a href="boardView.freeb?cat=tip&head=맛집"><button class="header" type="button" id="beast">맛집</button></a>
-							<a href="boardView.freeb?cat=tip&head=여행"><button class="header" type="button" id="beast">여행</button></a>
+							<a href="boardView.freeb?cat=tip&head=생활"><button class="header" type="button" id="living">생활</button></a>
+							<a href="boardView.freeb?cat=tip&head=레시피"><button class="header" type="button" id="recipe">레시피</button></a>
+							<a href="boardView.freeb?cat=tip&head=맛집"><button class="header" type="button" id="rest">맛집</button></a>
+							<a href="boardView.freeb?cat=tip&head=여행"><button class="header" type="button" id="trip">여행</button></a>
 						</div>
 					   </c:when>
 					    <c:when test="${cat eq 'coun'}">
 					    <div class="headSelect">
 							<a href="boardView.freeb?cat=coun"><button class="header" type="button" id="all">전체</button></a>
-							<a href="boardView.freeb?cat=coun&head=취미"><button class="header" type="button" id="chat">취미</button></a>
-							<a href="boardView.freeb?cat=coun&head=게임"><button class="header" type="button" id="humor">게임</button></a>
-							<a href="boardView.freeb?cat=coun&head=이성"><button class="header" type="button" id="beast">이성</button></a>
-							<a href="boardView.freeb?cat=coun&head=인생"><button class="header" type="button" id="beast">인생</button></a>
-							<a href="boardView.freeb?cat=coun&head=친구"><button class="header" type="button" id="beast">친구</button></a>
-							<a href="boardView.freeb?cat=coun&head=컴플렉스"><button class="header" type="button" id="beast">컴플렉스</button></a>
+							<a href="boardView.freeb?cat=coun&head=취미"><button class="header" type="button" id="hobby">취미</button></a>
+							<a href="boardView.freeb?cat=coun&head=게임"><button class="header" type="button" id="game">게임</button></a>
+							<a href="boardView.freeb?cat=coun&head=이성"><button class="header" type="button" id="rela">이성</button></a>
+							<a href="boardView.freeb?cat=coun&head=인생"><button class="header" type="button" id="life">인생</button></a>
+							<a href="boardView.freeb?cat=coun&head=친구"><button class="header" type="button" id="friend">친구</button></a>
+							<a href="boardView.freeb?cat=coun&head=컴플렉스"><button class="header" type="button" id="complex">컴플렉스</button></a>
 						</div>
 					    </c:when>
 					</c:choose>
@@ -115,5 +115,10 @@
 		</form><input type=button id="write" value="글 쓰기"></div>
 		
 	</div>
+	<script>
+	$("#write").click(function() {
+		$(location).attr('href', "writecategory.freeb?cat=${cat}");
+	})
+	</script>
 	<link rel="stylesheet" href="communitycss/freeboard.css">
 	<%@ include file="../include/bottom.jsp"%>
