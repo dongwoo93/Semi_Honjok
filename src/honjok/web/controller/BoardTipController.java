@@ -89,7 +89,7 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("id", id);
 				ArrayList<MapDTO> map = new ArrayList<>();
 				MapDAO dao2 = new MapDAO();
-				
+
 				map = dao2.selectData(seq);
 				
 				
@@ -104,10 +104,10 @@ public class BoardTipController extends HttpServlet {
 					request.setAttribute("result", result);
 					
 					request.setAttribute("no", seq);
-					
+
 				}
 				request.setAttribute("map", map);
-				
+
 				isRedirect = false;
 				dst = "board/boardView2.jsp";
 			}
@@ -116,7 +116,7 @@ public class BoardTipController extends HttpServlet {
 				System.out.println("delete in");
 				System.out.println("delete seq" + seq);
 				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
-				
+
 				String systemFileName = fileDTO.getThum_sysFileName();
 				System.out.println("systemFileName: " + systemFileName);
 				if(!(systemFileName.equals(""))) {
@@ -129,30 +129,33 @@ public class BoardTipController extends HttpServlet {
 						System.out.println("들어옴 3");
 						if(file.delete()){
 							System.out.println("들어옴 4");
-							int result = dao.deleteData(seq);
-							if(result > 0) {
-								System.out.println("들어옴 5");
-								List<String> list = fileDAO.getNote_sysFileName(seq);
-								if(!(list.size() == 0)) {
-									System.out.println("들어옴6");
-									String realPath2 = request.getServletContext().getRealPath("/files/");
-									File file2 = new File(realPath2 + "/"+ systemFileName);
-
+							List<String> list = fileDAO.getNote_sysFileName(seq);
+							System.out.println(list.size());
+							if(list.size() != 0) {
+								System.out.println("들어옴5");
+								
+								for(int i=0; i < list.size(); i++) {
+									String Path = request.getServletContext().getRealPath("/files/");
+									File file2 = new File(Path + "/"+ list.get(i));
+									System.out.println(i+"번" + file2);
 									if(file2.exists() ){
+										System.out.println("존재");
 										if(file2.delete()){
-											System.out.println("성공");
+											System.out.println("삭제 성공");
 										}
 									}
 								}
-							}else {
+								
+								
+
 							}
-							dst = "board/boardtip2.jsp";
-						}else{
-						}
-					}else{
-					}
+						}else {}
+						System.out.println("들어옴 6");
+						int result = dao.deleteData(seq);
+					}else{}
+
 				}
-				dst = "selectNaviCat.tip";
+				dst = "hollo.com";
 			}else if(command.equals("/modify.tip")) {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
@@ -161,7 +164,7 @@ public class BoardTipController extends HttpServlet {
 				/*for(int i =0; result.size()>i;i++) {
 					System.out.println(result.get(i).getSubject());
 				}*/
-				
+
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("result", result);
 				request.setAttribute("thumbnail", fileDTO);
@@ -193,7 +196,7 @@ public class BoardTipController extends HttpServlet {
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
 			}
-					
+
 
 		}catch(Exception e) {
 			e.printStackTrace();

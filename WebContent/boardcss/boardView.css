@@ -15,10 +15,6 @@
 	text-align: right;
 }
 
-span {
-	border: 1px dotted orange;
-}
-
 .wrap {
 	position: absolute;
 	left: 0;
@@ -155,10 +151,11 @@ span {
   display: none;     /* 스크롤 위치에 상관없이 보이게 하려면 생략 */
 }
 /* 두 태그에 각각 y 위치 입력 */
+
 #TopButton {
   bottom: 108px;        
 }
-#BottomButton {
+/* #BottomButton {
   bottom: 75px;
 }
-
+ */
