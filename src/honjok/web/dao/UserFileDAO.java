@@ -9,33 +9,14 @@ import java.util.List;
 import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.AdminFilesDTO;
 
-public class AdminFileDAO {
+public class UserFileDAO {
+
 	
 	public List<AdminFilesDTO> getAllThum_sysFileName(String category) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select article_no, file_seq, thum_sysFileName from admin_files where category=? order by article_no desc";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, category);
-		ResultSet rs = pstat.executeQuery();
-		List<AdminFilesDTO> list = new ArrayList<>();
-		while(rs.next()) {
-			AdminFilesDTO tmp = new AdminFilesDTO();
-			tmp.setArticle_no(rs.getString(1));
-			tmp.setFile_seq(rs.getString(2));
-			tmp.setThum_sysFileName(rs.getString(3));
-			list.add(tmp);
-		}
-		
-		rs.close();
-		pstat.close();
-		con.close();
-		return list;
-	}
-	
-	public List<AdminFilesDTO> getAllThum_sysFileName() throws Exception {
-		Connection con = DBUtils.getConnection();
-		String sql = "select article_no, file_seq, thum_sysFileName from admin_files order by article_no desc";
-		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		List<AdminFilesDTO> list = new ArrayList<>();
 		while(rs.next()) {
@@ -167,7 +148,6 @@ public class AdminFileDAO {
 		int batchSize = fileList.length;
 		int count = 0;
 		for (int i=0;i < batchSize;i++) {
-			System.out.println(fileList[i]);
 			pstat.setInt(1, Integer.parseInt(seq));
 			pstat.setString(2, fileList[i]);
 			pstat.addBatch();
@@ -182,4 +162,5 @@ public class AdminFileDAO {
 		con.close();
 		return result;
 	}
+
 }

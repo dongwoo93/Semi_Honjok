@@ -18,6 +18,7 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -142,10 +143,8 @@
 						</div>
 						<h2 class="text-center">Member Login</h2>
 						<div class="social-btn text-center">
-							<a href="naver.do"
-								onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
-								<img src="naver.PNG"
-								style="width: 100%; height: 55px; cursor: pointer;">
+							<a href="naver.do" onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
+								<img src="naver.PNG" style="width: 100%; height: 55px; cursor: pointer;">
 							</a>
 							<!-- <a href="javascript:loginWithKakao()"> -->
 							<a href="javascript:kakaologin()"> <img src="kakao.png"
