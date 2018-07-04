@@ -11,6 +11,7 @@
 					<c:choose>
 					 <c:when test="${cat eq 'free'}">
 					 <div class="headSelect">
+					 <a href="boardView.freeb?cat=free" id="freeboard" name="freeboard">자유게시판</a>
 							<a href="boardView.freeb?cat=free"><button class="header" type="button" id="all">전체</button></a>
 							<a href="boardView.freeb?cat=free&head=잡담"><button class="header" type="button" id="chat">잡담</button></a>
 							<a href="boardView.freeb?cat=free&head=유머"><button class="header" type="button" id="humor">유머</button></a>
@@ -19,11 +20,13 @@
 					 </c:when>
 					  <c:when test="${cat eq 'qna'}">
 					  <div class="headSelect">
+					  		<a href="boardView.freeb?cat=qna" id="qnaboard" name="qnaboard">Q & A</a>
 							<a href="boardView.freeb?cat=qna"><button class="header" type="button" id="all">전체</button></a>
 						</div>
 					  </c:when>
 					   <c:when test="${cat eq 'tip'}">
 					   <div class="headSelect">
+					   		<a href="boardView.freeb?cat=tip" id="tipboard" name="tipboard">Tip</a>
 							<a href="boardView.freeb?cat=tip"><button class="header" type="button" id="all">전체</button></a>
 							<a href="boardView.freeb?cat=tip&head=생활"><button class="header" type="button" id="living">생활</button></a>
 							<a href="boardView.freeb?cat=tip&head=레시피"><button class="header" type="button" id="recipe">레시피</button></a>
@@ -33,6 +36,7 @@
 					   </c:when>
 					    <c:when test="${cat eq 'coun'}">
 					    <div class="headSelect">
+					    	<a href="boardView.freeb?cat=coun" id="counboard" name="counboard">고민상담</a>
 							<a href="boardView.freeb?cat=coun"><button class="header" type="button" id="all">전체</button></a>
 							<a href="boardView.freeb?cat=coun&head=취미"><button class="header" type="button" id="hobby">취미</button></a>
 							<a href="boardView.freeb?cat=coun&head=게임"><button class="header" type="button" id="game">게임</button></a>
