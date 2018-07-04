@@ -31,9 +31,13 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/index.css">
+
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
+
 <script type="text/javascript" src="js/index.js"></script>
 </head>
 
