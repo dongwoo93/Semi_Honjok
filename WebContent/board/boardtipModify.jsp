@@ -60,7 +60,7 @@
 
 </head>
 <body>
-	<form action="notemodify.tw" method="post" enctype="multipart/form-data">
+	<form id="postform" method="post" enctype="multipart/form-data">
 		<div class="container" style="padding-top: 6%;">
 			<c:forEach var="item" items="${result}">
 				<input type="hidden" name="seq" value="${item.seq}">
@@ -98,13 +98,15 @@
 			</c:forEach>
 
 			<div class="form-group col-md-8">
-				<label for="formGroupExampleInput">썸네일 이미지</label><br> 
-				<input type="file" name="file">
-			</div>
-			<br> <input type="text" id="imgBackUp" name="contentsImg">
+				<label for="formGroupExampleInput">썸네일 이미지</label><br>
+				<input type="file" id="file" name="file">
+			</div><br>
+			<input type="hidden" id="imgBackUp" name="contentsImg">
 			<div class="col-sm-3">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
-				<input type="submit" class="btn btn-primary" value="submit">
+				<!-- <input type="button" class="btn btn-primary" value="button"> -->
+				<button type="button" class="btn btn-primary" id="writebt">작성</button>
+				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
 			</div>
 		</div>
 	</form>
@@ -202,9 +204,39 @@
 				}
 			});
 		}
-		function sendContents() {
-			$("#summernote").html($("#summernote").summernote('code'));
-			document.writeContents.submit();
+		function makeFunction(dst) {
+			document.getElementById("postform").action = dst;
+		    document.getElementById("postform").submit();	
+		}
+		
+		
+		function check() {
+			var title = document.getElementById("title").value;
+			var content = document.getElementById("summernote").value;
+			var sel1 = document.getElementById("sel1").value;
+			var sel2 = document.getElementById("sel2").value;
+			var file = document.getElementById("file").value;
+			if(title != "" && content != "" && sel1 != "" && sel2 != "" && file != "") {
+				alert("들어옴");
+				return true;
+			} else {
+				alert("입력사항을 확인해주세요.");
+				return false;
+			}
+			
+		}
+		
+		document.getElementById("cancelbt").onclick = function() {
+			location.href = "../hollo.com"
+		}
+		
+		document.getElementById("writebt").onclick = function() {
+			var result = check();
+			if(result) {
+				$("#imgBackUp").val(JSON.stringify(sysFileList));
+				makeFunction("notemodify.tw");
+			}
+		
 		}
 	</script>
 

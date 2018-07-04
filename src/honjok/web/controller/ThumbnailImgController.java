@@ -43,10 +43,11 @@ public class ThumbnailImgController extends HttpServlet {
 			String originalFileName = mr.getOriginalFileName(file);
 			String systemFileName =  mr.getFilesystemName(file);
 
-			realPath =contextPath + "/files/" + systemFileName;
+			realPath = contextPath + "/files/" + systemFileName;
 			//System.out.println("contextPath: " + contextPath);
 			//System.out.println("�����н�2: " + realPath);
 			JSONObject json = new JSONObject();
+			System.out.println("file: " + systemFileName);
 			json.put("url", realPath);
 			json.put("systemFileName", systemFileName);
 			response.setCharacterEncoding("utf8");
