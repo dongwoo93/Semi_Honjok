@@ -49,6 +49,7 @@ public class loginController extends HttpServlet {
 			if(command.equals("/kakaotest.do")) {
 
 				try {
+					
 
 					String id = request.getParameter("id");
 					String email = request.getParameter("email");
@@ -143,12 +144,13 @@ public class loginController extends HttpServlet {
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-
+						
+						
 					}else {
 						dao.naverInserData(id, name, email, gender);
 
 					}         
-
+					request.getSession().setAttribute("loginId", id);
 					dst = "naverclose.jsp";
 
 				} catch (Exception e) {

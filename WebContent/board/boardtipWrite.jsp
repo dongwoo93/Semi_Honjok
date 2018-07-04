@@ -386,10 +386,10 @@
 			<script>
 				function categoryChange(e) {
 					var sel2_꿀팁 = [ "청소", "라이프", "경제적" ];
-					var sel2_요리 = [ "초간단 요리", "일반 요리"];
+					var sel2_요리 = [ "초간단요리", "일반요리"];
 					var sel2_인테리어 = [ "가구", "소품" ];
 					var sel2_여행 = [ "국내여행", "해외여행" ];
-					var sel2_맛집 = [ "서울", "인천&경기", "충청도", "경상도", "전라도" ];
+					var sel2_맛집 = [ "서울", "인천경기", "충청도", "경상도", "전라도" ];
 					var sel2_쇼핑몰 = [ "쇼핑" ];
 					var target = document.getElementById("sel2");
 
@@ -829,10 +829,10 @@
 		            onImageUpload : function(files, editor, welEditable) {
 		                sendFile(files[0], this);
 		            },
-		            onMediaDelete : function(target) {
+		            /* onMediaDelete : function(target) {
 	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
-	            	} 
+	            	}  */
 	            	/* onMediaDelete : function($target, editor, $editable) {
 	                    alert($target.context.dataset.filename);         
 	                    target.remove();
@@ -845,7 +845,7 @@
 					  
 			});
 			
-			function deleteFile(src) {
+			/* function deleteFile(src) {
 				console.log(src);
 				var result = src.split("/files/");
 				console.log(result);
@@ -858,7 +858,7 @@
 			            //console.log(resp);
 			        }
 			    });
-			}
+			} */
 			var sysFileList=[];
 			function sendFile(file, editor) {
 					var data = new FormData();
@@ -875,10 +875,10 @@
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							console.log(data.systemFileName);
-							sysFileList.push(data.systemFileName);
 							
-							//$("#imgBackUp").val($("#imgBackUp").val() + data.systemFileName);
+							sysFileList.push(data.systemFileName);
+							console.log(sysFileList[0]);
+							
 						}
 					});
 				}
@@ -911,42 +911,21 @@
 			document.getElementById("writebt").onclick = function() {
 				var result = check();
 				if(result) {
-					$("#imgBackUp").val(JSON.stringify(sysFileList));
+					var isEmpty = function(sysFileList){ 
+						if( sysFileList == "" || sysFileList == null || sysFileList == undefined || ( sysFileList != null && typeof sysFileList == "object" && !Object.keys(sysFileList).length ) ){ 
+							return false; 
+							}else{ 
+								return true; } 
+						};
+					if(isEmpty){
+						$("#imgBackUp").val(JSON.stringify(sysFileList));
+					}
+					
 					makeFunction("../editor.tw");
 				}
 			
 			}
 			
-			/* function sendContents() {
-			       $("#summernote").html($("#summernote").summernote('code'));
-			       document.writeContents.submit();
-			   } */
-
-		function sendFile(file, editor) {
-			var data = new FormData();
-			data.append("uploadFile", file);
-			console.log(file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : '../upload.img',
-				cache : false,
-				contentType : false,
-				//enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					// 에디터에 이미지 출력(아직은 안합니다.)
-					$(editor).summernote('editor.insertImage', data.url);
-					console.log(data);
-					$("#imgBackUp").val(
-							$("#imgBackUp").val() + data.systemFileName + ",");
-				}
-			});
-		}
-		function sendContents() {
-			$("#summernote").html($("#summernote").summernote('code'));
-			document.writeContents.submit();
-		}
 	</script>
 </body>
 </html>
