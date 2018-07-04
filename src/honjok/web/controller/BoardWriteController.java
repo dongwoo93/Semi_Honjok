@@ -21,8 +21,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardTipDAO;
+import honjok.web.dao.MapDAO;
 import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.BoardDTO;
+import honjok.web.dto.MapDTO;
 
 
 @WebServlet("*.tw")
@@ -76,10 +78,10 @@ public class BoardWriteController extends HttpServlet {
 
 		BoardTipDAO tipDAO = new BoardTipDAO();
 		if(command.equals("/editor.tw")) {
+			String seq = null;
 			try {
 				if(systemFileName != null && !(title.equals(""))) {
-					String seq = tipDAO.getBoardSeq();
-					System.out.println(seq);
+					seq = tipDAO.getBoardSeq();
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.insertData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
@@ -88,19 +90,25 @@ public class BoardWriteController extends HttpServlet {
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
 						if(fileResult > 0) {
-							obj = paser.parse(stJson);
-							if(!obj.equals(null)) {
+							if(stJson != null){
+								System.out.println("json 변환 들어옴");
+								System.out.println(stJson.toString());
+								obj = paser.parse(stJson);
+								System.out.println(obj);
 								JSONArray jsonArray = (JSONArray)obj;
+								System.out.println(jsonArray);
 								fileList = new String[jsonArray.size()];
+								System.out.println(fileList);
 								for(int j=0;j<fileList.length;j++){
 									fileList[j] = jsonArray.get(j).toString();
+									System.out.println("컨텐츠 파일 이름:" + fileList[j]);
 								}
 								int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
 								for(int i=0;i<imgUpResult.length;i++) {
 									if(imgUpResult[i] > 0) {
+										System.out.println("이미지업 결과:" + imgUpResult[i]);
 									}
 								}
-							}else {
 							}
 						}else {
 						}
@@ -108,10 +116,34 @@ public class BoardWriteController extends HttpServlet {
 				}else {
 				}
 
+				String place_name = mr.getParameter("places.place_name");
+				String category_name = mr.getParameter("places.category_name");
+				String phone = mr.getParameter("places.phone");
+				String road_address_name = mr.getParameter("places.road_address_name");
+				String address_name = mr.getParameter("places.address_name");
+				String place_url = mr.getParameter("places.place_url");
+				String x = mr.getParameter("places.x");
+				String y = mr.getParameter("places.y");
+				System.out.println(road_address_name);
+
+
+				MapDTO dto = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
+				MapDAO dao = new MapDAO();
+				int result = dao.insertData(dto);
+				if(result <= 0) {
+					response.sendRedirect("error.html");
+				}
+
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			dst = "hollo.com";
+
+
+			isRedirect=false;
+
+
+			dst = "selectNaviCat.tip?category="+category;
 		}else if(command.equals("/notemodify.tw")) {
 			try {
 				if(systemFileName != null) {

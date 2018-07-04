@@ -1,8 +1,37 @@
+.container{
+	margin-top: 100px;
+}
+
+.headSelect{
+	text-align:right;
+}
+
+#freeboard{
+	padding-right: 670px;
+    font-size: 19px;
+    font-weight: bold;
+}
+#counboard{
+	padding-right: 420px;
+    font-size: 19px;
+    font-weight: bold;
+}
+#tipboard{
+	padding-right: 640px;
+    font-size: 19px;
+    font-weight: bold;
+}
+#qnaboard{
+	padding-right: 950px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
 .header{
 	border-radius: 3px;
 	background-color: #555555;
 	font-size: 12px;
-	transition-duration: 0.4s;
+	/* transition-duration: 0.4s; */
 	padding: 10px 24px;
 	color: white;
 }
@@ -43,7 +72,7 @@ a:active {
 	border-radius: 3px;
 	background-color: #555555;
 	font-size: 12px;
-	transition-duration: 0.4s;
+	/* transition-duration: 0.4s; */
 	padding: 10px 24px;
 	color: white;
 }
@@ -52,4 +81,84 @@ a:active {
 	background-color: white;
     color: #555555;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* #no{
+	width: 5%;
+	text-align: center;
+}
+#header{
+	width: 10%;
+	text-align: center;
+}
+#title{
+	width: 50%;
+}
+#writer{
+	width: 10%;
+}
+#date{
+	width: 10%;
+}
+#view{
+	width: 10%;
+	text-align: center;
+}
+#like{
+	width: 5%;
+	text-align: center;
+}
+ */
+
+
+#noticeno{
+	width: 5%;
+	text-align: left;
+}
+#noticeheader{
+	width: 10%;
+	text-align: left;
+}
+#noticetitle{
+	width: 50%;
+}
+#noticewriter{
+	width: 10%;
+}
+#noticedate{
+	width: 10%;
+}
+#noticeview{
+	width: 10%;
+	text-align: left;
+}
+#noticelike{
+	width: 5%;
+	text-align: left;
+}
+
+#navbar {
+	color: white;
+	background-color: #dee2e6 !important;
+	z-index:1030;
+	position: fixed;
+	transition: background-color 200ms linear;
+}
+
+#navbar .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar .navbar-nav .nav-link:hover {
+    color: #1e73be;
+}
+
+#navbar .navbar-brand {
+	color: black;
+}
+
+.table td, .table th {
+    padding: .70rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
 }

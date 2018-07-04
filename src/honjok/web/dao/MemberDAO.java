@@ -71,7 +71,7 @@ public class MemberDAO {
 	}
 	public int insertData(String id, String pw, String name, String phone, String email,String zipcode,String address,String gender) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into member values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into member values(?,?,?,?,?,?,?,?,null)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		pstat.setString(2, pw);
