@@ -4,7 +4,7 @@
 <%@ include file="../include/top.jsp" %>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/parallax.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 <div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -13,7 +13,7 @@
 					<h3 class="en-text">The life is only once.</h3>
 					<p></p>
 				</div>
-			</div>	
+			</div>
 			<div class="carousel-item">
 				<img src="imges/뒷모습.jpg" alt="Chicago">
 				<div class="carousel-caption">
@@ -47,109 +47,54 @@
 	<div>
 		<h1 style="margin-top: 30px; margin-left: 330px; margin-bottom: 20px">Latest
 			Contents</h1>
-		<div class="card-deck">
+			<div class="card-deck">
+			<c:choose>
+			<c:when test="${result.size() > 0}">
+			<c:forEach var="latest" items="${result}" begin="0" end="3" step="1" varStatus="status">
 			<div class="col-sm-2" id="card1">
 				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">
+				<img class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}" alt="Card image cap">
+				</a>
+					
 					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
+						<h5 class="card-title">
+						<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a>
+						</h5>
 						<p class="card-text">
 							<small class="text-muted">Last updated 3 mins ago</small>
 						</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-2" id="card1">
-				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-2" id="card1">
-				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-2" id="card1">
-				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
+			</c:when>
+			</c:choose>
 		</div>
-
+		
 		<div class="card-deck">
+			<c:choose>
+			<c:when test="${result.size() > 0}">
+			<c:forEach var="latest" items="${result}" begin="4" end="7" step="1" varStatus="status">
 			<div class="col-sm-2" id="card1">
 				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
+				<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">
+				<img class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}" alt="Card image cap">
+				</a>
+					
 					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
+						<h5 class="card-title">
+						<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a>
+						</h5>
 						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
+							<small class="text-muted">${latest.writedate}</small>
 						</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-2" id="card1">
-				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-2" id="card1">
-				<div class="card">
-					<a href=""> <img class="card-img-top" src="fjords.jpg"
-						alt="Card image cap">
-					</a>
-					<div class="card-body">
-
-
-						<a href=""><h5 class="card-title">Card title</h5></a>
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-2" id="card1">
-				<div class="card">
-					<img class="card-img-top" src="fjords.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
+			</c:when>
+			</c:choose>
 		</div>
 	</div>
 

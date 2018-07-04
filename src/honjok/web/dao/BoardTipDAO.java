@@ -21,6 +21,7 @@ public class BoardTipDAO {
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
 		String result = rs.getString(1);
+		rs.close();
 		pstat.close();
 		con.close();
 		return result;
@@ -115,7 +116,8 @@ public class BoardTipDAO {
 			sb.append("<li class='page-item'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
-
+		
+		rs.close();
 		pstat.close();
 		con.close();
 		return sb.toString();
@@ -189,7 +191,7 @@ public class BoardTipDAO {
 			sb.append("<li class='page-item'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
-
+		rs.close();
 		pstat.close();
 		con.close();
 		return sb.toString();
@@ -232,6 +234,28 @@ public class BoardTipDAO {
 			dto.setContents(sb.toString());
 			list.add(dto);
 		}
+		rs.close();
+		pstat.close();
+		con.close();
+		return list;
+	}
+	
+	public List<BoardDTO> selectLatestData() throws Exception{
+		Connection con = DBUtils.getConnection();
+		String sql = "select seq, category, title, writedate from admin_board order by seq desc";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardDTO> list = new ArrayList<>();
+
+		while(rs.next()) {
+			BoardDTO tmp = new BoardDTO();
+			tmp.setSeq(rs.getString(1));
+			tmp.setCategory(rs.getString(2));
+			tmp.setTitle(rs.getString(3));
+			tmp.setWritedate(rs.getString(4));
+			list.add(tmp);
+		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -267,6 +291,7 @@ public class BoardTipDAO {
 			dto.setLikeit(rs.getInt(8));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -301,6 +326,7 @@ public class BoardTipDAO {
 			dto.setLikeit(rs.getInt(8));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;

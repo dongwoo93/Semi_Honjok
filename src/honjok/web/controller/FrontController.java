@@ -1,6 +1,7 @@
 package honjok.web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +14,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import honjok.web.beans.StatisticsData;
+import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.AdminLikeDAO;
 import honjok.web.dao.BoardDAO;
 import honjok.web.dao.BoardLikeDAO;
+import honjok.web.dao.BoardTipDAO;
+import honjok.web.dto.AdminFilesDTO;
 import honjok.web.dto.AdminLikeDTO;
+import honjok.web.dto.BoardDTO;
 import honjok.web.dto.LikeDTO;
 
 /**
@@ -37,9 +42,12 @@ public class FrontController extends HttpServlet {
 		
 			
 			if(command.equals("/hollo.com")) {
-				
-				
-				
+				BoardTipDAO dao = new BoardTipDAO();
+				AdminFileDAO fileDAO = new AdminFileDAO();
+				List<BoardDTO> result = dao.selectLatestData();
+				List<AdminFilesDTO> fileResult = fileDAO.getAllThum_sysFileName();
+				request.setAttribute("result", result);
+				request.setAttribute("thumbnail", fileResult);
 				dst = "/community/index2.jsp";	
 				
 			}else if(command.equals("/data.com")) {
