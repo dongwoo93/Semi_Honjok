@@ -15,7 +15,7 @@
 		<div class="col-md-12" style="text-align: right">
 			<span class="col-md-2">${result[0].writedate}</span>
 			<%-- <span class="cos-sm-2" id="seq">${result[0].seq}</span> --%>
-			<span class="col-md-3"><button type="button"
+			<span id="col-md-3" class="col-md-3"><button type="button"
 					class="btn btn-info" id="modify">수정</button></span> <span class="col-md-3"><button
 					type="button" class="btn btn-danger" id="delete">삭제</button></span>
 		</div>
