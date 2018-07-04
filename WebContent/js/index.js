@@ -31,14 +31,14 @@ $(document).ready(function() {
 	});
 
 	$('#section2').parallax({
-		imageSrc : 'images/background-3.jpg'
+		imageSrc : 'images/배경5.jpg'
 	});
 
 	$('#section3').parallax({
-		imageSrc : 'images/background-4.jpg'
+		imageSrc : 'images/배경6.jpg'
 	});
 	$('#section4').parallax({
-		imageSrc : 'images/background-5.jpg'
+		imageSrc : 'images/배경8.jpg'
 	});
 
 

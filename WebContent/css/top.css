@@ -2,6 +2,20 @@
 	margin-left: 50px;
 }
 
+.dropdown {
+	font-family: 'Nanum Pen Script', cursive;		
+	font-size: 30px;
+}
+
+.nav-item {
+	font-family: 'Nanum Pen Script', cursive;		
+	font-size: 30px;
+}
+
+.dropdown-item {
+	font-size: 20px;
+}
+
 .dropdown-toggle::after {
 	display: none;
 }
@@ -18,7 +32,13 @@
 	color: white;
 }
 
+#button {
+ 	outline: none;
+ 	background: none;
+ 	border: none;
+ 		
 
+}
 
 
 #navbar .navbar-brand {
@@ -26,10 +46,6 @@
 }
 
 #navbar {
-	color: white;
-	background: transparent;
-	z-index:1030;
-	position: fixed;
 	transition: background-color 200ms linear;
 }
 
@@ -38,7 +54,7 @@
 
 
 #navbar.scrolled {
-	background-color: #dee2e6 !important;
+	background-color: #eef2f5 !important;
 	transition: background-color 200ms linear;
 }
 
@@ -50,9 +66,9 @@
 	color: black;
 }
 
-#navbar.scrolled .navbar-nav .nav-link:hover {
+/* #navbar.scrolled .navbar-nav .nav-link:hover {
     color: #1e73be;
-}
+} */
 
 
 

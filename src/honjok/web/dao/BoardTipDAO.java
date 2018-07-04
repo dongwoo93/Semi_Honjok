@@ -96,23 +96,23 @@ public class BoardTipDAO {
 
 		if(needPrev) {
 			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>"+"Previous"+"</a></li>");
-			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + "<span class='sr-only'>"+"Previous"+"</span></a></li>");
+			sb.append("<li class='page-item'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + "<span class='sr-only'>"+"Previous"+"</span></a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>" + "< " + " </a>");
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
 			if(currentPage == i) {
-				sb.append("<li class='page-item active'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				sb.append("<li class='page-item active'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+i+"' id="+i+">" + i + "</a></li>");
 				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+"> <b>" + i + "</b> </a>");
 			}else {
-				sb.append("<li class='page-item'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				sb.append("<li class='page-item'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+i+"' id="+i+">" + i + "</a></li>");
 				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+">" + i + " </a>");
 			}
 		}
 
 		if(needNext) {
 			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + "Next" + "</a></li>");
-			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
+			sb.append("<li class='page-item'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
 
@@ -120,7 +120,7 @@ public class BoardTipDAO {
 		con.close();
 		return sb.toString();
 	}
-
+	
 	public String getPageNavi(int currentPage, String category, String subject) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select count(*) totalCount from admin_board where category=? and subject=?";
@@ -168,7 +168,7 @@ public class BoardTipDAO {
 
 		if(needPrev) {
 			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>"+"Previous"+"</a></li>");
-			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + "<span class='sr-only'>"+"Previous"+"</span></a></li>");
+			sb.append("<li class='page-item'><a class='page-link' href='selectNaviSub.tip?category="+category+"&subject="+subject+"&currentPage="+(startNavi-1)+"' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span>" + "<span class='sr-only'>"+"Previous"+"</span></a></li>");
 
 			//sb.append("<a href='select.tip?currentPage="+(startNavi-1)+"' class='navi'>" + "< " + " </a>");
 		}
@@ -176,17 +176,17 @@ public class BoardTipDAO {
 
 		for(int i = startNavi; i <= endNavi; i++) {
 			if(currentPage == i) {
-				sb.append("<li class='page-item active'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				sb.append("<li class='page-item active'><a class='page-link' href='selectNaviSub.tip?category="+category+"&subject="+subject+"&currentPage="+i+"' id="+i+">" + i + "</a></li>");
 				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+"> <b>" + i + "</b> </a>");
 			}else {
-				sb.append("<li class='page-item'><a class='page-link' href='selectNavi.tip?currentPage="+i+"' id="+i+">" + i + "</a></li>");
+				sb.append("<li class='page-item'><a class='page-link' href='selectNaviSub.tip?category="+category+"&subject="+subject+"&currentPage="+i+"' id="+i+">" + i + "</a></li>");
 				//sb.append("<a href='select.tip?currentPage="+i+"' class='navi' id="+i+">" + i + " </a>");
 			}
 		}
 
 		if(needNext) {
 			//sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + "Next" + "</a></li>");
-			sb.append("<li class='page-item'><a class='page-link' href='select.tip?currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
+			sb.append("<li class='page-item'><a class='page-link' href='selectNaviCat.tip?category="+category+"&currentPage="+(endNavi+1)+"' aria-label='Next'> <span aria-hidden='true'>&raquo;</span>" + "<span class='sr-only'>" + "Next" + "</a></li>");
 			//sb.append("<a href='select.tip?currentPage="+(endNavi+1)+"' class='navi'>" + ">" + " </a>");
 		}
 

@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 <footer id="myFooter">
-	<div class="container">
+	<div id="footercss" class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<h2 class="logo">
-					<a href="#"> LOGO </a>
+					<a href="#"><img src="imges/로고.png" width=250 height=120></a>
 				</h2>
 			</div>
 			<div class="col-md-2">

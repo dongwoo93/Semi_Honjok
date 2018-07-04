@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,21 +9,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="css/parallax.css"
-	rel="stylesheet" type="text/css">
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/parallax.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.3.1/parallax.min.js"></script>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -38,96 +33,94 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/index.css">
-<link rel="stylesheet"
-	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
+
 <script type="text/javascript" src="js/index.js"></script>
 </head>
 
 
 
 <body>
-	<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
-	<img src="imges/coffee.png" width=60 height=60> <a
-		class="navbar-brand" href="hollo.com" style="font-size: 26px;">Hollo</a>
-	<ul class="nav navbar-nav">
-		<li class="nav-item"></li>
-		<li class="dropdown"><a class="dropdown-toggle nav-link"
-			id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="hontalkView.freeb">자유게시판</a></li>
-				<li class="dropdown-item"><a href="#">고민상담</a></li>
-				<li class="dropdown-item"><a href="#">질문/답변</a></li>
-				<li class="dropdown-item"><a href="#">혼팁</a></li>
-				<li class="dropdown-item"><a href="#">베스트</a></li>
-			</ul></li>
-		<li class="dropdown nav-item"><a
-			href="selectNaviCat.tip?category='꿀팁'"
-			class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a
-					href="selectNaviCat.tip?category=꿀팁">전체보기</a></li>
-				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
-				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
-				<li class="dropdown-item"><a
-					href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
-			</ul></li>
-		<li class="dropdown nav-item"><a id="cook"
-			href="board/boardtipWrite.jsp" class="dropdown-toggle nav-link"
-			data-toggle="dropdown">요리</a>
-			<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">초간단요리</a></li>
-				<li class="dropdown-item"><a href="#">일반요리</a></li>
-			</ul></li>
-		<li class="nav-item"><a href="#" class="catego nav-link">인테리어</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족여행</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족맛집</a>
-		</li>
-		<li class="nav-item"><a href="#" class="catego nav-link">혼족쇼핑</a>
-		</li>
-	</ul>
-	<c:choose>
-		<c:when test="${sessionScope.loginId != null}">
-			<ul class="nav navbar-nav ml-auto">
-				<li class="nav-item"><a href="" class="nav-link">My Page</a></li>
-				<li class="nav-item"><button type="button" id="logoutbt"
-						class="nav-link">Logout</button></li>
-			</ul>
-		</c:when>
-		<c:otherwise>
-			<ul class="nav navbar-nav ml-auto">
-				<li class="nav-item"><a href="signup.jsp" class="nav-link">Sign
-						Up</a></li>
-				<li class="nav-item"><button type="button" id="loginbt"
-						class="nav-link" data-toggle="modal" data-target="#myModal">Login</button></li>
-			</ul>
-		</c:otherwise>
-	</c:choose> </nav>
+<nav class="navbar navbar-light fixed-top navbar-expand-md" id="navbar">
+   <a class="navbar-brand" href="hollo.com" style="font-size: 26px;">
+   	<img src="imges/로고.png" width=120 height=50>
+   </a>
+   <ul class="nav navbar-nav">
+      <li class="nav-item"></li>
+      <li class="dropdown mx-2"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item" style="font-size: 20px"><a href="hontalkView.freeb">자유게시판</a></li>
+            <li class="dropdown-item"><a href="#">고민상담</a></li>
+            <li class="dropdown-item"><a href="#">질문/답변</a></li>
+            <li class="dropdown-item"><a href="#">혼팁</a></li>
+            <li class="dropdown-item"><a href="#">베스트</a></li>
+         </ul></li>
+      <li class="dropdown nav-item mx-2"><a href="selectNaviCat.tip?category=꿀팁"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">꿀팁</a>
+         <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="selectNaviCat.tip?category=꿀팁">전체보기</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
+         </ul></li>
+      <li class="dropdown nav-item"><a id="cook" href="board/boardtipWrite.jsp"
+         class="dropdown-toggle nav-link" data-toggle="dropdown">요리</a>
+         <ul class="dropdown-menu mx-2">
+            <li class="dropdown-item"><a href="#">초간단요리</a></li>
+            <li class="dropdown-item"><a href="#">일반요리</a></li>
+         </ul></li>
+      <li class="nav-item mx-2"><a href="#" class="catego nav-link">인테리어</a>
+      </li>
+      <li class="nav-item mx-2"><a href="#" class="catego nav-link">혼족여행</a>
+      </li>
+      <li class="nav-item mx-2"><a href="#" class="catego nav-link">혼족맛집</a>
+      </li>
+      <li class="nav-item mx-2"><a href="TestController" class="catego nav-link">혼족쇼핑</a>
+      </li>
+   </ul>
+   <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item mx-3"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
+      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="button">Login</button></li>
+   </ul>
+   </nav>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="imges/헬퍼.jpg" alt="Los Angeles">
+				<img src="imges/불꽃.jpg" alt="Los Angeles">
 				<div class="carousel-caption">
-					<h3>Los Angeles</h3>
-					<p>We had such a great time in LA!</p>
+					<h3 class="en-text">The life is only once.</h3>
+					<p></p>
 				</div>
-			</div>
+			</div>	
 			<div class="carousel-item">
 				<img src="imges/뒷모습.jpg" alt="Chicago">
 				<div class="carousel-caption">
-					<h3>Chicago</h3>
-					<p>Thank you, Chicago!</p>
+					<h3 class="en-text">I was never less alone than when by myself.</h3>
+					<p></p>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="imges/불꽃.jpg" alt="New York">
+				<img src="imges/신발.jpg" alt="New York">
 				<div class="carousel-caption">
-					<h3>New York</h3>
-					<p>We love the Big Apple!</p>
+					<h3 class="en-text">Life improves slowly and goes wrong fast, and only catastrophe is clearly visible.</h3>
+					<p></p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="imges/아이2.jpg" alt="New York">
+				<div class="carousel-caption">
+					<h3 class="en-text">Although the world is full of suffering, it is full also of the overcoming of it.</h3>
+					<p></p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="imges/뒷모습2.jpg" alt="New York">
+				<div class="carousel-caption">
+					<h3 class="en-text">Waste not fresh tears over old griefs.</h3>
+					<p></p>
 				</div>
 			</div>
 		</div>
@@ -246,7 +239,7 @@
 			<div class="text1" data-aos="zoom-out-right" data-aos-once="true">
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
-					style="margin: 0 0 20px 0;">혼족이란?</h1>
+					style="margin: 0 0 40px 0;">혼족이란?</h1>
 				<p style="text-align: center;">
 					<span style="color: #808080;">혼자 밥을 먹거나 여가생활과 쇼핑을 즐기며, </span>
 				</p>
@@ -258,43 +251,57 @@
 				</p>
 			</div>
 			<section id="section2" class="black-circle ct-u-paddingBoth120"
-				style="min-height: 396px; width: 50%; float: left;"> </section>
+				style="min-height: 445px; width: 50%; float: left;"> </section>
 		</div>
 		<div class="wrapper2">
 			<section id="section3" class="black-circle ct-u-paddingBoth120"
-				style="min-height: 396px; width: 50%; float: left;"> </section>
-			<div class="text1" data-aos="zoom-out-left" data-aos-once="true">
+				style="min-height: 445px; width: 50%; float: left;"> </section>
+			<div style="min-height: 445px; width: 50%; float: right; background-color: #1f4ac1;">
+			<!-- <div class="text1" data-aos="zoom-out-left" data-aos-once="true"> -->
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
-					style="margin: 0 0 20px 0;">혼족이란?</h1>
+					style="margin: 0 0 40px 0; text-align: center; margin-top: 90px; color: #ffffff;">이젠 혼자라서 즐겁다.</h1>
 				<p style="text-align: center;">
-					<span style="color: #808080;">혼자 밥을 먹거나 여가생활과 쇼핑을 즐기며, </span>
+					<span style="color: #ffffff;">오롯이 나만을 위한 시간, 나만의 힐링타임 </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">여행도 홀로 떠나는 등 혼자 활동하는게 취미이거나 </span>
+					<span style="color: #ffffff;">나 혼자 폼나게 사는 1코노미 전성시대</span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">그런 성향이 강한 사람들을 일컫는 줄임말.</span>
+					<span style="color: #ffffff;">이제는 선택이 아닌 필수 </span>
 				</p>
+				<p style="text-align: center;">
+					<span style="color: #ffffff;">혼족인 당신을 위한 최고의 선물</span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #ffffff;">Hollo가 당신과 함께 합니다. </span>
+				</p>
+				<!-- </div> -->
 			</div>
 		</div>
 		<div class="wrapper2">
 			<div class="text1" data-aos="zoom-out-right" data-aos-once="true">
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
-					style="margin: 0 0 20px 0;">혼족이란?</h1>
+					style="margin: 0 0 40px 0;">인간에게 고독이란 중요한것이다.</h1>
 				<p style="text-align: center;">
-					<span style="color: #808080;">혼자 밥을 먹거나 여가생활과 쇼핑을 즐기며, </span>
+					<span style="color: #808080;">당신은 평안과 만족을 얻으려면 고독이 필요하다.</span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">여행도 홀로 떠나는 등 혼자 활동하는게 취미이거나 </span>
+					<span style="color: #808080;">고독은 당신 영혼의 갈증을 해소시키는 샘이다. </span>
 				</p>
 				<p style="text-align: center;">
-					<span style="color: #808080;">그런 성향이 강한 사람들을 일컫는 줄임말.</span>
+					<span style="color: #808080;">고독은 당신의 모든 경험으로부터</span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;">진실로 가치 있는 것을 선택할 수 있는 실험실이다.</span>
+				</p>
+				<p style="text-align: center;">
+					<span style="color: #808080;"> - Margaret Murak</span>
 				</p>
 			</div>
 			<section id="section4" class="black-circle ct-u-paddingBoth120"
-				style="min-height: 396px; width: 50%; float: left;"> </section>
+				style="min-height: 445px; width: 50%; float: left;"> </section>
 		</div>
 	</div>
 
@@ -303,18 +310,71 @@
 		data-aos="fade-zoom-in" data-aos-once="true">
 		<div class="wpb_wrapper"
 			style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div
-				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
-				<h3>혼술혼밥</h3>
-				<img src="images/1.png" class="iconimg">
-				<p style="text-align: center;">
-					<span style="color: #333333;">혼술 혼밥하기 좋은 곳을</span>
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"
+				onclick="location.href="#" style="cursor: pointer;">
+				<h3 class="bottom-title">혼족 맛집</h3>
+				<img src="images/레스토랑.png" class="iconimg" width="90px;" height="90px;">
+				<p></p>
+				<p style="text-align: center;" class="bottom-text">
+					<span style="color: #333333; margin-top: 15px">혼밥, 혼술의 시대 </span>
 				</p>
-				<p style="text-align: center;">
-					<span style="color: #333333;">소개합니다.</span>
+				<p style="text-align: center;" class="bottom-text">
+					<span style="color: #333333;">혼족을 위한 맛집들</span>
 				</p>
 			</div>
-			<div class="wpb_text_column wpb_content_element ">
+			<!-- <div class="wpb_text_column wpb_content_element "> -->
+			<!-- 	<div class="wpb_wrapper">
+					<p style="text-align: center;">
+						<a href="#" class="Shortcut">바로가기</a>
+					</p>
+
+				</div> -->
+			<!-- </div> -->
+
+		</div>
+
+		<div class="wpb_wrapper"
+			style="text-align: center; display: inline-block; margin-right: 200px;">
+			
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix" 
+				onclick="location.href="#" style="cursor: pointer;">
+				<h3 class="bottom-title">혼족 쇼핑</h3>
+				<img src="images/쇼핑.png" class="iconimg" width="90px;" height="90px;">
+				<p></p>
+				<p style="text-align: center;" class="bottom-text">
+					<span style="color: #333333; margin-top: 15px">1인 쇼핑 전성시대</span>
+				</p>
+				<p style="text-align: center;" class="bottom-text">
+					<span style="color: #333333;">혼족 라이프 맞춤 상품</span>
+				</p>
+			</div>
+			
+			<!-- <div class="wpb_text_column wpb_content_element ">
+				<div class="wpb_wrapper">
+					<p style="text-align: center;">
+						<a href="" target="_self" class="Shortcut">바로가기</a>
+					</p>
+
+				</div>
+			</div> -->
+
+		</div>
+
+		<div class="wpb_wrapper"
+			style="text-align: center; display: inline-block; margin-right: 200px;">
+			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix" 
+				onclick="location.href="#" style="cursor: pointer;">
+				<h3 class="bottom-title">혼족 여행</h3>
+				<img src="images/비행기.png" class="iconimg" width="90px;" height="90px;">
+				<p></p>
+				<p style="text-align: center;" class="bottom-text">
+					<span style="color: #333333; margin-top: 15px">혼자여도 괜찮아!</span>
+				</p>
+				<p style="text-align: center;" class="bottom-text">
+					<span style="color: #333333;">나홀로 여행, 혼행 꿀팁  </span>
+				</p>
+			</div>
+			<!-- <div class="wpb_text_column wpb_content_element ">
 				<div class="wpb_wrapper">
 					<p style="text-align: center;">
 						<a href="" target="_self" class="button color-1 medium "
@@ -322,57 +382,7 @@
 					</p>
 
 				</div>
-			</div>
-
-		</div>
-
-		<div class="wpb_wrapper"
-			style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div
-				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
-				<h3>혼족 제품&amp;서비스</h3>
-				<img src="images/2.png" class="iconimg">
-				<p style="text-align: center;">
-					<span style="color: #333333;">혼족이 쓰면 유용하고 핫한</span>
-				</p>
-				<p style="text-align: center;">
-					<span style="color: #333333;">제품 또는 서비스를&nbsp;소개합니다.</span>
-				</p>
-			</div>
-			<div class="wpb_text_column wpb_content_element ">
-				<div class="wpb_wrapper">
-					<p style="text-align: center;">
-						<a href="" target="_self" class="button color-1 medium"
-							style="border-radius: 2px;">바로가기</a>
-					</p>
-
-				</div>
-			</div>
-
-		</div>
-
-		<div class="wpb_wrapper"
-			style="text-align: center; display: inline-block; margin-right: 200px;">
-			<div
-				class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix">
-				<h3>혼족 문화</h3>
-				<img src="images/3.png" class="iconimg">
-				<p style="text-align: center;">
-					<span style="color: #333333;">혼족의 감성, 행동, 사상</span>
-				</p>
-				<p style="text-align: center;">
-					<span style="color: #333333;">혼족문화를 &nbsp;소개합니다.</span>
-				</p>
-			</div>
-			<div class="wpb_text_column wpb_content_element ">
-				<div class="wpb_wrapper">
-					<p style="text-align: center;">
-						<a href="" target="_self" class="button color-1 medium "
-							style="border-radius: 2px;">바로가기</a>
-					</p>
-
-				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -383,7 +393,7 @@
 				<div id="c0" class="count" data-count="0"
 					style="color: #ffffff !important">0</div>
 			</div>
-			<span class="counter-title">가구</span> <br>
+			<span class="counter-title" style="color: #ffffff">가구</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
 				data-aos-once="true">
 				<h4 style="text-align: center;">
@@ -396,7 +406,7 @@
 				<div id="c1" class="count" data-count="0"
 					style="color: #ffffff !important">0</div>
 			</div>
-			<span class="counter-title">명</span> <br>
+			<span class="counter-title" style="color: #ffffff">명</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
 				data-aos-once="true">
 				<h4 style="text-align: center;">
@@ -409,7 +419,7 @@
 				<div id="c2" class="count" data-count="27.8"
 					style="color: #ffffff !important">0</div>
 			</div>
-			<span class="counter-title">%</span> <br>
+			<span class="counter-title" style="color: #ffffff">%</span> <br>
 			<div id="cwrapper" style="color: #ffffff;" data-aos="zoom-in"
 				data-aos-once="true">
 				<h4 style="text-align: center;">
@@ -418,12 +428,20 @@
 			</div>
 		</div>
 	</div>
-	<footer id="myFooter">
+	<div class="hontalk">
+	<p>혼자이기에 행복한,</p>
+	<p>혼자이기에 외로운,</p>
+	<p>혼족들을 위한 커뮤니티</p>
+	<a href="#"><img alt="Hontalk" src="images/혼톡.png"></a>
+	</div>
+	
+	
+		<footer id="myFooter">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<h2 class="logo">
-					<a href="#"> LOGO </a>
+					<a href="#"> <img src="imges/로고.png" width=250 height=120> </a>
 				</h2>
 			</div>
 			<div class="col-md-2">
@@ -524,5 +542,170 @@
 
 	<div id="name"></div>
 	
+	
+	<script>
+	
+AOS.init({
+	  duration: 1200,
+	});
+</script>
+
+	<script type="text/javascript">
+	
+    $('.carousel').carousel({
+        interval: 5000
+      })
+	
+	
+	$(document).ready(function() {
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+	
+		$.ajax({
+			url:"data.com",
+			type:"get",
+			success:function(resp) {
+				for(var i = 0; resp.length > i; i++) {
+					var total = resp[i].DT;
+					$("#c"+i).attr("data-count", total);
+				}	
+				
+				var data1 = parseFloat($("#c0").attr("data-count"));
+				var data2 = parseFloat($("#c1").attr("data-count"));
+				$("#c0").attr("data-count", data1 * 1000);
+				$("#c1").attr("data-count", data2 * 1000);
+			},
+			error : function() {
+				console.log("에러 발생!");
+			}
+			
+		});
+		
+		$('#section2').parallax({
+			imageSrc: 'images/배경5.jpg'
+		});
+		
+		$('#section3').parallax({
+			imageSrc: 'images/배경6.jpg'
+		});
+		$('#section4').parallax({
+			imageSrc: 'images/배경8.jpg'
+		});
+		
+		$('ul.nav li.dropdown').hover(function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	         }, function() {
+	           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	         });
+		
+		var a = 0;
+		$(window).scroll(function() {
+		  var oTop = $('#shiva').offset().top - window.innerHeight;
+		  if (a == 0 && $(window).scrollTop() > oTop) {
+		    $('.count').each(function() {
+		      var $this = $(this),
+		        countTo = $this.attr('data-count');
+		      $({
+		        countNum: $this.text()
+		      }).animate({
+		          countNum: countTo
+		        },
+		        {
+		          duration: 1500,
+		          easing: 'swing',
+		          step: function() {
+		            $this.text(Math.floor(this.countNum));
+		          },
+		          complete: function() {
+		            $this.text(numberWithCommas(this.countNum));
+		            //alert('finished');
+		          }
+		        });
+		    });
+		    a = 1;
+		  }
+		  var $nav = $("#navbar");
+		  $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		});
+		
+		$('#hontalkView').click(function () {
+	          window.location = $(this).attr('href');
+	      });
+		
+		$('#cook').click(function () {
+	          window.location = $(this).attr('href');
+	      });
+		
+	});
+	
+	
+	
+	 var googleUser = {};
+	  var startApp = function() {
+		  
+		    gapi.load('auth2', function(){
+		    	
+		      // Retrieve the singleton for the GoogleAuth library and set up the client.
+		      auth2 = gapi.auth2.init({
+		        client_id: '593657004380-quv6o52kji1ov5cabpji96q95nn2afkn.apps.googleusercontent.com',
+		        cookiepolicy: 'single_host_origin',
+		        // Request scopes in addition to 'profile' and 'email'
+		        //scope: 'additional_scope'z
+		      });
+		      attachSignin(document.getElementById('customBtn'));
+		    });
+		    
+		  };
+
+		  function attachSignin(element) {
+			    
+			    auth2.attachClickHandler(element, {},
+			        function(googleUser) {
+			        console.log("들어옴")   
+			        var name = googleUser.getBasicProfile().getName();  
+			        var id = googleUser.getBasicProfile().getId();   
+			        var email = googleUser.getBasicProfile().getEmail(); 
+			        		   		        
+			        location.href = "google.do?id="+id+"&email="+email+"&name="+name;
+			        
+			        }, function(error) {
+			          	
+			        	alert(JSON.stringify(error, undefined, 2 ));
+			        });
+			  }
+		  
+		  
+		var kakaologin = function() {
+			
+			  Kakao.init('7b5cebd6ff38bcc35f50a75797895963');    
+			  
+			  Kakao.Auth.login({ 
+			     success: function() { 
+			            // 로그인 성공시, API를 호출합니다. 
+			            Kakao.API.request({ 
+			                   url: '/v1/user/me', 
+			                   success: function(res) { 
+			                            
+			                         var id = JSON.stringify(res.id)
+			                         var email = JSON.stringify(res.kaccount_email) 
+			                         var name = JSON.stringify(res.properties.nickname) 
+			                              
+			                           
+			                          console.log(id+email+name); 
+			                       	  location.href="kakaotest.do?id="+id+"&email="+email+"&name="+name; 
+			                   }, 
+			                   fail: function(error) { 
+			                          console.log(JSON.stringify(error)); 
+			                   } 
+			            }); 
+			     }, 
+			     fail: function(err) { 
+			            console.log(JSON.stringify(err)); 
+			     } 
+			}); 
+			
+		}
+</script>
 </body>
 </html>
