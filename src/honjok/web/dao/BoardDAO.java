@@ -34,7 +34,7 @@ public class BoardDAO {
 			dto.setViewcount(rs.getInt(8));
 			list.add(dto);
 		}
-
+		rs.close();
 		pstat.close();
 		con.close();
 
@@ -61,7 +61,7 @@ public class BoardDAO {
 			dto.setContents(rs.getString(6));
 			list.add(dto);
 		}
-
+		rs.close();
 		pstat.close();
 		con.close();
 
@@ -88,7 +88,7 @@ public class BoardDAO {
 			dto.setContents(rs.getString(6));
 			list.add(dto);
 		}
-
+		rs.close();
 		pstat.close();
 		con.close();
 
@@ -115,7 +115,7 @@ public class BoardDAO {
 			dto.setContents(rs.getString(6));
 			list.add(dto);
 		}
-
+		rs.close();
 		pstat.close();
 		con.close();
 
@@ -137,7 +137,7 @@ public class BoardDAO {
 			dto.setLike(rs.getInt(9));
 			result.add(dto);
 		}
-
+		rs.close();
 		pstat.close();
 		con.close();
 
@@ -185,6 +185,7 @@ public class BoardDAO {
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -232,6 +233,7 @@ public class BoardDAO {
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -274,6 +276,7 @@ public class BoardDAO {
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -332,6 +335,7 @@ public class BoardDAO {
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return list;
@@ -401,8 +405,9 @@ public class BoardDAO {
 
 
 		String result = sb.toString();
-		con.close();
+		rs.close();
 		pstat.close();
+		con.close();
 
 		return result;
 	}
@@ -473,8 +478,9 @@ public class BoardDAO {
 
 
 		String result = sb.toString();
-		con.close();
+		rs.close();
 		pstat.close();
+		con.close();
 
 		return result;
 	}
@@ -501,6 +507,7 @@ public class BoardDAO {
 		rs.next();
 
 		int result = rs.getInt(1);
+		rs.close();
 		pstat.close();
 		con.close();
 		return result;

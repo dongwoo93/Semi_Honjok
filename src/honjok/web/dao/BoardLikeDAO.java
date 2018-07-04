@@ -19,6 +19,7 @@ public class BoardLikeDAO {
 		if(rs.next()) {
 			isExist = true;
 		}
+		rs.close();
 		pstat.close();
 		con.close();
 		return isExist;
@@ -38,6 +39,7 @@ public class BoardLikeDAO {
 			tmp.setMemberId(rs.getString(3));
 			tmp.setLikeCheck(rs.getString(4));
 		
+		rs.close();
 		pstat.close();
 		con.close();
 		return tmp;
