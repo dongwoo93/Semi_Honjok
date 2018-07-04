@@ -1,18 +1,15 @@
-#like, #likecancel {
-	display: inline-block;
-	width: 5%;
-	height: 5%;
-	margin: 0px;
-	padding0: 0px;
-}
-
-#col-md-3 {
+.col-md-3 {
 	display: inline-block;
 	margin: 0px;
 	max-width: 60px;
 }
 
-
+#like, #likecancel {
+	width: 3%;
+	height: 3%;
+	margin: 0px;
+	padding0: 0px;
+}
 
 .cos-md-8 {
 	text-align: right;
@@ -129,4 +126,23 @@ span {
 .info .link {
 	color: #5085BB;
 }
+#navbar {
+	color: white;
+	background-color: #dee2e6 !important;
+	z-index:1030;
+	position: fixed;
+	transition: background-color 200ms linear;
+}
 
+
+#navbar .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar .navbar-nav .nav-link:hover {
+    color: #1e73be;
+}
+
+#navbar .navbar-brand {
+	color: black;
+}
