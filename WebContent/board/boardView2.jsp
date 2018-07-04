@@ -42,7 +42,7 @@
 				<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
 				<span><input type="image" src="images/heart_77931.png"
 					id="likecancel" style="display: none" style="width:4%;"></span>
-				<span id=likespan>${result[0].likeit}</span>
+				<span id=likespan>${result[0].likeit}</span><span> 명이 좋아합니다</span>
 			</c:when>
 			<c:otherwise>
 				<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
@@ -50,18 +50,19 @@
 				<input type="image" src="images/nomal_heart.png" id="like"
 					style="display: none" style="width:4%;">
 				<!-- <button type="button" id=like style="display: none">좋아요</button> -->
-				<span id=likespan>좋아요 ${result[0].likeit} 개</span>
+				
+				<span id=likespan>${result[0].likeit}</span><span> 명이 좋아합니다</span>
 			</c:otherwise>
 		</c:choose>
-	</span> <span class="col-md-8">조회수 : ${result[0].viewcount}</span>
-	<button type="button"
+	</span> <span class="col-md-8">조회수 ${result[0].viewcount}</span>
+	<!-- <button type="button" class="btn btn-outline-info"
 		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
-		위로</button>
+		위로</button> -->
 	<%-- </c:forEach> --%>
 	<div style="height: 500px;"></div>
-	<a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
-	<a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
-	<a id="footera"></a>
+	<a id="TopButton" class="ScrollButton"><img src="images/uparrow.PNG"></a>
+	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
+	
 </div>
 <a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
 <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
@@ -99,23 +100,28 @@
 			})
 
 			$("#like").click(function() {
-				$.ajax({
-					url : "admin_like.com",
-					type : "get",
-					data : {
-						boardno : "${no}",
-						memberid : "${id}",
-						likecount : "${result[0].likeit}"
-					},
-					success : function(resp) {
-						$("#likecancel").show();
-						$("#like").hide();
-						$("#likespan").text(resp);
-					},
-					error : function() {
-						console.log("에러 발생!");
-					}
-				})
+				if ('${id}' == 'nonmember') {
+					$("#loginbt").trigger('click');
+				}else {
+					$.ajax({
+						url : "admin_like.com",
+						type : "get",
+						data : {
+							boardno : "${no}",
+							memberid : "${id}",
+							likecount : "${result[0].likeit}"
+						},
+						success : function(resp) {
+							$("#likecancel").show();
+							$("#like").hide();
+							$("#likespan").text(resp);
+						},
+						error : function() {
+							console.log("에러 발생!");
+						}
+					})
+				}
+				
 			})
 			$("#likecancel").click(function() {
 				$.ajax({
