@@ -38,7 +38,7 @@ body{
 	float:left;
 }
 #free2{
-	padding-left:30px;
+	padding-left:100px;
 	float:left;
 }
 
@@ -51,7 +51,7 @@ body{
 	padding-left:30px;
 	float:left;
 	position: absolute;
-	margin-top:350px;
+	margin-top:380px;
 	height:300px;
 }
 
@@ -59,8 +59,8 @@ body{
 	padding-left:12px;
 	float:left;
 	position: absolute;
-	margin-top:350px;
-	margin-left:550px;
+	margin-top:380px;
+	margin-left:620px;
 	height:300px;
 }
 
@@ -84,4 +84,19 @@ body{
 	text-overflow:ellipsis; 
 	overflow:hidden; 
 	white-space:nowrap;
+}
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+thead {
+	background-color: #1e73be;
+	color: #ffffff;
+}
+
+#title {
+	font-family: 'Hi Melody', cursive;
+	font-size: 50px;
+	
 }

@@ -126,7 +126,25 @@ public class Board_Controller extends HttpServlet {
 				dst = "community/freeboardWrite.jsp";
 				
 			}else if(command.equals("/boardWrite.freeb")) {
+				String id = (String)request.getSession().getAttribute("loginId");
+				String realPath = request.getServletContext().getRealPath("/files/");
 				
+				File f = new File(realPath);
+    			if(!f.exists()) {
+    				f.mkdir();
+    			}
+    			
+    			int maxSize = 1024 * 1024 * 100;
+    			String enc = "UTF-8";
+    			MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
+    			Enumeration<String> names = mr.getFileNames();
+    			
+    			int result2;
+    			
+    			String writer = mr.getParameter("write");
+    			String title = mr.getParameter("title");
+    			String content = mr.getParameter("content");
+    			String ip = request.getRemoteAddr();
 				
 				
 				
