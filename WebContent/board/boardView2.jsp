@@ -17,9 +17,31 @@
 					type="button" class="btn btn-danger" id="delete">삭제</button></span>
 		</div>
 		<hr style="height: 1">
-
+		
 
 		<div class="col-md-15">${result[0].contents}</div>
+		<hr style="height: 1">
+		<span class="col-md-2"> <c:choose>
+				<c:when test="${likeStat == 0}">
+					<!-- <button type="button" id=like>좋아요</button> -->
+					<span><input type="image" src="images/nomal_heart.png" id="like"></span>
+					<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
+					<span><input type="image" src="images/heart_77931.png" id="likecancel"
+						style="display: none" style="width:4%;"></span>
+					<span id=likespan>${result[0].likeit}</span>
+				</c:when>
+				<c:otherwise>
+					<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
+					<input type="image" src="images/heart_77931.png" id="likecancel">
+					<input type="image" src="images/nomal_heart.png" id="like"
+						style="display: none" style="width:4%;">
+					<!-- <button type="button" id=like style="display: none">좋아요</button> -->
+					<span id=likespan>${result[0].likeit}</span>
+				</c:otherwise>
+			</c:choose>
+		</span> <span class="col-md-8">조회수 : ${result[0].viewcount}</span>
+		<button type="button" onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨 위로</button>
+		<%-- </c:forEach> --%>
 
 		<div id="map" style="width: 100%; height: 350px;"></div>
 		</div>
@@ -136,4 +158,5 @@
 		})
 		
 		</script>
+		<link rel="stylesheet" href="boardcss/boardView.css" type="text/css">
 		<%@ include file="../include/bottom.jsp"%>

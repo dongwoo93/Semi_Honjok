@@ -57,9 +57,9 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-//				for(int i =0; fileResult.size()>i;i++) {
-//					System.out.println(result.get(i).getViewcount());
-//				}
+				/*for(int i =0; fileResult.size()>i;i++) {
+					System.out.println(result.get(i).getViewcount());
+				}*/
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/selectView.tip")) {
@@ -108,17 +108,37 @@ public class BoardTipController extends HttpServlet {
 			}
 			else if(command.equals("/delete.tip")) {
 				String seq = request.getParameter("seq");
+				System.out.println("delete in");
+				System.out.println("delete seq" + seq);
 				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
+				
 				String systemFileName = fileDTO.getThum_sysFileName();
+				System.out.println("systemFileName: " + systemFileName);
 				if(!(systemFileName.equals(""))) {
 					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Semi_Honjok
 					String realPath = request.getServletContext().getRealPath("/files/");
 					File file = new File(realPath + "/"+ systemFileName);
-
+					System.out.println("들어옴 2");
+					System.out.println(file);
 					if(file.exists() ){
+						System.out.println("들어옴 3");
 						if(file.delete()){
+							System.out.println("들어옴 4");
 							int result = dao.deleteData(seq);
 							if(result > 0) {
+								System.out.println("들어옴 5");
+								List<String> list = fileDAO.getNote_sysFileName(seq);
+								if(!(list.size() == 0)) {
+									System.out.println("들어옴6");
+									String realPath2 = request.getServletContext().getRealPath("/files/");
+									File file2 = new File(realPath2 + "/"+ systemFileName);
+
+									if(file2.exists() ){
+										if(file2.delete()){
+											System.out.println("성공");
+										}
+									}
+								}
 							}else {
 							}
 							dst = "board/boardtip2.jsp";
@@ -166,7 +186,7 @@ public class BoardTipController extends HttpServlet {
 					System.out.println(fileResult.get(i).getThum_sysFileName());
 				}*/
 				isRedirect = false;
-				dst = "board/boardtip.jsp";
+				dst = "board/boardtip2.jsp";
 			}
 					
 
