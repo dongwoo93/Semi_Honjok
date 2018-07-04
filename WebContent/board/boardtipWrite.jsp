@@ -356,7 +356,7 @@
 	font-size: 4px;
 }
 </style>
-</style>
+
 
 
 </head>
@@ -420,18 +420,20 @@
 					<label for="formGroupExampleInput">제목</label> <input type="text"
 						class="form-control" id="title" name="title" placeholder="제목">
 				</div>
+				
+				<div class="form-group col-md-12">
+ 
+          <textarea id="summernote" name="summernote"></textarea>
+ 
+        </div>
+ 
 
 			<div class="form-group col-md-8">
 				<label for="formGroupExampleInput">썸네일 이미지</label><br>
 				<input type="file" id="file" name="file">
 			</div><br>
 			<input type="hidden" id="imgBackUp" name="contentsImg">
-			<div class="col-sm-3">
-				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
-				<!-- <input type="button" class="btn btn-primary" value="button"> -->
-				<button type="button" class="btn btn-primary" id="writebt">작성</button>
-				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
-			</div>
+			
 
 
 			<div class="map_wrap">
@@ -806,7 +808,12 @@
 			<input id="place_url" type="hidden" name="places.place_url">
 			<input id="x" type="hidden" name="places.x">
 			<input id="y" type="hidden" name="places.y">
-			<input id="" type="submit" class="btn btn-primary" value="submits">
+			<div class="col-sm-3">
+				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
+				<!-- <input type="button" class="btn btn-primary" value="button"> -->
+				<button type="button" class="btn btn-primary" id="writebt">작성</button>
+				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
+			</div>
 		</div>
 	</form>
 	<script>
@@ -841,7 +848,6 @@
 			function deleteFile(src) {
 				console.log(src);
 				var result = src.split("/files/");
-				$("#hidden").replace(src,"");
 				console.log(result);
 			    $.ajax({
 			        data: {src : result[1]},

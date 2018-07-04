@@ -27,7 +27,7 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
-<link rel="stylesheet" href="../boardcss/boardwritecss.css"
+<link rel="stylesheet" href="boardcss/boardwritecss.css"
 	type="text/css">
 
 <script>
@@ -88,7 +88,7 @@
 
 				<div class="form-group col-md-8">
 					<label for="formGroupExampleInput">제목</label> <input type="text"
-						class="form-control" name="title" placeholder="제목"
+						class="form-control" id="title" name="title" placeholder="제목"
 						value="${item.title}">
 				</div>
 
@@ -103,8 +103,6 @@
 			</div><br>
 			<input type="hidden" id="imgBackUp" name="contentsImg">
 			<div class="col-sm-3">
-				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
-				<!-- <input type="button" class="btn btn-primary" value="button"> -->
 				<button type="button" class="btn btn-primary" id="writebt">작성</button>
 				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
 			</div>
@@ -150,60 +148,64 @@
 			maxHeight : null, // set maximum height of editor
 			focus : true,
 			callbacks : {
-				// 이미지를 업로드 할 때 이벤트 발생
-				onImageUpload : function(files, editor, welEditable) {
-					sendFile(files[0], this);
-				},
-				onMediaDelete : function(target) {
-					//alert(target[0].src); 
-					deleteFile(target[0].src);
-				}
-			}
-
+	            // 이미지를 업로드 할 때 이벤트 발생
+	            onImageUpload : function(files, editor, welEditable) {
+	                sendFile(files[0], this);
+	            },
+	            onMediaDelete : function(target) {
+            	    //alert(target[0].src); 
+                	deleteFile(target[0].src);
+            	} 
+            	/* onMediaDelete : function($target, editor, $editable) {
+                    alert($target.context.dataset.filename);         
+                    target.remove();
+                } */
+	        }
+			
 		/* codemirror: { // codemirror options
-		theme: 'paper'
-		} */
-
+	    theme: 'paper'
+	  } */
+				  
 		});
-
+		
 		function deleteFile(src) {
 			console.log(src);
 			var result = src.split("/files/");
+			
 			console.log(result);
-			$.ajax({
-				data : {
-					src : result[1]
-				},
-				type : "POST",
-				url : "../deleteImg.img", // replace with your url
-				cache : false,
-				success : function(resp) {
-					//console.log(resp);
-				}
-			});
+		    $.ajax({
+		        data: {src : result[1]},
+		        type: "POST",
+		        url: "../deleteImg.img", // replace with your url
+		        cache: false,
+		        success: function(resp) {
+		            //console.log(resp);
+		        }
+		    });
 		}
-
+		var sysFileList=[];
 		function sendFile(file, editor) {
-			var data = new FormData();
-			data.append("uploadFile", file);
-			console.log(file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : '../upload.img',
-				cache : false,
-				contentType : false,
-				//enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					// 에디터에 이미지 출력(아직은 안합니다.)
-					$(editor).summernote('editor.insertImage', data.url);
-					console.log(data);
-					$("#imgBackUp").val(
-							$("#imgBackUp").val() + data.systemFileName + ",");
-				}
-			});
-		}
+				var data = new FormData();
+				data.append("uploadFile", file);
+				console.log(file);
+				$.ajax({
+					data : data,
+					type : "POST",
+					url : 'upload.img',
+					cache : false,
+					contentType : false,
+					//enctype : 'multipart/form-data',
+					processData : false,
+					success : function(data) {
+						// 에디터에 이미지 출력(아직은 안합니다.)
+						$(editor).summernote('editor.insertImage', data.url);
+						console.log(data.systemFileName);
+						sysFileList.push(data.systemFileName);
+						
+						//$("#imgBackUp").val($("#imgBackUp").val() + data.systemFileName);
+					}
+				});
+			}
 		function makeFunction(dst) {
 			document.getElementById("postform").action = dst;
 		    document.getElementById("postform").submit();	

@@ -186,7 +186,7 @@ public class BoardTipController extends HttpServlet {
 					System.out.println(fileResult.get(i).getThum_sysFileName());
 				}*/
 				isRedirect = false;
-				dst = "board/boardtip.jsp";
+				dst = "board/boardtip2.jsp";
 			}
 					
 

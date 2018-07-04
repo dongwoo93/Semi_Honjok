@@ -32,7 +32,13 @@
 	color: white;
 }
 
+#button {
+ 	outline: none;
+ 	background: none;
+ 	border: none;
+ 		
 
+}
 
 
 #navbar .navbar-brand {

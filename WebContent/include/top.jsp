@@ -84,7 +84,7 @@
    </ul>
    <ul class="nav navbar-nav ml-auto">
       <li class="nav-item mx-3"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
-      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="button">Login</button></li>
+      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="loginbt">Login</button></li>
    </ul>
    </nav>
 	
