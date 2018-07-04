@@ -52,7 +52,7 @@
       <li class="nav-item"></li>
       <li class="dropdown mx-2"><a class="dropdown-toggle nav-link" id="hontalkView" data-toggle="dropdown" href="hontalkView.freeb">혼톡</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item" style="font-size: 20px"><a href="hontalkView.freeb">자유게시판</a></li>
+            <li class="dropdown-item"><a href="hontalkView.freeb">자유게시판</a></li>
             <li class="dropdown-item"><a href="#">고민상담</a></li>
             <li class="dropdown-item"><a href="#">질문/답변</a></li>
             <li class="dropdown-item"><a href="#">혼팁</a></li>
@@ -322,14 +322,6 @@
 					<span style="color: #333333;">혼족을 위한 맛집들</span>
 				</p>
 			</div>
-			<!-- <div class="wpb_text_column wpb_content_element "> -->
-			<!-- 	<div class="wpb_wrapper">
-					<p style="text-align: center;">
-						<a href="#" class="Shortcut">바로가기</a>
-					</p>
-
-				</div> -->
-			<!-- </div> -->
 
 		</div>
 
@@ -349,15 +341,6 @@
 				</p>
 			</div>
 			
-			<!-- <div class="wpb_text_column wpb_content_element ">
-				<div class="wpb_wrapper">
-					<p style="text-align: center;">
-						<a href="" target="_self" class="Shortcut">바로가기</a>
-					</p>
-
-				</div>
-			</div> -->
-
 		</div>
 
 		<div class="wpb_wrapper"
