@@ -115,8 +115,16 @@
       </li>
    </ul>
    <ul class="nav navbar-nav ml-auto">
+      <c:choose>
+      	<c:when test="${sessionScope.loginId == null}">
       <li class="nav-item mx-3"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
       <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="loginbt">Login</button></li>
+   	   </c:when>
+   	   <c:otherwise>
+   	   <li class="nav-item mx-3"><a href="Mypage.jsp" class="nav-link">Mypage</a></li>
+      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="logoutbt">Logout</button></li>
+   	   </c:otherwise>
+   	  </c:choose>
    </ul>
    </nav>
 	</ul>
