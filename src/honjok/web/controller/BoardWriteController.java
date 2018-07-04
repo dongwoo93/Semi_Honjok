@@ -134,7 +134,12 @@ public class BoardWriteController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			dst = "hollo.com";
+			
+			
+			isRedirect=false;
+			
+			
+			dst = "selectNaviCat.tip?category="+category;
 		}else if(command.equals("/notemodify.tw")) {
 			try {
 				if(systemFileName != null) {

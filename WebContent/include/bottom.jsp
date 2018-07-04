@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
 <footer id="myFooter">
-	<div class="container">
+	<div id="footercss" class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<h2 class="logo">

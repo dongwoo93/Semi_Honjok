@@ -111,10 +111,10 @@
 	<script>
 		function categoryChange(e) {
 			var sel2_꿀팁 = [ "생활", "부동산", "자유" ];
-			var sel2_요리 = [ "초간단 요리", "일반 요리" ];
+			var sel2_요리 = [ "초간단요리", "일반요리" ];
 			var sel2_인테리어 = [ "가구", "소품" ];
 			var sel2_여행 = [ "국내여행", "해외여행" ];
-			var sel2_맛집 = [ "서울", "인천&경기", "충청도", "경상도", "전라도" ];
+			var sel2_맛집 = [ "서울", "인천경기", "충청도", "경상도", "전라도" ];
 			var sel2_쇼핑몰 = [ "쇼핑" ];
 			var target = document.getElementById("sel2");
 
