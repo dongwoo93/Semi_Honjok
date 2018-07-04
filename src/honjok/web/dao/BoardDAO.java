@@ -17,7 +17,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectFree() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -45,7 +45,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectQna() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='qna') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='qna') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -72,7 +72,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectCounsel() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='coun') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='coun') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -99,7 +99,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectTip() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -125,7 +125,7 @@ public class BoardDAO {
 
 	public List<BoardUserDTO> selectBest() throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 11";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 13";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> result = new ArrayList<>();

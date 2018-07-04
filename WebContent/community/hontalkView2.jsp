@@ -8,43 +8,26 @@
 			<div class="carousel-item active">
 				<img src="imges/혼톡메인.jpg" alt="Los Angeles" width="100%" height="700">
 				<div class="carousel-caption">
-					<h3>Los Angeles</h3>
-					<p>We had such a great time in LA!</p>
+					<p id="title">혼족들을 위한 커뮤니티, 혼톡</p>
 				</div>
 			</div>
-		<!-- 	<div class="carousel-item">
-				<img src="imges/nature-3042751_1280.jpg" alt="Chicago" width="1200"
-					height="700">
-				<div class="carousel-caption">
-					<h3>Chicago</h3>
-					<p>Thank you, Chicago!</p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="imges/hiker-1149898_1280.jpg" alt="New York" width="1200"
-					height="700">
-				<div class="carousel-caption">
-					<h3>New York</h3>
-					<p>We love the Big Apple!</p>
-				</div>
-			</div> -->
 		</div>
 	</div>
 
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="boardView.freeb?cat=free">자유게시판</a>
+				<a href="boardView.freeb?cat=free">&nbsp;자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
-				style="width: 500px; table-layout: fixed;">
-				<thead class="thead-dark">
+				style="width: 500px; table-layout: fixed; ">
+				<thead class="thead">
 					<tr>
-						<th width="17%" style="text-align: center;">글번호</th>
-						<th width="64%" style="text-align: center;">제목</th>
-						<th width="17%" style="text-align: center;">작성자</th>
-						<th width="15%" style="text-align: center;">추천</th>
+						<th width="17%" style="text-align: center; color: #ffffff">글번호</th>
+						<th width="64%" style="text-align: center; color: #ffffff">제목</th>
+						<th width="17%" style="text-align: center; color: #ffffff">작성자</th>
+						<th width="15%" style="text-align: center; color: #ffffff">추천</th>
 					</tr>
 				</thead>
 
@@ -52,7 +35,7 @@
 					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
 							<td class="td-contents" style="text-align: center;">${free.seq}</td>
-							<td class="td-contents" style="text-align: center;">${free.title}</td>
+							<td class="td-contents">${free.title}</td>
 							<%-- <td class="td-contents">${free.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${free.writer}</td>
 							<td style="text-align: center;"><b>11</b></td>
@@ -66,27 +49,28 @@
 
 		<div id="free2">
 			<h5>
-				<a href="boardView.freeb?cat=qna">질문/답변</a>
+				<a href="boardView.freeb?cat=qna">&nbsp;질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 500px; table-layout: fixed;">
-				<thead class="thead-dark">
+				<thead class="thead">
 					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>작성자</th>
+						<th width="17%" style="text-align: center; color: #ffffff">글번호</th>
+						<th width="64%" style="text-align: center; color: #ffffff">제목</th>
+						<th width="17%" style="text-align: center; color: #ffffff">작성자</th>
+						<th width="15%" style="text-align: center; color: #ffffff">추천</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach var="qna" items="${qna}" varStatus="status">
 						<tr>
-							<td class="td-contents">${qna.seq}</td>
+							<td class="td-contents" style="text-align: center;">${qna.seq}</td>
 							<td class="td-contents">${qna.title}</td>
-							<td class="td-contents">${qna.contents}</td>
-							<td class="td-contents">${qna.writer}</td>
+							<%-- <td class="td-contents">${qna.contents}</td> --%>
+							<td class="td-contents" style="text-align: center;">${qna.writer}</td>
+							<td style="text-align: center;"><b>3</b></td>
 						</tr>
 					</c:forEach>
 
@@ -96,17 +80,16 @@
 
 		<div id="free3">
 			<h5>
-				<a href="#">베스트</a>
+				<a href="#">&nbsp;베스트</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
-				style="width: 350px; height: 300px; table-layout: fixed;">
-				<thead class="thead-dark">
+				style="width: 400px; height: 300px; table-layout: fixed;">
+				<thead class="thead">
 					<tr>
-						<th>추천</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>작성자</th>
+						<th width="20%" style="text-align: center; color: #ffffff">추천</th>
+						<th width="50%" style="text-align: center; color: #ffffff">제목</th>
+						<th width="30%" style="text-align: center; color: #ffffff">작성자</th>
 					</tr>
 				</thead>
 				
@@ -114,10 +97,10 @@
 					
 					<c:forEach var="best" items="${best}" varStatus="status">
 					<tr>
-						<th scope="row">${best.like}</th>
+						<th scope="row" style="text-align: center;">${best.like}</th>
 						<td class="td-contents2"><a href="#">${best.title}</a></td>
-						<td class="td-contents2">${best.contents}</td>
-						<td class="td-contents2">${best.writer}</td>
+						<%-- <td class="td-contents2">${best.contents}</td> --%>
+						<td class="td-contents2" style="text-align: center;">${best.writer}</td>
 					</tr>
 					</c:forEach>
 					
@@ -127,27 +110,28 @@
 
 		<div id="free4">
 			<h5>
-				<a href="boardView.freeb?cat=coun">고민상담</a>
+				<a href="boardView.freeb?cat=coun">&nbsp;고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 500px; table-layout: fixed;">
-				<thead class="thead-dark">
+				<thead class="thead">
 					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>작성자</th>
+						<th width="17%" style="text-align: center; color: #ffffff">글번호</th>
+						<th width="64%" style="text-align: center; color: #ffffff">제목</th>
+						<th width="17%" style="text-align: center; color: #ffffff">작성자</th>
+						<th width="15%" style="text-align: center; color: #ffffff">추천</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach var="counsel" items="${counsel}" varStatus="status">
 						<tr>
-							<td class="td-contents">${counsel.seq}</td>
+							<td class="td-contents" style="text-align: center;">${counsel.seq}</td>
 							<td class="td-contents">${counsel.title}</td>
-							<td class="td-contents">${counsel.contents}</td>
-							<td class="td-contents">${counsel.writer}</td>
+							<%-- <td class="td-contents">${counsel.contents}</td> --%>
+							<td class="td-contents" style="text-align: center;">${counsel.writer}</td>
+							<td style="text-align: center;"><b>37</b></td>
 						</tr>
 					</c:forEach>
 
@@ -157,27 +141,28 @@
 
 		<div id="free5">
 			<h5>
-				<a href="boardView.freeb?cat=tip">혼팁</a>
+				<a href="boardView.freeb?cat=tip">&nbsp;&nbsp;혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
 				style="width: 500px; table-layout: fixed;">
-				<thead class="thead-dark">
+				<thead class="thead">
 					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>작성자</th>
+						<th width="17%" style="text-align: center; color: #ffffff">글번호</th>
+						<th width="64%" style="text-align: center; color: #ffffff">제목</th>
+						<th width="17%" style="text-align: center; color: #ffffff">작성자</th>
+						<th width="15%" style="text-align: center; color: #ffffff">추천</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach var="tip" items="${tip}" varStatus="status">
 						<tr>
-							<td class="td-contents">${tip.seq}</td>
+							<td class="td-contents" style="text-align: center;">${tip.seq}</td>
 							<td class="td-contents">${tip.title}</td>
-							<td class="td-contents">${tip.contents}</td>
-							<td class="td-contents">${tip.writer}</td>
+							<%-- <td class="td-contents">${tip.contents}</td> --%>
+							<td class="td-contents" style="text-align: center;">${tip.writer}</td>
+							<td style="text-align: center;"><b>83</b></td>
 						</tr>
 					</c:forEach>
 
