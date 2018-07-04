@@ -1,15 +1,16 @@
 $(document).ready(function() {
+	AOS.init({
+		duration : 1200,
+	});
 
 	$('ul.nav li.dropdown').hover(
 			function() {
-				$(this).find('.dropdown-menu').stop(
-						true, true).delay(200).fadeIn(
-								500);
+				$(this).find('.dropdown-menu').stop(true, true)
+						.delay(200).fadeIn(500);
 			},
 			function() {
-				$(this).find('.dropdown-menu').stop(
-						true, true).delay(200).fadeOut(
-								500);
+				$(this).find('.dropdown-menu').stop(true, true)
+						.delay(200).fadeOut(500);
 			});
 	
 	function login() {
@@ -29,7 +30,8 @@ $(document).ready(function() {
 						if (result == 'true') {
 							$(location).attr("href", "hollo.com");
 						} else {
-							$("#response").text("Incorrect ID or password!");
+							$("#response").html("<div class=fail' data-aos='zoom-out' data-aos-once='true' style='color:red; text-align: center; font-size: 20px;'>" +
+									"Incorrect ID or password!</div>");
 							$("#id").val("");
 							$("#pass").val("");
 						}
@@ -125,4 +127,12 @@ $(document).ready(function() {
 		});
 
 	}
+	var $nav = $("#navbar");
+	$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+	$(window).scroll(
+			function() {
+				var $nav = $("#navbar");
+				$nav.toggleClass('scrolled',
+						$(this).scrollTop() > $nav.height());
+			});
 })

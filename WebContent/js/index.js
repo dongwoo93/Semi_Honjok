@@ -31,14 +31,14 @@ $(document).ready(function() {
 	});
 
 	$('#section2').parallax({
-		imageSrc : 'images/background-3.jpg'
+		imageSrc : 'images/배경5.jpg'
 	});
 
 	$('#section3').parallax({
-		imageSrc : 'images/background-4.jpg'
+		imageSrc : 'images/배경6.jpg'
 	});
 	$('#section4').parallax({
-		imageSrc : 'images/background-5.jpg'
+		imageSrc : 'images/배경8.jpg'
 	});
 
 
@@ -81,12 +81,10 @@ $(document).ready(function() {
 					});
 			a = 1;
 		}
-		var $nav = $("#navbar");
-		$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		
+
+
 	});
-
-
-
 });
 
 

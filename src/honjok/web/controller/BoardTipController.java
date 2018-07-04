@@ -3,36 +3,25 @@ package honjok.web.controller;
 
 
 import java.io.File;
-
 import java.io.IOException;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
-
-
 import javax.servlet.RequestDispatcher;
-
 import javax.servlet.ServletException;
-
 import javax.servlet.annotation.WebServlet;
-
 import javax.servlet.http.HttpServlet;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import honjok.web.dao.AdminFileDAO;
-
+import honjok.web.dao.AdminLikeDAO;
 import honjok.web.dao.BoardTipDAO;
-
+import honjok.web.dao.MapDAO;
 import honjok.web.dto.AdminFilesDTO;
-
+import honjok.web.dto.AdminLikeDTO;
 import honjok.web.dto.BoardDTO;
+import honjok.web.dto.MapDTO;
 
 @WebServlet("*.tip")
 
@@ -68,31 +57,54 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				for(int i =0; fileResult.size()>i;i++) {
-					System.out.println(result.get(i).getViewcount());
-				}
+//				for(int i =0; fileResult.size()>i;i++) {
+//					System.out.println(result.get(i).getViewcount());
+//				}
 				isRedirect = false;
-				dst = "board/boardtip.jsp";
+				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/selectView.tip")) {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
-				String view = request.getParameter("viewcount");
-				System.out.println("view 시퀀스: " + seq);
-				System.out.println("파라미터: " + view);
+				String id = "ykng10";
+
+				request.setAttribute("id", id);
+				AdminLikeDAO like = new AdminLikeDAO();
+				try {
+					boolean likeResult = like.LikeExist(seq, id);
+					if(!likeResult) {
+						int insertLike = like.insertData(seq, id);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				AdminLikeDTO likeDTO = like.selectArticleLike(seq, id);
+				String likeStat = likeDTO.getLike_check();
+				
+				ArrayList<MapDTO> map = new ArrayList<>();
+				MapDAO dao2 = new MapDAO();
+				
+				map = dao2.selectData(seq);
+				System.out.println(map.get(0).getX());
+				System.out.println(map.get(0).getY());
+				
+				
 				int viewcount = Integer.parseInt(request.getParameter("viewcount")) + 1;
-				System.out.println("viewcount: " + viewcount);
 				int upResult = dao.UpdateViewCount(seq, viewcount);
 				if(upResult > 0) {
 					result = dao.selectAllData(seq);
 					/*for(int i =0; result.size()>i;i++) {
 						System.out.println(result.get(i).getSubject());
-					}*/
+					}*/	
 					response.setCharacterEncoding("UTF-8");
 					request.setAttribute("result", result);
+					request.setAttribute("likeStat", likeStat);
+					request.setAttribute("no", seq);
+					
 				}
+				request.setAttribute("map", map);
 				
 				isRedirect = false;
-				dst = "board/boardView.jsp";
+				dst = "board/boardView2.jsp";
 			}
 			else if(command.equals("/delete.tip")) {
 				String seq = request.getParameter("seq");
@@ -109,7 +121,7 @@ public class BoardTipController extends HttpServlet {
 							if(result > 0) {
 							}else {
 							}
-							dst = "board/boardtip.jsp";
+							dst = "board/boardtip2.jsp";
 						}else{
 						}
 					}else{

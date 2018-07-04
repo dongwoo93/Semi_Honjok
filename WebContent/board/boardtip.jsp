@@ -50,7 +50,7 @@
 		</div>
 		<br>
 		<div class="row text-center">
-        <div class="col-md-2" style="margin:auto">
+        <div class="col-md-1" style="margin:auto">
           <ul class="pagination">
             ${navi}
           </ul>
