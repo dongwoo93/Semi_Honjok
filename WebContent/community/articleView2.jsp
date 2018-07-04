@@ -1,27 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../include/top.jsp" %>
-    <div style="height: 100px;"></div>
-<div class="container">
+    <script>
+var num = 1;
+
+	$(document).ready(function() {
+		$("#confirm").click(function() {
+			$("#formid").submit();
+		})
+		
+						$("#fix").click(function() {
+							$(location).attr('href', "fix.freeb?no=${no}")
+						})
+						$("#delete").click(function(){
+							var yes = confirm("삭제 하시겠습니까?");
+							if (yes) {
+							$(location).attr('href',"delete.freeb?no=${no}&cat=${result[0].category}")
+							} else {
+							return;
+							}
+						})
+						$("#tolist").click(function(){
+							$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
+							})
+										
+						$("#fix2").click(function() {
+							$(location).attr('href', "fix.freeb?no=${no}")
+						})
+						$("#delete2").click(function(){
+							var yes = confirm("삭제 하시겠습니까?");
+							if (yes) {
+							$(location).attr('href',"delete.freeb?no=${no}&cat=${result[0].category}")
+							} else {
+							return;
+							}
+						})
+						$("#tolist2").click(function(){
+							$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
+						})
+						
+						/* $("#comodify").click(function(){
+							$(location).attr('href',"comodify.freeb?")
+						})*/
+						$("#codelete").click(function(){
+							$(location).attr('href',"codelete.freeb?")
+						})
+
+						$("#like").click(function() {
+							if ('${id}' == 'nonmember') {
+								$("#loginbt").trigger('click');
+							} else {
+								$.ajax({
+									url : "like.com",
+									type : "get",
+									data : {
+										boardno : "${no}",
+										memberid : "${id}",
+										likecount : "${result[0].like}"
+									},
+									success : function(resp) {
+										$("#likecancel").show();
+										$("#like").hide();
+										$("#likespan").text(resp);
+									},
+									error : function() {
+										console.log("에러 발생!");
+									}
+								})
+							}
+
+						})
+						$("#likecancel").click(function() {
+							$.ajax({
+								url : "like.com",
+								type : "get",
+								data : {
+									boardno : "${no}",
+									memberid : "${id}",
+									likecount : "${result[0].like}"
+								},
+								success : function(resp) {
+									$("#like").show();
+									$("#likecancel").hide();
+									$("#likespan").text(resp);
+								},
+								error : function() {
+									console.log("에러 발생!");
+								}
+							})
+						})
+					})
+</script>
+<div style="height: 100px"></div>
+	<div class="container">
 		<form method=post action="comment.freeb" id=formid>
 			<table class="table">
 				<tbody class="head" id="head">
 					<tr>
-						<td width=100px>제목<input type="hidden" id="seq" name=seq
+						<td width=100px>제목<input type="hidden" id="seq1" name="seq"
 							value="${result[0].seq}"></td>
-						<th colspan=1>[${result[0].header}]${result[0].title}</th>
-						<td width=220px><b id="date">${result[0].writedate}</b></td>
+						<th colspan=2>[${result[0].header}]${result[0].title}</th>
+						<td width=180px><b id="date">${result[0].writedate}</b></td>
 
 					</tr>
 					<tr>
 						<td width=100px height=20px>글쓴이</td>
-						<th colspan=2>${result[0].writer}</th>
+						<th colspan=3>${result[0].writer}</th>
 					</tr>
 					<tr>
-						<td colspan=3 height=400px>${result[0].contents}</td>
+						<td colspan=4 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
-						<td align=center colspan=3><c:choose>
+						<td align=center colspan=4><c:choose>
 								<c:when test="${likeStat == 0}">
 									<button type=button id=like>
 										<img src="kejang/good.jpg">
@@ -72,29 +162,43 @@
 					</c:otherwise>
 					</c:choose>
 					
-					
+
 					<c:choose>
 						<c:when test="${result2.size() > 0}">
 							<c:forEach var="result2" items="${result2}">
 								<tr>
+								
 									<td width=100px height=20px>${result2.comment_writer}</td>
-									<td colspan=1>${result2.comment_content}</td>
-									<td width=220px><b id="date">${result2.comment_wridate}<button type=button id="codelete">X</button></b></td>
-									
+									<td>${result2.comment_content}</td>
+									<td width=180px><b id="date">${result2.comment_wridate}</b></td>
+									<td id="delbtn" align=center>
+<!-- 									<button type=button id="comodify">M</button> -->
+									<script>
+                 	 				$("#delbtn:last-child").after("<button id="+num+" type=button><b>X</b></button>");
+                  					</script>
+									</td>
+		
 								</tr>
+								<script>
+                  document.getElementById(num).onclick = function() {
+                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+                  }
+                  num++;
+            </script>
 							</c:forEach>
 						</c:when>
 					</c:choose>
 					<tr>
 						<th width=80px height=40px>${sessionScope.loginId}</th>
-						<form action="comment.freeb" method="post">
-							<input type="hidden" id="seq" name=count value="${count}">
-							<input type="hidden" id="seq" name=no value="${result[0].seq}">
-							<td colspan=1><textarea id="comment" name=comment
+
+						<input type="hidden" id="viewcount" name=count value="${count}">
+						<input type="hidden" id="seq" name=no value="${result[0].seq}">
+						<td colspan=2><textarea id="comment" name=comment
 									placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110" rows="2"></textarea></td>
-							<td align=center><input type="submit" value="확인" id="confirm"
-								name="confirm"></td>
-						</form>
+							<td align=center><input type="button" value="확인" id="confirm"></td>
+
+						
+						
 					</tr>
 					<c:choose>
 					<c:when test="${sessionScope.loginId!=null}">
@@ -118,160 +222,5 @@
 
 		</form>
 	</div>
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<div class="modal-content">
-
-				<div class="login-form">
-					<form action="" method="post">
-						<div class="avatar">
-							<img src="avatar.png" alt="Avatar" />
-						</div>
-						<h2 class="text-center">Member Login</h2>
-						<div class="social-btn text-center">
-							<a href="naver.do"
-								onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
-								<img src="naver.PNG"
-								style="width: 100%; height: 55px; cursor: pointer;">
-							</a>
-							<!-- <a href="javascript:loginWithKakao()"> -->
-							<a href="javascript:kakaologin()"> <img src="kakao.png"
-								style="width: 100%; height: 55px; cursor: pointer;">
-							</a> <a href="javascript:startApp()" id="customBtn"
-								data-onsuccess="onSignIn"> <img src="google.png"
-								style="width: 100%; height: 55px; cursor: pointer;">
-							</a>
-
-						</div>
-						<div class="or-seperator">
-							<i>or</i>
-						</div>
-						<div class="form-group">
-							<input type="text" id="id" class="form-control" name="username"
-								placeholder="UserID" required="required">
-						</div>
-						<div class="form-group">
-							<input type="password" id="pass" class="form-control"
-								name="password" placeholder="Password" required="required">
-						</div>
-						<div class="form-group">
-							<button type="button" id="login"
-								class="btn btn-primary btn-lg btn-block login-btn">LOGIN
-							</button>
-						</div>
-						<p class="text-center small">
-							<a href="#">Forgot Password?</a>
-						</p>
-						<p id="response"></p>
-
-					</form>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-<script>
-	$(document)
-			.ready(
-					function() {
-						$("#fix").click(function() {
-							$(location).attr('href', "fix.freeb?no=${no}")
-						})
-						$("#delete")
-								.click(
-										function() {
-											var yes = confirm("삭제 하시겠습니까?");
-											if (yes) {
-												$(location)
-														.attr('href',
-																"delete.freeb?no=${no}&cat=${result[0].category}")
-											} else {
-												return;
-											}
-
-										})
-						$("#tolist")
-								.click(
-										function() {
-											$(location)
-													.attr('href',
-															"boardView.freeb?cat=${result[0].category}")
-										})
-										
-						$("#fix2").click(function() {
-							$(location).attr('href', "fix.freeb?no=${no}")
-						})
-						$("#delete2")
-								.click(
-										function() {
-											var yes = confirm("삭제 하시겠습니까?");
-											if (yes) {
-												$(location)
-														.attr('href',
-																"delete.freeb?no=${no}&cat=${result[0].category}")
-											} else {
-												return;
-											}
-
-										})
-						$("#tolist2")
-								.click(
-										function() {
-											$(location)
-													.attr('href',
-															"boardView.freeb?cat=${result[0].category}")
-										})
-
-						$("#like").click(function() {
-							if ('${id}' == 'nonmember') {
-								$('#loginbt').trigger('click');
-							} else {
-								$.ajax({
-									url : "like.com",
-									type : "get",
-									data : {
-										boardno : "${no}",
-										memberid : "${id}",
-										likecount : "${result[0].like}"
-									},
-									success : function(resp) {
-										$("#likecancel").show();
-										$("#like").hide();
-										$("#likespan").text(resp);
-									},
-									error : function() {
-										console.log("에러 발생!");
-									}
-								})
-							}
-
-						})
-						$("#likecancel").click(function() {
-							$.ajax({
-								url : "like.com",
-								type : "get",
-								data : {
-									boardno : "${no}",
-									memberid : "${id}",
-									likecount : "${result[0].like}"
-								},
-								success : function(resp) {
-									$("#like").show();
-									$("#likecancel").hide();
-									$("#likespan").text(resp);
-								},
-								error : function() {
-									console.log("에러 발생!");
-								}
-							})
-						})
-					})
-
-			/* document.getElementById("comment").onclick = function() {
-				formid.submit();
-			} */
-</script>
 <link rel="stylesheet" href="communitycss/articleView.css">
 <%@ include file="../include/bottom.jsp"%>
