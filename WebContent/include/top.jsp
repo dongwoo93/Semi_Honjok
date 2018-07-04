@@ -72,8 +72,8 @@
       
       <li class="dropdown nav-item"><a id="cook" href="board/boardtipWrite.jsp" class="catego nav-link">요리</a>
          <ul class="dropdown-menu mx-2">
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=초간단 요리">초간단요리</a></li>
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=일반 요리">일반요리</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=초간단요리">초간단요리</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=일반요리">일반요리</a></li>
          </ul>
       </li>
       
@@ -97,7 +97,7 @@
       <li class="dropdown mx-2"><a id="famous" href="selectNaviCat.tip?category=혼족맛집" class="catego nav-link">혼족맛집</a>
       	<ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=서울">서울</a></li>
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=인천&경기">인천&경기</a></li>
+				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=인천경기">인천경기</a></li>
 				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=충청도">충청도</a></li>
 				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=경상도">경상도</a></li>
 				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=전라도">전라도</a></li>
