@@ -6,13 +6,13 @@
     <div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="imges/sky.jpg" alt="Los Angeles" width="1200" height="700">
+				<img src="imges/혼톡메인.jpg" alt="Los Angeles" width="100%" height="700">
 				<div class="carousel-caption">
 					<h3>Los Angeles</h3>
 					<p>We had such a great time in LA!</p>
 				</div>
 			</div>
-			<div class="carousel-item">
+		<!-- 	<div class="carousel-item">
 				<img src="imges/nature-3042751_1280.jpg" alt="Chicago" width="1200"
 					height="700">
 				<div class="carousel-caption">
@@ -27,7 +27,7 @@
 					<h3>New York</h3>
 					<p>We love the Big Apple!</p>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -41,20 +41,21 @@
 				style="width: 500px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>작성자</th>
+						<th width="17%" style="text-align: center;">글번호</th>
+						<th width="64%" style="text-align: center;">제목</th>
+						<th width="17%" style="text-align: center;">작성자</th>
+						<th width="15%" style="text-align: center;">추천</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
-							<td class="td-contents">${free.seq}</td>
-							<td class="td-contents">${free.title}</td>
-							<td class="td-contents">${free.contents}</td>
-							<td class="td-contents">${free.writer}</td>
+							<td class="td-contents" style="text-align: center;">${free.seq}</td>
+							<td class="td-contents" style="text-align: center;">${free.title}</td>
+							<%-- <td class="td-contents">${free.contents}</td> --%>
+							<td class="td-contents" style="text-align: center;">${free.writer}</td>
+							<td style="text-align: center;"><b>11</b></td>
 						</tr>
 					</c:forEach>
 
@@ -102,7 +103,7 @@
 				style="width: 350px; height: 300px; table-layout: fixed;">
 				<thead class="thead-dark">
 					<tr>
-						<th>좋아요 수</th>
+						<th>추천</th>
 						<th>제목</th>
 						<th>내용</th>
 						<th>작성자</th>
