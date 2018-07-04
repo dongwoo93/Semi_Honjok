@@ -71,6 +71,8 @@ public class MemberController extends HttpServlet {
 
 				int result = dao.deleteData(id,pw);
 				request.setAttribute("result", result);
+				System.out.println("1");
+				
 				isRedirect = false;
 				if (result>0) {
 					dst = "hollo.com";
@@ -92,11 +94,11 @@ public class MemberController extends HttpServlet {
 
 
 
-				int result = dao.updateData(id, pw, name, phone, email, zipcode, address);
+				int result = dao.updateData(pw, name, phone, email, zipcode, address, id);
 				request.setAttribute("result", result);
 				isRedirect = false;
 
-				dst = "hollo.com";
+				dst = "updateproc.jsp";
 
 			}
 

@@ -28,7 +28,6 @@ import testDAO.testDAO;
 
 @WebServlet("*.do")
 public class loginController extends HttpServlet {
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isRedirect = true;
 		String dst = null;
