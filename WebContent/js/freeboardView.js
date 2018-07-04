@@ -15,4 +15,7 @@ $(document).ready(function() {
 		$("#write").click(function() {
 			$(location).attr('href', "community/freeboardWrite.jsp");
 		})
+		$("#sbtn").click(function(){
+			$("#formid").submit();
+		})
 	})

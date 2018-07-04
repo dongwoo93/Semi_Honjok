@@ -102,9 +102,18 @@
 				</c:otherwise>
 			</c:choose>
 		</table>
-		<div id="bottom" align=center>
-			${navi}</div> <div id="btn"><input type=button id="write" value="글 쓰기">
-		</div>
+		<div id="bottom" align=center>${navi}</div> 
+		<div id="btn">
+			<form method=post action="search.freeb" id=formid>
+			<input type="hidden" name="scat" value="${cat}">
+			<select name="select" id="select">
+				<option value="title">제목</option>
+				<option value="writer">작성자</option>
+				<option value="content">내용</option>
+			</select>
+		<input type="search" id="search" name="search"><button type=button id="sbtn">검색</button>
+		</form><input type=button id="write" value="글 쓰기"></div>
+		
 	</div>
 	<link rel="stylesheet" href="communitycss/freeboard.css">
 	<%@ include file="../include/bottom.jsp"%>

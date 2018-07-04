@@ -170,11 +170,9 @@ var num = 1;
 								
 									<td width=100px height=20px>${result2.comment_writer}</td>
 									<td>${result2.comment_content}</td>
-									<td width=180px><b id="date">${result2.comment_wridate}</b></td>
-									<td id="delbtn" align=center>
-<!-- 									<button type=button id="comodify">M</button> -->
+									<td id="delbtn" width=180px><b id="date">${result2.comment_wridate}</b>
 									<script>
-                 	 				$("#delbtn:last-child").after("<button id="+num+" type=button><b>X</b></button>");
+                 	 				$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
                   					</script>
 									</td>
 		

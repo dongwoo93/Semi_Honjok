@@ -315,6 +315,57 @@ public class Board_Controller extends HttpServlet {
 				if(result > 0) {
 					dst = "Board_Controller.freeb?no="+no+"&count="+viewCount;
 				}
+			}else if(command.equals("/search.freeb")) {
+				String select = request.getParameter("select");
+				String search = request.getParameter("search");
+				String category = request.getParameter("scat");
+				List<BoardUserDTO> result = new ArrayList<>();
+				String navi;
+				
+				BoardDAO dao = new BoardDAO();
+				
+				if(select.equals("title")) {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					
+					result = dao.searchDataTitle(search, category, currentPage*10-9, currentPage*10);
+					navi = dao.getPageNavi(currentPage, category);
+				}else if(select.equals("writer")) {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					result = dao.searchDataWriter(search, category, currentPage*10-9,currentPage*10);
+					navi = dao.getPageNavi(currentPage, category);
+				}else {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					result = dao.searchDataContents(search, category, currentPage*10-9,currentPage*10);
+					navi = dao.getPageNavi(currentPage, category);
+				}
+				request.setAttribute("cat", category);
+				request.setAttribute("result", result);
+				request.setAttribute("navi", navi);
+				
+				
+				isRedirect = false;
+				dst = "community/freeboardView2.jsp";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
