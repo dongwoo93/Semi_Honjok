@@ -49,10 +49,32 @@
 		<div id="map" style="width: 100%; height: 350px;"></div>
 		<div style="height:500px;"></div>
 </div>
+<a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
+<a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
+<a id="footera"></a>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
 		$(document).ready(function() {
+			
+			$(function() {
+			    $(window).scroll(function() {
+			        if ($(this).scrollTop() > 600) {
+			            $('.ScrollButton').fadeIn();
+			        } else {
+			            $('.ScrollButton').fadeOut();
+			        }
+			    });
+			        
+			    $("#TopButton").click(function() {
+			        $('html').animate({scrollTop : 0}, 600);
+			    });
+			 
+			    $("#BottomButton").click(function() {
+			        $('html').animate({scrollTop : ($('#footera').offset().top)}, 600);
+			    });
+			});
+			
 			$("#delete").click(function() {
 				var seq = ${result[0].seq};
 				$(location).attr('href', 'delete.tip?seq=' + seq);
