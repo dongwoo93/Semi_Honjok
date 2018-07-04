@@ -99,23 +99,28 @@
 			})
 
 			$("#like").click(function() {
-				$.ajax({
-					url : "admin_like.com",
-					type : "get",
-					data : {
-						boardno : "${no}",
-						memberid : "${id}",
-						likecount : "${result[0].likeit}"
-					},
-					success : function(resp) {
-						$("#likecancel").show();
-						$("#like").hide();
-						$("#likespan").text(resp);
-					},
-					error : function() {
-						console.log("에러 발생!");
-					}
-				})
+				if ('${id}' == 'nonmember') {
+					$("#loginbt").trigger('click');
+				}else {
+					$.ajax({
+						url : "admin_like.com",
+						type : "get",
+						data : {
+							boardno : "${no}",
+							memberid : "${id}",
+							likecount : "${result[0].likeit}"
+						},
+						success : function(resp) {
+							$("#likecancel").show();
+							$("#like").hide();
+							$("#likespan").text(resp);
+						},
+						error : function() {
+							console.log("에러 발생!");
+						}
+					})
+				}
+				
 			})
 			$("#likecancel").click(function() {
 				$.ajax({
