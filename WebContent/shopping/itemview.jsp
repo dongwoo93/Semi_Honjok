@@ -66,9 +66,6 @@
 				<button class="btn_buy" type="button">구매하기</button>
 			</div>
 			</div>
-
-			
-
 		</div>
 		
 		<div class="vip-tabwrap uxetabs">

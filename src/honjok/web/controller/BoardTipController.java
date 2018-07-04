@@ -65,27 +65,32 @@ public class BoardTipController extends HttpServlet {
 			}else if(command.equals("/selectView.tip")) {
 				List<BoardDTO> result = new ArrayList<>();
 				String seq = request.getParameter("seq");
-				String id = "ykng10";
-
-				request.setAttribute("id", id);
+				String id = (String)request.getSession().getAttribute("loginId");
 				AdminLikeDAO like = new AdminLikeDAO();
-				try {
-					boolean likeResult = like.LikeExist(seq, id);
-					if(!likeResult) {
-						int insertLike = like.insertData(seq, id);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				AdminLikeDTO likeDTO = like.selectArticleLike(seq, id);
-				String likeStat = likeDTO.getLike_check();
 				
+				if(id != null) {
+					try {
+						boolean likeResult = like.LikeExist(seq, id);
+						if(!likeResult) {
+							int insertLike = like.insertData(seq, id);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					AdminLikeDTO likeDTO = like.selectArticleLike(seq, id);
+					String likeStat = likeDTO.getLike_check();
+					request.setAttribute("likeStat", likeStat);
+				}else {
+					id = "nonmember";
+					request.setAttribute("likeStat", "0");
+				}
+				
+				request.setAttribute("id", id);
 				ArrayList<MapDTO> map = new ArrayList<>();
 				MapDAO dao2 = new MapDAO();
 				
 				map = dao2.selectData(seq);
-				System.out.println(map.get(0).getX());
-				System.out.println(map.get(0).getY());
 				
 				
 				int viewcount = Integer.parseInt(request.getParameter("viewcount")) + 1;
@@ -97,7 +102,7 @@ public class BoardTipController extends HttpServlet {
 					}*/	
 					response.setCharacterEncoding("UTF-8");
 					request.setAttribute("result", result);
-					request.setAttribute("likeStat", likeStat);
+					
 					request.setAttribute("no", seq);
 					
 				}

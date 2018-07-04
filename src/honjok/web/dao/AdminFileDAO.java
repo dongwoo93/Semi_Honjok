@@ -32,6 +32,26 @@ public class AdminFileDAO {
 		return list;
 	}
 	
+	public List<AdminFilesDTO> getAllThum_sysFileName() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select article_no, file_seq, thum_sysFileName from admin_files order by article_no desc";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		List<AdminFilesDTO> list = new ArrayList<>();
+		while(rs.next()) {
+			AdminFilesDTO tmp = new AdminFilesDTO();
+			tmp.setArticle_no(rs.getString(1));
+			tmp.setFile_seq(rs.getString(2));
+			tmp.setThum_sysFileName(rs.getString(3));
+			list.add(tmp);
+		}
+		
+		rs.close();
+		pstat.close();
+		con.close();
+		return list;
+	}
+	
 	public List<AdminFilesDTO> getSubThum_sysFileName(String category, String subject) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select article_no, file_seq, thum_sysFileName from admin_files where category=? and subject=? order by article_no desc";
