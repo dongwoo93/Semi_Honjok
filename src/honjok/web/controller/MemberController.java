@@ -40,27 +40,37 @@ public class MemberController extends HttpServlet {
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
+				
+				System.out.println(id);
+				System.out.println(pw);
+				System.out.println(name);
+				System.out.println(phone);
+				System.out.println(email);
+				System.out.println(id);
 
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
 
 				isRedirect = false;
-				dst = "signup.jsp";
+				dst = "hollo.com";
 
 
 			} else if(command.equals("/idcheck.mem")) {
 				String id= request.getParameter("value");
 				boolean result = dao.isIdExist(id);
+				if(id==null) {
+					out.println("");
+					return;
+				}
 				if(result) {
 					String check = "이미 존재하는 아이디입니다.";
 					out.println(check);
 					return;
 
-				} else {
+				} else{
 					String check = "사용할 수 있는 아이디 입니다.";
 					out.println(check);
 					return;
-
 				}
 
 			} else if(command.equals("/memberout.mem")) {

@@ -64,7 +64,7 @@ public class MapDAO {
 			list.add(dto);
 			
 		}
-		
+		rs.close();
 		pstat.close();
 		con.close();
 		

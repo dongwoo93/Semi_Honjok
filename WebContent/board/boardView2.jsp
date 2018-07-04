@@ -64,59 +64,64 @@
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
 	
 </div>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
-<script>
+<a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
+<a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
+<a id="footera"></a>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
+		<script>
 		$(document).ready(function() {
 			
 			$(function() {
-	             $(window).scroll(function() {
-	                 if ($(this).scrollTop() > 600) {
-	                     $('.ScrollButton').fadeIn();
-	                 } else {
-	                     $('.ScrollButton').fadeOut();
-	                 }
-	             });
-	                 
-	             $("#TopButton").click(function() {
-	                 $('html').animate({scrollTop : 0}, 600);
-	             });
-	          
-	             $("#BottomButton").click(function() {
-	                 $('html').animate({scrollTop : ($('#footera').offset().top)}, 600);
-	             });
-	         });
+			    $(window).scroll(function() {
+			        if ($(this).scrollTop() > 600) {
+			            $('.ScrollButton').fadeIn();
+			        } else {
+			            $('.ScrollButton').fadeOut();
+			        }
+			    });
+			        
+			    $("#TopButton").click(function() {
+			        $('html').animate({scrollTop : 0}, 600);
+			    });
+			 
+			    $("#BottomButton").click(function() {
+			        $('html').animate({scrollTop : ($('#footera').offset().top)}, 600);
+			    });
+			});
 			
-			if($("#delete") != null){
-				$("#delete").click(function() {
-					var seq = ${result[0].seq};
-					$(location).attr('href', 'delete.tip?seq=' + seq);
-				})
-			}
-			if($("#modify") != null){
-				$("#modify").click(function() {
-					var seq = ${result[0].seq};
-					$(location).attr('href', 'modify.tip?seq=' + seq);
-				})
-			}
+			$("#delete").click(function() {
+				var seq = ${result[0].seq};
+				$(location).attr('href', 'delete.tip?seq=' + seq);
+			})
+			$("#modify").click(function() {
+				var seq = ${result[0].seq};
+				$(location).attr('href', 'modify.tip?seq=' + seq);
+			})
+
 			$("#like").click(function() {
-				$.ajax({
-					url : "admin_like.com",
-					type : "get",
-					data : {
-						boardno : "${no}",
-						memberid : "${id}",
-						likecount : "${result[0].likeit}"
-					},
-					success : function(resp) {
-						$("#likecancel").show();
-						$("#like").hide();
-						$("#likespan").text(resp);
-					},
-					error : function() {
-						console.log("에러 발생!");
-					}
-				})
+				if ('${id}' == 'nonmember') {
+					$("#loginbt").trigger('click');
+				}else {
+					$.ajax({
+						url : "admin_like.com",
+						type : "get",
+						data : {
+							boardno : "${no}",
+							memberid : "${id}",
+							likecount : "${result[0].likeit}"
+						},
+						success : function(resp) {
+							$("#likecancel").show();
+							$("#like").hide();
+							$("#likespan").text(resp);
+						},
+						error : function() {
+							console.log("에러 발생!");
+						}
+					})
+				}
+				
 			})
 			$("#likecancel").click(function() {
 				$.ajax({

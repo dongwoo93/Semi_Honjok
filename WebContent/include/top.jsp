@@ -8,10 +8,14 @@
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script
@@ -111,11 +115,21 @@
       </li>
    </ul>
    <ul class="nav navbar-nav ml-auto">
+      <c:choose>
+      	<c:when test="${sessionScope.loginId == null}">
       <li class="nav-item mx-3"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
       <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="loginbt">Login</button></li>
+   	   </c:when>
+   	   <c:otherwise>
+   	   <li class="nav-item mx-3"><a href="Mypage.jsp" class="nav-link">Mypage</a></li>
+      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="logoutbt">Logout</button></li>
+   	   </c:otherwise>
+   	  </c:choose>
    </ul>
    </nav>
-	
+	</ul>
+	</nav>
+
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -128,10 +142,8 @@
 						</div>
 						<h2 class="text-center">Member Login</h2>
 						<div class="social-btn text-center">
-							<a href="naver.do"
-								onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
-								<img src="naver.PNG"
-								style="width: 100%; height: 55px; cursor: pointer;">
+							<a href="naver.do" onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
+								<img src="naver.PNG" style="width: 100%; height: 55px; cursor: pointer;">
 							</a>
 							<!-- <a href="javascript:loginWithKakao()"> -->
 							<a href="javascript:kakaologin()"> <img src="kakao.png"

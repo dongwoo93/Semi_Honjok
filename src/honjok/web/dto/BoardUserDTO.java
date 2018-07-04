@@ -34,6 +34,21 @@ public class BoardUserDTO {
 		this.like = like;
 		this.ip = ip;
 	}
+	
+	
+
+
+	public BoardUserDTO(int seq, String category, String title, String writer, String contents, String header,
+			String ip) {
+		super();
+		this.seq = seq;
+		this.category = category;
+		this.title = title;
+		this.writer = writer;
+		this.contents = contents;
+		this.header = header;
+		this.ip = ip;
+	}
 
 
 	public int getSeq() {
