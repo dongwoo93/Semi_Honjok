@@ -8,60 +8,96 @@
 <link rel="stylesheet" type="text/css" href="boardcss/boardView.css">
 <script type="text/javascript" src="js/boardView.js"></script>
 <div class="container">
-		<%-- <c:forEach var="item" items="${result}"> --%>
-		<div class="col-md-15">
-			<h2>${result[0].title}</h2>
-		</div>
-		<div class="col-md-12" style="text-align: right">
-			<span class="col-md-2">${result[0].writedate}</span>
-			<%-- <span class="cos-sm-2" id="seq">${result[0].seq}</span> --%>
-			<span id="col-md-3" class="col-md-3"><button type="button"
-					class="btn btn-info" id="modify">수정</button></span> <span class="col-md-3"><button
-					type="button" class="btn btn-danger" id="delete">삭제</button></span>
-		</div>
-		<hr style="height: 1">
-		
+	<%-- <c:forEach var="item" items="${result}"> --%>
+	<div class="col-md-15">
+		<h2>${result[0].title}</h2>
+	</div>
+	<div class="col-md-12" style="text-align: right">
+		<span class="col-md-2">${result[0].writedate}</span>
+		<%-- <span class="cos-sm-2" id="seq">${result[0].seq}</span> --%>
+	</div>
+	<c:choose>
+		<c:when test="${sessionScope.loginId eq 'admin'}">
+			<div class="col-md-12" style="text-align: right">
+				<span id="col-md-3" class="col-md-3"><button type="button"
+						class="btn btn-info" id="modify">수정</button></span> <span
+					class="col-md-3"><button type="button"
+						class="btn btn-danger" id="delete">삭제</button></span>
+			</div>
+		</c:when>
+	</c:choose>
+	<hr style="height: 1">
 
-		<div class="col-md-15">${result[0].contents}</div>
-		<hr style="height: 1">
-		<span class="col-md-2"> <c:choose>
-				<c:when test="${likeStat == 0}">
-					<!-- <button type="button" id=like>좋아요</button> -->
-					<span><input type="image" src="images/nomal_heart.png" id="like"></span>
-					<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
-					<span><input type="image" src="images/heart_77931.png" id="likecancel"
-						style="display: none" style="width:4%;"></span>
-					<span id=likespan>${result[0].likeit}</span>
-				</c:when>
-				<c:otherwise>
-					<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
-					<input type="image" src="images/heart_77931.png" id="likecancel">
-					<input type="image" src="images/nomal_heart.png" id="like"
-						style="display: none" style="width:4%;">
-					<!-- <button type="button" id=like style="display: none">좋아요</button> -->
-					<span id=likespan>${result[0].likeit}</span>
-				</c:otherwise>
-			</c:choose>
-		</span> <span class="col-md-8">조회수 : ${result[0].viewcount}</span>
-		<button type="button" onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨 위로</button>
-		<%-- </c:forEach> --%>
+	<div class="col-md-15">${result[0].contents}</div>
+	
+	
 
-		<div id="map" style="width: 100%; height: 350px;"></div>
-		<div style="height:500px;"></div>
+	<div id="map" style="width: 100%; height: 350px;"></div>
+	<hr style="height: 1">
+	<span class="col-md-2"> <c:choose>
+			<c:when test="${likeStat == 0}">
+				<!-- <button type="button" id=like>좋아요</button> -->
+				<span><input type="image" src="images/nomal_heart.png"
+					id="like"></span>
+				<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
+				<span><input type="image" src="images/heart_77931.png"
+					id="likecancel" style="display: none" style="width:4%;"></span>
+				<span id=likespan>${result[0].likeit}</span>
+			</c:when>
+			<c:otherwise>
+				<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
+				<input type="image" src="images/heart_77931.png" id="likecancel">
+				<input type="image" src="images/nomal_heart.png" id="like"
+					style="display: none" style="width:4%;">
+				<!-- <button type="button" id=like style="display: none">좋아요</button> -->
+				<span id=likespan>좋아요 ${result[0].likeit} 개</span>
+			</c:otherwise>
+		</c:choose>
+	</span> <span class="col-md-8">조회수 : ${result[0].viewcount}</span>
+	<button type="button"
+		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
+		위로</button>
+	<%-- </c:forEach> --%>
+	<div style="height: 500px;"></div>
+	<a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
+	<a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
+	<a id="footera"></a>
 </div>
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
-		<script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
+<script>
 		$(document).ready(function() {
-			$("#delete").click(function() {
-				var seq = ${result[0].seq};
-				$(location).attr('href', 'delete.tip?seq=' + seq);
-			})
-			$("#modify").click(function() {
-				var seq = ${result[0].seq};
-				$(location).attr('href', 'modify.tip?seq=' + seq);
-			})
-
+			
+			$(function() {
+	             $(window).scroll(function() {
+	                 if ($(this).scrollTop() > 600) {
+	                     $('.ScrollButton').fadeIn();
+	                 } else {
+	                     $('.ScrollButton').fadeOut();
+	                 }
+	             });
+	                 
+	             $("#TopButton").click(function() {
+	                 $('html').animate({scrollTop : 0}, 600);
+	             });
+	          
+	             $("#BottomButton").click(function() {
+	                 $('html').animate({scrollTop : ($('#footera').offset().top)}, 600);
+	             });
+	         });
+			
+			if($("#delete") != null){
+				$("#delete").click(function() {
+					var seq = ${result[0].seq};
+					$(location).attr('href', 'delete.tip?seq=' + seq);
+				})
+			}
+			if($("#modify") != null){
+				$("#modify").click(function() {
+					var seq = ${result[0].seq};
+					$(location).attr('href', 'modify.tip?seq=' + seq);
+				})
+			}
 			$("#like").click(function() {
 				$.ajax({
 					url : "admin_like.com",
@@ -162,5 +198,5 @@
 		})
 		
 		</script>
-		<link rel="stylesheet" href="boardcss/boardView.css" type="text/css">
+<link rel="stylesheet" href="boardcss/boardView.css" type="text/css">
 		<%@ include file="../include/bottom.jsp"%>

@@ -1,4 +1,5 @@
 $(document).ready(function() {
+		
 	AOS.init({
 		duration : 1200,
 	});
@@ -123,6 +124,8 @@ $(document).ready(function() {
 	}
 
 	var kakaologin = function() {
+		
+		console.log("진입한다");
 
 		Kakao.init('7b5cebd6ff38bcc35f50a75797895963');
 
