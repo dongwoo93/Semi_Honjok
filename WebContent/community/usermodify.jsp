@@ -1,80 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<link
-   href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css"
-   rel="stylesheet">
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
-
-<script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			placeholder : '내용',
-			//width : 1500,
-			//height : 300, // set editor height
-			minHeight : 300, // set minimum height of editor
-			maxHeight : null, // set maximum height of editor
-			focus : true,
-			callbacks : {
-				// 이미지를 업로드 할 때 이벤트 발생
-				onImageUpload : function(files, editor, welEditable) {
-					sendFile(files[0], this);
-				}
-			}
-
-		});
-
-		function sendFile(file, editor) {
-			var data = new FormData();
-			data.append("uploadFile", file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : '../upload.freeb',
-				cache : false,
-				contentType : false,
-				/* enctype : 'multipart/form-data', */
-				processData : false,
-				success : function(data) {
-					// 에디터에 이미지 출력(아직은 안합니다.)
-					$(editor).summernote('editor.insertImage', data.url);
-				}
-			});
-		}
-
-	})
-</script>
-</head>
-<body>
-	<div class="container">
-		<form action="../BoardFree_Controller" method="post"
-			enctype="multipart/form-data">
+    pageEncoding="UTF-8"%>
+    <%@ include file="../include/top.jsp" %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+    <script type="text/javascript" src="js/freeboardWrite.js"></script>
+    <div class="container">
+		<form action="fixcomplete.freeb?seq=${no}" method="post" enctype="multipart/form-data">
 			<div id="wrapper">
-				제목: <input type="text" name="title" id="title"
-					value="${result.title}"> 말머리: <select name="header"
-					id="header">
-					<option value="chat">잡담</option>
-					<option value="humor">유머</option>
-					<option value="beast">동물</option>
+			<div id="head1">말머리</div>
+				<div id="head2">
+				<c:choose>
+				<c:when test="${result.category eq 'free'}">
+				<input type="hidden" name="hcat" value="free">
+				<select name="header" id="header">
+					<option value="잡담">잡담</option>
+					<option value="유머">유머</option>
+					<option value="동물">동물</option>
 				</select>
+				</c:when>
+				<c:when test="${result.category eq 'tip'}">
+				<input type="hidden" name="hcat" value="tip">
+				<select name="header" id="header">
+					<option value="생활">생활</option>
+					<option value="레시피">레시피</option>
+					<option value="맛집">맛집</option>
+					<option value="여행">여행</option>
+				</select>
+				</c:when>
+				<c:when test="${result.category eq 'coun'}">
+				<input type="hidden" name="hcat" value="coun">
+				<select name="header" id="header">
+					<option value="취미">취미</option>
+					<option value="게임">게임</option>
+					<option value="이성">이성</option>
+					<option value="인생">인생</option>
+					<option value="친구">친구</option>
+					<option value="컴플렉스">컴플렉스</option>
+				</select>
+				</c:when>
+				<c:when test="${result.category eq 'qna'}">
+				<input type="hidden" name="hcat" value="qna">
+				</c:when>
+				</c:choose>
+				</div>
+			<div id="title">제목</div>
+			<div id="titlediv"><input type="text" name="titlemodi" id="titleinput" value="${result.title}"></div>
 			</div>
+			<div id=summer>
 			<textarea id="summernote" name="summernote">${result.contents}</textarea>
-			<input type="file" name="file" id="file"> <input
-				type="submit" value="완료" id="listButton">
+			</div>
+			<div id=filediv>
+			<input type="file" name="file0" id="file"><input type="hidden" id="plus"><br>
+			</div>
+			<input type="hidden" id="imgBackUp" name="contentsImg">
+			<input type="hidden" id="hiddenseq" name="hiddenseq" value="${no}">
+			<input type="hidden" id="hiddencount" name="hiddencount" value="${result.viewcount}">
+			<div id="btmbtn">
+				<button type="submit" class="btn btn-primary" id="writebt">수정</button>
+				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
+			</div>
 		</form>
 	</div>
-	<input type="hidden" id="seq" name=seq value="${result.seq}">
-</body>
-</html>
+	<link rel="stylesheet" href="communitycss/boardWrite.css">
+	<%@ include file="../include/bottom.jsp"%>

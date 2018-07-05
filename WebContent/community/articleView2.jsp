@@ -160,6 +160,7 @@ var num = 1;
 					<c:when test="${sessionScope.loginId!=null}">
 					<tr align=right>
 						<td colspan=4 height=20px align=right>
+						<input type="hidden" name="hiddenheader" value="${result[0].header}">
 							<button type="button" id=fix>수정</button>
 							<button type="button" id=delete>삭제</button>
 							<button type="button" id=tolist>목록</button>
@@ -215,6 +216,7 @@ var num = 1;
 					<c:when test="${sessionScope.loginId!=null}">
 					<tr align=right>
 						<td colspan=4 height=20px align=right>
+						<input type="hidden" name="hiddenheader" value="${result[0].header}">
 							<button type="button" id=fix2>수정</button>
 							<button type="button" id=delete2>삭제</button>
 							<button type="button" id=tolist2>목록</button>
