@@ -116,12 +116,18 @@
 				<option value="content">내용</option>
 			</select>
 		<input type="search" id="search" name="search"><button type=button id="sbtn">검색</button>
-		</form><input type=button id="write" value="글 쓰기"></div>
+		</form>
+		<input type=button id="write" value="글 쓰기"></div>
 		
 	</div>
 	<script>
 	$("#write").click(function() {
-		$(location).attr('href', "writecategory.freeb?cat=${cat}");
+		if ('${id}' == 'nonmember') {
+			$("#loginbt").trigger('click');
+		}else {
+			$(location).attr('href', "writecategory.freeb?cat=${cat}");
+		}
+		
 	})
 	</script>
 	<link rel="stylesheet" href="communitycss/freeboard.css">
