@@ -26,13 +26,12 @@
 			</div>
 		</c:when>
 	</c:choose>
-	<hr style="height: 1">
+	<span> <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "c"}); </script> </span>
+	<hr style="height: 1;">
 
-	<div class="col-md-15">${result[0].contents}</div>
-	
-	
+	<div class="col-md-15" id="contents">${result[0].contents}</div>
 
-	<div id="map" style="width: 100%; height: 350px;"></div>
+	<div id="map" style="width: 100%; height: 350px; margin-top: 20px;"></div>
 	<hr style="height: 1">
 	<span class="col-md-2"> <c:choose>
 			<c:when test="${likeStat == 0}">
@@ -60,13 +59,11 @@
 		위로</button> -->
 	<%-- </c:forEach> --%>
 	<div style="height: 500px;"></div>
-	<a id="TopButton" class="ScrollButton"><img src="images/uparrow.PNG"></a>
+	<a id="TopButton" class="ScrollButton" style="opacity: 0.7;"><img src="images/uparrow.PNG"></a>
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
 	
 </div>
-<a id="TopButton" class="ScrollButton"><img src="images/UPButton.png"></a>
-<a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a>
-<a id="footera"></a>
+
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
@@ -74,7 +71,7 @@
 			
 			$(function() {
 			    $(window).scroll(function() {
-			        if ($(this).scrollTop() > 600) {
+			        if ($(this).scrollTop() > 400) {
 			            $('.ScrollButton').fadeIn();
 			        } else {
 			            $('.ScrollButton').fadeOut();
