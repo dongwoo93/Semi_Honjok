@@ -162,17 +162,13 @@ public class Board_Controller extends HttpServlet {
     				String systemName = mr.getFilesystemName(paramName);
     				
     				if(originalName != null) {
-    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));
-    					
+    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));	
     				}
     			}
     			
-    			if(result > 0 && result2 > 0) {
+
     				isRedirect = true;
     				dst = "boardView.freeb?cat="+category;
-    			}else {
-    				dst = "error.jsp";
-    			}
 				
 				
 			}else if(command.equals("/Board_Controller.freeb")) {
