@@ -876,7 +876,6 @@
 						processData : false,
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
-							
 							$(editor).summernote('editor.insertImage', data.url);
 							
 							sysFileList.push(data.systemFileName);
