@@ -19,11 +19,21 @@ public class PayController extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String pName = "[留덉�留됲듅媛�] �뿏�룎�렖 �윭釉붾━�봽由큈 媛뺤븘吏��떚�뀛痢�(�븨�겕) S~2XL 媛뺤븘吏��샆 誘쇱냼留� �굹�떆�떚";
-		String price = "12900";
+		String pName = request.getParameter("name");
+		String price = request.getParameter("amount");
+		String bName = request.getParameter("buyer_name");
+		String bPhone = request.getParameter("buyer_phone");
+		String bEmail = request.getParameter("buyer_email");
+		String bAddress = request.getParameter("buyer_addr");
+		String bPostcode = request.getParameter("buyer_postcode");
 		
-		request.setAttribute("name1", pName);
-		request.setAttribute("price1", price);
+		request.setAttribute("name", pName);
+		request.setAttribute("amount", price);
+		request.setAttribute("buyer_email", bEmail);
+		request.setAttribute("buyer_name", bName);
+		request.setAttribute("buyer_tel", bPhone);
+		request.setAttribute("buyer_addr", bAddress);
+		request.setAttribute("buyer_postcode", bPostcode);
 		
 		String dst = "pay.jsp";
 		
