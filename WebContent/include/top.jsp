@@ -108,7 +108,7 @@
 		</ul>    
       </li>
       
-      <li class="dropdown mx-2"><a id="shopping" href="selectNaviCat.tip?category=혼족쇼핑" class="catego nav-link">혼족쇼핑</a>
+      <li class="dropdown mx-2"><a id="shopping" href="test.jsp" class="catego nav-link">혼족쇼핑</a>
       	<ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족쇼핑&subject=쇼핑">쇼핑</a></li>
 		</ul>
