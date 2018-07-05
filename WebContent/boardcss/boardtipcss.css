@@ -89,19 +89,19 @@
 
 .box{
   margin: 100px auto;
-  width: 300px;
+  width: 180px;
   height: 50px;
 }
 
 .container-1{
-  width: 300px;
+  width: 180px;
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
 }
 
 .container-1 input#search{
-  width: 300px;
+  width: 180px;
   height: 50px;
   background: #ffffff;
   border: none;

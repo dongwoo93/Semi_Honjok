@@ -63,7 +63,7 @@ public class BoardTipController extends HttpServlet {
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/selectView.tip")) {
-				List<BoardDTO> result = new ArrayList<>();
+				BoardDTO result = new BoardDTO();
 				String seq = request.getParameter("seq");
 				String id = (String)request.getSession().getAttribute("loginId");
 				AdminLikeDAO like = new AdminLikeDAO();
@@ -102,12 +102,11 @@ public class BoardTipController extends HttpServlet {
 					}*/	
 					response.setCharacterEncoding("UTF-8");
 					request.setAttribute("result", result);
-					
 					request.setAttribute("no", seq);
-
 				}
 				request.setAttribute("map", map);
-
+				List<BoardDTO> latest = dao.selectLatestData();
+				request.setAttribute("latest", latest);
 				isRedirect = false;
 				dst = "board/boardView2.jsp";
 			}
@@ -157,7 +156,7 @@ public class BoardTipController extends HttpServlet {
 				}
 				dst = "hollo.com";
 			}else if(command.equals("/modify.tip")) {
-				List<BoardDTO> result = new ArrayList<>();
+				BoardDTO result = new BoardDTO();
 				String seq = request.getParameter("seq");
 				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
 				result = dao.selectAllData(seq);

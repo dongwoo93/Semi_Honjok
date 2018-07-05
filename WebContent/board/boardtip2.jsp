@@ -80,8 +80,10 @@
 			
 			function search(){
 				var keyword = $("#search").val();
+				if(keyword != ""){
 				var uri = "searchtitle.tip?keyword="+keyword;
 				$(location).attr("href", encodeURI(uri));
+				}
 			}
 </script>
 <link rel="stylesheet" href="boardcss/boardtipcss.css" type="text/css">
