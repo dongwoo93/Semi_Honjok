@@ -8,8 +8,44 @@ import java.util.List;
 
 import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.AdminFilesDTO;
+import honjok.web.dto.UserFilesDTO;
 
-public class UserFileDAO {
+public class UserFilesDAO {
+	
+	public int uploadFile(UserFilesDTO dto) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "insert into BOARD_USER_file values(?, user_file_seq.nextval, ?, ?)";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, dto.getBoard_no());
+		pstat.setString(2, dto.getFile_original_name());
+		pstat.setString(3, dto.getFile_system_name());
+		int result = pstat.executeUpdate();
+		con.commit();
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
+	public List<UserFilesDTO> selectFiles(String seq) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from BOARD_USER_file where board_no=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, seq);
+		ResultSet rs = pstat.executeQuery();
+		List<UserFilesDTO> result = new ArrayList<>();
+		while(rs.next()) {
+			UserFilesDTO tmp = new UserFilesDTO();
+			tmp.setBoard_no(rs.getString(1));
+			tmp.setFile_seq(rs.getString(2));
+			tmp.setFile_original_name(rs.getString(3));
+			tmp.setFile_system_name(rs.getString(4));
+			result.add(tmp);
+		}
+		rs.close();
+		pstat.close();
+		con.close();
+		return result;
+	}
 
 	
 	public List<AdminFilesDTO> getAllThum_sysFileName(String category) throws Exception {

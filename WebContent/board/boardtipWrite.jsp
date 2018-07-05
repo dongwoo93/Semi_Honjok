@@ -420,20 +420,19 @@
 					<label for="formGroupExampleInput">제목</label> <input type="text"
 						class="form-control" id="title" name="title" placeholder="제목">
 				</div>
-				
 				<div class="form-group col-md-12">
  
           <textarea id="summernote" name="summernote"></textarea>
  
         </div>
- 
 
 			<div class="form-group col-md-8">
-				<label for="formGroupExampleInput">썸네일 이미지</label><br>
+				<label for="formGroupExampleInput">&#9660; 썸네일 이미지 첨부(*필수항목)</label><br>
 				<input type="file" id="file" name="file">
 			</div><br>
-			<input type="hidden" id="imgBackUp" name="contentsImg">
 			
+			<input type="hidden" id="imgBackUp" name="contentsImg">
+			 
 
 
 			<div class="map_wrap">
@@ -454,7 +453,8 @@
 					<div id="pagination"></div>
 				</div>
 			</div>
-
+			
+			
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 			<script>
@@ -808,7 +808,7 @@
 			<input id="place_url" type="hidden" name="places.place_url">
 			<input id="x" type="hidden" name="places.x">
 			<input id="y" type="hidden" name="places.y">
-			<div class="col-sm-3">
+			<div class="col-sm-12" id="btdiv">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<!-- <input type="button" class="btn btn-primary" value="button"> -->
 				<button type="button" class="btn btn-primary" id="writebt">작성</button>
@@ -920,7 +920,7 @@
 					if(isEmpty){
 						$("#imgBackUp").val(JSON.stringify(sysFileList));
 					}
-					
+					$('#writebt').attr('disabled', true);
 					makeFunction("../editor.tw");
 				}
 			

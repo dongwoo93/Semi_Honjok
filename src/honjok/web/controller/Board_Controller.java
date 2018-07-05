@@ -13,24 +13,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import honjok.web.dao.AdminFileDAO;
 import honjok.web.dao.BoardCommentDAO;
 import honjok.web.dao.BoardDAO;
 import honjok.web.dao.BoardLikeDAO;
-import honjok.web.dao.MapDAO;
-import honjok.web.dto.AdminFilesDTO;
+import honjok.web.dao.UserFilesDAO;
 import honjok.web.dto.BoardCommentDTO;
-import honjok.web.dto.BoardDTO;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.LikeDTO;
-import honjok.web.dto.MapDTO;
+import honjok.web.dto.UserFilesDTO;
 
 @WebServlet("*.freeb")
 public class Board_Controller extends HttpServlet {
@@ -68,6 +63,12 @@ public class Board_Controller extends HttpServlet {
 	            
 			}
 			else if(command.equals("/boardView.freeb")) {
+				String id = (String) request.getSession().getAttribute("loginId");
+				if (id != null) {
+					
+				}else {
+					id = "nonmember";
+				}
 				String category = request.getParameter("cat");
 				String header = request.getParameter("head");
 				List<BoardUserDTO> result = new ArrayList<>();
@@ -100,7 +101,8 @@ public class Board_Controller extends HttpServlet {
 				}
 				List<BoardUserDTO> result2 = new ArrayList<>();
 				result2 = dao.selectNotice();
-
+				
+				request.setAttribute("id", id);
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
@@ -123,7 +125,7 @@ public class Board_Controller extends HttpServlet {
 				}
 				
 				isRedirect = false;
-				dst = "community/freeboardWrite.jsp";
+				dst = "community/freeboardWrite2.jsp";
 				
 			}else if(command.equals("/boardWrite.freeb")) {
 				String id = (String)request.getSession().getAttribute("loginId");
@@ -139,13 +141,38 @@ public class Board_Controller extends HttpServlet {
     			MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
     			Enumeration<String> names = mr.getFileNames();
     			
-    			int result2;
+    			int result2 = 0;
     			
-    			String writer = mr.getParameter("write");
+
     			String title = mr.getParameter("title");
-    			String content = mr.getParameter("content");
+    			String category = mr.getParameter("hcat");
+    			String contents = mr.getParameter("summernote");
+    			String header = mr.getParameter("header");
     			String ip = request.getRemoteAddr();
 				
+    			BoardDAO board = new BoardDAO();
+    			UserFilesDAO file = new UserFilesDAO();
+    			String postSeq = board.getBoardSeq();
+    			BoardUserDTO boDto = new BoardUserDTO(Integer.parseInt(postSeq), category, title, id, contents, header, ip);
+    			int result = board.insertData(boDto);
+    			
+    			while(names.hasMoreElements()) {
+    				String paramName = names.nextElement();
+    				String originalName = mr.getOriginalFileName(paramName);
+    				String systemName = mr.getFilesystemName(paramName);
+    				
+    				if(originalName != null) {
+    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));
+    					
+    				}
+    			}
+    			
+    			if(result > 0 && result2 > 0) {
+    				isRedirect = true;
+    				dst = "boardView.freeb?cat="+category;
+    			}else {
+    				dst = "error.jsp";
+    			}
 				
 				
 			}else if(command.equals("/Board_Controller.freeb")) {
@@ -178,6 +205,9 @@ public class Board_Controller extends HttpServlet {
 				List<BoardUserDTO> result = dao.readData(seq);
 				BoardCommentDAO comment = new BoardCommentDAO();
 				List<BoardCommentDTO> result2 = comment.selectComment(seq);
+				UserFilesDAO fDao = new UserFilesDAO();
+				List<UserFilesDTO> files = new ArrayList<>();
+				files = fDao.selectFiles(no);
 				
 				if (!id.equals(result.get(0).getWriter())) {
 	                int viewCount = Integer.parseInt(count) + 1;
@@ -188,6 +218,7 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
 				request.setAttribute("count", count);
+				request.setAttribute("file", files);
 				
 				isRedirect = false;
 				dst = "community/articleView2.jsp";
@@ -329,7 +360,7 @@ public class Board_Controller extends HttpServlet {
 					}
 					
 					result = dao.searchDataTitle(search, category, currentPage*10-9, currentPage*10);
-					navi = dao.getPageNavi(currentPage, category);
+					navi = dao.getPageNaviTitle(search, currentPage, category);
 				}else if(select.equals("writer")) {
 					int currentPage = 0;
 					String currentPageString = request.getParameter("currentPage");
@@ -340,18 +371,18 @@ public class Board_Controller extends HttpServlet {
 						currentPage = Integer.parseInt(currentPageString);
 					}
 					result = dao.searchDataWriter(search, category, currentPage*10-9,currentPage*10);
-					navi = dao.getPageNavi(currentPage, category);
+					navi = dao.getPageNaviWriter(search, currentPage, category);
 				}else {
 					int currentPage = 0;
 					String currentPageString = request.getParameter("currentPage");
 
-					if(currentPageString == null){
+					if(currentPageString == null) {
 						currentPage = 1;
 					}else {
 						currentPage = Integer.parseInt(currentPageString);
 					}
 					result = dao.searchDataContents(search, category, currentPage*10-9,currentPage*10);
-					navi = dao.getPageNavi(currentPage, category);
+					navi = dao.getPageNaviContents(search, currentPage, category);
 				}
 				request.setAttribute("cat", category);
 				request.setAttribute("result", result);

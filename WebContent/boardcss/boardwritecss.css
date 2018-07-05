@@ -1,2 +1,11 @@
 @charset "utf-8";
 
+#btdiv{
+	margin-top: 20px;
+	text-align: right;
+}
+#map{
+	border-radius: value;
+	border-radius: 2px;
+	border-radius: 10px;
+}
