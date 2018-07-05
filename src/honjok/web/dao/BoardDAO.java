@@ -17,7 +17,7 @@ public class BoardDAO {
 	
 	public String getBoardSeq() throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select board_user_seq.nextval from dual";
+		String sql = "select user_seq.nextval from dual";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		rs.next();
