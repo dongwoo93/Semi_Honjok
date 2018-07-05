@@ -18,6 +18,12 @@
 	height: 300px;
 }
 
+.card-img-top {
+	width:100%;
+	height: 300px;
+	object-fit:cover;
+}
+
 .col-sm-2 {
 	margin: auto;
 }
