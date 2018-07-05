@@ -499,6 +499,225 @@ public class BoardDAO {
 
 		return result;
 	}
+	
+	public String getPageNaviTitle(String search, int currentPage, String category) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_title like '%'||?||'%')";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, search);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+
+		int recordTotalCount = rs.getInt("totalCount");//��ü ��(���ڵ�)�� ������ �����ϴ� ����
+		int recordCountPerPage = 10; // �� �������� �Խñ��� ǥ�õǴ� ����
+		int naviCountPerPage = 10; // �� �������� ǥ�õǴ� ���̰������� ����
+		int pageTotalCount = 0; // ��ü�� �� �������� ������ ������
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10���� ������ �������� ����
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if(needPrev) {
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+
+
+		String result = sb.toString();
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return result;
+	}
+	
+	public String getPageNaviContents(String search, int currentPage, String category) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_contents like '%'||?||'%')";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, search);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+
+		int recordTotalCount = rs.getInt("totalCount");//��ü ��(���ڵ�)�� ������ �����ϴ� ����
+		int recordCountPerPage = 10; // �� �������� �Խñ��� ǥ�õǴ� ����
+		int naviCountPerPage = 10; // �� �������� ǥ�õǴ� ���̰������� ����
+		int pageTotalCount = 0; // ��ü�� �� �������� ������ ������
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10���� ������ �������� ����
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if(needPrev) {
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+
+
+		String result = sb.toString();
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return result;
+	}
+	
+	public String getPageNaviWriter(String search, int currentPage, String category) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select count(*) totalCount from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_writer like '%'||?||'%')";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, search);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+
+		int recordTotalCount = rs.getInt("totalCount");//��ü ��(���ڵ�)�� ������ �����ϴ� ����
+		int recordCountPerPage = 10; // �� �������� �Խñ��� ǥ�õǴ� ����
+		int naviCountPerPage = 10; // �� �������� ǥ�õǴ� ���̰������� ����
+		int pageTotalCount = 0; // ��ü�� �� �������� ������ ������
+
+		if(recordTotalCount % recordCountPerPage > 0) { //10���� ������ �������� ����
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+
+
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+
+		int startNavi = (currentPage - 1)/ naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + (naviCountPerPage - 1);
+
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		if(needPrev) {
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(startNavi-1)+"'< </a>");
+		}
+		for(int i = startNavi;i <= endNavi;i++) {
+			if(currentPage == i) {
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> <b>" + i + "</b></a>");
+			}else {
+				sb.append("<a href='boardView.freeb?cat="+category+"&currentPage=" + i + "'> " + i + "</a>");
+			}
+		}
+		if(needNext) {
+			sb.append("<a href='boardView.freeb?cat="+category+"&currentPage="+(endNavi+1)+"'>></a>");
+		}
+
+
+
+		String result = sb.toString();
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return result;
+	}
 
 	public int UpdateViewCount(int seq, int viewCount) throws Exception {
 		Connection con = DBUtils.getConnection();
