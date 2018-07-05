@@ -162,8 +162,7 @@ public class Board_Controller extends HttpServlet {
     				String systemName = mr.getFilesystemName(paramName);
     				
     				if(originalName != null) {
-    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));
-    					
+    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));	
     				}
     			}
     			
