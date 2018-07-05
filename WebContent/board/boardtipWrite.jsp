@@ -453,7 +453,8 @@
 					<div id="pagination"></div>
 				</div>
 			</div>
-
+			
+			
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 			<script>
@@ -919,7 +920,7 @@
 					if(isEmpty){
 						$("#imgBackUp").val(JSON.stringify(sysFileList));
 					}
-					
+					$('#writebt').attr('disabled', true);
 					makeFunction("../editor.tw");
 				}
 			

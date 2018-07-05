@@ -6,7 +6,6 @@
 <div style="margin-top:100px;"></div>
 
 <link rel="stylesheet" type="text/css" href="boardcss/boardView.css">
-<script type="text/javascript" src="js/boardView.js"></script>
 <div class="container">
 	<%-- <c:forEach var="item" items="${result}"> --%>
 	<div class="col-md-15">
@@ -26,7 +25,7 @@
 			</div>
 		</c:when>
 	</c:choose>
-	<span> <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "c"}); </script> </span>
+	
 	<hr style="height: 1;">
 
 	<div class="col-md-15" id="contents">${result[0].contents}</div>
@@ -54,21 +53,45 @@
 			</c:otherwise>
 		</c:choose>
 	</span> <span class="col-md-8">조회수 ${result[0].viewcount}</span>
+	<span> 공유하기 <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "d"}); </script> </span>
+
 	<!-- <button type="button" class="btn btn-outline-info"
 		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
 		위로</button> -->
 	<%-- </c:forEach> --%>
+	</div>
 	<div style="height: 500px;"></div>
+	
 	<a id="TopButton" class="ScrollButton" style="opacity: 0.7;"><img src="images/uparrow.PNG"></a>
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
-	
-</div>
+	<div class="input-group col-md-2" id="searchbar">
+            <input class="form-control py-2 border-right-0 border" type="search" placeholder="검색하기" id="search-input">
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary border-left-0 border" id="searchbt" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
 
-		<script type="text/javascript"
+	<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
+		
 		$(document).ready(function() {
+			$("#searchbt").click(function(){
+				search();
+			});
+			$('#search-input').keypress(function (e) {
+		  		if (e.which == 13) {
+			 		 search();
+				}
+		  	});
 			
+			function search(){
+				var keyword = $("#search-input").val();
+				var uri = "searchtitle.tip?keyword="+keyword;
+				$(location).attr("href", encodeURI(uri));
+			}
 			$(function() {
 			    $(window).scroll(function() {
 			        if ($(this).scrollTop() > 400) {
@@ -139,67 +162,75 @@
 					}
 				})
 			})
-			
-			var bounds = new daum.maps.LatLngBounds();
-			var mapContainer = document.getElementById('map'), // 지도의 중심좌표
-			mapOption = {
-				center : new daum.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
-				level : 3
-			// 지도의 확대 레벨
-			};
-			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-			
-			var placePosition = new daum.maps.LatLng(${map[0].y},
-					${map[0].x});
-			bounds.extend(placePosition);
-			map.setBounds(bounds);
-
-			// 지도에 마커를 표시합니다 
-			var marker = new daum.maps.Marker({
-				map : map,
-				position : new daum.maps.LatLng(${map[0].y},${map[0].x})
-			});
-
-			// 커스텀 오버레이에 표시할 컨텐츠 입니다
-			// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-			// 별도의 이벤트 메소드를 제공하지 않습니다 
-			var content = '<div class="wrap">'
-					+ '    <div class="info">'
-					+ '        <div class="title">'
-					+ '         ${map[0].place_name}'
-					+ '            <div class="close" onclick="closeOverlay()" title="닫기"></div>'
-					+ '        </div>'
-					+ '        <div class="body">'
-					+ '            <div class="img">'
-					+ '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">'
-					+ '           </div>'
-					+ '            <div class="desc">'
-					+ '                <div class="ellipsis">${map[0].road_address_name}</div>'
-					+ '                <div class="jibun ellipsis">${map[0].address_name}</div>'
-					+ '                <div><a href="${map[0].place_url}" target="_blank" class="link">홈페이지</a></div>'
-					+ '				   <div class="ellipsis">${map[0].phone}</div>'
-					+ '            </div>' + '        </div>' + '    </div>'
-					+ '</div>';
-
-			// 마커 위에 커스텀오버레이를 표시합니다
-			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-			var overlay = new daum.maps.CustomOverlay({
-				content : content,
-				map : map,
-				position : marker.getPosition()
-			});
-
-			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-			daum.maps.event.addListener(marker, 'click', function() {
-				overlay.setMap(map);
-			});
-
-			// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-			function closeOverlay() {
-				overlay.setMap(null);
-			}
 		})
-		
 		</script>
+			<c:choose>
+			<c:when test="${map[0].place_name != null}">
+			<script>
+				var bounds = new daum.maps.LatLngBounds();
+				var mapContainer = document.getElementById('map'), // 지도의 중심좌표
+				mapOption = {
+					center : new daum.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
+					level : 3
+				// 지도의 확대 레벨
+				};
+				var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+				
+				var placePosition = new daum.maps.LatLng(${map[0].y},
+						${map[0].x});
+				bounds.extend(placePosition);
+				map.setBounds(bounds);
+
+				// 지도에 마커를 표시합니다 
+				var marker = new daum.maps.Marker({
+					map : map,
+					position : new daum.maps.LatLng(${map[0].y},${map[0].x})
+				});
+
+				// 커스텀 오버레이에 표시할 컨텐츠 입니다
+				// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+				// 별도의 이벤트 메소드를 제공하지 않습니다 
+				var content = '<div class="wrap">'
+						+ '    <div class="info">'
+						+ '        <div class="title">'
+						+ '         ${map[0].place_name}'
+						+ '            <div class="close" onclick="closeOverlay()" title="닫기"></div>'
+						+ '        </div>'
+						+ '        <div class="body">'
+						+ '            <div class="img">'
+						+ '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">'
+						+ '           </div>'
+						+ '            <div class="desc">'
+						+ '                <div class="ellipsis">${map[0].road_address_name}</div>'
+						+ '                <div class="jibun ellipsis">${map[0].address_name}</div>'
+						+ '                <div><a href="${map[0].place_url}" target="_blank" class="link">홈페이지</a></div>'
+						+ '				   <div class="ellipsis">${map[0].phone}</div>'
+						+ '            </div>' + '        </div>' + '    </div>'
+						+ '</div>';
+
+				// 마커 위에 커스텀오버레이를 표시합니다
+				// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+				var overlay = new daum.maps.CustomOverlay({
+					content : content,
+					map : map,
+					position : marker.getPosition()
+				});
+
+				// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+				daum.maps.event.addListener(marker, 'click', function() {
+					overlay.setMap(map);
+				});
+
+				// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+				function closeOverlay() {
+					overlay.setMap(null);
+				}
+				</script>
+			</c:when>
+			</c:choose>
+			
+			
+			
+		
 <link rel="stylesheet" href="boardcss/boardView.css" type="text/css">
 		<%@ include file="../include/bottom.jsp"%>

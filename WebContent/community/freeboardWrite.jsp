@@ -54,7 +54,7 @@ $(document).ready(function(){
            $.ajax({
               data : data,
               type : "POST",
-              url : '../upload.img',
+              url : 'upload.img',
               cache : false,
               contentType : false,
               /* enctype : 'multipart/form-data', */
@@ -82,29 +82,29 @@ $(document).ready(function(){
 				<c:when test="${cat eq 'free'}">
 				<input type="hidden" name="hcat" value="free">
 				<select name="header" id="header">
-					<option value="chat">잡담</option>
-					<option value="humor">유머</option>
-					<option value="beast">동물</option>
+					<option value="잡담">잡담</option>
+					<option value="유머">유머</option>
+					<option value="동물">동물</option>
 				</select>
 				</c:when>
 				<c:when test="${cat eq 'tip'}">
 				<input type="hidden" name="hcat" value="tip">
 				<select name="header" id="header">
-					<option value="living">생활</option>
-					<option value="recipe">레시피</option>
-					<option value="rest">맛집</option>
-					<option value="trip">여행</option>
+					<option value="생활">생활</option>
+					<option value="레시피">레시피</option>
+					<option value="맛집">맛집</option>
+					<option value="여행">여행</option>
 				</select>
 				</c:when>
 				<c:when test="${cat eq 'coun'}">
 				<input type="hidden" name="hcat" value="coun">
 				<select name="header" id="header">
-					<option value="hobby">취미</option>
-					<option value="game">게임</option>
-					<option value="rela">이성</option>
-					<option value="life">인생</option>
-					<option value="friend">친구</option>
-					<option value="complex">컴플렉스</option>
+					<option value="취미">취미</option>
+					<option value="게임">게임</option>
+					<option value="이성">이성</option>
+					<option value="인생">인생</option>
+					<option value="친구">친구</option>
+					<option value="컴플렉스">컴플렉스</option>
 				</select>
 				</c:when>
 				<c:when test="${cat eq 'qna'}">
