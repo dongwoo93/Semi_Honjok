@@ -42,9 +42,15 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
-
 	</div>
 	<br>
+	<div class="box" id="searchbar"> <!-- #ffffff #63717f -->
+  <div class="container-1">
+      <span class="icon"><i class="fa fa-search" id="sicon"></i></span>
+      <input type="search" id="search" placeholder="Search" />
+  </div>
+</div>
+</div>
 	<div class="row text-center">
 		<div class="col-md-1" style="margin: auto">
 			<ul class="pagination">${navi}
@@ -63,6 +69,20 @@
 	$("#writebt").click(function(){
 		$(location).attr('href','board/boardtipWrite.jsp');
 	})
+	$("#sicon").click(function(){
+		search();
+	})
+	$('#search').keypress(function (e) {
+		  		if (e.which == 13) {
+			 		 search();
+				}
+		  	});
+			
+			function search(){
+				var keyword = $("#search").val();
+				var uri = "searchtitle.tip?keyword="+keyword;
+				$(location).attr("href", encodeURI(uri));
+			}
 </script>
 <link rel="stylesheet" href="boardcss/boardtipcss.css" type="text/css">
 <%@ include file="../include/bottom.jsp"%>

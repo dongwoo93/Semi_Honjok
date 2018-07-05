@@ -28,7 +28,8 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
 <link rel="stylesheet" href="../boardcss/boardwritecss.css"
 	type="text/css">
-
+<!-- include summernote-ko-KR -->
+<script src="summernote-master/lang/summernote-ko-KR.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -819,6 +820,7 @@
 	<script>
 			$('#summernote').summernote({
 				placeholder : '내용',
+				lang: 'ko-KR',
 				//width : 1500,
 				//height : 300, // set editor height
 				minHeight : 300, // set minimum height of editor
@@ -874,6 +876,7 @@
 						processData : false,
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
+							
 							$(editor).summernote('editor.insertImage', data.url);
 							
 							sysFileList.push(data.systemFileName);
