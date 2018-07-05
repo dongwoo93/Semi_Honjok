@@ -108,6 +108,21 @@ var num = 1;
 						<th colspan=3>${result[0].writer}</th>
 					</tr>
 					<tr>
+         
+        
+        <c:if test="${file.size() > 0}">
+        <td>첨부파일
+        ${file.size()}개 </td>
+        <td colspan="3">
+ 
+        <c:forEach var="tmp" items="${file}">
+        <a href="DownloadController?fileName=${tmp.file_system_name}">${tmp.file_original_name}</a>
+          <br>
+        </c:forEach>
+        </c:if>
+        </td>
+        </tr>
+					<tr>
 						<td colspan=4 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
@@ -170,12 +185,12 @@ var num = 1;
 								
 									<td width=100px height=20px>${result2.comment_writer}</td>
 									<td>${result2.comment_content}</td>
-									<td width=180px><b id="date">${result2.comment_wridate}</b></td>
-									<td id="delbtn" align=center>
-<!-- 									<button type=button id="comodify">M</button> -->
+									<td id="delbtn" width=180px><b id="date">${result2.comment_wridate}</b>
+									<%-- <c:when test="${sessionScope.loginId==id}"> --%>
 									<script>
-                 	 				$("#delbtn:last-child").after("<button id="+num+" type=button><b>X</b></button>");
+                 	 				$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
                   					</script>
+                  					<%-- </c:when> --%>
 									</td>
 		
 								</tr>

@@ -21,9 +21,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import honjok.web.dao.BoardCommentDAO;
 import honjok.web.dao.BoardDAO;
 import honjok.web.dao.BoardLikeDAO;
+import honjok.web.dao.UserFilesDAO;
 import honjok.web.dto.BoardCommentDTO;
 import honjok.web.dto.BoardUserDTO;
 import honjok.web.dto.LikeDTO;
+import honjok.web.dto.UserFilesDTO;
 
 @WebServlet("*.freeb")
 public class Board_Controller extends HttpServlet {
@@ -102,58 +104,70 @@ public class Board_Controller extends HttpServlet {
 				isRedirect = false;
 				dst = "community/freeboardView2.jsp";
 				
-			}else if(command.equals("/freeboardWrite.freeb")) {
-				BoardDAO dao = new BoardDAO();
-				BoardUserDTO dto = new BoardUserDTO();
-
+			}else if(command.equals("/writecategory.freeb")) {
+				String category = request.getParameter("cat");
+				
+				if(category.equals("free")) {
+					request.setAttribute("cat", category);
+				}else if(category.equals("coun")) {
+					request.setAttribute("cat", category);
+				}else if(category.equals("tip")) {
+					request.setAttribute("cat", category);
+				}else {
+					request.setAttribute("cat", category);
+				}
+				
+				isRedirect = false;
+				dst = "community/freeboardWrite.jsp";
+				
+			}else if(command.equals("/boardWrite.freeb")) {
+				String id = (String)request.getSession().getAttribute("loginId");
 				String realPath = request.getServletContext().getRealPath("/files/");
-
+				
 				File f = new File(realPath);
-				if(!f.exists()) {
-					f.mkdir();
-				}
-				int maxSize = 1024 * 1024 * 100;
-				String enc = "utf8";
+    			if(!f.exists()) {
+    				f.mkdir();
+    			}
+    			
+    			int maxSize = 1024 * 1024 * 100;
+    			String enc = "UTF-8";
+    			MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
+    			Enumeration<String> names = mr.getFileNames();
+    			
+    			int result2 = 0;
+    			
 
-				MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
-				Enumeration<String> files = mr.getFileNames();
-				String originalFileName = null;
-				String systemFileName = null;
-				while(files.hasMoreElements()) {
-					String paramName = files.nextElement();
-					originalFileName = mr.getOriginalFileName(paramName);
-					systemFileName = mr.getFilesystemName(paramName);
-				}
-				realPath = contextPath + "/files/" + systemFileName;
+    			String title = mr.getParameter("title");
+    			String category = mr.getParameter("hcat");
+    			String contents = mr.getParameter("summernote");
+    			String header = mr.getParameter("header");
+    			String ip = request.getRemoteAddr();
 				
-				JSONObject json = new JSONObject();
-				json.put("url", realPath);
+    			BoardDAO board = new BoardDAO();
+    			UserFilesDAO file = new UserFilesDAO();
+    			String postSeq = board.getBoardSeq();
+    			BoardUserDTO boDto = new BoardUserDTO(Integer.parseInt(postSeq), category, title, id, contents, header, ip);
+    			int result = board.insertData(boDto);
+    			
+    			while(names.hasMoreElements()) {
+    				String paramName = names.nextElement();
+    				String originalName = mr.getOriginalFileName(paramName);
+    				String systemName = mr.getFilesystemName(paramName);
+    				
+    				if(originalName != null) {
+    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));
+    					
+    				}
+    			}
+    			
+    			if(result > 0 && result2 > 0) {
+    				isRedirect = true;
+    				dst = "boardView.freeb?cat="+category;
+    			}else {
+    				dst = "error.jsp";
+    			}
 				
-				response.setCharacterEncoding("utf8");
-				response.setContentType("application/json");
-				response.getWriter().println(json.toJSONString());
-				response.getWriter().flush();
-				response.getWriter().close();
 				
-				String title = mr.getParameter("title");
-				String writer = mr.getParameter("writer");
-				String contents = mr.getParameter("contents");
-				String header = mr.getParameter("header");
-				String writedate = mr.getParameter("writedate");
-				String ip = request.getRemoteAddr();
-
-				dto.setTitle(title);
-				dto.setWriter(writer);
-				dto.setContents(contents);
-				dto.setHeader(header);
-				dto.setWritedate(writedate);
-				dto.setIp(ip);
-				
-				int result = dao.insertData(dto);
-				
-				request.setAttribute("result", result);
-				isRedirect = false; 
-				dst = "freeboardResult.jsp";
 			}else if(command.equals("/Board_Controller.freeb")) {
 				String no = request.getParameter("no");
 				String id = (String)request.getSession().getAttribute("loginId");
@@ -184,6 +198,9 @@ public class Board_Controller extends HttpServlet {
 				List<BoardUserDTO> result = dao.readData(seq);
 				BoardCommentDAO comment = new BoardCommentDAO();
 				List<BoardCommentDTO> result2 = comment.selectComment(seq);
+				UserFilesDAO fDao = new UserFilesDAO();
+				List<UserFilesDTO> files = new ArrayList<>();
+				files = fDao.selectFiles(no);
 				
 				if (!id.equals(result.get(0).getWriter())) {
 	                int viewCount = Integer.parseInt(count) + 1;
@@ -194,6 +211,7 @@ public class Board_Controller extends HttpServlet {
 				request.setAttribute("result2", result2);
 				request.setAttribute("no", no);
 				request.setAttribute("count", count);
+				request.setAttribute("file", files);
 				
 				isRedirect = false;
 				dst = "community/articleView2.jsp";
@@ -315,6 +333,57 @@ public class Board_Controller extends HttpServlet {
 				if(result > 0) {
 					dst = "Board_Controller.freeb?no="+no+"&count="+viewCount;
 				}
+			}else if(command.equals("/search.freeb")) {
+				String select = request.getParameter("select");
+				String search = request.getParameter("search");
+				String category = request.getParameter("scat");
+				List<BoardUserDTO> result = new ArrayList<>();
+				String navi;
+				
+				BoardDAO dao = new BoardDAO();
+				
+				if(select.equals("title")) {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					
+					result = dao.searchDataTitle(search, category, currentPage*10-9, currentPage*10);
+					navi = dao.getPageNavi(currentPage, category);
+				}else if(select.equals("writer")) {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					result = dao.searchDataWriter(search, category, currentPage*10-9,currentPage*10);
+					navi = dao.getPageNavi(currentPage, category);
+				}else {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
+
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					result = dao.searchDataContents(search, category, currentPage*10-9,currentPage*10);
+					navi = dao.getPageNavi(currentPage, category);
+				}
+				request.setAttribute("cat", category);
+				request.setAttribute("result", result);
+				request.setAttribute("navi", navi);
+				
+				
+				isRedirect = false;
+				dst = "community/freeboardView2.jsp";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

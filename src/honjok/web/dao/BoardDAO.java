@@ -13,11 +13,24 @@ import java.util.List;
 import honjok.web.dbutils.DBUtils;
 import honjok.web.dto.BoardUserDTO;
 
-public class BoardDAO {	
+public class BoardDAO {
+	
+	public String getBoardSeq() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_seq.nextval from dual";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
 	public List<BoardUserDTO> selectFree() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='free') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -45,7 +58,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectQna() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='qna') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='qna') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -72,7 +85,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectCounsel() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='coun') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='coun') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -99,7 +112,7 @@ public class BoardDAO {
 	public List<BoardUserDTO> selectTip() throws Exception {
 
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between 1 and 4";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_category='tip') where num between 1 and 5";
 
 		PreparedStatement pstat = con.prepareStatement(sql);
 
@@ -125,7 +138,7 @@ public class BoardDAO {
 
 	public List<BoardUserDTO> selectBest() throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 11";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 13";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> result = new ArrayList<>();
@@ -281,23 +294,25 @@ public class BoardDAO {
 		con.close();
 		return list;
 	}
+	
+	
 	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_user values(user_seq.nextval,user_free_seq.nextval,?,?,?,?,?,sysdate,?,?)";
+		String sql = "insert into board_user values(?,user_free_seq.nextval,?,?,?,?,?,default,default,sysdate,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());		
-
-		pstat.setString(1, dto.getCategory());
-		pstat.setString(2, dto.getTitle());
-		pstat.setString(3, dto.getWriter());
-		pstat.setCharacterStream(4, sr, dto.getContents().length());
-		pstat.setString(5, dto.getHeader());
-		pstat.setString(6, dto.getWritedate());
+		con.setAutoCommit(false);
+		pstat.setInt(1, dto.getSeq());
+		pstat.setString(2, dto.getCategory());
+		pstat.setString(3, dto.getTitle());
+		pstat.setString(4, dto.getWriter());
+		pstat.setCharacterStream(5, sr, dto.getContents().length());
+		pstat.setString(6, dto.getHeader());
 		pstat.setString(7, dto.getIp());
-
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();
+		con.setAutoCommit(true);
 		con.close();
 		return result;		
 	}
@@ -571,5 +586,146 @@ public class BoardDAO {
 		pstat.close();
 		con.close();
 		return dto;
+	}
+	public List<BoardUserDTO> searchDataTitle(String title, String category, int startNum, int endNum) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_title like '%'||?||'%') where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, title);
+		pstat.setInt(3, startNum);
+		pstat.setInt(4, endNum);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>();
+		StringBuffer sb = new StringBuffer();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
+			char[] buffer = new char[1024];  // create temporary buffer for read
+			int length = 0;   // length of characters read
+			// fetch data  
+			while ((length = instream.read(buffer)) != -1)  {
+				for (int i=0; i<length; i++){
+					sb.append(buffer[i]);
+				} 
+			}
+			instream.close();// Close input stream
+			dto.setContents(sb.toString());
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			String dt = rs.getString(10);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr);
+			dto.setIp(rs.getString(11));
+			list.add(dto);
+		}
+		pstat.close();
+		con.close();
+		return list;
+	}
+	public List<BoardUserDTO> searchDataWriter(String writer, String category, int startNum, int endNum) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_writer like '%'||?||'%') where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, writer);
+		pstat.setInt(3, startNum);
+		pstat.setInt(4, endNum);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>();
+		StringBuffer sb = new StringBuffer();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
+			char[] buffer = new char[1024];  // create temporary buffer for read
+			int length = 0;   // length of characters read
+			// fetch data  
+			while ((length = instream.read(buffer)) != -1)  {
+				for (int i=0; i<length; i++){
+					sb.append(buffer[i]);
+				} 
+			}
+			instream.close();// Close input stream
+			dto.setContents(sb.toString());
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			String dt = rs.getString(10);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr);
+			dto.setIp(rs.getString(11));
+			list.add(dto);
+		}
+		pstat.close();
+		con.close();
+		return list;
+	}
+	public List<BoardUserDTO> searchDataContents(String content, String category, int startNum, int endNum) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=? and user_contents like '%'||?||'%') where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, category);
+		pstat.setString(2, content);
+		pstat.setInt(3, startNum);
+		pstat.setInt(4, endNum);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> list = new ArrayList<>();
+		StringBuffer sb = new StringBuffer();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
+			dto.setCategory(rs.getString(3));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			Reader instream = rs.getCharacterStream("user_contents");
+			char[] buffer = new char[1024];  // create temporary buffer for read
+			int length = 0;   // length of characters read
+			// fetch data  
+			while ((length = instream.read(buffer)) != -1)  {
+				for (int i=0; i<length; i++){
+					sb.append(buffer[i]);
+				} 
+			}
+			instream.close();// Close input stream
+			dto.setContents(sb.toString());
+			dto.setHeader(rs.getString(7));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
+			String dt = rs.getString(10);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			dto.setWritedate(Resultstr);
+			dto.setIp(rs.getString(11));
+			list.add(dto);
+		}
+		pstat.close();
+		con.close();
+		return list;
 	}
 }

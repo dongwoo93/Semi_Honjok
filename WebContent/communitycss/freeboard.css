@@ -2,11 +2,36 @@
 	margin-top: 100px;
 }
 
+.headSelect{
+	text-align:right;
+}
+
+#freeboard{
+	padding-right: 670px;
+    font-size: 19px;
+    font-weight: bold;
+}
+#counboard{
+	padding-right: 420px;
+    font-size: 19px;
+    font-weight: bold;
+}
+#tipboard{
+	padding-right: 640px;
+    font-size: 19px;
+    font-weight: bold;
+}
+#qnaboard{
+	padding-right: 950px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
 .header{
 	border-radius: 3px;
 	background-color: #555555;
 	font-size: 12px;
-	transition-duration: 0.4s;
+	/* transition-duration: 0.4s; */
 	padding: 10px 24px;
 	color: white;
 }
@@ -47,7 +72,7 @@ a:active {
 	border-radius: 3px;
 	background-color: #555555;
 	font-size: 12px;
-	transition-duration: 0.4s;
+	/* transition-duration: 0.4s; */
 	padding: 10px 24px;
 	color: white;
 }
@@ -58,7 +83,7 @@ a:active {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#no{
+/* #no{
 	width: 5%;
 	text-align: center;
 }
@@ -83,16 +108,16 @@ a:active {
 	width: 5%;
 	text-align: center;
 }
-
+ */
 
 
 #noticeno{
 	width: 5%;
-	text-align: center;
+	text-align: left;
 }
 #noticeheader{
 	width: 10%;
-	text-align: center;
+	text-align: left;
 }
 #noticetitle{
 	width: 50%;
@@ -105,11 +130,11 @@ a:active {
 }
 #noticeview{
 	width: 10%;
-	text-align: center;
+	text-align: left;
 }
 #noticelike{
 	width: 5%;
-	text-align: center;
+	text-align: left;
 }
 
 #navbar {
@@ -130,4 +155,10 @@ a:active {
 
 #navbar .navbar-brand {
 	color: black;
+}
+
+.table td, .table th {
+    padding: .70rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
 }
