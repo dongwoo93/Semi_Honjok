@@ -1,0 +1,486 @@
+body{
+	margin:0 auto;
+}
+
+html {
+    font-family: Tahoma, Gulim, '굴림';
+    font-size: 12px;
+}
+
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+div.order {
+    /* padding: 29px 0 9px; */
+}
+
+.order+.order2{
+	margin-top: 0 ! important;
+}
+
+div.order-tbl3{
+	width: 900px;
+    margin-bottom: -1px;
+    border-top: 1px solid #999;
+}
+
+#tb{
+	width:900px;
+}
+
+div.order-tbl3 table th.line{
+	border-bottom: 1px solid #ccc;
+    background: #f5f5f5;
+}
+#ordermoney{
+	width:95px;
+}
+#prject{
+    font-weight: normal;
+    line-height: 35px;
+    color: #666;
+    letter-spacing: -1px;
+}
+
+div.order-tbl3 table th{
+	height: 35px;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    background: #f5f5f5 url(//pics.auction.co.kr/myauction/buy/2012/icon/bl_th_line.gif) no-repeat left 50%;
+    font-weight: normal;
+    line-height: 35px;
+    color: #666;
+    letter-spacing: -1px;
+}
+div.order-tbl3 table{
+	border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th {
+    text-align: -internal-center;
+}
+
+
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+div.order-tbl3 table td.line{
+	border-left: none;
+    vertical-align: top;
+}
+
+#line{
+	padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+div.order-tbl3 table td div.img-box{
+	display: block;
+    overflow: hidden;
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+}
+div.order-tbl3 table td div.img-box img{
+	margin: 0;
+    vertical-align: top;
+}
+#line2{
+	padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+div.order-tbl3 table span.subject_1{
+	display: block;
+    margin: -15px 0 0 5px;
+    line-height: 43px;
+    text-align: left;
+    vertical-align: middle;
+}
+div.order-tbl3 table span.subject_1 a{
+	display: block;
+    overflow: hidden;
+    width: 450px;
+    line-height: 50px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#line2-a{
+	color:black;
+	text-decoration: none;
+}
+
+div.order-tbl3 table span.subject_1{
+	text-align: left;
+}
+
+div.order-tbl3 table td .b_list2{
+	margin: 0 40px 0 5px;
+    padding: 0 0 0 15px;
+    border: 1px solid #dedede;
+    text-align: left;
+}
+
+#b_list2{
+	list-style: none;
+	width:500px;
+}
+
+div.order-tbl3 table td .b_list2 li:first-child{
+	background: none;
+}
+
+div.order-tbl3 table td .b_list2 li{
+	position: relative;
+    width: 100%;
+    min-height: 45px;
+    line-height: 45px;
+}
+
+.b_list2 span.title{
+	display: inline-block;
+    overflow: hidden;
+    width: 235px;
+    padding: 14px 5px 14px 0;
+    line-height: 16px;
+    vertical-align: top;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.b_list2 .b_won{
+	display: inline-block;
+    width: 165px;
+    padding: 14px 0;
+    line-height: 16px;
+    color: #333;
+    text-align: right;
+    vertical-align: top;
+}
+
+div.order-tbl3 table td em.number2 {
+    float: left;
+    width: 80px;
+    line-height: 16px;
+    vertical-align: top;
+}
+
+em {
+    font-style: normal;
+}
+
+div.order-tbl3 table td.sale{
+	color:red;
+}
+
+div.order-tbl3 table td{
+	padding: 15px 0;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+div.order-tbl3 table td .quaere-txt{
+	width: 68px;
+    margin: 0 auto;
+    word-break: break-all;
+}
+
+div.uxb-total-p02{
+	position: relative;
+    z-index: 105;
+    width: 900px;
+    margin-top: -1px;
+    border-top: 2px solid #656565;
+    border-bottom: 2px solid #656565;
+}
+
+table.total{
+	width: 100%;
+	margin: 10px 0 11px;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#tr1{
+	display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.vb{
+   vertical-align: bottom;
+}
+
+table.total tr.money td {
+    font-size: 21px;
+    font-family: Tahoma;
+}
+
+table.total td {
+    letter-spacing: -.02em;
+    text-align: center;
+}
+
+.vt {
+    vertical-align: top;
+}
+
+table.total td.final{
+	font-weight: bold;
+}
+
+div.uxb-go-basket {
+    overflow: hidden;
+    margin: 20px 0 30px 10px;
+}
+
+div.uxb-go-basket div.btn {
+    float: left;
+}
+
+div.uxb-go-basket div.point_know {
+    height: 35px;
+    padding-left: 20px;
+}
+
+div.uxb-go-basket div.notice {
+    float: left;
+    width: 750px;
+}
+
+div.uxb-go-basket div.point_know strong {
+    display: inline-block;
+    float: left;
+    height: 30px;
+    margin-right: 10px;
+    line-height: 2em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+div.uxb-go-basket div.point_know P {
+    display: inline-block;
+    float: left;
+    padding-left: 10px;
+    border-left: 1px solid #d0d0d0;
+    font-size: 11px;
+    font-weight: bold;
+    color: #959494;
+    vertical-align: middle;
+}
+#know{
+	padding: 0;
+	margin: 0;
+	padding-left: 10px;
+}
+
+div.uxb-delivery-info{
+	z-index: 1;
+    width: 900px;
+    margin-top: 30px;
+}
+
+.uxb-info-write{
+	border-bottom: 1px solid #d1d1d1;
+}
+
+
+div.uxb-delivery-info h3 {
+    position: relative;
+    padding: 13px 0 13px 16px;
+    background-color: #fafafa;
+    border: 1px solid #d1d1d1;
+    font-family: Tahoma,'Noto Sans Korean', 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo, Helvetica, dotum, 돋움, sans-serif;
+    font-size: 17px;
+    color: #000;
+}
+
+#h3DeliveryInfoTitle1{
+	margin: 0;
+	line-height: 1.5;
+}
+
+div.uxb-delivery-info.uxb-info-write h3 span.delivery-important-header {
+    display: block;
+    position: absolute;
+    top: 17px;
+    left: 165px;
+    font-family: Gulim,'굴림';
+    font-size: 12px;
+    font-weight: normal;
+    color: #f60;
+    letter-spacing: -.1em;
+}
+
+.delivery-important-header{
+	padding-left: 10px;
+}
+
+div.uxb-members-info {
+    z-index: 100;
+    _height: 100%;
+    border-right: 1px solid #D1D1D1;
+    border-left: 1px solid #D1D1D1;
+}
+
+.uxb-info-write .write-tbl tr.no-line th, .uxb-info-write .write-tbl tr.no-line td{
+	border-top: none;
+}
+
+.uxb-info-write .write-tbl th{
+	padding: 15px 0 0 20px;
+    background: #f5f5f5;
+}
+
+div.uxb-members-info table th {
+    padding: 7px 0 7px 28px;
+    font-weight: normal;
+    text-align: left;
+    vertical-align: top;
+}
+
+.uxb-info-write .write-tbl tr.no-line td {
+    border-top: none;
+}
+
+#names{
+	padding-bottom: 10px;
+}
+
+#name{
+	margin-left: 20px;
+}
+
+#add{
+	padding-bottom: 10px;
+}
+
+#phone{
+	padding-bottom: 10px;
+}
+
+#sample6_postcode{
+	margin-left: 20px;
+}
+
+#sample6_address{
+	margin-left: 20px;
+}
+#sample6_address2{
+	margin-left: 20px;
+}
+#se{
+	margin-left: 20px;
+}
+
+#develiy{
+	padding-bottom: 10px;
+}
+#de{
+	margin-left: 20px;
+}
+
+div.uxa-boxtype-top div.uxa-boxright {
+    width: 297px;
+}
+
+div.uxa-boxtype-top div.uxa-boxright h3 {
+    padding: 14px 0 12px 17px;
+    background-color: #fafafa;
+    border: 1px solid #d1d1d1;
+    border-width: 0 1px 1px 0;
+    font-family: Tahoma,'Noto Sans Korean', 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo, Helvetica, dotum, 돋움, sans-serif;
+    font-size: 17px;
+    color: #000;
+}
+
+div.uxa-inbox2 .totalprice {
+    font-family: Tahoma;
+    font-weight: bold;
+}
+
+div.uxa-inbox2 .totalprice .totalprice_num {
+    display: inline-block;
+    font-size: 36px;
+    color: #e63740;
+    line-height: 38px;
+}
+
+div.uxa-inbox2 .totalprice img {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 24px;
+    color: #222222;
+    vertical-align: baseline;
+}
+
+div.bills-btn {
+    position: relative;
+    width: 100%;
+    margin-top: 39px;
+}
+.kcc_bx .tit {
+    font-family: Gulim;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: -1px;
+}
+
+.kcc_bx .tbl_wrap {
+    overflow-y: scroll;
+    height: 92px;
+    border: 1px solid #e3e3e3;
+}
+.kcc_bx .tbl_wrap .tbl {
+    margin: 10px;
+    border: 1px solid #e3e3e3;
+}
+#chkPersonalInfoProvide{
+	float:left;
+}
+
+#tbl_wrap2{
+	width : 900px;
+}
+
+.kcc_bx .tbl_wrap .tbl th{
+    border: 1px solid #e3e3e3;
+    font-family: Dotum,'돋움';
+    font-size: 11px;
+    font-weight: normal;
+    color: #666;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.kcc_bx .tbl_wrap .tbl th {
+    width: 55px;
+    padding: 5px;
+    background-color: #f5f5f5;
+    vertical-align: top;
+}
+
+#container{
+	margin-left: 500px;
+}
