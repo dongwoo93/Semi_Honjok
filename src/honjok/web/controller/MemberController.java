@@ -43,12 +43,6 @@ public class MemberController extends HttpServlet {
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
 				
-				System.out.println(id);
-				System.out.println(pw);
-				System.out.println(name);
-				System.out.println(phone);
-				System.out.println(email);
-				System.out.println(id);
 
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
@@ -81,11 +75,12 @@ public class MemberController extends HttpServlet {
 
 				int result = dao.deleteData(id,pw);
 				request.setAttribute("result", result);
-				System.out.println("1");
+		
 				
 				isRedirect = false;
 				if (result>0) {
-					dst = "hollo.com";
+					dst ="memberoutproc.jsp";
+					
 				} else {
 
 				}
@@ -93,7 +88,9 @@ public class MemberController extends HttpServlet {
 
 
 			else if(command.equals("/memberupdate.mem")) {
-				String id = request.getParameter("id");
+				
+				
+				String id = (String)request.getSession().getAttribute("loginId");
 				String pw = request.getParameter("pw");
 				String name = request.getParameter("name");
 				String phone = request.getParameter("phone");
@@ -101,11 +98,12 @@ public class MemberController extends HttpServlet {
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
 
+				
 
 
-
-				int result = dao.updateData(pw, name, phone, email, zipcode, address, id);
+				int result = dao.updateData(id, pw, name, phone, email, zipcode, address);
 				request.setAttribute("result", result);
+				
 				isRedirect = false;
 
 				dst = "updateproc.jsp";

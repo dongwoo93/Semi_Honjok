@@ -44,7 +44,6 @@ public class MemberDAO {
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		pstat.setString(2, pw);
-		System.out.println("1");
 
 		int result = pstat.executeUpdate();
 
@@ -119,8 +118,8 @@ public class MemberDAO {
 			dto.setAddress(rs.getString(7));
 			dto.setGender(rs.getString(8));
 			al.add(dto);
+			
 		}	
-
 		con.commit();
 		pstat.close();	
 		con.close();
@@ -217,10 +216,9 @@ public class MemberDAO {
 
 	public int updateData(String id, String pw,String name,String phone,String email,String zipcode,String address) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "update member set member_pw =? and member_name =? and member_phone =? and member_email =? and member_zipcode =? and member_address=? where member_id=?";		
+		String sql = "update member set member_pw =?, member_name =?, member_phone =?, member_email =?, member_zipcode =?, member_address=? where member_id=?";		
 		PreparedStatement pstat = con.prepareStatement(sql);
-
-	
+		
 		pstat.setString(1, pw);
 		pstat.setString(2, name);
 		pstat.setString(3, phone);
@@ -229,9 +227,7 @@ public class MemberDAO {
 		pstat.setString(6, address);
 		pstat.setString(7, id);
 		
-		int result =  pstat.executeUpdate();
-		
-		
+		int result = pstat.executeUpdate();
 	
 		con.commit();
 		pstat.close();	

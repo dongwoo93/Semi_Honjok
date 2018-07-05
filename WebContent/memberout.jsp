@@ -13,30 +13,6 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<script type="text/javascript">
-           $(document).ready(function() {
-       $.function chk() {
-             var req = document.form.req.checked;
-                       var num = 0;
-          if (req == true) {
-     num = 1;
-   }
-   if (num == 1) {
-document.form.submit();
-  } else {
-                    alert("탈퇴약관에 동의하셔야 합니다.");
-   }
-  } 
-
-        function nochk() {
-            alert("동의하지 않으면 가입하실 수 없습니다");
-            location.href = "hollo.com";
-        }
-    </script>
-
-
-
-
 <style>
 body {
 	margin-top: 30px;
@@ -46,13 +22,13 @@ body {
  .stepwizard-row { display: table-row; } .stepwizard { display: table; width: 100%; position: relative; } .stepwizard-row:before { top: 14px; bottom: 0; position: absolute; content: " "; width: 100%; height: 1px; background-color: #ccc; z-order: 0; } .stepwizard-step { display: table-cell; text-align: center; position: relative; }*/
 b {
 	font-size: 20px;
-	font-family: 돋음;
+	font-family: 나눔스퀘어라운드;
 	font-weight: bolder;
-	color: #0BC904;
+	color: #c0c0c0;
 }
 
 hr {
-	border-color: #0BC904;
+	border-color: #c0c0c0;
 	border-width: 4px;
 	padding-left: 160px;
 	width: 1000px;
@@ -92,8 +68,7 @@ hr {
  √ 탈퇴회원 회원정보 보존기간
 회원탈퇴가 완료되더라도 다음과 같이 회원정보가 일정기간 보존됨을 알려드립니다.
                     
-- 관계법령에 의거하여 보존이 필요한 경우에 한하여 보존됩니다.
-                          
+- 관계법령에 의거하여 보존이 필요한 경우에 한하여 보존됩니다.                          
                      </textarea> <br> <br> <input type="checkbox"
 								class="control-label" name="req"> 안내 사항을 모두 확인하였으며, 이에
 								동의합니다. <br>
@@ -109,7 +84,7 @@ hr {
 							<label class="control-label">패스워드</label> <input maxlength="50"
 								type="password" id="pw" name="pw" required="required"
 								class="form-control" placeholder="패스워드를 입력해주세요"> <br>
-							<button class="btn btn-success btn-lg pull-right" type="submit">회원탈퇴</button>
+							<button class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
 						</div>
 					</div>
 				</div>

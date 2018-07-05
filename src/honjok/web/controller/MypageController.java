@@ -51,6 +51,8 @@ public class MypageController extends HttpServlet {
 			
 			else if(command.equals("/myinfo.mp")) {
 				String id = (String)request.getSession().getAttribute("loginId");
+				
+	
 				MemberDAO dao = new MemberDAO();
 				ArrayList<MemberDTO> result = dao.outputData(id);
 				

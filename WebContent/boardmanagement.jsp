@@ -10,8 +10,8 @@
     
     <style>
         #columns {
+            
             column-width: 320px;
-         
             column-gap: 15px;
             width: 90%;
             max-width: 770px;
@@ -57,11 +57,17 @@
             width: 320px;
             height: 200px;
         }
+        
+        h3{
+        padding:50px;
+        fontstyle:extrabold;
+        }
     </style>
+    
 </head>
 
 <body>
-   <h4 align=center>게시글 관리</h4>
+   <h3 align=center>게시글 관리</h3>
    
     <div id="columns">
         <div id="card1" class="card">
@@ -69,30 +75,36 @@
                 <td>내가올린 게시글</td>
             </tr>
             <tr>
-                <td>${result.header}</td>
+                <td>${result[0].header}</td>
             </tr>
             
         </div>
         <div id="card2" class="card">
         <tr><td>게시글내용</td></tr>
-        <tr><td>
+        <tr><td><a href=""></a></td></tr>
         </div>
 
         <div id="card3" class="card">
         <tr><td>게시일</td></tr>
-        <tr><td>${result.writedate}</td></tr>
+        <tr><td>${result[0].writedate}</td></tr>
         </div>
 
         <div id="card4" class="card">
             <tr>
                 <td>좋아요</td>
-            </tr>
+            </tr><br>
             <tr>
-                <td><i class="fa fa-heart-o" style="font-size: 100px;"></i></td>
+                <td><i class="fa fa-heart-o" style="font-size: 75px;"></i></td>
             </tr>
-            <tr><td>${result.like}</td></tr>
+            <tr><td>${result[0].like}</td></tr>
         </div>
     </div>
 </body>
 
 </html>
+
+
+
+
+
+

@@ -25,17 +25,23 @@
 			<table class="table table-striped">
 				<tr>
 					<td>아이디</td>
-					<td id="id" naem="id">${result.id}</td>
+					<td id="id" name="id">${result[0].id}</td>
 
 				</tr>
+				
 				<tr>
 
 					<td>패스워드</td>
 					<td><input type="password" id="pw" name="pw"
 						class="form-control"></td>
 				</tr>
+                 <tr>
+					<td>이름</td>
+					<td> <input type=text id="name" name="name" class="form-control"></td>
 
+				</tr>
 				<tr>
+				
 					<td>전화</td>
 					<td><input type=text id="phone" name="phone"
 						class="form-control"></td>
@@ -50,16 +56,16 @@
 
 				<tr>
 					<td>집주소</td>
-					<td><input type=text id="zipcode" name="zipcode"
+					<td colspan="2"><input type=text id="zipcode" name="zipcode"
 						class="form-control">
-					<td><input type=text id="address" name="address"
-						class=form-control"></td>
+					<input type=text id="address" name="address"
+						class="form-control"></td>
 				</tr>
 
 				<tr>
 					<td colspan="2" class="text-center"><input type="submit"
-						value="수정하기" class="btn btn-success">
-						<button type="button" class="btn btn-warning"
+						value="수정하기" class="btn btn-outline-dark">
+						<button type="button" class="btn btn-outline-dark"
 							onclick="location.href='MemberList.jsp'">회원 정보 보기</button></td>
 				</tr>
 
