@@ -26,7 +26,7 @@
 			</div>
 		</c:when>
 	</c:choose>
-	<span> <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "c"}); </script> </span>
+	
 	<hr style="height: 1;">
 
 	<div class="col-md-15" id="contents">${result[0].contents}</div>
@@ -54,21 +54,45 @@
 			</c:otherwise>
 		</c:choose>
 	</span> <span class="col-md-8">조회수 ${result[0].viewcount}</span>
+	<span> 공유하기 <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "d"}); </script> </span>
+
 	<!-- <button type="button" class="btn btn-outline-info"
 		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
 		위로</button> -->
 	<%-- </c:forEach> --%>
+	</div>
 	<div style="height: 500px;"></div>
+	
 	<a id="TopButton" class="ScrollButton" style="opacity: 0.7;"><img src="images/uparrow.PNG"></a>
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
-	
-</div>
+	<div class="input-group col-md-2" id="searchbar">
+            <input class="form-control py-2 border-right-0 border" type="search" placeholder="검색하기" id="search-input">
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary border-left-0 border" id="searchbt" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
 
-		<script type="text/javascript"
+	<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
+		
 		$(document).ready(function() {
+			$("#searchbt").click(function(){
+				search();
+			});
+			$('#search-input').keypress(function (e) {
+		  		if (e.which == 13) {
+			 		 search();
+				}
+		  	});
 			
+			function search(){
+				var keyword = $("#search-input").val();
+				var uri = "searchtitle.tip?keyword="+keyword;
+				$(location).attr("href", encodeURI(uri));
+			}
 			$(function() {
 			    $(window).scroll(function() {
 			        if ($(this).scrollTop() > 400) {
