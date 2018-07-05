@@ -1363,7 +1363,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="https://mobirise.com"><span
+									href="myinfo.jsp"><span
 									class="fa fa-user mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1387,7 +1387,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="https://mobirise.com"><span
+									href="memberupdate.jsp"><span
 									class="fa fa-user-plus mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1398,7 +1398,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="assets/images/mbr-1-510x340.jpg"
+							<amp-img src="/images/mbr-1-510x340.jpg"
 								layout="responsive" height="170" width="255" alt="Mobirise">
 
 							</amp-img>
