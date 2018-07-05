@@ -195,6 +195,28 @@ public class BoardTipController extends HttpServlet {
 				}*/
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
+			}else if(command.equals("/searchtitle.tip")) {
+				String keyword = request.getParameter("keyword");
+				String currentPageString = request.getParameter("currentPage");
+				List<BoardDTO> result = new ArrayList<>();
+				List<AdminFilesDTO> thumbnail = new ArrayList<>();
+				int currentPage = 0;
+				if(currentPageString == null){
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(currentPageString);
+				}
+				result = dao.getSearchData(keyword, currentPage*8-7, currentPage*8);
+				String navi = dao.getKeywordNavi(currentPage, keyword);
+				for (BoardDTO tmp : result) {
+					String seq = tmp.getSeq();
+					thumbnail.add(fileDAO.isExsitThum_sysFile(seq));
+				}
+				request.setAttribute("board", result);
+				request.setAttribute("navi", navi);
+				request.setAttribute("thumbnail", thumbnail);
+				isRedirect = false;
+				dst = "board/boardtip2.jsp";
 			}
 
 

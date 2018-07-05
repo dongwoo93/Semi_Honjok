@@ -165,6 +165,19 @@
 	border-radius: 4px;
 	border-radius: 10px;
 }
+.form-control {
+  background-image: url('https://res.cloudinary.com/dt9b7pad3/image/upload/v1502810110/angle-down-dark_dkyopo.png');
+  background-position: right center 5px;
+  
+}
+#searchbar{
+	position: fixed;
+    top: 25%;
+    right: 25px;
+ 	z-index: 12;
+ 
+}
+
 /* #BottomButton {
   bottom: 75px;
 }

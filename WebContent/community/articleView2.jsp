@@ -153,10 +153,6 @@ var num = 1;
 							</c:choose></td>
 					</tr>
 					<tr>
-						<td width=100px height=20px>첨부파일</td>
-						<td colspan=3></td>
-					</tr>
-					<tr>
 						<td width=100px height=20px>작성자IP</td>
 						<th colspan=3>${result[0].ip}</th>
 					</tr>

@@ -63,6 +63,12 @@ public class Board_Controller extends HttpServlet {
 	            
 			}
 			else if(command.equals("/boardView.freeb")) {
+				String id = (String) request.getSession().getAttribute("loginId");
+				if (id != null) {
+					
+				}else {
+					id = "nonmember";
+				}
 				String category = request.getParameter("cat");
 				String header = request.getParameter("head");
 				List<BoardUserDTO> result = new ArrayList<>();
@@ -95,7 +101,8 @@ public class Board_Controller extends HttpServlet {
 				}
 				List<BoardUserDTO> result2 = new ArrayList<>();
 				result2 = dao.selectNotice();
-
+				
+				request.setAttribute("id", id);
 				request.setAttribute("cat", category);
 				request.setAttribute("navi", navi);
 				request.setAttribute("result", result);
@@ -118,7 +125,7 @@ public class Board_Controller extends HttpServlet {
 				}
 				
 				isRedirect = false;
-				dst = "community/freeboardWrite.jsp";
+				dst = "community/freeboardWrite2.jsp";
 				
 			}else if(command.equals("/boardWrite.freeb")) {
 				String id = (String)request.getSession().getAttribute("loginId");
@@ -353,7 +360,7 @@ public class Board_Controller extends HttpServlet {
 					}
 					
 					result = dao.searchDataTitle(search, category, currentPage*10-9, currentPage*10);
-					navi = dao.getPageNavi(currentPage, category);
+					navi = dao.getPageNaviTitle(search, currentPage, category);
 				}else if(select.equals("writer")) {
 					int currentPage = 0;
 					String currentPageString = request.getParameter("currentPage");
@@ -364,18 +371,18 @@ public class Board_Controller extends HttpServlet {
 						currentPage = Integer.parseInt(currentPageString);
 					}
 					result = dao.searchDataWriter(search, category, currentPage*10-9,currentPage*10);
-					navi = dao.getPageNavi(currentPage, category);
+					navi = dao.getPageNaviWriter(search, currentPage, category);
 				}else {
 					int currentPage = 0;
 					String currentPageString = request.getParameter("currentPage");
 
-					if(currentPageString == null){
+					if(currentPageString == null) {
 						currentPage = 1;
 					}else {
 						currentPage = Integer.parseInt(currentPageString);
 					}
 					result = dao.searchDataContents(search, category, currentPage*10-9,currentPage*10);
-					navi = dao.getPageNavi(currentPage, category);
+					navi = dao.getPageNaviContents(search, currentPage, category);
 				}
 				request.setAttribute("cat", category);
 				request.setAttribute("result", result);

@@ -2,6 +2,7 @@ package honjok.web.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
@@ -138,12 +139,8 @@ public class BoardWriteController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-
-			isRedirect=false;
-
-
-			dst = "selectNaviCat.tip?category="+category;
+			String encodeCat = URLEncoder.encode(category, "UTF-8");
+			dst = "selectNaviCat.tip?category="+encodeCat;
 		}else if(command.equals("/notemodify.tw")) {
 			try {
 				if(systemFileName != null) {
@@ -178,9 +175,8 @@ public class BoardWriteController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-
-			dst = "hollo.com";
-			isRedirect = false;
+			String encodeCat = URLEncoder.encode(category, "UTF-8");
+			dst = "selectNaviCat.tip?category="+encodeCat;
 		}
 
 

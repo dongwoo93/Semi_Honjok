@@ -920,7 +920,7 @@
 					if(isEmpty){
 						$("#imgBackUp").val(JSON.stringify(sysFileList));
 					}
-					
+					$('#writebt').attr('disabled', true);
 					makeFunction("../editor.tw");
 				}
 			
