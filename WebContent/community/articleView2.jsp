@@ -108,6 +108,10 @@ var num = 1;
 						<th colspan=3>${result[0].writer}</th>
 					</tr>
 					<tr>
+						<td width=100px height=20px>첨부파일</td>
+						<td colspan=3></td>
+					</tr>
+					<tr>
 						<td colspan=4 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
@@ -136,10 +140,6 @@ var num = 1;
 									<span id=likespan>${result[0].like}</span>
 								</c:otherwise>
 							</c:choose></td>
-					</tr>
-					<tr>
-						<td width=100px height=20px>첨부파일</td>
-						<td colspan=3></td>
 					</tr>
 					<tr>
 						<td width=100px height=20px>작성자IP</td>

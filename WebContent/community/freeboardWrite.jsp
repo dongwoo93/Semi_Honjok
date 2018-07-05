@@ -82,9 +82,9 @@ $(document).ready(function(){
 				<c:when test="${cat eq 'free'}">
 				<input type="hidden" name="hcat" value="free">
 				<select name="header" id="header">
-					<option value="chat">잡담</option>
-					<option value="humor">유머</option>
-					<option value="beast">동물</option>
+					<option value="잡담">잡담</option>
+					<option value="유머">유머</option>
+					<option value="동물">동물</option>
 				</select>
 				</c:when>
 				<c:when test="${cat eq 'tip'}">
