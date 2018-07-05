@@ -22,7 +22,10 @@
 <link rel="stylesheet" href="communitycss/boardWrite.css">
 
 <script>
+var count = 1;
 $(document).ready(function(){
+	 
+	
 	$('#summernote').summernote({
         placeholder : '내용',
         //width : 1500,
@@ -42,10 +45,17 @@ $(document).ready(function(){
 		$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
 	})
 	$("#plus").click(function(){
-        	var count = 2;
-            $("#filediv").after("<input type='file' name='file"+count+"'><br>");
+            $("#filediv").append("<input type='file' name='file"+count+"'><br>");
             count++;
+            $("#filediv > input:file").last().change(function (){
+   	    	 $("#plus").trigger("click");
+   	     });
         })
+        
+        $("#filediv > input:file").change(function (){
+   	    	 $("#plus").trigger("click");
+   	     });
+	   
      
 	var sysFileList=[];
      function sendFile(file, editor) {
@@ -119,7 +129,7 @@ $(document).ready(function(){
 			<textarea id="summernote" name="summernote"></textarea>
 			</div>
 			<div id=filediv>
-			<input type="file" name="file" id="file"><button type="button" id="plus">+</button>
+			<input type="file" id="file"><input type="hidden" id="plus"><br>
 			</div>
 			<input type="hidden" id="imgBackUp" name="contentsImg">
 			

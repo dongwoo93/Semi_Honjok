@@ -10,34 +10,38 @@
 	padding-right: 670px;
     font-size: 19px;
     font-weight: bold;
+    text-decoration: none;
 }
 #counboard{
 	padding-right: 420px;
     font-size: 19px;
     font-weight: bold;
+    text-decoration: none;
 }
 #tipboard{
 	padding-right: 640px;
     font-size: 19px;
     font-weight: bold;
+    text-decoration: none;
 }
 #qnaboard{
 	padding-right: 950px;
     font-size: 19px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 #freeboard:hover{
-	text-decoration: underline; color:black;
+	text-decoration: none; color:black;
 }
 #counboard:hover{
-	text-decoration: underline; color:black;
+	text-decoration: none; color:black;
 }
 #tipboard:hover{
-	text-decoration: underline; color:black;
+	text-decoration: none; color:black;
 }
 #qnaboard:hover{
-	text-decoration: underline; color:black;
+	text-decoration: none; color:black;
 }
 
 .header{
@@ -69,7 +73,8 @@ a.no-uline {
 }
 
 a:hover {
-	text-decoration: underline; color:black;
+	text-decoration: none; 
+	color:black;
 }
 
 a:link {
