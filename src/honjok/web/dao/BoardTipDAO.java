@@ -197,47 +197,45 @@ public class BoardTipDAO {
 		return sb.toString();
 	}
 
-	public List<BoardDTO> selectAllData(String seq) throws Exception{
+	public BoardDTO selectAllData(String seq) throws Exception{
 		Connection con = DBUtils.getConnection();
 		String sql = "select * from admin_board where seq = ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, Integer.parseInt(seq));
 		ResultSet rs = pstat.executeQuery();
-		List<BoardDTO> list = new ArrayList<>();
-
-		while(rs.next()) {
-			StringBuffer sb = new StringBuffer();
-			BoardDTO dto = new BoardDTO();
-			dto.setSeq(String.valueOf(rs.getInt(1)));
-			dto.setCategory(rs.getString(2));
-			dto.setSubject(rs.getString(3));
-			dto.setTitle(rs.getString(4));
-			dto.setViewcount(rs.getInt(6));
-			String dt = rs.getString(7);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String Resultstr = "";
-			Date date = format.parse(dt);
-			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
-			Resultstr = resultFormat.format(date);
-			dto.setWritedate(Resultstr); 
-			dto.setLikeit(rs.getInt(8));
-			Reader instream = rs.getCharacterStream("contents");
-			char[] buffer = new char[1024];  // create temporary buffer for read
-			int length = 0;   // length of characters read
-			// fetch data  
-			while ((length = instream.read(buffer)) != -1)  {
-				for (int i=0; i<length; i++){
-					sb.append(buffer[i]);
-				} 
-			}
-			instream.close();// Close input stream
-			dto.setContents(sb.toString());
-			list.add(dto);
+		
+		rs.next();
+		StringBuffer sb = new StringBuffer();
+		BoardDTO dto = new BoardDTO();
+		dto.setSeq(String.valueOf(rs.getInt(1)));
+		dto.setCategory(rs.getString(2));
+		dto.setSubject(rs.getString(3));
+		dto.setTitle(rs.getString(4));
+		dto.setViewcount(rs.getInt(6));
+		String dt = rs.getString(7);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String Resultstr = "";
+		Date date = format.parse(dt);
+		SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+		Resultstr = resultFormat.format(date);
+		dto.setWritedate(Resultstr); 
+		dto.setLikeit(rs.getInt(8));
+		Reader instream = rs.getCharacterStream("contents");
+		char[] buffer = new char[1024];  // create temporary buffer for read
+		int length = 0;   // length of characters read
+		// fetch data  
+		while ((length = instream.read(buffer)) != -1)  {
+			for (int i=0; i<length; i++){
+				sb.append(buffer[i]);
+			} 
 		}
+		instream.close();// Close input stream
+		dto.setContents(sb.toString());
+
 		rs.close();
 		pstat.close();
 		con.close();
-		return list;
+		return dto;
 	}
 
 	public List<BoardDTO> selectLatestData() throws Exception{
@@ -418,7 +416,7 @@ public class BoardTipDAO {
 		con.close();
 		return list;
 	}
-	
+
 	public String getKeywordNavi(int currentPage, String keyword) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "select count(*) totalCount from admin_board where title like '%'||?||'%'";

@@ -154,24 +154,47 @@ public class BoardWriteController extends HttpServlet {
 						AdminFilesDTO fileDTO = new AdminFilesDTO(seq, category, subject, systemFileName, originalFileName);
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {
-							obj = paser.parse(stJson);
-							if(!obj.equals(null)) {
+							if(stJson != null){
+								System.out.println("json 변환 들어옴");
+								System.out.println(stJson.toString());
+								obj = paser.parse(stJson);
+								System.out.println(obj);
 								JSONArray jsonArray = (JSONArray)obj;
+								System.out.println(jsonArray);
 								fileList = new String[jsonArray.size()];
+								System.out.println(fileList);
 								for(int j=0;j<fileList.length;j++){
 									fileList[j] = jsonArray.get(j).toString();
+									System.out.println("컨텐츠 파일 이름:" + fileList[j]);
 								}
 								int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
 								for(int i=0;i<imgUpResult.length;i++) {
 									if(imgUpResult[i] > 0) {
-										System.out.println("success");
+										System.out.println("이미지업 결과:" + imgUpResult[i]);
 									}
 								}
-							}else {
 							}
 						}else {}
+						String place_name = mr.getParameter("places.place_name");
+						String category_name = mr.getParameter("places.category_name");
+						String phone = mr.getParameter("places.phone");
+						String road_address_name = mr.getParameter("places.road_address_name");
+						String address_name = mr.getParameter("places.address_name");
+						String place_url = mr.getParameter("places.place_url");
+						String x = mr.getParameter("places.x");
+						String y = mr.getParameter("places.y");
+						System.out.println(road_address_name);
+
+
+						MapDTO mapDTO = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
+						MapDAO dao = new MapDAO();
+						int resultMap = dao.insertData(mapDTO);
+						if(resultMap <= 0) {
+							response.sendRedirect("error.html");
+						}
 					}else {}
 				}else {}
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}
