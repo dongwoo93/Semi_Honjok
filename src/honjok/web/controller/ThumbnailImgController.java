@@ -24,7 +24,6 @@ public class ThumbnailImgController extends HttpServlet {
 		String command = requestURI.substring(contextPath.length());
 
 		if(command.equals("/upload.img")) {
-			;
 			//StringBuffer sb = new StringBuffer();
 			//String line = null;
 			String realPath = request.getServletContext().getRealPath("/files/");
