@@ -4,15 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원탈퇴경고창</title>
 <script>
-function loca() {
-	location.href = "../hollo.com";
+if (${result>0}) {
+	alert("그동안 Hollo사이트를 이용해주셔서 감사합니다. 회원탈퇴되었습니다.")
+	location.href="hollo.com";
+} else {
+    alert("다시확인해주세요.");
+    location.href="memberout.jsp";
 }
+
 </script>
+
 </head>
-<body onload="loca()">
+<body>
+
+
 </body>
 </html>
-
-

@@ -23,21 +23,13 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Francois+One:400,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Francois+One:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/index.css">
-
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-
 <link rel="stylesheet" href="communitycss/Footer-with-button-logo.css">
-
 <script type="text/javascript" src="js/index.js"></script>
 </head>
 

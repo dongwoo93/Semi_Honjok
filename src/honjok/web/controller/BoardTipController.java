@@ -148,7 +148,9 @@ public class BoardTipController extends HttpServlet {
 								
 
 							}
-						}else {}
+						}else {
+							
+						}
 						System.out.println("들어옴 6");
 						int result = dao.deleteData(seq);
 					}else{}
