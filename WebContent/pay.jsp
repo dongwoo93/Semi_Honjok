@@ -17,13 +17,13 @@ IMP.request_pay({
     pg : 'html5_inicis',
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '주문명:결제테스트',
-    amount : 14000,
-    buyer_email : 'iamport@siot.do',
-    buyer_name : '구매자이름',
-    buyer_tel : '010-1234-5678',
-    buyer_addr : '서울특별시 강남구 삼성동',
-    buyer_postcode : '123-456'
+    name : '${name}',
+    amount : ${amount},
+    buyer_email : '${buyer_email}',
+    buyer_name : '${buyer_name}',
+    buyer_tel : '${buyer_tel}',
+    buyer_addr : '${buyer_addr}',
+    buyer_postcode : '${buyer_postcode}'
 }, function(rsp) {
     if ( rsp.success ) {
     	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -45,6 +45,8 @@ IMP.request_pay({
     			msg += '카드 승인번호 : ' + rsp.apply_num;
 
     			alert(msg);
+    			
+    			
     		} else {
     			//[3] 아직 제대로 결제가 되지 않았습니다.
     			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
