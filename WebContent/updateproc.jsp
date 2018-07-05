@@ -8,10 +8,10 @@
 <script>
 if(${result}>0){
 	alert("회원정보수정완료!");
-	location.href="mypage.jsp"
+	location.href="mypage.jsp";
 } else {
     alert("다시확인해주세요");
-    location.href="memberupdate.jsp"
+    location.href="memberupdate.jsp";
 }
 </script>
 
