@@ -14,7 +14,7 @@
 <link rel="shortcut icon" href="assets/images/logo.png"
 	type="image/x-icon">
 <meta name="description" content="">
-<title>Home</title>
+<title>마이페이지</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="canonical" href="index.html">
@@ -1349,7 +1349,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="assets/images/mbr-4-510x340.jpg"
+							<amp-img src="mbr-1-510x340.jpg"
 								layout="responsive" width="255" height="170" alt="Mobirise">
 
 							</amp-img>
@@ -1363,7 +1363,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="https://mobirise.com"><span
+									href="myinfo.mp"><span
 									class="fa fa-user mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1374,7 +1374,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="assets/images/mbr-3-510x340.jpg"
+							<amp-img src="mbr-4-510x340.jpg"
 								layout="responsive" height="170" width="255" alt="Mobirise">
 
 							</amp-img>
@@ -1387,7 +1387,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="https://mobirise.com"><span
+									href="memberupdate.mp"><span
 									class="fa fa-user-plus mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1398,7 +1398,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="assets/images/mbr-1-510x340.jpg"
+							<amp-img src="mbr-3-510x340.jpg"
 								layout="responsive" height="170" width="255" alt="Mobirise">
 
 							</amp-img>
@@ -1411,7 +1411,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="https://mobirise.com"><span
+									href="memberout.jsp"><span
 									class="fa fa-user-times mbr-iconfont mbr-iconfont-btn">&nbsp;&nbsp;</span>&nbsp;
 									C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1422,7 +1422,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3 last-child">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="assets/images/mbr-510x340.jpg" layout="responsive"
+							<amp-img src="mbr-2-510x340.jpg" layout="responsive"
 								height="170" width="255" alt="Mobirise"> </amp-img>
 						</div>
 						<div class="card-box">
@@ -1433,7 +1433,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="https://mobirise.com"><span
+									href="selectdata.mp"><span
 									class="fa fa-list-alt mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp; C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1461,7 +1461,7 @@ a, a:hover {
 		<div class="container">
 			<div class="mbr-col-sm-12 align-center mbr-white">
 				<p class="mbr-text mbr-fonts-style display-7">© Copyright 2018
-					Mobirise - All Rights Reserved</p>
+					H O N J O K - All Rights Reserved</p>
 			</div>
 		</div>
 	</section>

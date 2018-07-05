@@ -12,22 +12,36 @@ import com.google.gson.JsonArray;
 
 import honjok.web.beans.ShoppingSearch;
 
-/**
- * Servlet implementation class ShoppingController
- */
-@WebServlet("/ShoppingController")
+
+@WebServlet("*.shop")
 public class ShoppingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String keyword = request.getParameter("keyword");
-		ShoppingSearch shop = new ShoppingSearch();
+		
 		try {
-			JsonArray result = shop.getList(keyword);
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("application/json");
-			new Gson().toJson(result, response.getWriter());
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = requestURI.substring(contextPath.length());
+		
+		if(command.equals("")) {
+			String keyword = request.getParameter("keyword");
+			ShoppingSearch shop = new ShoppingSearch();
+			
+				JsonArray result = shop.getList(keyword);
+				response.setCharacterEncoding("UTF-8");
+				response.setContentType("application/json");
+				new Gson().toJson(result, response.getWriter());
+		}else if(command.equals("shoplist.shop")) {
+			
+		}
+		
+		
+			
+			
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
