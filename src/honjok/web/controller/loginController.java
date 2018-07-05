@@ -143,12 +143,13 @@ public class loginController extends HttpServlet {
 					boolean result = dao.idCheck(id);
 
 					if(result) {
-
+						
+						
 					}else {
 						dao.naverInserData(id, name, email, gender);
 
 					}         
-
+					request.getSession().setAttribute("loginId", id);
 					dst = "naverclose.jsp";
 
 				} catch (Exception e) {

@@ -420,20 +420,19 @@
 					<label for="formGroupExampleInput">제목</label> <input type="text"
 						class="form-control" id="title" name="title" placeholder="제목">
 				</div>
-				
 				<div class="form-group col-md-12">
  
           <textarea id="summernote" name="summernote"></textarea>
  
         </div>
- 
 
 			<div class="form-group col-md-8">
-				<label for="formGroupExampleInput">썸네일 이미지</label><br>
+				<label for="formGroupExampleInput">&#9660; 썸네일 이미지 첨부(*필수항목)</label><br>
 				<input type="file" id="file" name="file">
 			</div><br>
-			<input type="hidden" id="imgBackUp" name="contentsImg">
 			
+			<input type="hidden" id="imgBackUp" name="contentsImg">
+			 
 
 
 			<div class="map_wrap">
@@ -454,7 +453,8 @@
 					<div id="pagination"></div>
 				</div>
 			</div>
-
+			
+			
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 			<script>
@@ -808,7 +808,7 @@
 			<input id="place_url" type="hidden" name="places.place_url">
 			<input id="x" type="hidden" name="places.x">
 			<input id="y" type="hidden" name="places.y">
-			<div class="col-sm-3">
+			<div class="col-sm-12" id="btdiv">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<!-- <input type="button" class="btn btn-primary" value="button"> -->
 				<button type="button" class="btn btn-primary" id="writebt">작성</button>
@@ -829,10 +829,10 @@
 		            onImageUpload : function(files, editor, welEditable) {
 		                sendFile(files[0], this);
 		            },
-		            onMediaDelete : function(target) {
+		            /* onMediaDelete : function(target) {
 	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
-	            	} 
+	            	}  */
 	            	/* onMediaDelete : function($target, editor, $editable) {
 	                    alert($target.context.dataset.filename);         
 	                    target.remove();
@@ -845,7 +845,7 @@
 					  
 			});
 			
-			function deleteFile(src) {
+			/* function deleteFile(src) {
 				console.log(src);
 				var result = src.split("/files/");
 				console.log(result);
@@ -858,7 +858,7 @@
 			            //console.log(resp);
 			        }
 			    });
-			}
+			} */
 			var sysFileList=[];
 			function sendFile(file, editor) {
 					var data = new FormData();
@@ -875,10 +875,10 @@
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							console.log(data.systemFileName);
-							sysFileList.push(data.systemFileName);
 							
-							//$("#imgBackUp").val($("#imgBackUp").val() + data.systemFileName);
+							sysFileList.push(data.systemFileName);
+							console.log(sysFileList[0]);
+							
 						}
 					});
 				}
@@ -911,42 +911,21 @@
 			document.getElementById("writebt").onclick = function() {
 				var result = check();
 				if(result) {
-					$("#imgBackUp").val(JSON.stringify(sysFileList));
+					var isEmpty = function(sysFileList){ 
+						if( sysFileList == "" || sysFileList == null || sysFileList == undefined || ( sysFileList != null && typeof sysFileList == "object" && !Object.keys(sysFileList).length ) ){ 
+							return false; 
+							}else{ 
+								return true; } 
+						};
+					if(isEmpty){
+						$("#imgBackUp").val(JSON.stringify(sysFileList));
+					}
+					
 					makeFunction("../editor.tw");
 				}
 			
 			}
 			
-			/* function sendContents() {
-			       $("#summernote").html($("#summernote").summernote('code'));
-			       document.writeContents.submit();
-			   } */
-
-		function sendFile(file, editor) {
-			var data = new FormData();
-			data.append("uploadFile", file);
-			console.log(file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : '../upload.img',
-				cache : false,
-				contentType : false,
-				//enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					// 에디터에 이미지 출력(아직은 안합니다.)
-					$(editor).summernote('editor.insertImage', data.url);
-					console.log(data);
-					$("#imgBackUp").val(
-							$("#imgBackUp").val() + data.systemFileName + ",");
-				}
-			});
-		}
-		function sendContents() {
-			$("#summernote").html($("#summernote").summernote('code'));
-			document.writeContents.submit();
-		}
 	</script>
 </body>
 </html>
