@@ -9,10 +9,10 @@
 <div class="container">
 	<%-- <c:forEach var="item" items="${result}"> --%>
 	<div class="col-md-15">
-		<h2>${result[0].title}</h2>
+		<h2>${result.title}</h2>
 	</div>
 	<div class="col-md-12" style="text-align: right">
-		<span class="col-md-2">${result[0].writedate}</span>
+		<span class="col-md-2">${result.writedate}</span>
 		<%-- <span class="cos-sm-2" id="seq">${result[0].seq}</span> --%>
 	</div>
 	<c:choose>
@@ -28,7 +28,7 @@
 	
 	<hr style="height: 1;">
 
-	<div class="col-md-15" id="contents">${result[0].contents}</div>
+	<div class="col-md-15" id="contents">${result.contents}</div>
 
 	<div id="map" style="width: 100%; height: 350px; margin-top: 20px;"></div>
 	<hr style="height: 1">
@@ -40,7 +40,7 @@
 				<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
 				<span><input type="image" src="images/heart_77931.png"
 					id="likecancel" style="display: none" style="width:4%;"></span>
-				<span id=likespan>${result[0].likeit}</span><span> 명이 좋아합니다</span>
+				<span id=likespan>${result.likeit}</span><span> 명이 좋아합니다</span>
 			</c:when>
 			<c:otherwise>
 				<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
@@ -49,10 +49,10 @@
 					style="display: none" style="width:4%;">
 				<!-- <button type="button" id=like style="display: none">좋아요</button> -->
 				
-				<span id=likespan>${result[0].likeit}</span><span> 명이 좋아합니다</span>
+				<span id=likespan>${result.likeit}</span><span> 명이 좋아합니다</span>
 			</c:otherwise>
 		</c:choose>
-	</span> <span class="col-md-8">조회수 ${result[0].viewcount}</span>
+	</span> <span class="col-md-8">조회수 ${result.viewcount}</span>
 	<span> 공유하기 <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "d"}); </script> </span>
 
 	<!-- <button type="button" class="btn btn-outline-info"
@@ -60,7 +60,7 @@
 		위로</button> -->
 	<%-- </c:forEach> --%>
 	</div>
-	<div style="height: 500px;"></div>
+	<div style="height: 130px;"></div>
 	
 	<a id="TopButton" class="ScrollButton" style="opacity: 0.7;"><img src="images/uparrow.PNG"></a>
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
@@ -71,9 +71,22 @@
                     <i class="fa fa-search"></i>
                 </button>
               </span>
-        </div>
-
-	<script type="text/javascript"
+	        </div>
+	
+	<div class="container" id="lastestnavi">
+		<b>최근 게시물</b>
+		<ul class="list-group">
+			<c:choose>
+			<c:when test="${latest.size() > 0}">
+			<c:forEach var="latest" items="${latest}" begin="0" end="7" step="1" varStatus="status">
+			<li class="list-group-item"><a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a></li>
+			</c:forEach>
+			</c:when>
+			</c:choose>
+		</ul>
+	</div>
+	
+<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
 		
@@ -89,8 +102,10 @@
 			
 			function search(){
 				var keyword = $("#search-input").val();
-				var uri = "searchtitle.tip?keyword="+keyword;
-				$(location).attr("href", encodeURI(uri));
+				if(keyword != ""){
+					var uri = "searchtitle.tip?keyword="+keyword;
+					$(location).attr("href", encodeURI(uri));
+					}
 			}
 			$(function() {
 			    $(window).scroll(function() {
@@ -111,11 +126,11 @@
 			});
 			
 			$("#delete").click(function() {
-				var seq = ${result[0].seq};
+				var seq = ${result.seq};
 				$(location).attr('href', 'delete.tip?seq=' + seq);
 			})
 			$("#modify").click(function() {
-				var seq = ${result[0].seq};
+				var seq = ${result.seq};
 				$(location).attr('href', 'modify.tip?seq=' + seq);
 			})
 
@@ -129,7 +144,7 @@
 						data : {
 							boardno : "${no}",
 							memberid : "${id}",
-							likecount : "${result[0].likeit}"
+							likecount : "${result.likeit}"
 						},
 						success : function(resp) {
 							$("#likecancel").show();
@@ -150,7 +165,7 @@
 					data : {
 						boardno : "${no}",
 						memberid : "${id}",
-						likecount : "${result[0].likeit}"
+						likecount : "${result.likeit}"
 					},
 					success : function(resp) {
 						$("#like").show();

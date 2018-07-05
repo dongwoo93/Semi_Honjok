@@ -28,7 +28,8 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
 <link rel="stylesheet" href="../boardcss/boardwritecss.css"
 	type="text/css">
-
+<!-- include summernote-ko-KR -->
+<script src="summernote-master/lang/summernote-ko-KR.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -383,38 +384,6 @@
 					</select>
 				</div>
 			</div>
-			<script>
-				function categoryChange(e) {
-					var sel2_꿀팁 = [ "청소", "라이프", "경제적" ];
-					var sel2_요리 = [ "초간단요리", "일반요리"];
-					var sel2_인테리어 = [ "가구", "소품" ];
-					var sel2_여행 = [ "국내여행", "해외여행" ];
-					var sel2_맛집 = [ "서울", "인천경기", "충청도", "경상도", "전라도" ];
-					var sel2_쇼핑몰 = [ "쇼핑" ];
-					var target = document.getElementById("sel2");
-
-					if (e.value == "꿀팁")
-						var d = sel2_꿀팁;
-					else if (e.value == "요리")
-						var d = sel2_요리;
-					else if (e.value == "인테리어")
-						var d = sel2_인테리어;
-					else if (e.value == "여행")
-						var d = sel2_여행;
-					else if (e.value == "맛집")
-						var d = sel2_맛집;
-					else if (e.value == "쇼핑몰")
-						var d = sel2_쇼핑몰;
-					target.options.length = 0;
-
-					for (x in d) {
-						var opt = document.createElement("option");
-						opt.value = d[x];
-						opt.innerHTML = d[x];
-						target.appendChild(opt);
-					}
-				}
-			</script>
 			
 				<div class="form-group col-md-8">
 					<label for="formGroupExampleInput">제목</label> <input type="text"
@@ -458,6 +427,38 @@
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 			<script>
+			
+			function categoryChange(e) {
+				var sel2_꿀팁 = [ "청소", "라이프", "경제적" ];
+				var sel2_요리 = [ "초간단요리", "일반요리"];
+				var sel2_인테리어 = [ "가구", "소품" ];
+				var sel2_여행 = [ "국내여행", "해외여행" ];
+				var sel2_맛집 = [ "서울", "인천경기", "충청도", "경상도", "전라도" ];
+				var sel2_쇼핑몰 = [ "쇼핑" ];
+				var target = document.getElementById("sel2");
+
+				if (e.value == "꿀팁")
+					var d = sel2_꿀팁;
+				else if (e.value == "요리")
+					var d = sel2_요리;
+				else if (e.value == "인테리어")
+					var d = sel2_인테리어;
+				else if (e.value == "여행")
+					var d = sel2_여행;
+				else if (e.value == "맛집")
+					var d = sel2_맛집;
+				else if (e.value == "쇼핑몰")
+					var d = sel2_쇼핑몰;
+				target.options.length = 0;
+
+				for (x in d) {
+					var opt = document.createElement("option");
+					opt.value = d[x];
+					opt.innerHTML = d[x];
+					target.appendChild(opt);
+				}
+			}
+			
 				// 마커를 담을 배열입니다
 				var markers = [];
 				var num = 0;
@@ -819,6 +820,7 @@
 	<script>
 			$('#summernote').summernote({
 				placeholder : '내용',
+				lang: 'ko-KR',
 				//width : 1500,
 				//height : 300, // set editor height
 				minHeight : 300, // set minimum height of editor
@@ -905,7 +907,7 @@
 			}
 			
 			document.getElementById("cancelbt").onclick = function() {
-				location.href = "../hollo.com"
+				history.back();
 			}
 			
 			document.getElementById("writebt").onclick = function() {

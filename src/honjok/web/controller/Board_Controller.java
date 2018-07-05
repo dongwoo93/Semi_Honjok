@@ -162,17 +162,16 @@ public class Board_Controller extends HttpServlet {
     				String systemName = mr.getFilesystemName(paramName);
     				
     				if(originalName != null) {
-    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));
-    					
+    					result2 = file.uploadFile(new UserFilesDTO(postSeq, originalName, systemName));	
     				}
     			}
     			
-    			if(result > 0 && result2 > 0) {
+    			
     				isRedirect = true;
     				dst = "boardView.freeb?cat="+category;
-    			}else {
-    				dst = "error.jsp";
-    			}
+    			
+    				
+    			
 				
 				
 			}else if(command.equals("/Board_Controller.freeb")) {
@@ -281,6 +280,7 @@ public class Board_Controller extends HttpServlet {
 				
 				BoardUserDTO result = dao.modifyRead(articleseq);
 				request.setAttribute("result", result);
+				request.setAttribute("no", seq);
 				isRedirect = false;
 				dst = "community/usermodify.jsp";
 			}else if(command.equals("/fixcomplete.freeb")) {
@@ -288,26 +288,24 @@ public class Board_Controller extends HttpServlet {
 				BoardUserDTO dto = new BoardUserDTO();
 				
 				String article_seq = request.getParameter("seq");
+				System.out.println(article_seq);
 				int articleseq = Integer.parseInt(article_seq);
-				String categoryseq = request.getParameter("cat_seq");
-				int cat_seq = Integer.parseInt(categoryseq);
 				
 				String header = request.getParameter("header");
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
-				String category = request.getParameter("category");
+				String category = request.getParameter("cat");
 				
 				dto.setSeq(articleseq);
-				dto.setCat_seq(cat_seq);
 				dto.setHeader(header);
 				dto.setTitle(title);
 				dto.setContents(contents);
 				dto.setCategory(category);
 				
 				int result = dao.modifyData(dto);
-				request.setAttribute("result", result);
+				
 				isRedirect = false;
-				dst = "community/modifyResult";
+				dst = "Board_Controller.freeb";
 			}else if(command.equals("/delete.freeb")) {
 				String articleseq = request.getParameter("no");
 				String category = request.getParameter("cat");

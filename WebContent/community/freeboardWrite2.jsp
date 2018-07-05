@@ -51,7 +51,7 @@
 			<textarea id="summernote" name="summernote"></textarea>
 			</div>
 			<div id=filediv>
-			<input type="file" id="file"><input type="hidden" id="plus"><br>
+			<input type="file" name="file0" id="file"><input type="hidden" id="plus"><br>
 			</div>
 			<input type="hidden" id="imgBackUp" name="contentsImg">
 			
