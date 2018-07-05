@@ -312,17 +312,63 @@
 						<div class="col-lg-4" id="card1">
 							<div class="card" style="border: none">
 								<a href="selectView.tip?seq=${tmp.seq}">
-								<img class="card-img-top" src="전기포트.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								<img class="card-img-top" src="청소기.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
 								</a>
 								<div class="card-body" style="width: 318px; height: 180px;">
-									<p class="item-name"> 쿠첸 프리미엄 전기포트 </p>
-									<p class="item-price"> 47,200원</p>
-									<p class="item-shortdesc">가열과 보온을 동시에! 전국 안심서비스 국민포트</p>	
+									<p class="item-name"> 일렉트로룩스 ZB5106 </p>
+									<p class="item-price"> 50,400원</p>
+									<p class="item-shortdesc">좁은 공간의 청소에 적합한 핸디 청소기</p>	
 								</div>
 							</div>
 							<br>
 							<br>
 						</div>
+						
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="전신거울.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 아이홈가구 허니 대형 와이드 전신거울 </p>
+									<p class="item-price"> 36,600원</p>
+									<p class="item-shortdesc">외출전 필수점검, 머리부터 발끝까지</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
+						
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="테이블.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 싱글라이프 접이식 테이블 </p>
+									<p class="item-price"> 17,200원</p>
+									<p class="item-shortdesc">개인, 혼족 다용도 테이블</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
+						
+						<div class="col-lg-4" id="card1">
+							<div class="card" style="border: none">
+								<a href="selectView.tip?seq=${tmp.seq}">
+								<img class="card-img-top" src="라면냄비.jpg" alt="Card image cap" style="border: 1px solid #e3e3e3;">
+								</a>
+								<div class="card-body" style="width: 318px; height: 180px;">
+									<p class="item-name"> 락앤락 스피드쿡 라면냄비 </p>
+									<p class="item-price"> 17,800원 </p>
+									<p class="item-shortdesc">락앤락 공식 위생적인 스텐 냄비</p>	
+								</div>
+							</div>
+							<br>
+							<br>
+						</div>
+						
 							
 					
 					
