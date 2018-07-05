@@ -774,13 +774,12 @@ public class BoardDAO {
 	}
 	public int modifyData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "update board_user set user_title=?, user_contents=?, user_header=? where user_category=? and user_cat_seq=?";
+		String sql = "update board_user set user_title=?, user_contents=?, user_header=? where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, dto.getTitle());
 		pstat.setString(2, dto.getContents());
 		pstat.setString(3, dto.getHeader());
-		pstat.setString(4, dto.getCategory());
-		pstat.setInt(5, dto.getSeq());
+		pstat.setInt(4, dto.getSeq());
 
 		int result = pstat.executeUpdate();
 
@@ -791,15 +790,18 @@ public class BoardDAO {
 	}
 	public BoardUserDTO modifyRead(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select user_title, user_contents from board_user where user_seq=?";
+		String sql = "select user_title, user_header, user_contents, user_category, user_viewcount from board_user where user_seq=?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, seq);
 		ResultSet rs = pstat.executeQuery();
 
 		BoardUserDTO dto = new BoardUserDTO();
 		if(rs.next()) {
+			dto.setCategory(rs.getString("user_category"));
+			dto.setHeader(rs.getString("user_header"));
 			dto.setTitle(rs.getString("user_title"));
 			dto.setContents(rs.getString("user_contents"));
+			dto.setViewcount(rs.getInt("user_viewcount"));
 		}
 		rs.close();
 		pstat.close();
