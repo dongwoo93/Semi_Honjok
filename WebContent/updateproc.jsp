@@ -6,13 +6,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script>
-function loca() {
-	location.href = "../hollo.com";
+if(${result}>0){
+	alert("회원정보수정완료!");
+	location.href="mypage.jsp";
+} else {
+    alert("다시확인해주세요");
+    location.href="memberupdate.jsp";
 }
 </script>
+
 </head>
-<body onload="loca()">
+<body>
+
+
+
+
 </body>
 </html>
-
-
