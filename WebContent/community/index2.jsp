@@ -44,14 +44,15 @@
 			</div>
 		</div>
 	</div>
-	<div>
-		<h1 style="margin-top: 30px; margin-left: 330px; margin-bottom: 20px">Latest
+	
+		<h1 style="margin-top: 30px; margin-left: 265px; margin-bottom: 20px">Latest
 			Contents</h1>
+			<div class="col-md-11" id="card-wrapper">
 			<div class="card-deck">
 			<c:choose>
 			<c:when test="${result.size() > 0}">
 			<c:forEach var="latest" items="${result}" begin="0" end="3" step="1" varStatus="status">
-			<div class="col-sm-2" id="card1">
+			<div class="col-md-3" id="card1">
 				<div class="card">
 				<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">
 				<img class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}" alt="Card image cap">
@@ -62,7 +63,7 @@
 						<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a>
 						</h5>
 						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
+							<small class="text-muted">${latest.writedate}</small>
 						</p>
 					</div>
 				</div>
@@ -76,7 +77,7 @@
 			<c:choose>
 			<c:when test="${result.size() > 0}">
 			<c:forEach var="latest" items="${result}" begin="4" end="7" step="1" varStatus="status">
-			<div class="col-sm-2" id="card1">
+			<div class="col-md-3" id="card1">
 				<div class="card">
 				<a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">
 				<img class="card-img-top" src="files/${thumbnail[status.index].thum_sysFileName}" alt="Card image cap">

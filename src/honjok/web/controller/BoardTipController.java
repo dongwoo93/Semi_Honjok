@@ -124,7 +124,7 @@ public class BoardTipController extends HttpServlet {
 					File file = new File(realPath + "/"+ systemFileName);
 					System.out.println("들어옴 2");
 					System.out.println(file);
-					if(file.exists() ){
+					if(file.exists()){
 						System.out.println("들어옴 3");
 						if(file.delete()){
 							System.out.println("들어옴 4");
@@ -153,6 +153,7 @@ public class BoardTipController extends HttpServlet {
 						}
 						System.out.println("들어옴 6");
 						int result = dao.deleteData(seq);
+						System.out.println(result);
 					}else{}
 
 				}
@@ -218,6 +219,9 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", thumbnail);
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
+			}else if(command.equals("/write.tip")) {
+				isRedirect = false;
+				dst = "board/boardtipWrite2.jsp";	
 			}
 
 

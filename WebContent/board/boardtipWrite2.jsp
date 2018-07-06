@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+
 <%@ include file="../include/top.jsp" %>
 
 <link
@@ -7,346 +8,43 @@
 	rel="stylesheet">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
-
-<link rel="stylesheet" href="boardcss/boardwritecss.css" type="text/css">
+	
+<!-- include summernote-ko-KR -->
 <script src="dist/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="boardcss/map.css" type="text/css">
-<style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
-}
 
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
-
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 250px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background:
-		url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -10px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -56px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -102px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -148px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -194px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -240px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -286px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -332px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -378px;
-}
-
-#placesList .item .marker_10 {
-	background-position: 0 -423px;
-}
-
-#placesList .item .marker_11 {
-	background-position: 0 -470px;
-}
-
-#placesList .item .marker_12 {
-	background-position: 0 -516px;
-}
-
-#placesList .item .marker_13 {
-	background-position: 0 -562px;
-}
-
-#placesList .item .marker_14 {
-	background-position: 0 -608px;
-}
-
-#placesList .item .marker_15 {
-	background-position: 0 -654px;
-}
-
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-
-.wrap {
-	position: absolute;
-	left: 0;
-	bottom: 40px;
-	width: 288px;
-	height: 132px;
-	margin-left: -144px;
-	text-align: left;
-	overflow: hidden;
-	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	line-height: 1.5;
-	padding: 5px;
-}
-
-.wrap * {
-	padding: 0;
-	margin: 0;
-}
-
-.wrap .info {
-	width: 286px;
-	height: 120px;
-	border-radius: 5px;
-	border-bottom: 2px solid #ccc;
-	border-right: 1px solid #ccc;
-	overflow: hidden;
-	background: #fff;
-}
-
-.wrap .info:nth-child(1) {
-	border: 0;
-	box-shadow: 0px 1px 2px #888;
-}
-
-.info .title {
-	padding: 5px 0 0 10px;
-	height: 30px;
-	background: #eee;
-	border-bottom: 1px solid #ddd;
-	font-size: 18px;
-	font-weight: bold;
-}
-
-.info .close {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: #888;
-	width: 17px;
-	height: 17px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-}
-
-.info .close:hover {
-	cursor: pointer;
-}
-
-.info .body {
-	position: relative;
-	overflow: hidden;
-}
-
-.info .desc {
-	position: relative;
-	margin: 6px 0 0 5px;
-	height: 75px;
-}
-
-.desc .ellipsis {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.desc .jibun {
-	font-size: 11px;
-	color: #888;
-	margin-top: -2px;
-}
-
-.info .img {
-	position: absolute;
-	top: 6px;
-	left: 5px;
-	width: 73px;
-	height: 71px;
-	border: 1px solid #ddd;
-	color: #888;
-	overflow: hidden;
-}
-
-.info:after {
-	content: '';
-	position: absolute;
-	margin-left: -12px;
-	left: 50%;
-	bottom: 0;
-	width: 22px;
-	height: 12px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-}
-
-.info .link {
-	color: #5085BB;
-}
-
-#category {
-	font-size: 4px;
-}
-</style>
-
-	<form id="postform" method="post" enctype="multipart/form-data">
-		<div class="container" style="padding-top: 6%;">
-				<input type="hidden" name="seq" value="${result.seq}">
-				<div class="form-row" style="padding-left: 14px;">
-					<div class="form-group col-md-3">
-						<label for="sel1">카테고리</label> <select class="form-control"
-							id="sel1" name="category" onchange="categoryChange(this)">
-							<option value="${result.category}">${result.category}</option>
-							<option value="꿀팁">꿀팁</option>
-							<option value="요리">요리</option>
-							<option value="인테리어">인테리어</option>
-							<option value="여행">여행</option>
-							<option value="맛집">맛집</option>
-							<option value="쇼핑몰">쇼핑몰</option>
-						</select>
-					</div>
-					<div class="form-group col-md-3">
-						<label for="sel2">말머리</label> <select class="form-control"
-							id="sel2" name="subject">
-							<option value="${result.subject}">${result.subject}</option>
-						</select>
-					</div>
-
+<form id="postform" method="post" enctype="multipart/form-data" >
+		<div class="container" style="padding-top:6%;">
+			<div class="form-row" style="padding-left: 14px;">
+				<div class="form-group col-md-3">
+					<label for="sel1">카테고리</label> <select class="form-control"
+						id="sel1" name="category" onchange="categoryChange(this)">
+						<option>카테고리를 선택하세요</option>
+						<option value="꿀팁">꿀팁</option>
+						<option value="요리">요리</option>
+						<option value="인테리어">인테리어</option>
+						<option value="여행">여행</option>
+						<option value="맛집">맛집</option>
+						<option value="쇼핑몰">쇼핑몰</option>
+					</select>
 				</div>
-
+				<div class="form-group col-md-3">
+					<label for="sel2">말머리</label> <select class="form-control"
+						id="sel2" name="subject">
+						<option>말머리를 선택하세요</option>
+					</select>
+				</div>
+			</div>
+			
 				<div class="form-group col-md-8">
 					<label for="formGroupExampleInput">제목</label> <input type="text"
-						class="form-control" id="title" name="title" placeholder="제목"
-						value="${result.title}">
+						class="form-control" id="title" name="title" placeholder="제목">
 				</div>
-
 				<div class="form-group col-md-12">
-					<textarea id="summernote" name="summernote">${result.contents}</textarea>
-				</div>
-			
+ 
+          <textarea id="summernote" name="summernote"></textarea>
+ 
+        </div>
 
 			<div class="form-group col-md-8">
 				<label for="formGroupExampleInput">&#9660; 썸네일 이미지 첨부(*필수항목)</label><br>
@@ -354,12 +52,10 @@
 			</div><br>
 			
 			<input type="hidden" id="imgBackUp" name="contentsImg">
+			 
 
-			<div class="col-md-3" id="btdiv2">
-				<button type="button" class="btn btn-outline-success" id="mapupdate" style="margin-bottom:20px;">지도
-					갱신</button>
-			</div>
-			<div id="mapdiv" class="map_wrap" style="display: none;">
+
+			<div class="map_wrap">
 				<div id="map"
 					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
@@ -381,6 +77,7 @@
 			
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
+				
 			<script>
 			
 			function categoryChange(e) {
@@ -413,7 +110,7 @@
 					target.appendChild(opt);
 				}
 			}
-			var runMap = function() {
+			
 				// 마커를 담을 배열입니다
 				var markers = [];
 				var num = 0;
@@ -754,8 +451,6 @@
 						el.removeChild(el.lastChild);
 					}
 				}
-			}
-				
 			</script>
 
 			<input id="place_name" type="hidden" name="places.place_name">
@@ -769,7 +464,7 @@
 			<div class="col-sm-12" id="btdiv">
 				<!-- <button type="button" class="btn btn-primary" id="submit">Submit</button> -->
 				<!-- <input type="button" class="btn btn-primary" value="button"> -->
-				<button type="button" class="btn btn-primary" id="writebt">수정</button>
+				<button type="button" class="btn btn-primary" id="writebt">작성</button>
 				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
 			</div>
 		</div>
@@ -789,9 +484,18 @@
 		                sendFile(files[0], this);
 		            },
 		            onMediaDelete : function(target) {
+	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
 	            	}
+	            	/* onMediaDelete : function($target, editor, $editable) {
+	                    alert($target.context.dataset.filename);         
+	                    target.remove();
+	                } */
 		        }
+				
+			/* codemirror: { // codemirror options
+		    theme: 'paper'
+		  } */
 					  
 			});
 			
@@ -870,15 +574,11 @@
 						$("#imgBackUp").val(JSON.stringify(sysFileList));
 					}
 					$('#writebt').attr('disabled', true);
-					makeFunction("notemodify.tw");
+					makeFunction("editor.tw");
 				}
 			
 			}
-			$("#mapupdate").click(function() {
-				 $("#mapdiv").show();
-				 runMap();
-			})
 			
 	</script>
-<link rel="stylesheet" href="boardcss/boardwritecss.css" type="text/css">
+	<link rel="stylesheet" href="boardcss/boardwritecss.css" type="text/css">
 	<%@ include file="../include/bottom.jsp"%>

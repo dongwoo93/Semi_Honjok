@@ -67,7 +67,7 @@
 </div>
 <script>
 	$("#writebt").click(function(){
-		$(location).attr('href','board/boardtipWrite.jsp');
+		$(location).attr('href','write.tip');
 	})
 	$("#sicon").click(function(){
 		search();

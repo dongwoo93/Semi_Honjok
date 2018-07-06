@@ -17,6 +17,17 @@ public class BoardUserDTO {
 	public BoardUserDTO() {
 		
 	}
+	
+	
+	
+	public BoardUserDTO(int seq, String title, String contents, String header) {
+		super();
+		this.seq = seq;
+		this.title = title;
+		this.contents = contents;
+		this.header = header;
+	}
+
 
 
 	public BoardUserDTO(int seq, int cat_seq, String category, String header, String title, String contents,
