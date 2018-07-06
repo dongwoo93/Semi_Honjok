@@ -79,7 +79,6 @@ public class MypageController extends HttpServlet {
 				
 			}
 
-
 			if (isRedirect) {
 				response.sendRedirect(dst);
 			} else {				

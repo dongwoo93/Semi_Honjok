@@ -14,6 +14,11 @@
 	<script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+	
 <title>회원정보수정</title>
 
 <script type="text/javascript">
@@ -141,61 +146,73 @@ $(document).ready(function() {
 
 <style>
 
+ body {		
+ 	font-family: 'Noto Sans KR', sans-serif;
+ 	font-size: 16px;		
+ }
 
+ #title {
+ 	background-color:#76b3e3; 
+ 	margin-bottom: 20px; 
+	margin-top: 100px;
+	color:#ffffff;
+	font-family: 'Hi Melody', cursive;
+	font-size: 25px;
+ }
 
+ 
+ 
 </style>
 
 
 </head>
 
 <body>
-	<div class="container">
-		<h2 class="text-center">회원 정보 수정하기</h2>
+	<div class="container" style="max-width: 800px;">
+		<p id="title">회원 정보 수정</p>
 
 		<form id="updateForm" action="memberupdate.mem" method="post">
 
 			<table class="table table-striped">
 				<tr>
-					<td>아이디</td>
+					<th>아이디</th>
 					<td id="id" name="id">${result[0].id}</td>
 
 				</tr>
 
 				<tr>
 
-					<td>패스워드</td>
+					<th style="vertical-align: middle;">비밀번호</th>
 					<td><input type="password" id="pw" name="pw"
-						class="form-control"></td>
+						class="form-control" ></td>
 				</tr>
 				<tr>
-					<td>이름</td>
+					<th style="vertical-align: middle;">이름</th>
 					<td><input type=text id="name" name="name"
 						class="form-control"></td>
 
 				</tr>
 				<tr>
 
-					<td>전화</td>
+					<th style="vertical-align: middle;">전화</th>
 					<td><input type=text id="phone" name="phone"
 						class="form-control"></td>
 				</tr>
 
 				<tr>
-					<td>이메일</td>
+					<th style="vertical-align: middle;">이메일</th>
 					<td><input type=text id="email" name="email"
 						class="form-control"></td>
 				</tr>
 
 
 				<tr>
-					<td>집주소</td>
+					<th>집주소</th>
 					<td colspan="3"><input type="button" class="form-control"
-							onclick="sample2_execDaumPostcode()" value="우편번호 찾기"> <input
-							type="text" class="form-control" id="sample2_postcode"
-							placeholder="우편번호" name=zipcode> <input type="text"
-							class="form-control" id="sample2_address" placeholder="한글주소"
-							name=address> <input type="text" class=" form-control "
-							id="sample2_addressEnglish" placeholder="영문주소 "></td>
+							onclick="sample2_execDaumPostcode()" value="우편번호 찾기" style="cursor: pointer;"> 
+							<input type="text" class="form-control" id="sample2_postcode" placeholder="우편번호" name=zipcode readonly="readonly"> 
+							<input type="text" class="form-control" id="sample2_address" placeholder="한글주소" name=address readonly="readonly"> 
+							<input type="text" class="form-control" id="sample2_addressEnglish" placeholder="영문주소 " readonly="readonly"></td>
 				
 				
 				<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
@@ -277,8 +294,8 @@ $(document).ready(function() {
                // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
                // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
                function initLayerPosition() {
-                  var width = 300; //우편번호서비스가 들어갈 element의 width
-                  var height = 400; //우편번호서비스가 들어갈 element의 height
+                  var width = 600; //우편번호서비스가 들어갈 element의 width
+                  var height = 500; //우편번호서비스가 들어갈 element의 height
                   var borderWidth = 5; //샘플에서 사용하는 border의 두께
 
                   // 위에서 선언한 값들을 실제 element에 넣는다.
@@ -287,7 +304,7 @@ $(document).ready(function() {
                   element_layer.style.border = borderWidth + 'px solid';
                   // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
                   element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width) / 2 - borderWidth)
-                        + 'px';
+                        + 'px';z
                   element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height) / 2 - borderWidth)
                         + 'px';
                }
@@ -298,7 +315,7 @@ $(document).ready(function() {
 					<td colspan="2" class="text-center"><input type="submit"
 						value="수정하기" class="btn btn-outline-dark">
 						<button type="button" class="btn btn-outline-dark"
-							onclick="location.href='myinfo.jsp'">회원 정보 보기</button></td>
+							onclick="location.href='mypage.jsp'">마이페이지</button></td>
 				</tr>
 			</table>
 		</form>

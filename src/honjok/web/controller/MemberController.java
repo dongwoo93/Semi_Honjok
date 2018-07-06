@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import honjok.web.dao.MemberDAO;
+import honjok.web.dao.MypageDAO;
 import honjok.web.dto.MemberDTO;
 
 
@@ -73,17 +74,34 @@ public class MemberController extends HttpServlet {
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
 
-				int result = dao.deleteData(id,pw);
-				request.setAttribute("result", result);
-		
+				boolean b = dao.idpwCheck(id, pw);
 				
-				isRedirect = false;
-				if (result>0) {
-					dst ="memberoutproc.jsp";
+				System.out.println("memberout 들어옴");
+				
+				if(b) {
+					int result = dao.deleteData(id,pw);
+					request.setAttribute("result", result);
+			
 					
-				} else {
-
+					isRedirect = false;
+					
+					if (result>0) {
+						request.getSession().invalidate();
+						dst ="memberoutproc.jsp";
+						
+					} else {
+				  
+					}
+				}else {
+					  System.out.println("아이디 비번 다른경우 들어옴");
+						int num = 1;
+						request.setAttribute("num", num);
+						isRedirect = false;
+						dst = "memberout.jsp";
 				}
+				
+				
+				
 			}
 
 
