@@ -54,7 +54,8 @@
 				<c:choose>
 				<c:when test="${sessionScope.loginId == 'admin'}">
 				<tr style="background-color:gray">
-					<td id="no">zzzzzzzz</td>
+					<td id="check"><input type="checkbox" name="allcheck"></td>
+					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
 					<td id="writer">작성자</td>
@@ -67,6 +68,7 @@
 					<c:forEach var="item2" items="${result2}">
 					<tbody id="notice">
 				<tr>
+					<td id="noticecheck"><input type="checkbox" name="nocheck">
 					<td id="noticeno">${item2.seq}</td>
 					<td id="noticeheader"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
@@ -87,6 +89,7 @@
 					<c:forEach var="item" items="${result}">
 						<tbody id="body_a">
 							<tr>
+								<td id="articlecheck"><input type="checkbox" name="articlecheck">
 								<td id="no">${item.seq}
 								<td id="header">${item.header}
 								<td id="title"><a
@@ -108,11 +111,7 @@
 					</tbody>
 				</c:otherwise>
 			</c:choose>
-				
-				
-				
-				
-				
+							
 				</c:when>
 				<c:otherwise>
 				<tr style="background-color:gray">
