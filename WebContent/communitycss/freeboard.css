@@ -198,7 +198,11 @@ a:active {
 }
 
 .table td, .table th {
-    padding: .70rem;
+
+    padding: .68rem;
+
     vertical-align: top;
+
     border-top: 1px solid #dee2e6;
+
 }

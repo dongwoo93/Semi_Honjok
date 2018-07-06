@@ -18,19 +18,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 
-@WebServlet("/navertest")
-public class navertest extends HttpServlet {
+@WebServlet("/NaverLogin")
+public class NaverLogin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 String requestURI = request.getRequestURI();
 			System.out.println(requestURI);
 		
-		    String clientId = "0QWAu0ecnrYTQlD9z0JZ";//¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌµð°ª";
-		    String clientSecret = "cAOyrtdthX";//¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ½ÃÅ©¸´°ª";
+		    String clientId = "0QWAu0ecnrYTQlD9z0JZ";//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½";
+		    String clientSecret = "cAOyrtdthX";//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½";
 		    String code = request.getParameter("code");
 		    String state = request.getParameter("state");
-		    String redirectURI = URLEncoder.encode("http://192.168.20.9:8080/Semi_Honjok/navertest", "UTF-8");
+		    String redirectURI = URLEncoder.encode("http://14.38.139.185:8080/SemiProject/NaverLogin", "UTF-8");
 		    String apiURL;
 		    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 		    apiURL += "client_id=" + clientId;
@@ -48,9 +48,9 @@ String requestURI = request.getRequestURI();
 		      int responseCode = con.getResponseCode();
 		      BufferedReader br;
 		      System.out.print("responseCode="+responseCode);
-		      if(responseCode==200) { // Á¤»ó È£Ãâ
+		      if(responseCode==200) { // ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 		        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		      } else {  // ¿¡·¯ ¹ß»ý
+		      } else {  // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
 		        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 		      }
 		      String inputLine;
