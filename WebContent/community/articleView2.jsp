@@ -93,7 +93,7 @@ var num = 1;
 </script>
 <div style="height: 100px"></div>
 	<div class="container">
-		<form method=post action="comment.freeb" id=formid>
+		
 			<table class="table">
 				<tbody class="head" id="head">
 					<tr>
@@ -167,6 +167,15 @@ var num = 1;
 						</td>
 					</tr>
 					</c:when>
+					<c:when test="${id == 'admin'}">
+					<tr align=right>
+						<td colspan=4 height=20px align=right>
+						<input type="hidden" name="hiddenheader" value="${result[0].header}">
+							<button type="button" id=delete2>삭제</button>
+							<button type="button" id=tolist2>목록</button>
+						</td>
+					</tr>
+					</c:when>
 					<c:otherwise>
 					<tr align=right>
 					<td colspan=4 height=20px><button type="button" id=tolist>목록</button></td>
@@ -178,28 +187,56 @@ var num = 1;
 					<c:choose>
 						<c:when test="${result2.size() > 0}">
 							<c:forEach var="result2" items="${result2}">
-								<tr>
-								
+
+							<c:choose>
+							<c:when test="${id == 'admin'}">
+							<tr>
 									<td width=100px height=20px>${result2.comment_writer}</td>
 									<td>${result2.comment_content}</td>
 									<td id="delbtn" width=180px><b id="date">${result2.comment_wridate}</b>
-									<%-- <c:when test="${sessionScope.loginId==id}"> --%>
+									
+									
 									<script>
-                 	 				$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
+										$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
+	                 	 				document.getElementById(num++).onclick = function() {
+	                 	                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+	                 	                  }
                   					</script>
-                  					<%-- </c:when> --%>
-									</td>
+                  					</td>
+									
 		
 								</tr>
-								<script>
-                  document.getElementById(num).onclick = function() {
-                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
-                  }
-                  num++;
-            </script>
+							</c:when>
+							<c:when test="${result2.comment_writer == id}">
+							<tr>
+									<td width=100px height=20px>${result2.comment_writer}</td>
+									<td>${result2.comment_content}</td>
+									<td id="delbtn" width=180px><b id="date">${result2.comment_wridate}</b>
+									
+									
+									<script>
+										$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
+	                 	 				document.getElementById(num++).onclick = function() {
+	                 	                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+	                 	                  }
+                  					</script>
+                  					</td>
+									
+		
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td width=100px height=20px>${result2.comment_writer}</td>
+									<td>${result2.comment_content}</td>
+									<td width=180px><b id="date">${result2.comment_wridate}</b></td>
+								</tr>
+							</c:otherwise>
+							</c:choose>	
 							</c:forEach>
 						</c:when>
 					</c:choose>
+					<form method=post action="comment.freeb" id=formid>
 					<tr>
 						<th width=80px height=40px>${sessionScope.loginId}</th>
 
@@ -223,6 +260,15 @@ var num = 1;
 						</td>
 					</tr>
 					</c:when>
+					<c:when test="${id == 'admin'}">
+					<tr align=right>
+						<td colspan=4 height=20px align=right>
+						<input type="hidden" name="hiddenheader" value="${result[0].header}">
+							<button type="button" id=delete2>삭제</button>
+							<button type="button" id=tolist2>목록</button>
+						</td>
+					</tr>
+					</c:when>
 					<c:otherwise>
 					<tr align=right>
 					<td colspan=4 height=20px><button type="button" id=tolist2>목록</button></td>
@@ -232,7 +278,6 @@ var num = 1;
 
 				</tbody>
 			</table>
-
 		</form>
 	</div>
 <link rel="stylesheet" href="communitycss/articleView.css">
