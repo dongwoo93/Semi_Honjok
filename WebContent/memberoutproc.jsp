@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원탈퇴경고창</title>
 <script>
+
 if (${result>0}) {
 	alert("그동안 Hollo사이트를 이용해주셔서 감사합니다. 회원탈퇴되었습니다.")
 	location.href="hollo.com";

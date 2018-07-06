@@ -7,16 +7,22 @@
 <html>
 <meta charset="UTF-8">
 <title>내정보</title>
-<link
+<!-- <link
 	href="//netdna.bootstrapcdn.com/twitter-bootstrap/4.1.0/css/bootstrap-combined.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	rel="stylesheet" id="bootstrap-css"> -->
+<!-- <script
+	src="//netdna.bootstrapcdn.com/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+
+
 
 <style>
 .panel {
@@ -31,7 +37,7 @@
 }
 
 .panel-primary>.panel-heading {
-	background-color: #803232;
+	background-color: #76b3e3;
 	border-color: #803232;
 	color: #FFFFFF;
 }
@@ -41,7 +47,8 @@
 	border-top-right-radius: 3px;
 	padding: 10px 15px;
 	max-width: 800px;
-	margin: 50px auto;
+	margin: 0px auto;
+	margin-top: 50px;
 }
 
 .panel-title {
@@ -78,9 +85,9 @@
 	cursor: pointer;
 }
 
- .table-user-information>tbody>tr {
+/*  .table-user-information>tbody>tr {
 	border-top: 1px solid rgb(221, 221, 221);
-}
+} */
 
 /* .table-user-information>tbody>tr:first-child {
 	border-top: 0;
@@ -90,10 +97,38 @@
 	border-top: 0;
 } */
 
-.
+
 /* span6:stongid {
 	font-size: 16px;
 } */
+
+ body {
+ 	font-family: 'Hi Melody', cursive;
+ 	font-size: 25px;
+ }
+
+ tr {
+ 	height: 60px;
+ 	vertical-align: baseline;
+ }
+ 
+ th {
+ 	width: 140px;
+ 	vertical-align: baseline;
+ }
+ 
+ .t1 {
+ 	border-top: 1px;
+ }
+ 
+ .panel-body {
+ 	background-image: url('포스트잇1.png');
+    background-size: cover;
+    height: 660px;
+    margin: 0px auto;
+    margin-top: 15px;
+ }
+
 </style>
 </head>
 
@@ -106,53 +141,62 @@
 			</div>
 			<div class="panel-body">
 				<div class="row-fluid">
-					<div class="span3" align=center>
+				<!-- 	<div class="span3" align=center>
 						<i class="fa fa-child" style="font-size: 140px;"></i>
 
-					</div>
+					</div> -->
 					<div class="span6">
-						<strong id="id" name="id">${result[0].id}</strong><br
-							data-brackets-id='3872'>
 						<table
-							class="table table-condensed table-responsive table-user-information">
+							style="margin-left: 120px; margin-top: 140px;">
 							<tbody>
 								<tr>
-									<td>이름</td>
-									<td id="name" name="name">${result[0].name}</td>
+									<th>아이디</th>
+									<td id="id" name="id">${result[0].id}</td>
 								</tr>
 								<tr>
-									<td>전화번호</td>
+									<th>이름</th>
+									<td id="name" name="name" >${result[0].name}</td>
+								</tr>
+								<tr>
+									<th>성별</th>
+									<td id="gender" name="gender" >${result[0].gender}</td>
+								</tr>
+								<tr>
+									<th>전화번호</th>
 									<td id="phone" name="phone">${result[0].phone}</td>
 								</tr>
 								<tr>
-									<td>이메일</td>
+									<th>이메일</th>
 									<td id="email" name="email">${result[0].email}</td>
 								</tr>
 								<tr>
-									<td>주소</td>
-									<td id="zipcod" name="zipcode">${result[0].zipcode}</td>
-									<td id="address" name="address">${result[0].address}</td>
+									<th>우편번호</th>
+									<td id="zipcode" name="zipcode">${result[0].zipcode}</td>
 								</tr>
 								<tr>
-									<td>성별</td>
-									<td id="gender" name="gender">${result[0].gender}</td>
-
+									<th>주소</th>
+									<td id="address" name="address">${result[0].address}</td>
 								</tr>
+								
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 			<div class="panel-footer">
-
+				<a href="memberupdate.mp">
 				<button class="btn btn-outline-dark" type="button"
 					data-toggle="tooltip" data-original-title="Edit this user">
 					<i class="fa fa-pencil-square-o"></i> 회원정보수정
 				</button>
+				</a>
+				
+				<a href="mypage.jsp">
 				<button class="btn btn-outline-dark" type="button"
 					data-toggle="tooltip" data-original-title="Remove this user">
 					<i class="fa fa-tasks"></i> 마이페이지
 				</button>
+				</a>
 
 			</div>
 		</div>
