@@ -111,16 +111,14 @@ hr {
 							<label class="control-label">패스워드</label> <input maxlength="50"
 								type="password" id="pw" name="pw" required="required"
 								class="form-control" placeholder="패스워드를 입력해주세요"> <br>
-									
-							
-							
+								<button id="btn" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
 						</div>
 						</c:when>
 						<c:otherwise>
 						<div>그냥 탈퇴될거임</div>
 						</c:otherwise>
 						</c:choose>
-						<button id="btn" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
+						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
 					</div>
 				</div>
 			</div>
@@ -128,14 +126,21 @@ hr {
 	</div>
 	
 	<script>
-						$("#btn").click(function () {
-							var agreement = $(check).is(":checked");
-							if(agreement) {
-								$("#form1").submit();
-							}else {
-								alert("약관에 동의하지 않으시면 탈퇴할수 없습니다.")
-							}
-						})
+	if(${result.portal} != null) {
+		$("#btn").click(function () {
+			var agreement = $(check).is(":checked");
+			if(agreement) {
+				$("#form1").submit();
+			}else {
+				alert("약관에 동의하지 않으시면 탈퇴할수 없습니다.")
+			}
+		})
+	}else {
+		$("#btn2").click(function () {
+			$(location).attr("href", "memberout.mem");
+		})
+	}
+						
 						
 						
 						
