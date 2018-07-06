@@ -7,11 +7,12 @@
 		<table class="table table-hover">
 			<thead class="head" id="head">
 				<tr>
-					<td colspan=7>
+					<td colspan=8>
 					<c:choose>
 					 <c:when test="${cat eq 'free'}">
 					 <div class="headSelect">
 					 <a href="boardView.freeb?cat=free" id="freeboard" name="freeboard">자유게시판</a>
+					 <input id="hiddenCategory" type="hidden" value="free">
 							<a href="boardView.freeb?cat=free"><button class="header" type="button" id="all">전체</button></a>
 							<a href="boardView.freeb?cat=free&head=잡담"><button class="header" type="button" id="chat">잡담</button></a>
 							<a href="boardView.freeb?cat=free&head=유머"><button class="header" type="button" id="humor">유머</button></a>
@@ -21,12 +22,14 @@
 					  <c:when test="${cat eq 'qna'}">
 					  <div class="headSelect">
 					  		<a href="boardView.freeb?cat=qna" id="qnaboard" name="qnaboard">Q & A</a>
+					  		<input id="hiddenCategory" type="hidden" value="qna">
 							<a href="boardView.freeb?cat=qna"><button class="header" type="button" id="all">전체</button></a>
 						</div>
 					  </c:when>
 					   <c:when test="${cat eq 'tip'}">
 					   <div class="headSelect">
 					   		<a href="boardView.freeb?cat=tip" id="tipboard" name="tipboard">Tip</a>
+					   		<input id="hiddenCategory" type="hidden" value="tip">
 							<a href="boardView.freeb?cat=tip"><button class="header" type="button" id="all">전체</button></a>
 							<a href="boardView.freeb?cat=tip&head=생활"><button class="header" type="button" id="living">생활</button></a>
 							<a href="boardView.freeb?cat=tip&head=레시피"><button class="header" type="button" id="recipe">레시피</button></a>
@@ -37,6 +40,7 @@
 					    <c:when test="${cat eq 'coun'}">
 					    <div class="headSelect">
 					    	<a href="boardView.freeb?cat=coun" id="counboard" name="counboard">고민상담</a>
+					    	<input id="hiddenCategory" type="hidden" value="coun">
 							<a href="boardView.freeb?cat=coun"><button class="header" type="button" id="all">전체</button></a>
 							<a href="boardView.freeb?cat=coun&head=취미"><button class="header" type="button" id="hobby">취미</button></a>
 							<a href="boardView.freeb?cat=coun&head=게임"><button class="header" type="button" id="game">게임</button></a>
@@ -54,7 +58,8 @@
 				<c:choose>
 				<c:when test="${sessionScope.loginId == 'admin'}">
 				<tr style="background-color:gray">
-					<td id="no">zzzzzzzz</td>
+					<td id="check"><input type="checkbox" id="chk_all" name="chk_all"></td>
+					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
 					<td id="writer">작성자</td>
@@ -67,6 +72,7 @@
 					<c:forEach var="item2" items="${result2}">
 					<tbody id="notice">
 				<tr>
+					<td id="noticecheck"><input type="checkbox" name="nocheck">
 					<td id="noticeno">${item2.seq}</td>
 					<td id="noticeheader"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
@@ -87,6 +93,7 @@
 					<c:forEach var="item" items="${result}">
 						<tbody id="body_a">
 							<tr>
+								<td id="articlecheck"><input type="checkbox" class="chk" name="chk" id="chk" value="${item.seq}">
 								<td id="no">${item.seq}
 								<td id="header">${item.header}
 								<td id="title"><a
@@ -108,11 +115,7 @@
 					</tbody>
 				</c:otherwise>
 			</c:choose>
-				
-				
-				
-				
-				
+							
 				</c:when>
 				<c:otherwise>
 				<tr style="background-color:gray">
@@ -194,8 +197,17 @@
 			</select>
 		<input type="search" id="search" name="search"><button type=button id="sbtn">검색</button>
 		</form>
+		<c:choose>
+		<c:when test="${sessionScope.loginId == 'admin'}">
+		<input type=button id="delete" value="삭제">
 		<input type=button id="write" value="글 쓰기"></div>
+		</c:when>
+		<c:otherwise>
+		<input type=button id="write" value="글 쓰기"></div>
+		</c:otherwise>
+		</c:choose>
 		
+
 	</div>
 	<script>
 	$("#write").click(function() {
