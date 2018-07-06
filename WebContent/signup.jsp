@@ -377,6 +377,7 @@ body {
 					<div class="form-group">
 						<label>전화번호</label> <input type="text" class="form-control"
 							id="phone" name="phone" required="required">
+							<input type="hidden" id="hidphone" name="phone1">
 					</div>
 
 
@@ -490,6 +491,46 @@ body {
                   element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height) / 2 - borderWidth)
                         + 'px';
                }
+               
+               
+               
+               function phoneFomatter(num,type){
+            	    
+            	    var formatNum = '';
+            	    
+            	    if(num.length==11){
+            	        if(type==0){
+            	            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3');
+            	        }else{
+            	            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+            	        }
+            	    }else if(num.length==8){
+            	        formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+            	    }else{
+            	        if(num.indexOf('02')==0){
+            	            if(type==0){
+            	                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-****-$3');
+            	            }else{
+            	                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+            	            }
+            	        }else{
+            	            if(type==0){
+            	                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-***-$3');
+            	            }else{
+            	                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+            	            }
+            	        }
+            	    }
+            	    return formatNum;
+            	    
+            	}
+               
+				$("#phone").focusout(function() {
+            	   var num = $("#phone").val();
+            	   var numResult = phoneFomatter(num,1);
+            	   $("#hidphone").val(numResult);
+               });
+
             </script>
 					</div>
 
