@@ -93,7 +93,7 @@
 						<div class="card-body" style="width: 318px; height: 180px;">
 							<p class="item-name">${result.product_name}</p>
 							<p class="item-price">${result.product_price}원</p>
-							<p class="item-shortdesc">${result.product_contents}</p>
+							<p class="item-shortdesc">${result.product_summary}</p>
 						</div>
 					</div>
 					<br> <br>
