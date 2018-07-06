@@ -90,8 +90,6 @@ public class ShoppingController extends HttpServlet {
 				int result = dao.insertData(dto);
 				
 				
-				
-				
 				if(result>0) {
 
 					ShoppingFilesDTO filedto = new ShoppingFilesDTO(seq,originalFileName,systemFileName);
@@ -122,7 +120,22 @@ public class ShoppingController extends HttpServlet {
 			dst="shopping/shopmain.jsp";
 			
 			
+		}else if(command.equals("/itemview.shop")) {
+			System.out.println("들어옴");
+			String seq = request.getParameter("seq");
+			System.out.println(seq);
+			ArrayList<ShoppingDTO> result = dao.clickData(seq);
+			List<ShoppingFilesDTO> list= filedao.clickfile(seq);
+			
+			request.setAttribute("result", result);
+			request.setAttribute("list", list);
+			
+			isRedirect=false;
+			dst = "shopping/itemview.jsp";
 		}
+		
+		
+		
 	
 		} catch (Exception e) {
 			e.printStackTrace();
