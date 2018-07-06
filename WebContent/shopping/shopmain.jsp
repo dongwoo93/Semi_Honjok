@@ -87,7 +87,7 @@
 			<c:forEach var="result" items="${result}" varStatus="status">
 				<div class="col-lg-4" id="card1">
 					<div class="card" style="border: none">
-						<a href="#"> <img class="card-img-top" src="files/${list[status.index].shop_system_file_name}"
+						<a href="itemview.shop?seq=${result.product_id}"> <img class="card-img-top" src="files/${list[status.index].shop_system_file_name}"
 							alt="Card image cap" style="border: 1px solid #e3e3e3;">
 						</a>
 						<div class="card-body" style="width: 318px; height: 180px;">

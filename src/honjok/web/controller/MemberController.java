@@ -74,50 +74,45 @@ public class MemberController extends HttpServlet {
 			} else if(command.equals("/memberout.mem")) {
 
 				String id = request.getParameter("id");
+				System.out.println(id);
 				
 				if(id.contains("Naver") || id.contains("Kakao") || id.contains("Google")) {
-					int result = dao.deleteData(id);
-
-					request.setAttribute("result", result);
 					request.getSession().invalidate();
-					isRedirect = false;
 					dst ="memberoutproc.jsp";
-					
 				}else {
 					String pw = request.getParameter("pw");
-					boolean b = dao.idpwCheck(id, pw);	
+
+					boolean b = dao.idpwCheck(id, pw);
+					
 					System.out.println("memberout 들어옴");
+					
 					if(b) {
 						int result = dao.deleteData(id,pw);
 						request.setAttribute("result", result);
+				
+						
 						isRedirect = false;
+						
 						if (result>0) {
-
 							request.getSession().invalidate();
-
 							dst ="memberoutproc.jsp";
+							
 						} else {
-
+					  
 						}
-
 					}else {
-
-						  System.out.println("아이디 비번 다른경우 들어옴");
-
+						  // System.out.println("아이디 비번 다른경우 들어옴");
 							int num = 1;
-
 							request.setAttribute("num", num);
-
 							isRedirect = false;
-
 							dst = "memberout.jsp";
-
 					}
-
 				}
-
-			}
-			else if(command.equals("/memberoutform.mem")) {
+				
+				
+				
+				
+			}else if(command.equals("/memberout.mem")) {
 				String id = (String) request.getSession().getAttribute("loginId");
 				List<MemberDTO> result = dao.outputData(id);
 				request.setAttribute("result", result);

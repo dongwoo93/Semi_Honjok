@@ -131,11 +131,7 @@ hr {
 	</div>
 	
 	<script>
-	if("${result[0].portal}" != "") {
-		$("#btn2").click(function () {
-			$(location).attr("href", "memberout.mem");
-		})
-	}else {
+	if("${result.portal}" != "") {
 		$("#btn").click(function () {
 			var agreement = $(check).is(":checked");
 			if(agreement) {
