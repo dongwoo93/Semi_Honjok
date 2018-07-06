@@ -104,7 +104,6 @@ public class MypageController extends HttpServlet {
 				dst = "selectdata.mp?id="+id;
 			}
 
-
 			if (isRedirect) {
 				response.sendRedirect(dst);
 			} else {				
