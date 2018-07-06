@@ -775,9 +775,10 @@ public class BoardDAO {
 	public int modifyData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
 		String sql = "update board_user set user_title=?, user_contents=?, user_header=? where user_seq=?";
+		StringReader sr = new StringReader(dto.getContents());
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, dto.getTitle());
-		pstat.setString(2, dto.getContents());
+		pstat.setCharacterStream(2, sr, dto.getContents().length());
 		pstat.setString(3, dto.getHeader());
 		pstat.setInt(4, dto.getSeq());
 
@@ -785,6 +786,7 @@ public class BoardDAO {
 
 		pstat.close();
 		con.commit();
+		con.setAutoCommit(true);
 		con.close();
 		return result;
 	}

@@ -13,7 +13,7 @@ import honjok.web.dto.BoardUserDTO;
 public class BoardCommentDAO {
 	public List<BoardCommentDTO> selectComment(int seq) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from board_user_comment where board_no=?";
+		String sql = "select * from board_user_comment where board_no=? order by comment_seq";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, seq);
 		ResultSet rs = pstat.executeQuery();
