@@ -117,6 +117,7 @@ public class MemberDAO {
             dto.setZipcode(rs.getString(6));
 			dto.setAddress(rs.getString(7));
 			dto.setGender(rs.getString(8));
+			dto.setPortal(rs.getString(9));
 			al.add(dto);
 			
 		}	

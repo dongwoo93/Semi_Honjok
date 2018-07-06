@@ -9,10 +9,13 @@ public class MemberDTO {
     private String zipcode;
     private String address;
     private String gender;
+    private String portal;
 	
     public MemberDTO() {
     	
     }
+    
+    
     
     public MemberDTO(String id, String pw, String name, String phone, String email, String zipcode, String address,
 			String gender) {
@@ -121,6 +124,18 @@ public class MemberDTO {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+
+
+	public String getPortal() {
+		return portal;
+	}
+
+
+
+	public void setPortal(String portal) {
+		this.portal = portal;
 	}	
     
     
