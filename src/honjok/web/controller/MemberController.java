@@ -72,6 +72,7 @@ public class MemberController extends HttpServlet {
 				}
 
 			} else if(command.equals("/memberout.mem")) {
+
 				String id = request.getParameter("id");
 				System.out.println(id);
 				

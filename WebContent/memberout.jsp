@@ -99,9 +99,15 @@ hr {
                      </textarea> <br> <br> <input type="checkbox" class="control-label" name="req" id="check"> 
                     	 안내 사항을 모두 확인하였으며, 이에 동의합니다. <br> <hr> </td>
 						</tr>
+					
 						
 						<c:choose>
-						<c:when test="${result.portal != null}">
+						<c:when test="${result[0].portal != null}">
+						<div>그냥 탈퇴될거임</div>
+						<input type="hidden" name="id" value="${result[0].id}">
+						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
+						</c:when>
+						<c:otherwise>
 						<div class="form-group">
 							<label class="control-label">아이디</label> <input maxlength="50"
 								type="text" id="id" name="id" required="required"
@@ -113,12 +119,11 @@ hr {
 								class="form-control" placeholder="패스워드를 입력해주세요"> <br>
 								<button id="btn" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
 						</div>
-						</c:when>
-						<c:otherwise>
-						<div>그냥 탈퇴될거임</div>
 						</c:otherwise>
 						</c:choose>
-						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
+						
+						
+						
 					</div>
 				</div>
 			</div>
@@ -135,11 +140,11 @@ hr {
 				alert("약관에 동의하지 않으시면 탈퇴할수 없습니다.")
 			}
 		})
-	}else {
-		$("#btn2").click(function () {
-			$(location).attr("href", "memberout.mem");
-		})
 	}
+		
+
+		
+	
 						
 						
 						
