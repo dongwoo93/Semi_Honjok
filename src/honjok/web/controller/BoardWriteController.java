@@ -135,7 +135,7 @@ public class BoardWriteController extends HttpServlet {
 						response.sendRedirect("error.html");
 					}
 				}
-				
+
 
 
 			} catch (Exception e) {
@@ -187,16 +187,17 @@ public class BoardWriteController extends HttpServlet {
 						String y = mr.getParameter("places.y");
 						System.out.println(road_address_name);
 
-
-						MapDTO mapDTO = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
-						MapDAO dao = new MapDAO();
-						int resultMap = dao.insertData(mapDTO);
-						if(resultMap <= 0) {
-							response.sendRedirect("error.html");
+						if(!place_name.equals("")) {
+							MapDTO mapDTO = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
+							MapDAO dao = new MapDAO();
+							int resultMap = dao.insertData(mapDTO);
+							if(resultMap <= 0) {
+								response.sendRedirect("error.html");
+							}
 						}
 					}else {}
 				}else {}
-				
+
 			}catch(Exception e){
 				e.printStackTrace();
 			}

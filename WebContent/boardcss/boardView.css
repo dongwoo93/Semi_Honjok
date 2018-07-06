@@ -182,13 +182,8 @@
     right: 10px;
 	position: absolute;
 }
-ul > li{
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 320px;
-	max-height: 45px;
-	border: none;
+#lastestnavi > ul > li{
+	
 }
 
 a{
@@ -200,7 +195,17 @@ a:hover {
 	text-decoration: none;
 }
 
-
+#list-group-item{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 320px;
+	max-height: 45px;
+	border-bottom: 1px solid #efefef;
+	border-left: none;
+	border-right: none;
+	border-top: 1px solid #efefef;
+}
 /* #BottomButton {
   bottom: 75px;
 }

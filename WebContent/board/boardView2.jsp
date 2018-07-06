@@ -76,11 +76,11 @@
 	
 	<div id="lastestnavi">
 		<b>최근 게시물</b>
-		<ul class="list-group"><br>
+		<ul class="list-group" style="border:none;"><br>
 			<c:choose>
 			<c:when test="${latest.size() > 0}">
 			<c:forEach var="latest" items="${latest}" begin="0" end="7" step="1" varStatus="status">
-			<li class="list-group-item"><a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a></li>
+			<li id="list-group-item" class="list-group-item"><a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a></li>
 			</c:forEach>
 			</c:when>
 			</c:choose>
