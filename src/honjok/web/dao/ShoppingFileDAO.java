@@ -50,5 +50,33 @@ public class ShoppingFileDAO {
 		
 		return list;
 	}
+	
+	public List<ShoppingFilesDTO> clickfile(String seq) throws Exception {
+		
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from shop_files where product_id=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, seq);
+		
+		ResultSet rs = pstat.executeQuery();
+		List<ShoppingFilesDTO> list = new ArrayList<>();
+		
+		if(rs.next()) {
+			
+			ShoppingFilesDTO tmp = new ShoppingFilesDTO();
+			tmp.setProduct_id(rs.getString(1));
+			tmp.setFiles_seq(rs.getString(2));
+			tmp.setShop_original_file_name(rs.getString(3));
+			tmp.setShop_system_file_name(rs.getString(4));
+			list.add(tmp);
+		}
+		
+		rs.close();
+		pstat.close();
+		con.close();
+		
+		return list;
+	}
 		
 }

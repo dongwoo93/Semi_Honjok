@@ -82,7 +82,7 @@
       
       <li class="dropdown mx-2"><a id="interior" href="selectNaviCat.tip?category=인테리어" class="catego nav-link">인테리어</a>
       	<ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=DIY">가구</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=DIY">DIY</a></li>
             <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=가구및소품">가구 및 소품</a></li>
          </ul>
       </li>
@@ -114,11 +114,11 @@
       <c:choose>
       	<c:when test="${sessionScope.loginId == null}">
       <li class="nav-item mx-3"><a href="signup.jsp" class="nav-link">Sign Up</a></li>
-      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="loginbt">Login</button></li>
+      <li class="nav-item" ><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="loginbt" style="cursor:pointer; cursor: hand;">Login</button></li>
    	   </c:when>
    	   <c:otherwise>
    	   <li class="nav-item mx-3"><a href="mypage.jsp" class="nav-link">Mypage</a></li>
-      <li class="nav-item"><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="logoutbt">Logout</button></li>
+      <li class="nav-item" id="logoutli" ><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="logoutbt" style="cursor:pointer; cursor: hand;">Logout</button></li>
    	   </c:otherwise>
    	  </c:choose>
    </ul>
