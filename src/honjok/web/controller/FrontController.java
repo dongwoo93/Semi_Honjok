@@ -45,7 +45,7 @@ public class FrontController extends HttpServlet {
 				BoardTipDAO dao = new BoardTipDAO();
 				AdminFileDAO fileDAO = new AdminFileDAO();
 				List<BoardDTO> result = dao.selectLatestData();
-				List<AdminFilesDTO> fileResult = fileDAO.getAllThum_sysFileName();
+				List<AdminFilesDTO> fileResult = fileDAO.getThum_sysFileName();
 				request.setAttribute("result", result);
 				request.setAttribute("thumbnail", fileResult);
 				dst = "/community/index2.jsp";	

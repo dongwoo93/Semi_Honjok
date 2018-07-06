@@ -190,7 +190,7 @@ public class BoardWriteController extends HttpServlet {
 						if(!place_name.equals("")) {
 							MapDTO mapDTO = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
 							MapDAO dao = new MapDAO();
-							int resultMap = dao.insertData(mapDTO);
+							int resultMap = dao.modifyData(mapDTO);
 							if(resultMap <= 0) {
 								response.sendRedirect("error.html");
 							}

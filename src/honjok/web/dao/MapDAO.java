@@ -29,9 +29,9 @@ public class MapDAO {
 		con.close();
 		return result;
 	}
-	public int modifyMap(MapDTO dto) throws Exception{
+	public int modifyData(MapDTO dto) throws Exception{
 	Connection con = DBUtils.getConnection();
-	String sql = "update map set place_name=?, category_name=?, phone=?, road_address_name=?, place_url=?, x=?, y? where board_seq=?";
+	String sql = "update map set place_name=?, category_name=?, phone=?, road_address_name=?, address_name=?, place_url=?, x=?, y=? where board_seq=?";
 	PreparedStatement pstat = con.prepareStatement(sql);
 	pstat.setString(1, dto.getPlace_name());
 	pstat.setString(2, dto.getCategory_name());
@@ -41,7 +41,7 @@ public class MapDAO {
 	pstat.setString(6, dto.getPlace_url());
 	pstat.setString(7, dto.getX());
 	pstat.setString(8, dto.getY());
-	pstat.setString(9, dto.getBoard_seq());
+	pstat.setInt(9, Integer.parseInt(dto.getBoard_seq()));
 	int result = pstat.executeUpdate();
 	con.commit();
 	pstat.close();

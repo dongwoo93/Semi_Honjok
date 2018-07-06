@@ -6,10 +6,10 @@
 <div style="margin-top:100px;"></div>
 
 <link rel="stylesheet" type="text/css" href="boardcss/boardView.css">
-<div class="container">
+<div class="container"  style="padding-top:70px;">
 	<%-- <c:forEach var="item" items="${result}"> --%>
 	<div class="col-md-15">
-		<h2>${result.title}</h2>
+		<h2 id="title">${result.title}</h2>
 	</div>
 	<div class="col-md-12" style="text-align: right">
 		<span class="col-md-2">${result.writedate}</span>
@@ -29,9 +29,12 @@
 	<hr style="height: 1;">
 
 	<div class="col-md-15" id="contents">${result.contents}</div>
-
+	
+	<c:if test="${map[0].place_name != null}">
 	<div id="map" class="col-md-13" style="width: 100%; height: 350px; margin-top: 20px;"></div>
-	<hr style="height: 1">
+	</c:if>
+	
+	<hr style="height: 1;">
 	<span class="col-md-2"> <c:choose>
 			<c:when test="${likeStat == 0}">
 				<!-- <button type="button" id=like>좋아요</button> -->
