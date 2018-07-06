@@ -57,15 +57,15 @@ public class loginController extends HttpServlet {
 					email = email.replace("\"", "");
 					name = name.replace("\"", "");
 
-					boolean result = dao.idCheck(id);
+					boolean result = dao.idCheck("Kakao_"+id);
 
 					if(result) {
 
 					}else {
-						dao.kakaoInsertData(id, name, email);
+						dao.kakaoInsertData("Kakao_"+id, name, email);
 
 					}         
-					request.getSession().setAttribute("loginId", id);
+					request.getSession().setAttribute("loginId", "Kakao_"+id);
 					dst = "hollo.com";
 
 				}catch(Exception e) {
@@ -75,7 +75,7 @@ public class loginController extends HttpServlet {
 			}else if(command.equals("/naver.do")) {
 
 				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //���ø����̼� Ŭ���̾�Ʈ ���̵�";
-				String redirectURI = URLEncoder.encode("http://192.168.20.9:8080/Semi_Honjok/navertest", "UTF-8");
+				String redirectURI = URLEncoder.encode("http://14.38.139.185:8080/SemiProject/NaverLogin", "UTF-8");
 				SecureRandom random = new SecureRandom();
 				String state = new BigInteger(130, random).toString();
 				String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -140,16 +140,16 @@ public class loginController extends HttpServlet {
 
 
 
-					boolean result = dao.idCheck(id);
+					boolean result = dao.idCheck("Naver_"+id);
 
 					if(result) {
 						
 						
 					}else {
-						dao.naverInserData(id, name, email, gender);
+						dao.naverInserData("Naver_"+id, name, email, gender);
 
 					}         
-					request.getSession().setAttribute("loginId", id);
+					request.getSession().setAttribute("loginId", "Naver_"+id);
 					dst = "naverclose.jsp";
 
 				} catch (Exception e) {
