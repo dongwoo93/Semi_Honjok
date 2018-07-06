@@ -384,12 +384,12 @@
 			<script>
 			
 			function categoryChange(e) {
-				var sel2_꿀팁 = [ "청소", "라이프", "경제적" ];
-				var sel2_요리 = [ "초간단요리", "일반요리"];
-				var sel2_인테리어 = [ "가구", "소품" ];
+				var sel2_꿀팁 = [ "생활", "알뜰살뜰" ];
+				var sel2_요리 = [ "간단요리", "일반요리"];
+				var sel2_인테리어 = [ "DIY", "가구및소품" ];
 				var sel2_여행 = [ "국내여행", "해외여행" ];
-				var sel2_맛집 = [ "서울", "인천경기", "충청도", "경상도", "전라도" ];
-				var sel2_쇼핑몰 = [ "쇼핑" ];
+				var sel2_맛집 = [ "혼밥", "혼술" ];
+				var sel2_혼족쇼핑 = [ "쇼핑" ];
 				var target = document.getElementById("sel2");
 
 				if (e.value == "꿀팁")
@@ -402,8 +402,8 @@
 					var d = sel2_여행;
 				else if (e.value == "맛집")
 					var d = sel2_맛집;
-				else if (e.value == "쇼핑몰")
-					var d = sel2_쇼핑몰;
+				else if (e.value == "혼족쇼핑")
+					var d = sel2_쇼핑;
 				target.options.length = 0;
 
 				for (x in d) {

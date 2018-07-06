@@ -81,5 +81,38 @@ public class ShoppingDAO {
 		return list;
 	}
 	
+public ArrayList<ShoppingDTO> clickData(String seq) throws Exception{
+		
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from product where product_id=?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		
+		pstat.setString(1, seq);
+		
+		ResultSet rs = pstat.executeQuery();
+		ArrayList<ShoppingDTO> list = new ArrayList<>();
+		if(rs.next()) {
+			ShoppingDTO dto = new ShoppingDTO();
+			dto.setProduct_id(rs.getString(1));
+			dto.setProduct_name(rs.getString(2));
+			dto.setProduct_price(rs.getString(3));
+			dto.setProduct_quantity(rs.getString(4));
+			dto.setProduct_count(rs.getString(5));
+			dto.setProduct_summary(rs.getString(6));
+			dto.setProduct_contents(rs.getString(7));
+			dto.setProduct_delivery(rs.getString(8));
+			
+			list.add(dto);
+		}
+		
+		rs.close();
+		pstat.close();
+		con.close();
+		
+		return list;
+	}
+	
+	
+	
 	
 }
