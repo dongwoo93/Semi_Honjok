@@ -57,7 +57,6 @@
 		</c:choose>
 	</span> <span class="col-md-8">조회수 ${result.viewcount}</span>
 	<span> 공유하기 <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "d"}); </script> </span>
-
 	<!-- <button type="button" class="btn btn-outline-info"
 		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
 		위로</button> -->
