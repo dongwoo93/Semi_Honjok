@@ -466,6 +466,7 @@
 					level : 3
 				// 지도의 확대 레벨
 				};
+				
 
 				// 지도를 생성합니다    
 				var map = new daum.maps.Map(mapContainer, mapOption);

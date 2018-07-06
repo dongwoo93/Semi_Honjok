@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,14 +13,18 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
 
 <style>
 body {
 	margin-top: 30px;
+	font-family: 'Noto Sans KR', sans-serif;
+ 	font-size: 16px;		
 }
 
-/*
- .stepwizard-row { display: table-row; } .stepwizard { display: table; width: 100%; position: relative; } .stepwizard-row:before { top: 14px; bottom: 0; position: absolute; content: " "; width: 100%; height: 1px; background-color: #ccc; z-order: 0; } .stepwizard-step { display: table-cell; text-align: center; position: relative; }*/
 b {
 	font-size: 20px;
 	font-family: 나눔스퀘어라운드;
@@ -33,22 +38,43 @@ hr {
 	padding-left: 160px;
 	width: 1000px;
 }
+
+.form-control {
+	width: 32%;
+}
+
+
+
+
+
 </style>
 
 </head>
 
 <body>
+	
+	<c:choose>
+	
+		<c:when test="${num == 1}">
+			<script>
+			alert("아이디와 패스워드를 확인해주세요");
+			</script>
+		</c:when>
+	
+	</c:choose>
+	
 	<div class="container">
-		<form action="memberout.mem" method="post">
+		<form id="form1" action="memberout.mem" method="post">
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
 					<div class="col-md-12">
-						<h3>Hollo 회원탈퇴안내</h3>
+						<h3>Hollo 회원탈퇴</h3>
 
 						<tr>
 							<td height="60%" align="center">
 								<hr> <br> <span style="padding-left: 160px"> </span> <br>
-								<textarea rows="20" cols="150">
+								<textarea rows="20" cols="150" readonly="readonly">
+
  √ 회원 탈퇴 전 다음 사항을 꼭 확인하시기 바랍니다.
 
  - 사용하고 계신 아이디는 탈퇴할 경우 재사용 및 복구가 불가능합니다.          
@@ -63,18 +89,17 @@ hr {
 
  - Hollo 아이디를 사용해 다른 서비스에 로그인 할 수 없게됩니다. 
                     
- -탈퇴 후에는 사용하고 계신 아이디로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.    
+ - 탈퇴 후에는 사용하고 계신 아이디로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.    
                     
  √ 탈퇴회원 회원정보 보존기간
 회원탈퇴가 완료되더라도 다음과 같이 회원정보가 일정기간 보존됨을 알려드립니다.
                     
-- 관계법령에 의거하여 보존이 필요한 경우에 한하여 보존됩니다.                          
-                     </textarea> <br> <br> <input type="checkbox"
-								class="control-label" name="req"> 안내 사항을 모두 확인하였으며, 이에
-								동의합니다. <br>
-								<hr>
-							</td>
+- 관계법령에 의거하여 보존이 필요한 경우에 한하여 보존됩니다.  
+                        
+                     </textarea> <br> <br> <input type="checkbox" class="control-label" name="req" id="check"> 
+                    	 안내 사항을 모두 확인하였으며, 이에 동의합니다. <br> <hr> </td>
 						</tr>
+						
 						<div class="form-group">
 							<label class="control-label">아이디</label> <input maxlength="50"
 								type="text" id="id" name="id" required="required"
@@ -84,13 +109,30 @@ hr {
 							<label class="control-label">패스워드</label> <input maxlength="50"
 								type="password" id="pw" name="pw" required="required"
 								class="form-control" placeholder="패스워드를 입력해주세요"> <br>
-							<button class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
+									
+							<button id="btn" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
+	
+	<script>
+						$("#btn").click(function () {
+							var agreement = $(check).is(":checked");
+							if(agreement) {
+								$("#form1").submit();
+							}else {
+								alert("약관에 동의하지 않으시면 탈퇴할수 없습니다.")
+							}
+						})
+						
+						
+						
+	</script>
+	
 </body>
 
 </html>
