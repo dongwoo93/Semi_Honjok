@@ -55,6 +55,9 @@
 #TopButton {
 	bottom: 108px;
 }
+#myfooter{
+	margin-top: 300px;
+}
 </style>
 
 </head>
@@ -118,4 +121,6 @@
 	    });
 	})
 </script>
+<div id="myfooter">
 	<%@ include file="../include/bottom.jsp"%>
+</div>
