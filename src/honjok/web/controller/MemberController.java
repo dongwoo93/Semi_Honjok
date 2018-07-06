@@ -37,7 +37,7 @@ public class MemberController extends HttpServlet {
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
 				String name = request.getParameter("name");
-				String phone = request.getParameter("phone");
+				String phone = request.getParameter("phone1");
 				String email = request.getParameter("email");
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
