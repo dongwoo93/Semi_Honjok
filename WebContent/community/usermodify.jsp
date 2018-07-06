@@ -5,7 +5,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
     <script type="text/javascript" src="js/freeboardWrite.js"></script>
     <div class="container">
-		<form action="fixcomplete.freeb?seq=${no}" method="post" enctype="multipart/form-data">
+		<form action="fixcomplete.freeb" method="post" enctype="multipart/form-data">
 			<div id="wrapper">
 			<div id="head1">말머리</div>
 				<div id="head2">
@@ -40,6 +40,7 @@
 				</c:when>
 				<c:when test="${result.category eq 'qna'}">
 				<input type="hidden" name="hcat" value="qna">
+				<input type="hidden" name="header" value="질문">
 				</c:when>
 				</c:choose>
 				</div>

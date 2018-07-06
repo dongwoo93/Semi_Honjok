@@ -284,28 +284,46 @@ public class Board_Controller extends HttpServlet {
 				isRedirect = false;
 				dst = "community/usermodify.jsp";
 			}else if(command.equals("/fixcomplete.freeb")) {
-				BoardDAO dao = new BoardDAO();
-				BoardUserDTO dto = new BoardUserDTO();
+				String id = (String)request.getSession().getAttribute("loginId");
+				String realPath = request.getServletContext().getRealPath("/files/");
 				
-				String article_seq = request.getParameter("seq");
-				System.out.println(article_seq);
-				int articleseq = Integer.parseInt(article_seq);
+				File f = new File(realPath);
+    			if(!f.exists()) {
+    				f.mkdir();
+    			}
+    			
+    			int maxSize = 1024 * 1024 * 100;
+    			String enc = "UTF-8";
+    			MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc, new DefaultFileRenamePolicy());
+    			Enumeration<String> names = mr.getFileNames();
+    			
+    			int result2 = 0;
+    			
+    			int seq = Integer.parseInt(mr.getParameter("hiddenseq"));
+    			String title = mr.getParameter("titlemodi");
+    			String contents = mr.getParameter("summernote");
+    			String header = mr.getParameter("header");
+    			String viewCount = mr.getParameter("hiddencount");
+    			BoardUserDTO userDto = new BoardUserDTO(seq, title, contents, header);
 				
-				String header = request.getParameter("header");
-				String title = request.getParameter("title");
-				String contents = request.getParameter("contents");
-				String category = request.getParameter("cat");
+    			BoardDAO board = new BoardDAO();
+    			UserFilesDAO file = new UserFilesDAO();
+    			
+    			int result = board.modifyData(userDto);
+    			
+    			while(names.hasMoreElements()) {
+    				String paramName = names.nextElement();
+    				String originalName = mr.getOriginalFileName(paramName);
+    				String systemName = mr.getFilesystemName(paramName);
+    				
+    				if(originalName != null) {
+    					result2 = file.uploadFile(new UserFilesDTO(Integer.toString(seq), originalName, systemName));	
+    				}
+    			}
 				
-				dto.setSeq(articleseq);
-				dto.setHeader(header);
-				dto.setTitle(title);
-				dto.setContents(contents);
-				dto.setCategory(category);
-				
-				int result = dao.modifyData(dto);
 				
 				isRedirect = false;
-				dst = "Board_Controller.freeb";
+				dst = "Board_Controller.freeb?no="+Integer.toString(seq)+"&count="+viewCount;
 			}else if(command.equals("/delete.freeb")) {
 				String articleseq = request.getParameter("no");
 				String category = request.getParameter("cat");
@@ -389,6 +407,16 @@ public class Board_Controller extends HttpServlet {
 				
 				isRedirect = false;
 				dst = "community/freeboardView2.jsp";
+			}else if(command.equals("/admin_del_board.freeb")) {
+				BoardDAO dao = new BoardDAO();
+				String delList = request.getParameter("delList");
+				String category = request.getParameter("cat");
+				String[] delArr = delList.split(",", -1);
+				for(int i = 0; i < delArr.length; i++) {
+					dao.deleteData(Integer.parseInt(delArr[i]));
+				}
+				
+				dst = "boardView.freeb?cat="+category;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

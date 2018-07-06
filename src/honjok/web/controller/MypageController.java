@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import honjok.web.dao.BoardDAO;
 import honjok.web.dao.MemberDAO;
 import honjok.web.dao.MypageDAO;
 import honjok.web.dto.BoardUserDTO;
@@ -35,12 +36,26 @@ public class MypageController extends HttpServlet {
 
 			if (command.equals("/selectdata.mp")) {
 				String id = (String)request.getSession().getAttribute("loginId");
+				ArrayList<BoardUserDTO> result = new ArrayList<>();
 				MypageDAO dao = new MypageDAO();
-				ArrayList<BoardUserDTO> result = dao.selectData(id);
+				String navi = null;
 
+				if(id!=null) {
+					int currentPage = 0;
+					String currentPageString = request.getParameter("currentPage");
 
+					if(currentPageString == null){
+						currentPage = 1;
+					}else {
+						currentPage = Integer.parseInt(currentPageString);
+					}
+					
+					result = dao.selectData(currentPage*10-9,currentPage*10, id);
+					navi = dao.getPageNavi(currentPage, id);
+				}
+				
 				request.setAttribute("result", result);
-
+				request.setAttribute("navi", navi);
 
 				isRedirect = false;
 
@@ -77,6 +92,16 @@ public class MypageController extends HttpServlet {
 
 				dst="memberupdate.jsp";
 				
+			}else if(command.equals("/user_del_board.mp")) {
+				String id = (String)request.getSession().getAttribute("loginId");
+				MypageDAO dao = new MypageDAO();
+				String delList = request.getParameter("delList");
+				String[] delArr = delList.split(",", -1);
+				for(int i = 0; i < delArr.length; i++) {
+					dao.deleteData(Integer.parseInt(delArr[i]));
+				}
+				
+				dst = "selectdata.mp?id="+id;
 			}
 
 			if (isRedirect) {

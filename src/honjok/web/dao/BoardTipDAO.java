@@ -250,7 +250,13 @@ public class BoardTipDAO {
 			tmp.setSeq(rs.getString(1));
 			tmp.setCategory(rs.getString(2));
 			tmp.setTitle(rs.getString(3));
-			tmp.setWritedate(rs.getString(4));
+			String dt = rs.getString(4);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String Resultstr = "";
+			Date date = format.parse(dt);
+			SimpleDateFormat resultFormat = new SimpleDateFormat("YY-MM-dd");
+			Resultstr = resultFormat.format(date);
+			tmp.setWritedate(Resultstr); 
 			list.add(tmp);
 		}
 		rs.close();

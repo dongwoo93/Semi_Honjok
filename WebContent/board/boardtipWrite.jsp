@@ -20,16 +20,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+
 <link rel="stylesheet" href="../boardcss/boardwritecss.css"
 	type="text/css">
 <!-- include summernote-ko-KR -->
-<script src="summernote-master/lang/summernote-ko-KR.js"></script>
+<script src="dist/lang/summernote-ko-KR.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -471,6 +466,7 @@
 					level : 3
 				// 지도의 확대 레벨
 				};
+				
 
 				// 지도를 생성합니다    
 				var map = new daum.maps.Map(mapContainer, mapOption);
@@ -897,7 +893,6 @@
 				var sel2 = document.getElementById("sel2").value;
 				var file = document.getElementById("file").value;
 				if(title != "" && content != "" && sel1 != "" && sel2 != "" && file != "") {
-					alert("들어옴");
 					return true;
 				} else {
 					alert("입력사항을 확인해주세요.");
