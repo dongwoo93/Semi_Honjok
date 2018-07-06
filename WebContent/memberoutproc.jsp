@@ -12,7 +12,7 @@ if (${result>0}) {
 	location.href="hollo.com";
 } else {
     alert("다시확인해주세요.");
-    location.href="memberout.jsp";
+    location.href="memberoutform.mem";
 }
 
 </script>

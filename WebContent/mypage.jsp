@@ -1411,7 +1411,7 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="memberout.jsp"><span
+									href="memberoutform.mem"><span
 									class="fa fa-user-times mbr-iconfont mbr-iconfont-btn">&nbsp;&nbsp;</span>&nbsp;
 									C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
