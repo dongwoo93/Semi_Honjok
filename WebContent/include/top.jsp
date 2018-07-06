@@ -67,15 +67,14 @@
       
       <li class="dropdown mx-2"><a id="tip" href="selectNaviCat.tip?category=꿀팁" class="catego nav-link">꿀팁</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=청소">청소</a></li>
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=라이프">라이프</a></li>
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=경제적">경제적</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=생활">생활</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=꿀팁&subject=알뜰살뜰">알뜰살뜰</a></li>
          </ul>
       </li>
       
       <li class="dropdown mx-2"><a id="cook" href="selectNaviCat.tip?category=요리" class="catego nav-link">요리</a>
          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=초간단요리">초간단요리</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=간단요리">간단요리</a></li>
             <li class="dropdown-item"><a href="selectNaviSub.tip?category=요리&subject=일반요리">일반요리</a></li>
          </ul>
       </li>
@@ -83,27 +82,24 @@
       
       <li class="dropdown mx-2"><a id="interior" href="selectNaviCat.tip?category=인테리어" class="catego nav-link">인테리어</a>
       	<ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=가구">가구</a></li>
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=소품">소품</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=DIY">가구</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=인테리어&subject=가구및소품">가구 및 소품</a></li>
          </ul>
       </li>
       
       
-      <li class="dropdown mx-2"><a id="travel" href="selectNaviCat.tip?category=혼족여행" class="catego nav-link">혼족여행</a>
+      <li class="dropdown mx-2"><a id="travel" href="selectNaviCat.tip?category=여행" class="catego nav-link">혼족여행</a>
       	<ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족여행&subject=국내여행">국내여행</a></li>
-            <li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족여행&subject=해외여행">해외여행</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=여행&subject=국내여행">국내여행</a></li>
+            <li class="dropdown-item"><a href="selectNaviSub.tip?category=여행&subject=해외여행">해외여행</a></li>
          </ul>
       </li>
       
       
-      <li class="dropdown mx-2"><a id="famous" href="selectNaviCat.tip?category=혼족맛집" class="catego nav-link">혼족맛집</a>
+      <li class="dropdown mx-2"><a id="famous" href="selectNaviCat.tip?category=맛집" class="catego nav-link">혼족맛집</a>
       	<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=서울">서울</a></li>
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=인천경기">인천경기</a></li>
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=충청도">충청도</a></li>
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=경상도">경상도</a></li>
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족맛집&subject=전라도">전라도</a></li>
+				<li class="dropdown-item"><a href="selectNaviSub.tip?category=맛집&subject=혼밥">혼밥</a></li>
+				<li class="dropdown-item"><a href="selectNaviSub.tip?category=맛집&subject=혼술">혼술</a></li>
 		</ul>    
       </li>
       

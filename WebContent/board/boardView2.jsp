@@ -6,10 +6,10 @@
 <div style="margin-top:100px;"></div>
 
 <link rel="stylesheet" type="text/css" href="boardcss/boardView.css">
-<div class="container">
+<div class="container"  style="padding-top:70px;">
 	<%-- <c:forEach var="item" items="${result}"> --%>
 	<div class="col-md-15">
-		<h2>${result.title}</h2>
+		<h2 id="title">${result.title}</h2>
 	</div>
 	<div class="col-md-12" style="text-align: right">
 		<span class="col-md-2">${result.writedate}</span>
@@ -29,9 +29,12 @@
 	<hr style="height: 1;">
 
 	<div class="col-md-15" id="contents">${result.contents}</div>
-
-	<div id="map" style="width: 100%; height: 350px; margin-top: 20px;"></div>
-	<hr style="height: 1">
+	
+	<c:if test="${map[0].place_name != null}">
+	<div id="map" class="col-md-13" style="width: 100%; height: 350px; margin-top: 20px;"></div>
+	</c:if>
+	
+	<hr style="height: 1;">
 	<span class="col-md-2"> <c:choose>
 			<c:when test="${likeStat == 0}">
 				<!-- <button type="button" id=like>좋아요</button> -->
@@ -54,7 +57,6 @@
 		</c:choose>
 	</span> <span class="col-md-8">조회수 ${result.viewcount}</span>
 	<span> 공유하기 <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "d"}); </script> </span>
-
 	<!-- <button type="button" class="btn btn-outline-info"
 		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
 		위로</button> -->
@@ -64,28 +66,29 @@
 	
 	<a id="TopButton" class="ScrollButton" style="opacity: 0.7;"><img src="images/uparrow.PNG"></a>
 	<!-- <a id="BottomButton" class="ScrollButton"><img src="images/DOWNButton.png"></a> -->
-	<div class="input-group col-md-2" id="searchbar">
+	<div class="col-md-2" id="sidebar">
+	<div class="input-group" id="searchbar">
             <input class="form-control py-2 border-right-0 border" type="search" placeholder="검색하기" id="search-input">
             <span class="input-group-append">
                 <button class="btn btn-outline-secondary border-left-0 border" id="searchbt" type="button">
                     <i class="fa fa-search"></i>
                 </button>
               </span>
-	        </div>
+	        </div><br>
 	
-	<div class="container" id="lastestnavi">
+	<div id="lastestnavi">
 		<b>최근 게시물</b>
-		<ul class="list-group">
+		<ul class="list-group" style="border:none;"><br>
 			<c:choose>
 			<c:when test="${latest.size() > 0}">
 			<c:forEach var="latest" items="${latest}" begin="0" end="7" step="1" varStatus="status">
-			<li class="list-group-item"><a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a></li>
+			<li id="list-group-item" class="list-group-item"><a href="selectView.tip?seq=${latest.seq}&viewcount=${latest.viewcount}">${latest.title}</a></li>
 			</c:forEach>
 			</c:when>
 			</c:choose>
 		</ul>
 	</div>
-	
+	</div>
 <script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 		<script>
