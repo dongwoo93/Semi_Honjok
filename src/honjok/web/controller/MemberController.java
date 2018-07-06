@@ -3,6 +3,7 @@ package honjok.web.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -102,6 +103,12 @@ public class MemberController extends HttpServlet {
 				
 				
 				
+			}else if(command.equals("/memberout.mem")) {
+				String id = (String) request.getSession().getAttribute("loginId");
+				List<MemberDTO> result = dao.outputData(id);
+				request.setAttribute("result", result);
+				isRedirect = false;
+				dst = "memberout.jsp";
 			}
 
 
