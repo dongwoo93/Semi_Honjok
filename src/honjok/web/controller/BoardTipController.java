@@ -218,6 +218,9 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", thumbnail);
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
+			}else if(command.equals("/write.tip")) {
+				isRedirect = false;
+				dst = "board/boardtipWrite2.jsp";	
 			}
 
 
