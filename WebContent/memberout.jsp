@@ -126,7 +126,7 @@ hr {
 	</div>
 	
 	<script>
-	if(${result.portal} != null) {
+	if('${result.portal}' != null) {
 		$("#btn").click(function () {
 			var agreement = $(check).is(":checked");
 			if(agreement) {
