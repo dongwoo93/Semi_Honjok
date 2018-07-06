@@ -73,33 +73,41 @@ public class MemberController extends HttpServlet {
 
 			} else if(command.equals("/memberout.mem")) {
 				String id = request.getParameter("id");
-				String pw = request.getParameter("pw");
-
-				boolean b = dao.idpwCheck(id, pw);
+				System.out.println(id);
 				
-				System.out.println("memberout 들어옴");
-				
-				if(b) {
-					int result = dao.deleteData(id,pw);
-					request.setAttribute("result", result);
-			
-					
-					isRedirect = false;
-					
-					if (result>0) {
-						request.getSession().invalidate();
-						dst ="memberoutproc.jsp";
-						
-					} else {
-				  
-					}
+				if(id.contains("Naver") || id.contains("Kakao") || id.contains("Google")) {
+					request.getSession().invalidate();
+					dst ="memberoutproc.jsp";
 				}else {
-					  System.out.println("아이디 비번 다른경우 들어옴");
-						int num = 1;
-						request.setAttribute("num", num);
+					String pw = request.getParameter("pw");
+
+					boolean b = dao.idpwCheck(id, pw);
+					
+					System.out.println("memberout 들어옴");
+					
+					if(b) {
+						int result = dao.deleteData(id,pw);
+						request.setAttribute("result", result);
+				
+						
 						isRedirect = false;
-						dst = "memberout.jsp";
+						
+						if (result>0) {
+							request.getSession().invalidate();
+							dst ="memberoutproc.jsp";
+							
+						} else {
+					  
+						}
+					}else {
+						  // System.out.println("아이디 비번 다른경우 들어옴");
+							int num = 1;
+							request.setAttribute("num", num);
+							isRedirect = false;
+							dst = "memberout.jsp";
+					}
 				}
+				
 				
 				
 				
