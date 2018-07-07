@@ -126,6 +126,9 @@
             agree : {
                required : true
             },
+            gender : {
+            	required : true
+            }
          },
 
 			messages : {
@@ -152,13 +155,6 @@
 					names : "한글로 입력해주세요(2글자 이상)"
 
 				},
-				phone : {
-					required : "전화번호를 입력해주세요.",
-					digits : "숫자만 입력해주세요",
-					minlength : "전화번호형식이아닙니다.",
-					phone : "휴대폰 형식에 맞게 입력해주세염."
-
-            },
             phone : {
                required : "전화번호를 입력해주세요.",
                digits : "숫자만 입력해주세요",
@@ -166,6 +162,24 @@
                phone : "휴대폰 형식에 맞게 입력해주세염."
 
 			},
+			
+			email : {
+				required : "이메일을 입력해주세요.",
+				email : "이메일 형식이 아닙니다."
+			},
+			
+			zipcode : {
+				required : "우편번호를 입력해주세요"
+			},
+			
+			agree : {
+				required : "개인정보에 동의를 해주세요."
+			},
+			
+			gender : {
+				required : "성별을 선택해주세요."
+			},
+			
 			submitHandler : function(frm) {
 
 				frm.submit(); //유효성 검사를 통과시 전송
@@ -390,11 +404,11 @@ body {
 
 					<div class="form-group">
 						<label>주소</label> <input type="button" class="form-control"
-							onclick="sample2_execDaumPostcode()" value="우편번호 찾기"> <input
+							onclick="sample2_execDaumPostcode()" value="우편번호 찾기" required="required"> <input
 							type="text" class="form-control" id="sample2_postcode"
-							placeholder="우편번호" name=zipcode> <input type="text"
+							placeholder="우편번호" name=zipcode required="required"> <input type="text"
 							class="form-control" id="sample2_address" placeholder="한글주소"
-							name=address> <input type="text" class=" form-control "
+							name=address required="required"> <input type="text" class=" form-control "
 							id="sample2_addressEnglish" placeholder="영문주소 ">
 
 
@@ -536,9 +550,9 @@ body {
 
 
 					<div class="radio-green-gap" align=center>
-						<label>성별</label> <input type="radio" required="required"
-							name=gender value="남">남<input type="radio"
-							required="required" name=gender value="여">여
+						<label>성별</label> 남<input type="radio" required="required"
+							name=gender value="남">여<input type="radio"
+							required="required" name=gender value="여">
 					</div>
 
 
