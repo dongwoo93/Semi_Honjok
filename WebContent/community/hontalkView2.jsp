@@ -38,7 +38,7 @@
 							<td class="td-contents">${free.title}</td>
 							<%-- <td class="td-contents">${free.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${free.writer}</td>
-							<td style="text-align: center;"><b>11</b></td>
+							<td style="text-align: center;"><b>${free.like}</b></td>
 						</tr>
 					</c:forEach>
 
@@ -70,7 +70,7 @@
 							<td class="td-contents">${qna.title}</td>
 							<%-- <td class="td-contents">${qna.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${qna.writer}</td>
-							<td style="text-align: center;"><b>3</b></td>
+							<td style="text-align: center;"><b>${qna.like}</b></td>
 						</tr>
 					</c:forEach>
 
@@ -131,7 +131,7 @@
 							<td class="td-contents">${counsel.title}</td>
 							<%-- <td class="td-contents">${counsel.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${counsel.writer}</td>
-							<td style="text-align: center;"><b>37</b></td>
+							<td style="text-align: center;"><b>${counsel.like}</b></td>
 						</tr>
 					</c:forEach>
 
@@ -162,7 +162,7 @@
 							<td class="td-contents">${tip.title}</td>
 							<%-- <td class="td-contents">${tip.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${tip.writer}</td>
-							<td style="text-align: center;"><b>83</b></td>
+							<td style="text-align: center;"><b>${tip.like}</b></td>
 						</tr>
 					</c:forEach>
 

@@ -100,9 +100,9 @@ hr {
                     	 안내 사항을 모두 확인하였으며, 이에 동의합니다. <br> <hr> </td>
 						</tr>
 					
-						
+
 						<c:choose>
-						<c:when test="${result[0].portal != null}">
+						<c:when test="${result[0].portal != ''}">
 						<div>그냥 탈퇴될거임</div>
 						<input type="hidden" name="id" value="${result[0].id}">
 						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
@@ -131,7 +131,7 @@ hr {
 	</div>
 	
 	<script>
-	if("${result.portal}" != "") {
+	if("${result.portal}" != null) {
 		$("#btn").click(function () {
 			var agreement = $(check).is(":checked");
 			if(agreement) {
