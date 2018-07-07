@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bootstrap Example</title>
+<title>혼족닷컴</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Hi+Melody"
@@ -139,13 +139,13 @@
 						<h2 class="text-center">Member Login</h2>
 						<div class="social-btn text-center">
 							<a href="naver.do" onclick="window.open(this.href, '', 'width=400, height=500'); return false;">
-								<img src="naver.PNG" style="width: 100%; height: 55px; cursor: pointer;">
+								<img src="images/naver2.png" style="width: 100%; height: 55px; cursor: pointer;">
 							</a>
 							<!-- <a href="javascript:loginWithKakao()"> -->
-							<a href="javascript:kakaologin()"> <img src="kakao.png"
+							<a href="javascript:kakaologin()"> <img src="images/kakao.png"
 								style="width: 100%; height: 55px; cursor: pointer;">
 							</a> <a href="javascript:startApp()" id="customBtn"
-								data-onsuccess="onSignIn"> <img src="google.png"
+								data-onsuccess="onSignIn"> <img src="images/google.png"
 								style="width: 100%; height: 55px; cursor: pointer;">
 							</a>
 

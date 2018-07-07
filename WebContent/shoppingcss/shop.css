@@ -484,3 +484,7 @@ div.bills-btn {
 #container{
 	margin-left: 500px;
 }
+
+#paymentButton{
+	cursor: pointer;
+}

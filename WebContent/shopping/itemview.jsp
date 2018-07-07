@@ -7,6 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/itemview.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<style>
+#deliverybt{
+	cursor: pointer;
+}
+</style>
+<script>
+	$(document).ready(function(){
+		$("#deliverybt").click(function(){
+			$(location).attr("href","purchase.shop?seq=${result[0].product_id}");
+		})
+	})
+</script>
 </head>
 <body>
 	<div class="container">
@@ -26,8 +40,10 @@
 					<div class="prod_info">
 
 						<p class="buy_num">
-							구매 ${result[0].product_count}<span class="remainder"></span>
+							구매 ${result[0].product_count}<span class="remainder"></span><br>
+							남은수량 ${result[0].product_quantity}개
 						</p>
+							
 
 					</div>
 
@@ -54,8 +70,11 @@
 					</div>
 
 					<ul class="item-topinfo_sub uxeslide">
-						<li class="delivery_item  uxeslide_item"><c:choose>
-								<c:when test="${result[0].product_delivery == 'Y'}">
+						<li class="delivery_item  uxeslide_item">
+						<c:choose>
+						
+								<c:when test="${result[0].product_delivery == 'N'}">
+								
 									<button id="ucShippingInfo_btnShippingInfoTitleText"
 										class="nav" type="button">
 										택배 - <em class="txt_emp">무료배송</em>
@@ -64,7 +83,7 @@
 								<c:otherwise>
 									<button id="ucShippingInfo_btnShippingInfoTitleText"
 										class="nav" type="button">
-										택배 - <em class="txt_emp">유료배송</em>
+										택배 - <em class="txt_emp">유료배송(+2500원)</em>
 									</button>
 								</c:otherwise>
 							</c:choose></li>
@@ -84,7 +103,7 @@
 
 					<div class="item-bottombtns">
 						<button class="btn_cart" type="button">장바구니</button>
-						<button class="btn_buy" type="button">구매하기</button>
+						<button id="deliverybt" class="btn_buy" type="button">구매하기</button>
 					</div>
 				</div>
 			</div>
@@ -100,7 +119,5 @@
 
 		</div>
 	</div>
-
-
 </body>
 </html>

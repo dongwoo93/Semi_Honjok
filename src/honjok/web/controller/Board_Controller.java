@@ -87,7 +87,7 @@ public class Board_Controller extends HttpServlet {
 						}
 						
 						result = dao.selectBest2(currentPage*10-9,currentPage*10);
-						navi = dao.getPageNavi(currentPage, category);
+						navi = dao.getPageBest(currentPage);
 					
 					
 				}else {
