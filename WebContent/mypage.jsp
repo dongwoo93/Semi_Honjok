@@ -1314,8 +1314,9 @@ a, a:hover {
 
 
 		<div class="mbr-container">
-			<h2
-				class="mbr-title align-center mbr-fonts-style mbr-bold mbr-white display-1">hollo</h2>
+		<a href="hollo.com">
+			<h2 class="mbr-title align-center mbr-fonts-style mbr-bold mbr-white display-1">hollo</h2>
+			</a>
 			<h3
 				class="mbr-section-subtitle align-center mbr-light  mbr-fonts-style mbr-white display-5">
 				혼족인 여러분곁에 &nbsp;hollo가 함께하겠습니다.<br>홈페이지 방문을 환영합니다.&nbsp;

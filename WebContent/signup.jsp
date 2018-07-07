@@ -340,7 +340,7 @@ body {
 	<c:choose>
 		<c:when test="${result>0}">
 			<script>
-         alert("회원 가입 완료!");         
+         alert("${id}님 가입을 환영합니다!");         
          location.href = "hollo.com";
       </script>
 		</c:when>

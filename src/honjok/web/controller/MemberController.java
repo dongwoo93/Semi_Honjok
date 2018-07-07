@@ -48,9 +48,10 @@ public class MemberController extends HttpServlet {
 
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
+				request.setAttribute("id", id);
 
 				isRedirect = false;
-				dst = "hollo.com";
+				dst = "signup.jsp";
 
 
 			} else if(command.equals("/idcheck.mem")) {

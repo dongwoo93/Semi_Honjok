@@ -121,7 +121,7 @@
 		<div class="wrapper2">
 			<section id="section3" class="black-circle ct-u-paddingBoth120"
 				style="min-height: 445px; width: 50%; float: left;"> </section>
-			<div style="min-height: 445px; width: 50%; float: right; background-color: #1f4ac1;">
+			<div data-aos="flip-up" data-aos-once="true" style="min-height: 445px; width: 50%; float: right; background-color: #1f4ac1;">
 			<!-- <div class="text1" data-aos="zoom-out-left" data-aos-once="true"> -->
 				<h1
 					class="headline font-inherit fontsize-xxxl fontweight-700 lh-inherit align-center transform-inherit "
@@ -297,6 +297,6 @@
 	<p>혼자이기에 행복한,</p>
 	<p>혼자이기에 외로운,</p>
 	<p>혼족들을 위한 커뮤니티</p>
-	<a href="#"><img alt="Hontalk" src="images/혼톡.png"></a>
+	<a href="hontalkView.freeb"><img alt="Hontalk" src="images/혼톡.png"></a>
 	</div>
 	<%@ include file="../include/bottom.jsp"%>
