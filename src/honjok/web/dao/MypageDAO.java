@@ -15,7 +15,7 @@ import honjok.web.dto.MemberDTO;
 public class MypageDAO {
 	public ArrayList<BoardUserDTO> selectData(int startNum, int endNum, String id) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_writer like '%'||?||'%') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_writer = ?) where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, id);
 		pstat.setInt(2, startNum);

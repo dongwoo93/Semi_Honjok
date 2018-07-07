@@ -112,9 +112,10 @@ public class MemberController extends HttpServlet {
 				
 				
 				
-			}else if(command.equals("/memberout.mem")) {
+			}else if(command.equals("/memberoutform.mem")) {
 				String id = (String) request.getSession().getAttribute("loginId");
 				List<MemberDTO> result = dao.outputData(id);
+				System.out.println(result.get(0).getPortal());
 				request.setAttribute("result", result);
 				isRedirect = false;
 				dst = "memberout.jsp";

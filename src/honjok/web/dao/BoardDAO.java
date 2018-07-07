@@ -45,6 +45,7 @@ public class BoardDAO {
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
 			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
 			list.add(dto);
 		}
 		rs.close();
