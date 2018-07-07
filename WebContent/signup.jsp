@@ -169,7 +169,11 @@
 			},
 			
 			zipcode : {
-				required : "우편번호를 입력해주세요"
+				required : "우편번호를 입력해주세요."
+			},
+			
+			address : {
+				required : "주소를 입력해주세요."
 			},
 			
 			agree : {
