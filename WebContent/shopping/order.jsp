@@ -112,7 +112,7 @@
 							<td rowspan="1">
 								<div class="cost_info">
 									<c:choose>
-										<c:when test="${rsult[0].prodcut_delivery=='N'}">
+										<c:when test="${result[0].product_delivery=='N'}">
 											<span>무료</span>
 										</c:when>
 										<c:otherwise>
@@ -152,7 +152,7 @@
 							src="https://pics.auction.co.kr/myauction/ico_plus.gif" alt="더하기"></td>
 						
 						<c:choose>
-						<c:when test="${rsult[0].prodcut_delivery=='N'}">
+						<c:when test="${result[0].product_delivery=='N'}">
 						<td class="vt">
 									<span id="sumTransAmount">0</span>
 									<input type="hidden" value="${result[0].product_price}"
@@ -284,7 +284,7 @@
 			<div class="uxa-inbox2">
 				<div class="totalprice">
 				<c:choose>
-					<c:when test="${rsult[0].prodcut_delivery=='N'}">
+					<c:when test="${result[0].product_delivery=='N'}">
 					<input type="hidden" id="txtPayAmnt" name="txtPayAmnt"
 						value="70,880"> <span id="spnPayDisplay"
 						class="totalprice_num">${result[0].product_price}</span><img

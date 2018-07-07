@@ -71,9 +71,6 @@
 
 					<ul class="item-topinfo_sub uxeslide">
 						<li class="delivery_item  uxeslide_item">
-						<script>
-						alert("${result[0].product_delivery}");
-						</script>
 						<c:choose>
 						
 								<c:when test="${result[0].product_delivery == 'N'}">
