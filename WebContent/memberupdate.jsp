@@ -39,41 +39,39 @@
 			if (pw != "" && name != "" && phone != "" && email != ""
 					&& zipcode != "" && address != "" && zipcode != ""
 					&& address != "") {
-				var result = function validate() {
+					function validate() {
 					var rxpw = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,20}$/;
-					var rxname = /^[가-힣]{2,4}$/;
+					var rxname =  /^[가-힣]{2,4}$/;
 					var rxphone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 					var rxemail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-					console.log(name);
-					console.log(pw);
 					
-
-					if (!check(rxpw, pw, "문자와 최소 1개의 숫자 혹은 특수문자를 포함시켜야 합니다.")) {
-						return false;
-					}
-					alert("테스트" + rxname.test(name));
-					if (!check(rxname, name, "한글로 입력해주세요(2글자 이상)")) {
-						return false;
-					}
-					if (!check(rxphone, phone, "전화번호형식이아닙니다.")) {
-						return false;
-					}
-					if (!check(rxemail, email, "이메일 형식을 확인해주세요.")) {
-						return false;
-					}
-					function check(re, e, message) {
-						if (re.test(e)) {
-							return true;
-						} else {
-							alert(message);
-							e.focus();
-							e.value = "";
-							//return false;
+					if (rxpw.test(pw)) {
+						if(rxname.test(name)){
+							if(rxphone.test(phone)){
+								if(rxemail.test(email)){
+									return true;
+								}else{
+									alert("이메일 형식을 확인해주세요.");
+									return false;
+								}
+								
+							}else{
+								alert("전화번호형식이아닙니다.");
+								return false;
+							}
+							
+						}else{
+							alert("한글로 입력해주세요(2글자 이상)");
+							return false;
 						}
+					}else{
+						alert("8-20글자 사이에 문자, 숫자 혹은 특수문자가 포함되야 합니다.");
+						return false;
 					}
 				}
-
-				if (result) {
+				var rex = validate();
+				
+				if (rex) {
 					$('#modifybt').attr('disabled', true);
 					makeFunction("memberupdate.mem");
 				}
@@ -122,7 +120,6 @@ body {
 				</tr>
 
 				<tr>
-
 					<th style="vertical-align: middle;">비밀번호</th>
 					<td><input type="password" id="pw" name="pw"
 						class="form-control"></td>
@@ -131,22 +128,17 @@ body {
 					<th style="vertical-align: middle;">이름</th>
 					<td><input type=text id="name" name="name"
 						class="form-control"></td>
-
 				</tr>
 				<tr>
-
 					<th style="vertical-align: middle;">전화</th>
 					<td><input type=text id="phone" name="phone"
 						class="form-control"></td>
 				</tr>
-
 				<tr>
 					<th style="vertical-align: middle;">이메일</th>
 					<td><input type=text id="email" name="email"
 						class="form-control"></td>
 				</tr>
-
-
 				<tr>
 					<th>집주소</th>
 					<td colspan="3"><input type="button" class="form-control"
@@ -158,7 +150,6 @@ body {
 						name=address readonly="readonly"> <input type="text"
 						class="form-control" id="sample2_addressEnglish"
 						placeholder="영문주소 " readonly="readonly"></td>
-
 
 					<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 					<div id="layer"
