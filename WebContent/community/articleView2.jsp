@@ -27,26 +27,8 @@ var num = 1;
 						})
 						$("#tolist").click(function(){
 							$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
-							})
-										
-						$("#fix2").click(function() {
-							$(location).attr('href', "fix.freeb?no=${no}")
 						})
-						$("#delete2").click(function(){
-							var yes = confirm("삭제 하시겠습니까?");
-							if (yes) {
-							$(location).attr('href',"delete.freeb?no=${no}&cat=${result[0].category}")
-							} else {
-							return;
-							}
-						})
-						$("#tolist2").click(function(){
-							$(location).attr('href',"boardView.freeb?cat=${result[0].category}")
-						})
-						
-						/* $("#comodify").click(function(){
-							$(location).attr('href',"comodify.freeb?")
-						})*/
+
 						$("#codelete").click(function(){
 							$(location).attr('href',"codelete.freeb?")
 						})
@@ -151,8 +133,6 @@ var num = 1;
 									<button type=button id=like style="display: none">
 										<img src="kejang/good.jpg">
 									</button>
-									<!-- <button type="button" id=likecancel>좋아요 취소</button>
-									<button type="button" id=like style="display: none">좋아요</button> -->
 									<span id=likespan>${result[0].like}</span>
 								</c:otherwise>
 							</c:choose></td>
@@ -249,38 +229,8 @@ var num = 1;
 						<input type="hidden" id="seq" name=no value="${result[0].seq}">
 						<td colspan=2><textarea id="comment" name=comment
 									placeholder="바른말 고운말을 사용하여 미연에 고소를 방지합시다." cols="110" rows="2"></textarea></td>
-							<td align=center><input type="button" value="확인" id="confirm"></td>
-
-						
-						
+							<td align=center><input type="button" value="확인" id="confirm"></td>					
 					</tr>
-					<c:choose>
-					<c:when test="${sessionScope.loginId!=null}">
-					<tr align=right>
-						<td colspan=4 height=20px align=right>
-						<input type="hidden" name="hiddenheader" value="${result[0].header}">
-							<button type="button" id=fix2>수정</button>
-							<button type="button" id=delete2>삭제</button>
-							<button type="button" id=tolist2>목록</button>
-						</td>
-					</tr>
-					</c:when>
-					<c:when test="${id == 'admin'}">
-					<tr align=right>
-						<td colspan=4 height=20px align=right>
-						<input type="hidden" name="hiddenheader" value="${result[0].header}">
-							<button type="button" id=delete2>삭제</button>
-							<button type="button" id=tolist2>목록</button>
-						</td>
-					</tr>
-					</c:when>
-					<c:otherwise>
-					<tr align=right>
-					<td colspan=4 height=20px><button type="button" id=tolist2>목록</button></td>
-					</tr>
-					</c:otherwise>
-					</c:choose>
-
 				</tbody>
 			</table>
 		</form>
