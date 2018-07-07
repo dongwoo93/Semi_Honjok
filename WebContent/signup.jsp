@@ -344,6 +344,14 @@ body {
 	z-index: 1002;
 	overflow: auto;
 }
+,radio .error{
+position:relative;
+	float:right;
+}
+label.error{
+float:right;
+}
+
 </style>
 
 
@@ -351,6 +359,7 @@ body {
 </head>
 
 <body>
+<!-- <label for="gender" class="error">성별을 선택해주세요.</label> -->
 	<c:choose>
 		<c:when test="${result>0}">
 			<script>
@@ -550,7 +559,9 @@ body {
 
 
 					<div class="radio-green-gap" align=center>
-						<label>성별</label> 남<input type="radio" required="required"
+					
+    					<label>성별</label>
+							남 <input type="radio" required="required"
 							name=gender value="남">여<input type="radio"
 							required="required" name=gender value="여">
 					</div>
