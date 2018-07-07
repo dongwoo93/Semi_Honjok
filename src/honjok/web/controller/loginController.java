@@ -213,6 +213,22 @@ public class loginController extends HttpServlet {
 			}else if(command.equals("/logout.do")) {
 				request.getSession().invalidate();
 				dst = "hollo.com";
+			}else if(command.equals("/idpwChk.do")) {
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+
+				boolean result = dao.idpwCheck(id, pw);
+				
+				
+				JSONObject o1 = new JSONObject();
+				o1.put("result", result);
+				response.setCharacterEncoding("utf8");
+				response.setContentType("application/json");
+				response.getWriter().println(o1.toJSONString());
+				response.getWriter().flush();
+				response.getWriter().close();
+				dst = "infoCheck.jsp";
+				return;
 			}
 
 		}catch(Exception e) {

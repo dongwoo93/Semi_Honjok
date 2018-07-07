@@ -1387,13 +1387,20 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="memberupdate.mp"><span
+									href="infoCheck.jsp" onclick="window.open(this.href, '_blanck', 'width=600, height=400'); return false "><span
 									class="fa fa-user-plus mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				<script>
+function popUp(w, h){
+ x = (screen.availWidth - w) / 2;
+ y = (screen.availHeight - h) / 2;
+ window.open('http://naver.com', 'pop','width='+w+', height='+h+', left='+x+', top='+y);
+}
+</script>
 
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
