@@ -1315,8 +1315,9 @@ a, a:hover {
 
 
 		<div class="mbr-container">
-			<h2
-				class="mbr-title align-center mbr-fonts-style mbr-bold mbr-white display-1">hollo</h2>
+		<a href="hollo.com">
+			<h2 class="mbr-title align-center mbr-fonts-style mbr-bold mbr-white display-1">hollo</h2>
+			</a>
 			<h3
 				class="mbr-section-subtitle align-center mbr-light  mbr-fonts-style mbr-white display-5">
 				혼족인 여러분곁에 &nbsp;hollo가 함께하겠습니다.<br>홈페이지 방문을 환영합니다.&nbsp;
@@ -1350,8 +1351,10 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-1-510x340.jpg" layout="responsive" width="255"
-								height="170" alt="Mobirise"> </amp-img>
+							<amp-img src="images/mbr-1-510x340.jpg"
+								layout="responsive" width="255" height="170" alt="Mobirise">
+
+							</amp-img>
 						</div>
 						<div class="card-box">
 							<h4
@@ -1372,8 +1375,10 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-4-510x340.jpg" layout="responsive" height="170"
-								width="255" alt="Mobirise"> </amp-img>
+							<amp-img src="images/mbr-4-510x340.jpg"
+								layout="responsive" height="170" width="255" alt="Mobirise">
+
+							</amp-img>
 						</div>
 						<div class="card-box">
 							<h4
@@ -1405,8 +1410,10 @@ function popupLink(){
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-3-510x340.jpg" layout="responsive" height="170"
-								width="255" alt="Mobirise"> </amp-img>
+							<amp-img src="images/mbr-3-510x340.jpg"
+								layout="responsive" height="170" width="255" alt="Mobirise">
+
+							</amp-img>
 						</div>
 						<div class="card-box">
 							<h4
@@ -1427,8 +1434,8 @@ function popupLink(){
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3 last-child">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-2-510x340.jpg" layout="responsive" height="170"
-								width="255" alt="Mobirise"> </amp-img>
+							<amp-img src="images/mbr-2-510x340.jpg" layout="responsive"
+								height="170" width="255" alt="Mobirise"> </amp-img>
 						</div>
 						<div class="card-box">
 							<h4

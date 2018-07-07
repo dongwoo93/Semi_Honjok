@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import honjok.web.dbutils.DBUtils;
+import honjok.web.dto.BoardCommentDTO;
 import honjok.web.dto.BoardUserDTO;
 
 public class BoardDAO {
@@ -145,6 +146,30 @@ public class BoardDAO {
 		List<BoardUserDTO> result = new ArrayList<>();
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
+			dto.setTitle(rs.getString(4));
+			dto.setWriter(rs.getString(5));
+			dto.setContents(rs.getString(6));
+			dto.setLike(rs.getInt(9));
+			result.add(dto);
+		}
+		rs.close();
+		pstat.close();
+		con.close();
+
+		return result;
+	}
+	public List<BoardUserDTO> selectBest2(int startNum, int endNum) throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user where user_like > 10) where num between ? and ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, startNum);
+		pstat.setInt(2, endNum);
+		ResultSet rs = pstat.executeQuery();
+		List<BoardUserDTO> result = new ArrayList<>();
+		while(rs.next()) {
+			BoardUserDTO dto = new BoardUserDTO();
+			dto.setSeq(rs.getInt(1));
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
@@ -160,7 +185,7 @@ public class BoardDAO {
 
 	public List<BoardUserDTO> selectData(int startNum, int endNum, String category) throws Exception{
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_seq desc) as num from board_user where user_category=?) where num between ? and ?";
+		String sql = "select * from (select board_user.*,(SELECT COUNT(*) AS cnt FROM board_user_comment WHERE board_user_comment.board_no = board_user.user_seq) as CommentTotalCnt, row_number() over(order by user_seq desc) as num from board_user where user_category=?) where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, category);
 		pstat.setInt(2, startNum);
@@ -197,6 +222,7 @@ public class BoardDAO {
 			Resultstr = resultFormat.format(date);
 			dto.setWritedate(Resultstr);
 			dto.setIp(rs.getString(11));
+			dto.setCommentcount(rs.getInt("CommentTotalCnt"));
 			list.add(dto);
 		}
 		rs.close();
@@ -348,6 +374,10 @@ public class BoardDAO {
 			dto.setViewcount(rs.getInt(8));
 			dto.setLike(rs.getInt(9));
 			dto.setWritedate(rs.getString(10));
+//			String articleIp = rs.getString(11);
+//			String[] ip = articleIp.split("\\.");
+//			String resultIp = ip[0] + "." + ip[1] + "." + ip[2].replace(ip[2], "***") + "." + ip[3].replace(ip[3], "***");			
+//			dto.setIp(resultIp);
 			dto.setIp(rs.getString(11));
 			list.add(dto);
 		}

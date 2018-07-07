@@ -76,7 +76,7 @@ public class MypageController extends HttpServlet {
 
 				isRedirect = false;
 
-				dst="myinfo.jsp";
+				dst="myinfo2.jsp";
 				
 			}
 			

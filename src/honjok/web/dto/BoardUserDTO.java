@@ -12,6 +12,7 @@ public class BoardUserDTO {
 	private int like;
 	private String writedate;
 	private String ip;
+	private int commentcount;
 	
 	
 	public BoardUserDTO() {
@@ -169,5 +170,23 @@ public class BoardUserDTO {
 
 	public void setIp(String ip) {
 		this.ip = ip;
-	}	
+	}
+
+
+
+	public int getCommentcount() {
+		return commentcount;
+	}
+
+
+
+	public void setCommentcount(int commentcount) {
+		this.commentcount = commentcount;
+	}
+	
+	
+
+
+	
+	
 }

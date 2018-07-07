@@ -17,13 +17,13 @@ IMP.request_pay({
     pg : 'html5_inicis',
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '${name}',
-    amount : ${amount},
-    buyer_email : '${buyer_email}',
+    name : '${product_name}',
+    amount : '${price}',
+    buyer_email : "email",
     buyer_name : '${buyer_name}',
-    buyer_tel : '${buyer_tel}',
-    buyer_addr : '${buyer_addr}',
-    buyer_postcode : '${buyer_postcode}'
+    buyer_tel : '${phone}',
+    buyer_addr : '${address}',
+    buyer_postcode : '${zipcode}'
 }, function(rsp) {
     if ( rsp.success ) {
     	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기

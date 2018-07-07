@@ -41,6 +41,9 @@
 				</c:when>
 				<c:when test="${cat eq 'qna'}">
 				<input type="hidden" name="hcat" value="qna">
+				<select name="header" id="header">
+					<option value="질문">질문</option>
+				</select>
 				</c:when>
 				</c:choose>
 				</div>
