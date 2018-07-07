@@ -47,4 +47,6 @@
 	<input type=button id="delete" value="삭제"></div>
 </div>
 <link rel="stylesheet" href="css/boardmanagement.css">
+<div style="margin-top: 480px;">
 <%@ include file="../include/bottom.jsp"%>
+</div>
