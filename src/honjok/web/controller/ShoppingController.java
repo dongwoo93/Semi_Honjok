@@ -148,6 +148,8 @@ public class ShoppingController extends HttpServlet {
 			
 			isRedirect=false;
 			dst = "shopping/order.jsp";
+		}else if(command.equals("/complete.shop")) {
+			
 		}
 		
 		
