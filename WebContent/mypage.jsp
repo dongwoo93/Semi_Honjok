@@ -725,6 +725,7 @@ blockquote {
 			
 			
 			
+			
 			 20))));
 	}
 	.display-5 {
@@ -1363,8 +1364,7 @@ a, a:hover {
 								회원가입시 입력한 정보를&nbsp;<br>확인 할 수있습니다.<br> <br>
 							</p>
 							<div class="mbr-section-btn align-left">
-								<a class="btn btn-sm btn-black display-4"
-									href="myinfo.mp"><span
+								<a class="btn btn-sm btn-black display-4" href="myinfo.mp"><span
 									class="fa fa-user mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1388,13 +1388,24 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									href="memberupdate.mp"><span
+									onclick="popupLink(); return false "><span
 									class="fa fa-user-plus mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				<script type="text/javascript">
+function popupLink(){ 
+	var popupX = (window.screen.width / 2) - (500 / 2);
+	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+	var popupY= (window.screen.height /2) - (300 / 2);
+	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+
+	window.open('infoCheck.jsp', 'popup', 'status=no, height=300, width=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+}
+</script>
 
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
@@ -1433,8 +1444,7 @@ a, a:hover {
 								회원님의 게시글을 확인/조회<br>할 수 있습니다.<br> <br>
 							</p>
 							<div class="mbr-section-btn align-left">
-								<a class="btn btn-sm btn-black display-4"
-									href="selectdata.mp"><span
+								<a class="btn btn-sm btn-black display-4" href="selectdata.mp"><span
 									class="fa fa-list-alt mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp; C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
@@ -1461,8 +1471,8 @@ a, a:hover {
 
 		<div class="container">
 			<div class="mbr-col-sm-12 align-center mbr-white">
-				<p class="mbr-text mbr-fonts-style display-7">© Copyright 2018
-					H O N J O K - All Rights Reserved</p>
+				<p class="mbr-text mbr-fonts-style display-7">© Copyright 2018 H
+					O N J O K - All Rights Reserved</p>
 			</div>
 		</div>
 	</section>
