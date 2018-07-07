@@ -6,10 +6,16 @@ var num = 1;
 
 	$(document).ready(function() {
 		$("#confirm").click(function() {
+			var text = $("#comment").val();
 			if ('${id}' == 'nonmember') {
 				$("#loginbt").trigger('click');
 			}else {
-				$("#formid").submit();
+				if(text != "") {
+					$("#formid").submit();
+				}else {
+					alert("내용을 입력해주세요");
+				}
+				
 			}
 			
 		})
@@ -202,7 +208,13 @@ var num = 1;
 									<script>
 										$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
 	                 	 				document.getElementById(num++).onclick = function() {
-	                 	                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+	                 	 					var con = confirm("삭제하시겠습니까?");
+	                 	 					if(con) {
+	                 	 						location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+	                 	 					}else {
+	                 	 						
+	                 	 					}
+	                 	                     
 	                 	                  }
                   					</script>
                   					</td>
