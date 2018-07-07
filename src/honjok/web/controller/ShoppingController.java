@@ -2,6 +2,7 @@ package honjok.web.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -121,17 +122,33 @@ public class ShoppingController extends HttpServlet {
 			
 			
 		}else if(command.equals("/itemview.shop")) {
-			System.out.println("들어옴");
 			String seq = request.getParameter("seq");
-			System.out.println(seq);
 			ArrayList<ShoppingDTO> result = dao.clickData(seq);
 			List<ShoppingFilesDTO> list= filedao.clickfile(seq);
 			
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
 			
+			System.out.println("결과:"+result.get(0).getProduct_delivery());
+			
 			isRedirect=false;
 			dst = "shopping/itemview.jsp";
+		}else if(command.equals("/purchase.shop")) {
+			String seq = request.getParameter("seq");
+			ArrayList<ShoppingDTO> result = dao.clickData(seq);
+			List<ShoppingFilesDTO> list = filedao.clickfile(seq);
+			DecimalFormat dt = new DecimalFormat("#,##0");
+			
+			request.setAttribute("result", result);
+			String a = result.get(0).getProduct_price().replaceAll("\\,","");
+			int price2 = Integer.parseInt(a) + 2500;
+			String price = dt.format(price2);
+			
+			request.setAttribute("list", list);
+			request.setAttribute("price", price);
+			
+			isRedirect=false;
+			dst = "shopping/order.jsp";
 		}
 		
 		
