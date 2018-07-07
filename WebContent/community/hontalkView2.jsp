@@ -17,7 +17,7 @@
 	<div class="container2">
 		<div id="free">
 			<h5>
-				<a href="boardView.freeb?cat=free">&nbsp;자유게시판</a>
+				<a href="boardView.freeb?cat=free" style="font-weight: bold;">&nbsp;자유게시판</a>
 			</h5>
 
 			<table class="table table-hover" id="first-table"
@@ -50,7 +50,7 @@
 
 		<div id="free2">
 			<h5>
-				<a href="boardView.freeb?cat=qna">&nbsp;질문/답변</a>
+				<a href="boardView.freeb?cat=qna" style="font-weight: bold;">&nbsp;질문/답변</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -82,7 +82,7 @@
 
 		<div id="free3">
 			<h5>
-				<a href="boardView.freeb?cat=best">&nbsp;베스트</a>
+				<a href="boardView.freeb?cat=best" style="font-weight: bold;">&nbsp;베스트</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -113,7 +113,7 @@
 
 		<div id="free4">
 			<h5>
-				<a href="boardView.freeb?cat=coun">&nbsp;고민상담</a>
+				<a href="boardView.freeb?cat=coun" style="font-weight: bold;">&nbsp;고민상담</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -145,7 +145,7 @@
 
 		<div id="free5">
 			<h5>
-				<a href="boardView.freeb?cat=tip">&nbsp;&nbsp;혼팁</a>
+				<a href="boardView.freeb?cat=tip" style="font-weight: bold;">&nbsp;&nbsp;혼팁</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
