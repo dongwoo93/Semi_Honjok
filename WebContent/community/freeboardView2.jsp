@@ -62,7 +62,7 @@
 				<c:when test="${sessionScope.loginId == 'admin'}">
 				<c:choose>
 				<c:when test="${cat eq 'best'}">
-				<tr style="background-color:gray">
+				<tr style="background-color:#1e73be; color: #ffffff;">
 					<td id="check"><input type="checkbox" id="chk_all" name="chk_all"></td>
 					<td id="no">No.</td>
 					<td id="header"></td>
@@ -74,7 +74,7 @@
 				</tr>
 				</c:when>
 				<c:otherwise>
-				<tr style="background-color:gray">
+				<tr style="background-color:#1e73be; color: #ffffff;">
 					<td id="check"><input type="checkbox" id="chk_all" name="chk_all"></td>
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
@@ -149,7 +149,7 @@
 				<c:otherwise>
 				<c:choose>
 				<c:when test="${cat eq 'best'}">
-				<tr style="background-color:gray">
+				<tr style="background-color:#1e73be; color:#ffffff; text-align: center;">
 					<td id="no">No.</td>
 					<td id="header"></td>
 					<td id="title">제목</td>
@@ -160,13 +160,13 @@
 				</tr>
 				</c:when>
 				<c:otherwise>
-				<tr style="background-color:gray">
+				<tr style="background-color:#1e73be; color:#ffffff; text-align: center;">
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
 					<td id="writer">작성자</td>
-					<td id="date">작성일</td>
-					<td id="view">조회</td>
+					<td id="date" style="text-align: center;">작성일</td>
+					<td id="view" style="text-align: center;">조회</td>
 					<td id="like">추천</td>
 				</tr>
 				</c:otherwise>
@@ -178,12 +178,12 @@
 					<tbody id="notice">
 				<tr>
 					<td id="noticeno">${item2.seq}</td>
-					<td id="noticeheader"><b>${item2.header}</b></td>
+					<td id="noticeheader" style="text-align: center;"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
 					<td id="noticewriter"><b>${item2.writer}</b></td>
-					<td id="noticedate">${item2.writedate}</td>
-					<td id="noticeview">${item2.viewcount}</td>
-					<td id="noticelike">${item2.like}</td>
+					<td id="noticedate" style="text-align: center;">${item2.writedate}</td>
+					<td id="noticeview" style="text-align: center;">${item2.viewcount}</td>
+					<td id="noticelike" style="text-align: center;">${item2.like}</td>
 				</tr>
 				</tbody>
 				</c:forEach>
@@ -198,7 +198,7 @@
 						<tbody id="body_a">
 							<tr>
 								<td id="no">${item.seq}
-								<td id="header">${item.header}
+								<td id="header" style="text-align: center;">${item.header}
 								<c:choose>
 								<c:when test="${item.commentcount > 0}">
 								<td id="title"><a
@@ -212,9 +212,9 @@
 								</c:otherwise>
 								</c:choose>
 								<td id="writer">${item.writer}
-								<td id="date">${item.writedate}
-								<td id="view">${item.viewcount}
-								<td id="like">${item.like}
+								<td id="date" style="text-align: center;">${item.writedate}
+								<td id="view" style="text-align: center;">${item.viewcount}
+								<td id="like" style="text-align: center;">${item.like}
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -241,7 +241,7 @@
 		</table>
 		
 		<div id="bottom" align=center>${navi}</div> 
-		<div id="btn">
+		<div id="btn" style="margin-top: 20px;">
 			<form method=post action="search.freeb" id=formid>
 			<input type="hidden" name="scat" value="${cat}">
 			<c:if test="${cat ne 'best'}">
