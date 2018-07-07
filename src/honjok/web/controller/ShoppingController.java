@@ -90,7 +90,7 @@ public class ShoppingController extends HttpServlet {
 				ShoppingDTO dto = new ShoppingDTO(seq, product_name, product_price, product_quantity, product_summary, product_contents, product_delivery);
 				int result = dao.insertData(dto);
 				
-				
+
 				if(result>0) {
 
 					ShoppingFilesDTO filedto = new ShoppingFilesDTO(seq,originalFileName,systemFileName);
@@ -129,7 +129,6 @@ public class ShoppingController extends HttpServlet {
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
 			
-			System.out.println("결과:"+result.get(0).getProduct_delivery());
 			
 			isRedirect=false;
 			dst = "shopping/itemview.jsp";
