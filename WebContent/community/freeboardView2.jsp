@@ -110,7 +110,7 @@
 				<c:otherwise>
 					<tbody id="body_b">
 						<tr id="shit">
-							<td id="nothing" colspan=7>표시할 내용이 없습니다.</td>
+							<td id="nothing" colspan=7>작성하신 글이 없습니다.</td>
 						</tr>
 					</tbody>
 				</c:otherwise>
