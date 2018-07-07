@@ -536,9 +536,9 @@ body {
 
 
 					<div class="radio-green-gap" align=center>
-						<label>성별</label> <input type="radio" required="required"
-							name=gender value="남">남<input type="radio"
-							required="required" name=gender value="여">여
+						<label>성별</label> 남<input type="radio" required="required"
+							name=gender value="남">여<input type="radio"
+							required="required" name=gender value="여">
 					</div>
 
 
