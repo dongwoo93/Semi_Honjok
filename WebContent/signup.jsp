@@ -178,7 +178,7 @@
 			
 			gender : {
 				required : "성별을 선택해주세요."
-			}
+			},
 			
 			submitHandler : function(frm) {
 
