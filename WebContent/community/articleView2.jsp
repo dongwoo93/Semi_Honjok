@@ -142,7 +142,7 @@ var num = 1;
 						<th colspan=3>${result[0].ip}</th>
 					</tr>
 					<c:choose>
-					<c:when test="${sessionScope.loginId!=null}">
+					<c:when test="${sessionScope.loginId == result[0].writer}">
 					<tr align=right>
 						<td colspan=4 height=20px align=right>
 						<input type="hidden" name="hiddenheader" value="${result[0].header}">

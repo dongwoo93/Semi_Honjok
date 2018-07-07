@@ -78,8 +78,17 @@ public class MemberController extends HttpServlet {
 				System.out.println(id);
 				
 				if(id.contains("Naver") || id.contains("Kakao") || id.contains("Google")) {
-					request.getSession().invalidate();
-					dst ="memberoutproc.jsp";
+					
+					int result = dao.deleteData(id);
+					if(result > 0) {
+						request.setAttribute("result", result);
+						request.getSession().invalidate();
+						isRedirect = false;
+						dst ="memberoutproc.jsp";
+					}else {
+						response.sendRedirect("error.jsp");
+					}
+					
 				}else {
 					String pw = request.getParameter("pw");
 
@@ -119,7 +128,7 @@ public class MemberController extends HttpServlet {
 				System.out.println(result.get(0).getPortal());
 				request.setAttribute("result", result);
 				isRedirect = false;
-				dst = "memberout.jsp";
+				dst = "memberout2.jsp";
 			}
 
 
@@ -167,7 +176,7 @@ public class MemberController extends HttpServlet {
 
 				isRedirect = false;
 
-				dst="myinfo.jsp";
+				dst="myinfo2.jsp";
 
 			}
 

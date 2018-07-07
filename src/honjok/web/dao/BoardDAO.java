@@ -161,7 +161,7 @@ public class BoardDAO {
 	}
 	public List<BoardUserDTO> selectBest2(int startNum, int endNum) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_writedate desc) as num from board_user where user_like > '10') where num between ? and ?";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user where user_like > 10) where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setInt(1, startNum);
 		pstat.setInt(2, endNum);
