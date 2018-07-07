@@ -1350,7 +1350,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-1-510x340.jpg"
+							<amp-img src="images/mbr-1-510x340.jpg"
 								layout="responsive" width="255" height="170" alt="Mobirise">
 
 							</amp-img>
@@ -1375,7 +1375,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-4-510x340.jpg"
+							<amp-img src="images/mbr-4-510x340.jpg"
 								layout="responsive" height="170" width="255" alt="Mobirise">
 
 							</amp-img>
@@ -1399,7 +1399,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-3-510x340.jpg"
+							<amp-img src="images/mbr-3-510x340.jpg"
 								layout="responsive" height="170" width="255" alt="Mobirise">
 
 							</amp-img>
@@ -1423,7 +1423,7 @@ a, a:hover {
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3 last-child">
 					<div class="card-wrapper">
 						<div class="card-img">
-							<amp-img src="mbr-2-510x340.jpg" layout="responsive"
+							<amp-img src="images/mbr-2-510x340.jpg" layout="responsive"
 								height="170" width="255" alt="Mobirise"> </amp-img>
 						</div>
 						<div class="card-box">
