@@ -6,7 +6,12 @@ var num = 1;
 
 	$(document).ready(function() {
 		$("#confirm").click(function() {
-			$("#formid").submit();
+			if ('${id}' == 'nonmember') {
+				$("#loginbt").trigger('click');
+			}else {
+				$("#formid").submit();
+			}
+			
 		})
 		
 						$("#fix").click(function() {

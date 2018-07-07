@@ -102,12 +102,7 @@ hr {
 					
 
 						<c:choose>
-						<c:when test="${result[0].portal != ''}">
-						<div>그냥 탈퇴될거임</div>
-						<input type="hidden" name="id" value="${result[0].id}">
-						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
-						</c:when>
-						<c:otherwise>
+						<c:when test="${result[0].portal != '' || result[0].portal ne null}">
 						<div class="form-group">
 							<label class="control-label">아이디</label> <input maxlength="50"
 								type="text" id="id" name="id" required="required"
@@ -119,11 +114,15 @@ hr {
 								class="form-control" placeholder="패스워드를 입력해주세요"> <br>
 								<button id="btn" class="btn btn-secondary btn-lg pull-right" type="button">회원탈퇴</button>
 						</div>
+						
+						</c:when>
+						<c:otherwise>
+						<div>그냥 탈퇴될거임</div>
+						<input type="hidden" name="id" value="${result[0].id}">
+						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
 						</c:otherwise>
 						</c:choose>
-						
-						
-						
+
 					</div>
 				</div>
 			</div>
@@ -131,7 +130,11 @@ hr {
 	</div>
 	
 	<script>
-	if("${result.portal}" != null) {
+	if('${result[0].portal}' != '') {
+		$("#btn2").click(function () {
+			$(location).attr("href", "memberout.mem");
+		})
+	}else {
 		$("#btn").click(function () {
 			var agreement = $(check).is(":checked");
 			if(agreement) {
