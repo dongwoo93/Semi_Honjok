@@ -9,6 +9,25 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+	function shop_submit(){
+		var name = document.getElementById("name").value;
+		var zipcode = document.getElementById("sample6_postcode").value;
+		var address1 = document.getElementById("sample6_address").value;
+		var address2 = document.getElementById("sample6_address2").value;
+		var phone1 = document.getElementById("se").value;
+		var phone2 = document.getElementById("phone1").value;
+		var phone3 = document.getElementById("phone2").value;
+
+		if(name=="" || zipcode=="" || address1=="" || address2=="" || phone1=="" || phone2=="" || phone3==""){
+			alert("작성을 다시 확인해주세요");
+			return;
+		}else{
+			$("#myform").submit();
+		}	
+	}
+</script>
+
+<script>
 	function sample6_execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -303,8 +322,7 @@
 				</c:choose>
 				</div>
 				<div class="bills-btn" id="divPaymentButton" style="display: block;">
-					<a id="paymentButton"
-						onclick="document.getElementById('myform').submit()"> <img
+					<a id="paymentButton" onclick="shop_submit()"> <img
 						src="//pics.auction.co.kr/pc/payment/btn_payment.png" alt="결제하기">
 					</a>
 					<div class="layer_smilepay_guide" id="divPaymentNudgeLayer"
