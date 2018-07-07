@@ -35,7 +35,8 @@
 					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
 							<td class="td-contents" style="text-align: center;">${free.seq}</td>
-							<td class="td-contents">${free.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${free.seq}&count=${free.viewcount}"
+									class="no-uline">${free.title}</a></td>
 							<%-- <td class="td-contents">${free.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${free.writer}</td>
 							<td style="text-align: center;"><b>${free.like}</b></td>
@@ -67,7 +68,8 @@
 					<c:forEach var="qna" items="${qna}" varStatus="status">
 						<tr>
 							<td class="td-contents" style="text-align: center;">${qna.seq}</td>
-							<td class="td-contents">${qna.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${qna.seq}&count=${qna.viewcount}"
+									class="no-uline">${qna.title}</a></td>
 							<%-- <td class="td-contents">${qna.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${qna.writer}</td>
 							<td style="text-align: center;"><b>${qna.like}</b></td>
@@ -80,7 +82,7 @@
 
 		<div id="free3">
 			<h5>
-				<a href="#">&nbsp;베스트</a>
+				<a href="boardView.freeb?cat=best">&nbsp;베스트</a>
 			</h5>
 
 			<table class="table table-hover" id="second-table"
@@ -98,7 +100,8 @@
 					<c:forEach var="best" items="${best}" varStatus="status">
 					<tr>
 						<th scope="row" style="text-align: center;">${best.like}</th>
-						<td class="td-contents2"><a href="#">${best.title}</a></td>
+						<td class="td-contents2"><a href="Board_Controller.freeb?no=${best.seq}&count=${best.viewcount}"
+									class="no-uline">${best.title}</a></td>
 						<%-- <td class="td-contents2">${best.contents}</td> --%>
 						<td class="td-contents2" style="text-align: center;">${best.writer}</td>
 					</tr>
@@ -128,7 +131,8 @@
 					<c:forEach var="counsel" items="${counsel}" varStatus="status">
 						<tr>
 							<td class="td-contents" style="text-align: center;">${counsel.seq}</td>
-							<td class="td-contents">${counsel.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${counsel.seq}&count=${counsel.viewcount}"
+									class="no-uline">${counsel.title}</a></td>
 							<%-- <td class="td-contents">${counsel.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${counsel.writer}</td>
 							<td style="text-align: center;"><b>${counsel.like}</b></td>
@@ -159,7 +163,8 @@
 					<c:forEach var="tip" items="${tip}" varStatus="status">
 						<tr>
 							<td class="td-contents" style="text-align: center;">${tip.seq}</td>
-							<td class="td-contents">${tip.title}</td>
+							<td class="td-contents"><a href="Board_Controller.freeb?no=${tip.seq}&count=${tip.viewcount}"
+									class="no-uline">${tip.title}</a></td>
 							<%-- <td class="td-contents">${tip.contents}</td> --%>
 							<td class="td-contents" style="text-align: center;">${tip.writer}</td>
 							<td style="text-align: center;"><b>${tip.like}</b></td>
