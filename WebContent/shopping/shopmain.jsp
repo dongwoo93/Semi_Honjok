@@ -70,11 +70,11 @@
 
 </head>
 <body>
-	<div class="container" style="margin-top: 100px;">
+	<div class="container" style="margin-top: 55px;">
 		<!-- 양 사이드 간격을 줌 -->
 
 		<div>
-			<img src="images/hollo.jpg" alt="홀로 쇼핑 이미지" style="margin-top: 80px;"><br>
+			<img src="images/hollo.jpg" alt="홀로 쇼핑 이미지" style="margin-top: 5px;"><br>
 			<br>
 			<br>
 		</div>

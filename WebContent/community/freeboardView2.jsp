@@ -177,7 +177,7 @@
 					<c:forEach var="item2" items="${result2}">
 					<tbody id="notice">
 				<tr>
-					<td id="noticeno">${item2.seq}</td>
+					<td id="noticeno" style="text-align: center;">${item2.seq}</td>
 					<td id="noticeheader" style="text-align: center;"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
 					<td id="noticewriter"><b>${item2.writer}</b></td>
@@ -197,7 +197,7 @@
 					<c:forEach var="item" items="${result}">
 						<tbody id="body_a">
 							<tr>
-								<td id="no">${item.seq}
+								<td id="no" style="text-align: center;">${item.seq}
 								<td id="header" style="text-align: center;">${item.header}
 								<c:choose>
 								<c:when test="${item.commentcount > 0}">
