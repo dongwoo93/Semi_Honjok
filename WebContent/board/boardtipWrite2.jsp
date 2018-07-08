@@ -159,7 +159,6 @@
 
 					if (status === daum.maps.services.Status.OK) {
 
-						console.log(pagination);
 						// 정상적으로 검색이 완료됐으면
 						// 검색 목록과 마커를 표출합니다
 						displayPlaces(data);
@@ -274,13 +273,6 @@
 
 						removeMarker2(index, places, marker);
 
-						/* 				console.log(places.place_name);
-						 console.log(places.category_name);
-						 console.log(places.phone);
-						 console.log(places.road_address_name);
-						 console.log(places.place_url);
-						 console.log(places.x);
-						 console.log(places.y); */
 					});
 
 					if (places.road_address_name) {
@@ -335,8 +327,6 @@
 
 				//지도 위에 표시되고 있는 마커를 자기 자신만 빼고 삭제
 				function removeMarker2(index, places, marker) {
-
-					console.log("여기는들어오냐0");
 
 					if (markers[index].getMap(map) != null) {
 						hideMarkers(index);
@@ -399,7 +389,6 @@
 				// 인포윈도우에 장소명을 표시합니다
 				function displayInfowindow(marker, index, title, places,
 						placePosition) {
-					console.log("placePositoin" + placePosition);
 					bounds.extend(placePosition);
 					map.setBounds(bounds);
 					var content = '	<div class="wrap">'
@@ -484,13 +473,9 @@
 		                sendFile(files[0], this);
 		            },
 		            onMediaDelete : function(target) {
-	            	    //alert(target[0].src); 
 	                	deleteFile(target[0].src);
 	            	}
-	            	/* onMediaDelete : function($target, editor, $editable) {
-	                    alert($target.context.dataset.filename);         
-	                    target.remove();
-	                } */
+	            	
 		        }
 				
 			/* codemirror: { // codemirror options
@@ -500,16 +485,13 @@
 			});
 			
 			function deleteFile(src) {
-				console.log(src);
 				var result = src.split("/files/");
-				console.log(result);
 			    $.ajax({
 			        data: {src : result[1]},
 			        type: "POST",
 			        url: "deleteImg.img", // replace with your url
 			        cache: false,
 			        success: function(resp) {
-			            //console.log(resp);
 			        }
 			    });
 			}
@@ -517,7 +499,6 @@
 			function sendFile(file, editor) {
 					var data = new FormData();
 					data.append("uploadFile", file);
-					console.log(file);
 					$.ajax({
 						data : data,
 						type : "POST",
@@ -529,10 +510,7 @@
 						success : function(data) {
 							// 에디터에 이미지 출력(아직은 안합니다.)
 							$(editor).summernote('editor.insertImage', data.url);
-							
 							sysFileList.push(data.systemFileName);
-							console.log(sysFileList[0]);
-							
 						}
 					});
 				}
