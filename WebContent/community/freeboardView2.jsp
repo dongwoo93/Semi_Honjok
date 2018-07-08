@@ -252,12 +252,11 @@
 			</select>
 		<input type="search" id="search" name="search"><button type=button id="sbtn">검색</button>
 			</c:if>
-			
-		</form>
-		<c:choose>
+			<c:choose>
 		<c:when test="${sessionScope.loginId == 'admin'}">
 		<input type=button id="delete" value="삭제">
-		<input type=button id="write" value="글 쓰기"></div>
+		<input type=button id="write" value="글 쓰기">
+		</div>
 		</c:when>
 		<c:otherwise>
 		<c:if test="${cat ne 'best'}">
@@ -266,6 +265,8 @@
 		
 		</c:otherwise>
 		</c:choose>
+		</form>
+		
 		
 
 	</div>
