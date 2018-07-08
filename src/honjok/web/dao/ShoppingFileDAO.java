@@ -29,7 +29,7 @@ public class ShoppingFileDAO {
 	public List<ShoppingFilesDTO> getAllThum_sysFileName() throws Exception {
 		
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from shop_files";
+		String sql = "select * from shop_files order by files_seq desc";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		List<ShoppingFilesDTO> list = new ArrayList<>();

@@ -39,17 +39,17 @@
 			<c:when test="${likeStat == 0}">
 				<!-- <button type="button" id=like>좋아요</button> -->
 				<span><input type="image" src="images/nomal_heart.png"
-					id="like"></span>
+					id="like" style="width:40px; height:40px;"></span>
 				<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
 				<span><input type="image" src="images/heart_77931.png"
-					id="likecancel" style="display: none" style="width:4%;"></span>
+					id="likecancel" style="display: none; width:40px; height:40px;"></span>
 				<span id=likespan>${result.likeit}</span><span> 명이 좋아합니다</span>
 			</c:when>
 			<c:otherwise>
 				<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
-				<input type="image" src="images/heart_77931.png" id="likecancel">
+				<input type="image" src="images/heart_77931.png" id="likecancel" style="width:40px; height:40px;">
 				<input type="image" src="images/nomal_heart.png" id="like"
-					style="display: none" style="width:4%;">
+					style="display: none; width:40px; height:40px;">
 				<!-- <button type="button" id=like style="display: none">좋아요</button> -->
 				
 				<span id=likespan>${result.likeit}</span><span> 명이 좋아합니다</span>

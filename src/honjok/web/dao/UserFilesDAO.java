@@ -121,7 +121,6 @@ public class UserFilesDAO {
 		AdminFilesDTO fileDTO = new AdminFilesDTO();
 		while(rs.next()) {
 		fileDTO.setThum_sysFileName(rs.getString("thum_sysFileName"));
-		System.out.println("dao" + fileDTO.getThum_sysFileName());
 	    fileDTO.setThum_orgFileName(rs.getString("thum_orgFileName"));
 		}
 		rs.close();
