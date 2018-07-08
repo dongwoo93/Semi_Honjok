@@ -67,7 +67,7 @@
 					<td id="no">No.</td>
 					<td id="header"></td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date">작성일</td>
 					<td id="view">조회</td>
 					<td id="like">추천</td>
@@ -79,7 +79,7 @@
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date">작성일</td>
 					<td id="view">조회</td>
 					<td id="like">추천</td>
@@ -151,9 +151,9 @@
 				<c:when test="${cat eq 'best'}">
 				<tr style="background-color:#1e73be; color:#ffffff; text-align: center;">
 					<td id="no">No.</td>
-					<td id="header"></td>
+					<td id="header">말머리</td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date">작성일</td>
 					<td id="view">조회</td>
 					<td id="like">추천</td>
@@ -164,7 +164,7 @@
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date" style="text-align: center;">작성일</td>
 					<td id="view" style="text-align: center;">조회</td>
 					<td id="like">추천</td>
@@ -247,7 +247,7 @@
 			<c:if test="${cat ne 'best'}">
 			<select name="select" id="select">
 				<option value="title">제목</option>
-				<option value="writer">작성자</option>
+				<option value="writer" style="text-align: left;">작성자</option>
 				<option value="content">내용</option>
 			</select>
 		<input type="search" id="search" name="search"><button type=button id="sbtn">검색</button>

@@ -11,18 +11,21 @@ import honjok.web.dto.AdminFilesDTO;
 
 public class AdminFileDAO {
 	
-	public List<AdminFilesDTO> getAllThum_sysFileName(String category) throws Exception {
+	public List<AdminFilesDTO> getAllThum_sysFileName(int startNum, int endNum, String category) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select article_no, file_seq, thum_sysFileName from admin_files where category=? order by article_no desc";
+		String sql = "select * from (select admin_files.*, row_number() over(order by article_no desc) as num from admin_files where category=?)\r\n" + 
+				"where num between ? and ?";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		pstat.setString(1, category);
+		pstat.setInt(2, startNum);
+		pstat.setInt(3, endNum);
 		ResultSet rs = pstat.executeQuery();
 		List<AdminFilesDTO> list = new ArrayList<>();
 		while(rs.next()) {
 			AdminFilesDTO tmp = new AdminFilesDTO();
 			tmp.setArticle_no(rs.getString(1));
 			tmp.setFile_seq(rs.getString(2));
-			tmp.setThum_sysFileName(rs.getString(3));
+			tmp.setThum_sysFileName(rs.getString(5));
 			list.add(tmp);
 		}
 		

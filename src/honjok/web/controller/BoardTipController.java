@@ -51,7 +51,7 @@ public class BoardTipController extends HttpServlet {
 				}
 				String navi = dao.getPageNaviAll(currentPage, category);
 				result = dao.selectNaviAllData(currentPage*8-7,currentPage*8, category);
-				fileResult = fileDAO.getAllThum_sysFileName(category); 
+				fileResult = fileDAO.getAllThum_sysFileName(currentPage*8-7, currentPage*8, category); 
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("board", result);
 				request.setAttribute("thumbnail", fileResult);

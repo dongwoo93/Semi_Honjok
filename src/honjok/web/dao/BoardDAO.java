@@ -231,6 +231,7 @@ public class BoardDAO {
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
+			dto.setHeader(rs.getString(7));
 			dto.setLike(rs.getInt(9));
 			result.add(dto);
 		}
