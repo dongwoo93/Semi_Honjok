@@ -29,7 +29,9 @@
 } 
 #btdiv{
 	margin-top: 20px;
-	text-align: right;
+	width: 100%;
+	height: 30px;
+	padding-left:81%;
 }
 .login-box {
     line-height: 2.3em;
@@ -40,7 +42,6 @@
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
-
 </style>
 <script>
 $(function() {
@@ -88,7 +89,6 @@ $(function() {
     
 });
 
-
 </script>
 </head>
 <body>
@@ -97,7 +97,7 @@ $(function() {
                 <div class="col-sm-9">
                     <div class="login-box well">
                         <form accept-charset="UTF-8" method="post" action="">
-                            <h5>회원정보 확인</h5>
+                            <h4>회원정보 확인</h4>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                 <input type="text" id="userid" placeholder="아이디를 입력하세요" class="form-control" style="margin-left: 5px;"/>
@@ -106,7 +106,7 @@ $(function() {
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                 <input type="password" id="password" placeholder="비밀번호를 입력하세요" class="form-control" style="margin-left: 8px;"/>
                             </div>
-                            <div class="col-sm-8" id="btdiv">
+                            <div class="col-md-13" id="btdiv">
                             <button type="submit" id="login-submit" class="btn btn-default btn-block" >확인</button>
 							</div>
                         </form>

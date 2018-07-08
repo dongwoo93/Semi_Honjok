@@ -2,6 +2,7 @@ package honjok.web.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -89,7 +90,7 @@ public class ShoppingController extends HttpServlet {
 				ShoppingDTO dto = new ShoppingDTO(seq, product_name, product_price, product_quantity, product_summary, product_contents, product_delivery);
 				int result = dao.insertData(dto);
 				
-				
+
 				if(result>0) {
 
 					ShoppingFilesDTO filedto = new ShoppingFilesDTO(seq,originalFileName,systemFileName);
@@ -111,27 +112,52 @@ public class ShoppingController extends HttpServlet {
 		}
 		/*작성페이지에서 작성버튼 눌렀을 때 , 메인에서 네비바 쇼핑 눌렀을 때*/
 		else if(command.equals("/shopmain.shop")) {
+			
 			ArrayList<ShoppingDTO> result = dao.selectData();
 			List<ShoppingFilesDTO> list= filedao.getAllThum_sysFileName();
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
+			
 			
 			isRedirect=false;
 			dst="shopping/shopmain.jsp";
 			
 			
 		}else if(command.equals("/itemview.shop")) {
-			System.out.println("들어옴");
 			String seq = request.getParameter("seq");
-			System.out.println(seq);
+			String id = (String) request.getSession().getAttribute("loginId");
+			if(id != null) {
+				
+			}else {
+				id = "nonmember";
+			}
 			ArrayList<ShoppingDTO> result = dao.clickData(seq);
 			List<ShoppingFilesDTO> list= filedao.clickfile(seq);
 			
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
+			request.setAttribute("id", id);
 			
 			isRedirect=false;
-			dst = "shopping/itemview.jsp";
+			dst = "shopping/itemview2.jsp";
+		}else if(command.equals("/purchase.shop")) {
+			String seq = request.getParameter("seq");
+			ArrayList<ShoppingDTO> result = dao.clickData(seq);
+			List<ShoppingFilesDTO> list = filedao.clickfile(seq);
+			DecimalFormat dt = new DecimalFormat("#,##0");
+			
+			request.setAttribute("result", result);
+			String a = result.get(0).getProduct_price().replaceAll("\\,","");
+			int price2 = Integer.parseInt(a) + 2500;
+			String price = dt.format(price2);
+			
+			request.setAttribute("list", list);
+			request.setAttribute("price", price);
+			
+			isRedirect=false;
+			dst = "shopping/order2.jsp";
+		}else if(command.equals("/complete.shop")) {
+			
 		}
 		
 		

@@ -6,8 +6,6 @@
 	<table class="table table-hover">
 		<thead class="head" id="head">
 			<tr style="background-color: gray">
-				<td id="check"><input type="checkbox" id="chk_all"
-					name="chk_all"></td>
 				<td id="category">게시판</td>
 				<td id="title">제목</td>
 				<td id="date">작성일</td>
@@ -20,8 +18,6 @@
 				<c:forEach var="item" items="${result}">
 					<tbody id="body_a">
 						<tr>
-							<td id="articlecheck"><input type="checkbox" class="chk"
-								name="chk" id="chk" value="${item.seq}">
 							<td id="category">${item.category}
 							<td id="title"><a
 								href="Board_Controller.freeb?no=${item.seq}&count=${item.viewcount}"
@@ -43,8 +39,9 @@
 		</c:choose>
 	</table>
 	<div id="bottom" align=center>${navi}</div>
-	<div id="btn">
-	<input type=button id="delete" value="삭제"></div>
+	
 </div>
 <link rel="stylesheet" href="css/boardmanagement.css">
+<div style="margin-top: 480px;">
 <%@ include file="../include/bottom.jsp"%>
+</div>

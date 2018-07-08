@@ -69,36 +69,55 @@ public class Board_Controller extends HttpServlet {
 				}else {
 					id = "nonmember";
 				}
+				String seq = request.getParameter("no");
 				String category = request.getParameter("cat");
 				String header = request.getParameter("head");
 				List<BoardUserDTO> result = new ArrayList<>();
 				String navi;
 				BoardDAO dao = new BoardDAO();
-				if(header!= null) {
-					int currentPage = 0;
-					String currentPageString = request.getParameter("currentPage");
+				if(category.equals("best")) {
 
-					if(currentPageString == null){
-						currentPage = 1;
-					}else {
-						currentPage = Integer.parseInt(currentPageString);
-					}
+						int currentPage = 0;
+						String currentPageString = request.getParameter("currentPage");
+
+						if(currentPageString == null){
+							currentPage = 1;
+						}else {
+							currentPage = Integer.parseInt(currentPageString);
+						}
+						
+						result = dao.selectBest2(currentPage*10-9,currentPage*10);
+						navi = dao.getPageBest(currentPage);
 					
-					result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
-					navi = dao.getPageNavi2(currentPage, category, header);
+					
 				}else {
-					int currentPage = 0;
-					String currentPageString = request.getParameter("currentPage");
+					if(header!= null) {
+						int currentPage = 0;
+						String currentPageString = request.getParameter("currentPage");
 
-					if(currentPageString == null){
-						currentPage = 1;
+						if(currentPageString == null){
+							currentPage = 1;
+						}else {
+							currentPage = Integer.parseInt(currentPageString);
+						}
+						
+						result = dao.selectData2(currentPage*10-9,currentPage*10, category, header);
+						navi = dao.getPageNavi2(currentPage, category, header);
 					}else {
-						currentPage = Integer.parseInt(currentPageString);
+						int currentPage = 0;
+						String currentPageString = request.getParameter("currentPage");
+
+						if(currentPageString == null){
+							currentPage = 1;
+						}else {
+							currentPage = Integer.parseInt(currentPageString);
+						}
+						
+						result = dao.selectData(currentPage*10-9,currentPage*10, category);
+						navi = dao.getPageNavi(currentPage, category);
 					}
-					
-					result = dao.selectData(currentPage*10-9,currentPage*10, category);
-					navi = dao.getPageNavi(currentPage, category);
 				}
+				
 				List<BoardUserDTO> result2 = new ArrayList<>();
 				result2 = dao.selectNotice();
 				

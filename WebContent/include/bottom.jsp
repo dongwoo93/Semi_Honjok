@@ -12,32 +12,32 @@
 			<div class="col-md-2">
 				<h5>Get started</h5>
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Sign up</a></li>
+					<li><a href="hollo.com">Home</a></li>
+					<li><a href="signup.jsp">Sign up</a></li>
 					<li><a href="#">Downloads</a></li>
 				</ul>
 			</div>
 			<div class="col-md-2">
 				<h5>About us</h5>
 				<ul>
-					<li><a href="#">Company Information</a></li>
-					<li><a href="#">Contact us</a></li>
-					<li><a href="#">Reviews</a></li>
+					<li><a target="_blank" href="http://tour.pcs21.net/main/main.kh">Company Information</a></li>
+					<li><a target="_blank" href="http://tour.pcs21.net/question/visit.kh">Contact us</a></li>
+					<li><a target="_blank" href="http://tour.pcs21.net/community/phrase.kh">Reviews</a></li>
 				</ul>
 			</div>
 			<div class="col-md-2">
 				<h5>Support</h5>
 				<ul>
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">Help desk</a></li>
-					<li><a href="#">Forums</a></li>
+					<li><a target="_blank" href="http://tour.pcs21.net/question/faq.kh">FAQ</a></li>
+					<li><a target="_blank" href="http://tour.pcs21.net/question/online.kh">Help desk</a></li>
+					<li><a href="hontalkView.freeb">Forums</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3">
 				<div class="social-networks">
-					<a href="https://twitter.com/?lang=ko" class="twitter"><i
-						class="fa fa-twitter"></i></a> <a href="https://www.facebook.com/"
-						class="facebook"><i class="fa fa-facebook"></i></a> <a
+					<a target="_blank" href="https://twitter.com/?lang=ko" class="twitter"><i
+						class="fa fa-twitter"></i></a> <a target="_blank" href="https://www.facebook.com/"
+						class="facebook"><i class="fa fa-facebook"></i></a> <a target="_blank"
 						href="https://www.google.com/" class="google"><i
 						class="fa fa-google-plus"></i></a>
 				</div>
