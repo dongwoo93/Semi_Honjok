@@ -19,7 +19,7 @@ IMP.request_pay({
     merchant_uid : 'merchant_' + new Date().getTime(),
     name : '${product_name}',
     amount : '${price}',
-    buyer_email : "email",
+    buyer_email : "${email}",
     buyer_name : '${buyer_name}',
     buyer_tel : '${phone}',
     buyer_addr : '${address}',
@@ -28,7 +28,7 @@ IMP.request_pay({
     if ( rsp.success ) {
     	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
     	alert("결제가 완료되었습니다");
-    	location.href = "shopmain.shop";
+    	location.href = "complete.shop?pid=${pid}";
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;

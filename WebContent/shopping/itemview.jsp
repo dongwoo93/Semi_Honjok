@@ -111,6 +111,7 @@
 						<button class="btn_cart" type="button">장바구니</button>
 						<button id="deliverybt" class="btn_buy" type="button">구매하기</button>
 					</div>
+					
 				</div>
 			</div>
 
