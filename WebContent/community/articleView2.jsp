@@ -102,7 +102,8 @@ var num = 1;
 			</tr>
 			<tr>
 				<td width=100px height=20px>글쓴이</td>
-				<th colspan=3>${result[0].writer}</th>
+				<th colspan=2>${result[0].writer}</th>
+				<td width=180px><b id="ip">${result[0].ip}</b></td>
 			</tr>
 			<tr>
 
@@ -143,10 +144,6 @@ var num = 1;
 									<span id=likespan>${result[0].like}</span>
 								</c:otherwise>
 							</c:choose></td>
-					</tr>
-					<tr>
-						<td width=100px height=20px>작성자IP</td>
-						<th colspan=3>${result[0].ip}</th>
 					</tr>
 					<c:choose>
 					<c:when test="${sessionScope.loginId == result[0].writer}">
