@@ -42,6 +42,6 @@
 	
 </div>
 <link rel="stylesheet" href="css/boardmanagement.css">
-<div style="margin-top: 480px;">
+<div style="margin-top: 465px">
 <%@ include file="../include/bottom.jsp"%>
 </div>
