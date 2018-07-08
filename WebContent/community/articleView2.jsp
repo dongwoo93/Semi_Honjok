@@ -103,7 +103,7 @@ var num = 1;
 			<tr>
 				<td width=100px height=20px>글쓴이</td>
 				<th colspan=2>${result[0].writer}</th>
-				<td width=180px><b id="ip">${result[0].ip}</b></td>
+				<td width=180px>${result[0].ip}</td>
 			</tr>
 			<tr>
 
