@@ -70,7 +70,7 @@ public class MypageController extends HttpServlet {
 				ArrayList<MemberDTO> result = dao.outputData(id);
 				request.setAttribute("result", result);
 				isRedirect = false;
-				dst="memberupdate.jsp";
+				dst="memberupdate2.jsp";
 				
 			}else if(command.equals("/user_del_board.mp")) {
 				String id = (String)request.getSession().getAttribute("loginId");
