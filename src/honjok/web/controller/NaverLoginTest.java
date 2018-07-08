@@ -41,8 +41,6 @@ public class NaverLoginTest {
             JSONParser jsPars = new JSONParser();
             String Alldata = response.toString();
             JSONObject jsOBj = (JSONObject)jsPars.parse(Alldata);           
-            /*System.out.println(response.toString());*/
-            
             String member = jsOBj.get("response").toString();
             
             JSONObject jsOBj2 = (JSONObject)jsPars.parse(member);
