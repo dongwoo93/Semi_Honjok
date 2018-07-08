@@ -26,7 +26,7 @@
 						<tr>
 							<td height="60%" align="center">
 								<hr> <br> <span style="padding-left: 160px"> </span> <br>
-								<textarea rows="20" cols="150" readonly="readonly">
+								<textarea rows="20" cols="150" readonly="readonly" style="resize: none;">
 
  √ 회원 탈퇴 전 다음 사항을 꼭 확인하시기 바랍니다.
 

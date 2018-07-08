@@ -1388,24 +1388,24 @@ a, a:hover {
 							</p>
 							<div class="mbr-section-btn align-left">
 								<a class="btn btn-sm btn-black display-4"
-									onclick="popupLink(); return false "><span
+									onclick="popupLink(); return false"><span
 									class="fa fa-user-plus mbr-iconfont mbr-iconfont-btn">&nbsp;</span>&nbsp;
 									&nbsp;C L I C K &nbsp; &nbsp; &nbsp;</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<script type="text/javascript">
-function popupLink(){ 
-	var popupX = (window.screen.width / 2) - (500 / 2);
-	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+			<script type="text/javascript">
+				function popupLink(){ 
+				var popupX = (window.screen.width / 2) - (500 / 2);
+				// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 
-	var popupY= (window.screen.height /2) - (300 / 2);
-	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+				var popupY= (window.screen.height /2) - (300 / 2);
+				// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
-	window.open('infoCheck.jsp', 'popup', 'status=no, height=300, width=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
-}
-</script>
+				window.open('infoCheck.jsp', 'popup', 'status=no, height=300, width=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+				}
+			</script>
 
 				<div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
 					<div class="card-wrapper">

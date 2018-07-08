@@ -56,13 +56,22 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<a href="memberupdate.mp">
+				
 				<button class="btn btn-outline-dark" type="button"
-					data-toggle="tooltip" data-original-title="Edit this user">
+					data-toggle="tooltip" data-original-title="Edit this user" onclick="popupLink(); return false">
 					<i class="fa fa-pencil-square-o"></i> 회원정보수정
 				</button>
-				</a>
 				
+		<script type="text/javascript">
+			function popupLink(){ 
+			var popupX = (window.screen.width / 2) - (500 / 2);
+			// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+			var popupY= (window.screen.height /2) - (300 / 2);
+			// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+
+			window.open('infoCheck.jsp', 'popup', 'status=no, height=300, width=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);}
+		</script>
 				<a href="mypage.jsp">
 				<button class="btn btn-outline-dark" type="button"
 					data-toggle="tooltip" data-original-title="Remove this user">
