@@ -112,48 +112,32 @@ public class BoardTipController extends HttpServlet {
 			}
 			else if(command.equals("/delete.tip")) {
 				String seq = request.getParameter("seq");
-				System.out.println("delete in");
-				System.out.println("delete seq" + seq);
 				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
 
 				String systemFileName = fileDTO.getThum_sysFileName();
-				System.out.println("systemFileName: " + systemFileName);
 				if(!(systemFileName.equals(""))) {
 					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Semi_Honjok
 					String realPath = request.getServletContext().getRealPath("/files/");
 					File file = new File(realPath + "/"+ systemFileName);
-					System.out.println("들어옴 2");
 					System.out.println(file);
 					if(file.exists()){
-						System.out.println("들어옴 3");
 						if(file.delete()){
-							System.out.println("들어옴 4");
 							List<String> list = fileDAO.getNote_sysFileName(seq);
-							System.out.println(list.size());
-							if(list.size() != 0) {
-								System.out.println("들어옴5");
-								
+							if(list.size() != 0) {								
 								for(int i=0; i < list.size(); i++) {
 									String Path = request.getServletContext().getRealPath("/files/");
 									File file2 = new File(Path + "/"+ list.get(i));
 									System.out.println(i+"번" + file2);
 									if(file2.exists() ){
-										System.out.println("존재");
 										if(file2.delete()){
-											System.out.println("삭제 성공");
 										}
 									}
 								}
-								
-								
-
 							}
 						}else {
 							
 						}
-						System.out.println("들어옴 6");
 						int result = dao.deleteData(seq);
-						System.out.println(result);
 					}else{}
 
 				}

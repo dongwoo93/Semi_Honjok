@@ -303,8 +303,7 @@
 						</table>
 					</div>
 					<div class="kcc_agree">
-						<input type="checkbox" id="chkPersonalInfoProvide" class="chc"
-							value="N">
+						<input type="checkbox" id="chkPersonalInfoProvide" class="chc">
 						<p class="intxt">
 
 							<label for="chkPersonalInfoProvide">개인정보 제3자 제공동의(필수)</label>

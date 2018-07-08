@@ -16,8 +16,8 @@ public class NaverLoginTest {
     	
     	String token = "AAAANhYGzXK46utLrbNIT/8ji9AYK6dIVNLIM+PJpLJGfT0vF9/wOHXJA2fxjEnlSi9nDMx8WfJYjG9oiwLXvhnYn4o"
         		+ "="
-        		+ "";// ³×ÀÌ¹ö ·Î±×ÀÎ Á¢±Ù ÅäÅ«;
-        String header = "Bearer " + token; // Bearer ´ÙÀ½¿¡ °ø¹é Ãß°¡
+        		+ "";// ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å«;
+        String header = "Bearer " + token; // Bearer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         try {
             String apiURL = "https://openapi.naver.com/v1/nid/me";
             URL url = new URL(apiURL);
@@ -26,9 +26,9 @@ public class NaverLoginTest {
             con.setRequestProperty("Authorization", header);
             int responseCode = con.getResponseCode();
             BufferedReader br;
-            if(responseCode==200) { // Á¤»ó È£Ãâ
+            if(responseCode==200) { // ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            } else {  // ¿¡·¯ ¹ß»ý
+            } else {  // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
             }
             String inputLine;
@@ -44,7 +44,6 @@ public class NaverLoginTest {
             /*System.out.println(response.toString());*/
             
             String member = jsOBj.get("response").toString();
-            System.out.println(member);
             
             JSONObject jsOBj2 = (JSONObject)jsPars.parse(member);
             String id = jsOBj2.get("id").toString();
@@ -52,13 +51,7 @@ public class NaverLoginTest {
             String gender = jsOBj2.get("gender").toString();
             String email = jsOBj2.get("email").toString();
             
-            
-            
-            System.out.println(id);
-            System.out.println(name);
-            System.out.println(gender);
-            System.out.println(email);	
-            
+             
             
            
         } catch (Exception e) {

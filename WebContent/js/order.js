@@ -6,14 +6,18 @@ function shop_submit(){
 		var phone1 = document.getElementById("se").value;
 		var phone2 = document.getElementById("phone1").value;
 		var phone3 = document.getElementById("phone2").value;
-		var email = document.getElementById("emailid").value;
-
-		if(name=="" || zipcode=="" || address1=="" || address2=="" || phone1=="" || phone2=="" || phone3=="" || email=="") {
-			alert("작성을 다시 확인해주세요");
-			return;
-		}else{
-			$("#myform").submit();
-		}	
+		var agreement = $("#chkPersonalInfoProvide").is(":checked");
+		if(agreement){
+			if(name=="" || zipcode=="" || address1=="" || address2=="" || phone1=="" || phone2=="" || phone3==""){
+				alert("작성을 다시 확인해주세요");
+				return;
+			}else{
+				$("#myform").submit();
+			}
+		}
+		else{
+			alert("약관에 동의하지 않으시면 결제하실 수 없습니다.");
+		}
 	}
 
 function sample6_execDaumPostcode() {
