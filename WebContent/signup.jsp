@@ -43,6 +43,7 @@
 	$(document).ready(function() {
 		
 		$.validator.addMethod("phone", function(phone_number, element) {
+
 			phone_number = phone_number.replace(/\s+/g, ""); 
 			return this.optional(element) || phone_number.length > 9 &&
 				phone_number.match(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/);
@@ -61,27 +62,6 @@
 		})
 		
 		
-		$("#id").keyup(function() {
-			
-			var val = $("#id").val();
-				$.ajax({
-					url : "idcheck.mem",
-					type : "get",
-					data : {
-						value : val
-					},
-
-					success : function(response) {
-						$("#chkmsg").text(response);
-
-	            },
-	            error : function() {
-
-	            }
-	         }) 
-
-      });
-
       $('#registerForm').validate({
 
 			rules : {
@@ -187,21 +167,36 @@
 			submitHandler : function(frm) {
 
 				frm.submit(); //유효성 검사를 통과시 전송
+				console.log("일루들어옴")
 
 			},
 			success : function(e) {
-
+				console.log("들어와버리네");
          },
-         submitHandler : function(frm) {
-            frm.submit(); //유효성 검사를 통과시 전송
-         },
-         success : function(e) {
-
-         }
-
       },
 
    });
+		
+	$("#id").focusout(function() {
+			
+			var val = $("#id").val();
+				$.ajax({
+					url : "idcheck.mem",
+					type : "get",
+					data : {
+						value : val
+					},
+
+					success : function(response) {
+						$("#chkmsg").text(response);
+
+	            },
+	            error : function() {
+
+	            }
+	         }) 
+
+      });
 })
 </script>
 
