@@ -78,12 +78,10 @@ public class FrontController extends HttpServlet {
 				LikeDTO like = likeDao.SelectLike(boardseq, id);
 				String likeStat = like.getLikeCheck();
 				if(likeStat.equals("1")) {
-					System.out.println("들어옴1");
 					update = likeDao.UpdateLike(boardseq, id, "0");
 					likeResult = likeCount - 1;
 					board.UpdateLikeCount(boardseq, likeResult);
 				}else {
-					System.out.println("들어옴2");
 					update = likeDao.UpdateLike(boardseq, id, "1");
 					likeResult = likeCount + 1;
 					board.UpdateLikeCount(boardseq, likeResult);
@@ -102,12 +100,10 @@ public class FrontController extends HttpServlet {
 				AdminLikeDTO like = likeDAO.selectArticleLike(boardseq, id);
 				String likeStat = like.getLike_check();
 				if(likeStat.equals("1")) {
-					System.out.println("들어옴1");
 					update = likeDAO.UpdateLike(boardseq, id, "0");
 					likeResult = likeCount - 1;
 					likeDAO.updateLikeCount(boardseq, likeResult);
 				}else {
-					System.out.println("들어옴2");
 					update = likeDAO.UpdateLike(boardseq, id, "1");
 					likeResult = likeCount + 1;
 					likeDAO.updateLikeCount(boardseq, likeResult);
@@ -126,11 +122,7 @@ public class FrontController extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
