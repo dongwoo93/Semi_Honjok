@@ -48,9 +48,10 @@ public class MemberController extends HttpServlet {
 
 				int result = dao.insertData(id, pw, name, phone, email, zipcode, address, gender);
 				request.setAttribute("result", result);
+				request.setAttribute("id", id);
 
 				isRedirect = false;
-				dst = "hollo.com";
+				dst = "signup.jsp";
 
 
 			} else if(command.equals("/idcheck.mem")) {
@@ -74,17 +75,24 @@ public class MemberController extends HttpServlet {
 			} else if(command.equals("/memberout.mem")) {
 
 				String id = request.getParameter("id");
-				System.out.println(id);
 				
 				if(id.contains("Naver") || id.contains("Kakao") || id.contains("Google")) {
-					request.getSession().invalidate();
-					dst ="memberoutproc.jsp";
+					
+					int result = dao.deleteData(id);
+					if(result > 0) {
+						request.setAttribute("result", result);
+						request.getSession().invalidate();
+						isRedirect = false;
+						dst ="memberoutproc.jsp";
+					}else {
+						response.sendRedirect("error.jsp");
+					}
+					
 				}else {
 					String pw = request.getParameter("pw");
 
 					boolean b = dao.idpwCheck(id, pw);
 					
-					System.out.println("memberout 들어옴");
 					
 					if(b) {
 						int result = dao.deleteData(id,pw);
@@ -115,10 +123,9 @@ public class MemberController extends HttpServlet {
 			}else if(command.equals("/memberoutform.mem")) {
 				String id = (String) request.getSession().getAttribute("loginId");
 				List<MemberDTO> result = dao.outputData(id);
-				System.out.println(result.get(0).getPortal());
 				request.setAttribute("result", result);
 				isRedirect = false;
-				dst = "memberout.jsp";
+				dst = "memberout2.jsp";
 			}
 
 
@@ -156,8 +163,7 @@ public class MemberController extends HttpServlet {
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
-                System.out.println(id);
-                System.out.println(name);
+
 				ArrayList<MemberDTO> result = dao.outputData(id);
 				
 				
@@ -166,7 +172,7 @@ public class MemberController extends HttpServlet {
 
 				isRedirect = false;
 
-				dst="myinfo.jsp";
+				dst="myinfo2.jsp";
 
 			}
 

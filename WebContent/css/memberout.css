@@ -1,0 +1,43 @@
+body {
+	margin-top: 30px;
+	font-family: 'Noto Sans KR', sans-serif;
+ 	font-size: 16px;		
+}
+
+b {
+	font-size: 20px;
+	font-family: 나눔스퀘어라운드;
+	font-weight: bolder;
+	color: #c0c0c0;
+}
+
+hr {
+	border-color: #c0c0c0;
+	border-width: 4px;
+	padding-left: 160px;
+	width: 1000px;
+}
+
+.form-control {
+	width: 32%;
+}
+
+#navbar {
+	color: white;
+	background-color: #dee2e6 !important;
+	z-index:1030;
+	position: fixed;
+	transition: background-color 200ms linear;
+}
+
+#navbar .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar .navbar-nav .nav-link:hover {
+    color: #1e73be;
+}
+
+#navbar .navbar-brand {
+	color: black;
+}

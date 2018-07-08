@@ -39,8 +39,6 @@ public class BoardWriteController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		//System.out.println(command);
-		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
 		// getServletContext()
@@ -48,8 +46,8 @@ public class BoardWriteController extends HttpServlet {
 		if(!f.exists()){
 			f.mkdir();
 		}
-		int maxSize = 1024 * 1024 * 100; // �ִ� ������
-		String enc = "utf8"; // �ѱ�
+		int maxSize = 1024 * 1024 * 100;
+		String enc = "utf8";
 		MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc,
 				new DefaultFileRenamePolicy());
 		Enumeration<String> names = mr.getFileNames();
@@ -65,14 +63,6 @@ public class BoardWriteController extends HttpServlet {
 		String[] fileList = null;
 		Object obj;
 
-		//String contentsImg = mr.getParameter("contentsImg");
-		/*List<>
-		String[] splitImgName = contentsImg.split(".");
-
-		while() {
-
-		}
-		 */
 		String paramName = names.nextElement();
 		String originalFileName = mr.getOriginalFileName(paramName);
 		String systemFileName = mr.getFilesystemName(paramName);
@@ -125,7 +115,6 @@ public class BoardWriteController extends HttpServlet {
 				String place_url = mr.getParameter("places.place_url");
 				String x = mr.getParameter("places.x");
 				String y = mr.getParameter("places.y");
-				System.out.println(road_address_name);
 
 				if(!place_name.equals("")) {
 					MapDTO dto = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
@@ -147,7 +136,6 @@ public class BoardWriteController extends HttpServlet {
 			try {
 				if(systemFileName != null) {
 					String seq = mr.getParameter("seq");
-					System.out.println(seq);
 					BoardDTO dto = new BoardDTO(seq, category, subject, title, contents);
 					int result = tipDAO.updateData(dto);
 					AdminFileDAO fileDAO = new AdminFileDAO();
@@ -157,22 +145,16 @@ public class BoardWriteController extends HttpServlet {
 						int fileResult = fileDAO.updateThumb_FileName(fileDTO);
 						if(fileResult > 0) {
 							if(stJson != null){
-								System.out.println("json 변환 들어옴");
-								System.out.println(stJson.toString());
+
 								obj = paser.parse(stJson);
-								System.out.println(obj);
 								JSONArray jsonArray = (JSONArray)obj;
-								System.out.println(jsonArray);
 								fileList = new String[jsonArray.size()];
-								System.out.println(fileList);
 								for(int j=0;j<fileList.length;j++){
 									fileList[j] = jsonArray.get(j).toString();
-									System.out.println("컨텐츠 파일 이름:" + fileList[j]);
 								}
 								int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
 								for(int i=0;i<imgUpResult.length;i++) {
 									if(imgUpResult[i] > 0) {
-										System.out.println("이미지업 결과:" + imgUpResult[i]);
 									}
 								}
 							}
@@ -185,7 +167,6 @@ public class BoardWriteController extends HttpServlet {
 						String place_url = mr.getParameter("places.place_url");
 						String x = mr.getParameter("places.x");
 						String y = mr.getParameter("places.y");
-						System.out.println(road_address_name);
 
 						if(!place_name.equals("")) {
 							MapDTO mapDTO = new MapDTO(seq, place_name,category_name,phone,road_address_name,address_name,place_url,x,y);
@@ -204,65 +185,6 @@ public class BoardWriteController extends HttpServlet {
 			String encodeCat = URLEncoder.encode(category, "UTF-8");
 			dst = "selectNaviCat.tip?category="+encodeCat;
 		}
-
-
-
-		/*if(command.equals("/upload.tw")) {
-			realPath = contextPath + "/files/" + systemFileName;
-			//System.out.println(realPath);
-			JSONObject json = new JSONObject();
-			json.put("url", realPath);
-			//System.out.println(json.toJSONString());
-			response.setCharacterEncoding("utf8");
-			response.setContentType("application/json");
-			response.getWriter().println(json.toJSONString());
-			response.getWriter().flush();
-			response.getWriter().close();
-			return;
-		}*/
-		//if(command.equals("/editor.tw")) {
-		/*String title = mr.getParameter("title");
-			System.out.println(title);
-			String category = mr.getParameter("category");
-			System.out.println(category);
-			String subject = mr.getParameter("subject");
-			System.out.println(subject);
-			String contents = mr.getParameter("summernote");
-
-			System.out.println(contents);*/
-		//BoardWriteDAO dao = new BoardWriteDAO();
-
-		/*try {
-			BufferedReader reader = request.getReader();
-			while ((line = reader.readLine()) != null)
-				sb.append(line);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}*/
-
-		//String contents = sb.toString();
-		//System.out.println(contents);
-
-		/*if(category.equals("����")) {
-				BoardTipDAO tipDAO = new BoardTipDAO();
-				try {
-
-						System.out.println("���� ����");
-						String seq = tipDAO.getBoardSeq();
-						System.out.println(seq);
-						BoardDTO dto = new BoardDTO(seq, category, subject, title, contents, systemFileName, originalFileName);
-						tipDAO.insertData(dto);
-
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				dst = "hollo.com";
-			}else if(category.equals("�丮")) {
-
-			}
-		 */
-		//}
 
 		if(isRedirect) {
 			response.sendRedirect(dst);

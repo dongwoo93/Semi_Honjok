@@ -1,59 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+    pageEncoding="UTF-8"%>
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원탈퇴</title>
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<%@ include file="../include/top.jsp" %>
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
-
-<style>
-body {
-	margin-top: 30px;
-	font-family: 'Noto Sans KR', sans-serif;
- 	font-size: 16px;		
-}
-
-b {
-	font-size: 20px;
-	font-family: 나눔스퀘어라운드;
-	font-weight: bolder;
-	color: #c0c0c0;
-}
-
-hr {
-	border-color: #c0c0c0;
-	border-width: 4px;
-	padding-left: 160px;
-	width: 1000px;
-}
-
-.form-control {
-	width: 32%;
-}
-
-
-
-
-
-</style>
-
-</head>
-
-<body>
-	
-	<c:choose>
+<c:choose>
 	
 		<c:when test="${num == 1}">
 			<script>
@@ -63,7 +16,7 @@ hr {
 	
 	</c:choose>
 	
-	<div class="container">
+	<div class="container" style="margin-top: 100px;">
 		<form id="form1" action="memberout.mem" method="post">
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
@@ -100,12 +53,13 @@ hr {
                     	 안내 사항을 모두 확인하였으며, 이에 동의합니다. <br> <hr> </td>
 						</tr>
 					
-
+					
 						<c:choose>
-						<c:when test="${result[0].portal != ''}">
+						<c:when test="${result[0].portal ne null}">
 						<div>그냥 탈퇴될거임</div>
 						<input type="hidden" name="id" value="${result[0].id}">
 						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
+						
 						</c:when>
 						<c:otherwise>
 						<div class="form-group">
@@ -121,9 +75,7 @@ hr {
 						</div>
 						</c:otherwise>
 						</c:choose>
-						
-						
-						
+
 					</div>
 				</div>
 			</div>
@@ -131,26 +83,20 @@ hr {
 	</div>
 	
 	<script>
-	if("${result.portal}" != null) {
+	if('${result[0].portal}' != '') {
+		$("#btn2").click(function () {
+			$(location).attr("href", "memberout.mem");
+		})
+	}else {
 		$("#btn").click(function () {
-			var agreement = $(check).is(":checked");
+			var agreement = $("#check").is(":checked");
 			if(agreement) {
 				$("#form1").submit();
 			}else {
 				alert("약관에 동의하지 않으시면 탈퇴할수 없습니다.")
 			}
 		})
-	}
-		
-
-		
-	
-						
-						
-						
-						
+	}				
 	</script>
-	
-</body>
-
-</html>
+	<link rel="stylesheet" href="css/memberout.css">
+	<%@ include file="../include/bottom.jsp"%>

@@ -6,7 +6,18 @@ var num = 1;
 
 	$(document).ready(function() {
 		$("#confirm").click(function() {
-			$("#formid").submit();
+			var text = $("#comment").val();
+			if ('${id}' == 'nonmember') {
+				$("#loginbt").trigger('click');
+			}else {
+				if(text != "") {
+					$("#formid").submit();
+				}else {
+					alert("내용을 입력해주세요");
+				}
+				
+			}
+			
 		})
 		$("#fix").click(function() {
 			$(location).attr('href', "fix.freeb?no=${no}")
@@ -120,25 +131,25 @@ var num = 1;
 							<!-- <button type="button" id=like>좋아요</button>
 									<button type="button" id=likecancel style="display: none">좋아요
 										취소</button> -->
-							<span id=likespan>${result[0].like}</span>
-						</c:when>
-						<c:otherwise>
-							<button type=button id=likecancel>
-								<img src="kejang/no.png">
-							</button>
-							<button type=button id=like style="display: none">
-								<img src="kejang/good.jpg">
-							</button>
-							<span id=likespan>${result[0].like}</span>
-						</c:otherwise>
-					</c:choose></td>
-			</tr>
-			<tr>
-				<td width=100px height=20px>작성자IP</td>
-				<th colspan=3>${result[0].ip}</th>
-			</tr>
-			<c:choose>
-				<c:when test="${sessionScope.loginId!=null}">
+									<span id=likespan>${result[0].like}</span>
+								</c:when>
+								<c:otherwise>
+									<button type=button id=likecancel>
+										<img src="kejang/no.png">
+									</button>
+									<button type=button id=like style="display: none">
+										<img src="kejang/good.jpg">
+									</button>
+									<span id=likespan>${result[0].like}</span>
+								</c:otherwise>
+							</c:choose></td>
+					</tr>
+					<tr>
+						<td width=100px height=20px>작성자IP</td>
+						<th colspan=3>${result[0].ip}</th>
+					</tr>
+					<c:choose>
+					<c:when test="${sessionScope.loginId == result[0].writer}">
 					<tr align=right>
 						<td colspan=4 height=20px align=right><input type="hidden"
 							name="hiddenheader" value="${result[0].header}">
@@ -195,7 +206,13 @@ var num = 1;
 										<script>
 										$("#delbtn:last-child").after("<td align=center><button id="+num+" type=button><b>X</b></button></td>");
 	                 	 				document.getElementById(num++).onclick = function() {
-	                 	                     location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+	                 	 					var con = confirm("삭제하시겠습니까?");
+	                 	 					if(con) {
+	                 	 						location.href = "delete_comment.freeb?comSeq=${result2.comment_seq}&no=${result[0].seq}&count=${result[0].viewcount}";
+	                 	 					}else {
+	                 	 						
+	                 	 					}
+	                 	                     
 	                 	                  }
                   					</script></td>
 

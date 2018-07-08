@@ -87,7 +87,7 @@ public class Board_Controller extends HttpServlet {
 						}
 						
 						result = dao.selectBest2(currentPage*10-9,currentPage*10);
-						navi = dao.getPageNavi(currentPage, category);
+						navi = dao.getPageBest(currentPage);
 					
 					
 				}else {
@@ -282,7 +282,7 @@ public class Board_Controller extends HttpServlet {
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
 				String writer = (String)request.getSession().getAttribute("loginId");
-				System.out.println(writer);
+				
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
 				int result = dao.insertComment(dto);
