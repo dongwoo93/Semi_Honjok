@@ -89,7 +89,7 @@
 		})
 	}else {
 		$("#btn").click(function () {
-			var agreement = $(check).is(":checked");
+			var agreement = $("#check").is(":checked");
 			if(agreement) {
 				$("#form1").submit();
 			}else {
