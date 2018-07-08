@@ -166,7 +166,7 @@ public class BoardWriteController extends HttpServlet {
 							MapDAO dao = new MapDAO();
 							int resultMap = dao.modifyData(mapDTO);
 							if(resultMap <= 0) {
-								response.sendRedirect("error.html");
+								response.sendRedirect("error.jsp");
 							}
 						}
 					}else {}

@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="boardcss/boardwritecss.css" type="text/css">
 <script src="dist/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="boardcss/map.css" type="text/css">
+<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
 <style>
 .map_wrap, .map_wrap * {
 	margin: 0;
@@ -367,8 +369,7 @@
 					<div class="option">
 						<div>
 							키워드 : <input type="text" name="searchs" value="이태원 맛집" id="keyword" size="15">
-							<input type="button" value="검색하기"
-								onclick="searchPlaces(); return false">
+							<input id="keysearch" type="button" value="검색하기">
 
 						</div>
 					</div>
@@ -379,8 +380,7 @@
 			</div>
 			
 			
-			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=965d101f294cd05e4f4a634c53425577&libraries=services"></script>
+			
 			<script>
 			
 			function categoryChange(e) {
@@ -441,7 +441,6 @@
 				// 키워드로 장소를 검색합니다
 
 				searchPlaces();
-
 				// 키워드 검색을 요청하는 함수입니다
 				function searchPlaces() {
 					removeMarker();
@@ -456,6 +455,8 @@
 					// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 					ps.keywordSearch(keyword, placesSearchCB);
 				}
+				
+				
 
 				// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 				function placesSearchCB(data, status, pagination) {
@@ -754,8 +755,11 @@
 						el.removeChild(el.lastChild);
 					}
 				}
-			}
 				
+				$("#keysearch").click(function() {
+					searchPlaces();
+				})
+			}	
 			</script>
 
 			<input id="place_name" type="hidden" name="places.place_name">
