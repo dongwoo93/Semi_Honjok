@@ -91,11 +91,25 @@
 							</button>
 						</li>
 					</ul>
-
+					
+					<c:choose>
+					<c:when test="${result[0].product_quantity == 0}">
+					<div class="buynot">
+					<p id="ucItemOrderInfo_ucItemOrderButtons_notBuyTxt" class="buynot_txt">
+					현재 구매가 불가능한 상품입니다.
+					</p>
+					</div>
+					</c:when>
+					<c:otherwise>
 					<div class="item-bottombtns">
 						<button class="btn_cart" type="button">장바구니</button>
 						<button id="deliverybt" class="btn_buy" type="button">구매하기</button>
 					</div>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					
 				</div>
 			</div>
 
