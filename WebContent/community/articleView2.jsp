@@ -90,8 +90,16 @@ var num = 1;
 </script>
 <div style="height: 100px"></div>
 <div class="container">
+<table class="table">
+				<tbody class="head" id="head">
+					<tr>
+						<td width=100px>제목<input type="hidden" id="seq1" name="seq"
+							value="${result[0].seq}"></td>
+						<th colspan=2>[${result[0].header}]${result[0].title}</th>
+						<td width=180px><b id="date">${result[0].writedate}</b></td>
 
 					</tr>
+					
 					<tr>
 						<td width=100px height=20px>글쓴이</td>
 						<th colspan=2>${result[0].writer}</th>
