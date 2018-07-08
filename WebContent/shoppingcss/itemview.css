@@ -301,3 +301,17 @@ em {
 #navbar .navbar-brand {
 	color: black;
 }
+
+.buynot {
+    padding: 29px 0;
+    background: #f7f7f7;
+    border: 1px solid #f0f0f0;
+    border-bottom: 1px solid #cccccc;
+    text-align: center;
+}
+
+
+.buynot .buynot_txt {
+    font-weight: bold;
+    color: #e63740;
+}

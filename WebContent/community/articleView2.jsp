@@ -91,59 +91,55 @@ var num = 1;
 <div style="height: 100px"></div>
 <div class="container">
 
-	<table class="table">
-		<tbody class="head" id="head">
-			<tr>
-				<td width=100px>제목<input type="hidden" id="seq1" name="seq"
-					value="${result[0].seq}"></td>
-				<th colspan=2>[${result[0].header}]${result[0].title}</th>
-				<td width=180px><b id="date">${result[0].writedate}</b></td>
-
-			</tr>
-			<tr>
-				<td width=100px height=20px>글쓴이</td>
-				<th colspan=2>${result[0].writer}</th>
-				<td width=180px>${result[0].ip}</td>
-			</tr>
-			<tr>
-
-
-				<c:if test="${file.size() > 0}">
-					<td>첨부파일 ${file.size()}개</td>
-					<td colspan="3"><c:forEach var="tmp" items="${file}">
-							<a href="DownloadController?fileName=${tmp.file_system_name}">${tmp.file_original_name}</a>
-							<br>
-						</c:forEach>
-				</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=4 height=400px>${result[0].contents}</td>
-			</tr>
-			<tr>
-				<td align=center colspan=4><c:choose>
-						<c:when test="${likeStat == 0}">
-							<button type=button id=like>
-								<img src="kejang/good.jpg">
-							</button>
-							<button type=button id=likecancel style="display: none">
-								<img src="kejang/no.png">
-							</button>
-							<!-- <button type="button" id=like>좋아요</button>
-									<button type="button" id=likecancel style="display: none">좋아요
-										취소</button> -->
-									<span id=likespan>${result[0].like}</span>
-								</c:when>
-								<c:otherwise>
-									<button type=button id=likecancel>
-										<img src="kejang/no.png">
-									</button>
-									<button type=button id=like style="display: none">
-										<img src="kejang/good.jpg">
-									</button>
-									<span id=likespan>${result[0].like}</span>
-								</c:otherwise>
-							</c:choose></td>
+					</tr>
+					<tr>
+						<td width=100px height=20px>글쓴이</td>
+						<th colspan=3>${result[0].writer}</th>
+					</tr>
+					<tr>
+         
+        
+        <c:if test="${file.size() > 0}">
+        <td>첨부파일
+        ${file.size()}개 </td>
+        <td colspan="3">
+ 
+        <c:forEach var="tmp" items="${file}">
+        <a href="DownloadController?fileName=${tmp.file_system_name}">${tmp.file_original_name}</a>
+          <br>
+        </c:forEach>
+        </c:if>
+        </td>
+        </tr>
+					<tr>
+						<td colspan=4 height=400px>${result[0].contents}</td>
+					</tr>
+					<tr>
+						<td align=center colspan=4>
+						
+						<c:choose>
+			<c:when test="${likeStat == 0}">
+				<!-- <button type="button" id=like>좋아요</button> -->
+				<span><input type="image" src="images/nomal_heart.png"
+					id="like" style="width:40px; height:40px;"></span>
+				<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
+				<span><input type="image" src="images/heart_77931.png"
+					id="likecancel" style="display: none; width:40px; height:40px;"></span>
+				<span id=likespan>${result[0].like}</span><span> 명이 좋아합니다</span>
+			</c:when>
+			<c:otherwise>
+				<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
+				<input type="image" src="images/heart_77931.png" id="likecancel" style="width:40px; height:40px;">
+				<input type="image" src="images/nomal_heart.png" id="like"
+					style="display: none; width:40px; height:40px;">
+				<!-- <button type="button" id=like style="display: none">좋아요</button> -->
+				
+				<span id=likespan>${result[0].like}</span><span> 명이 좋아합니다</span>
+			</c:otherwise>
+		</c:choose>
+						
+							
+							</td>
 					</tr>
 					<c:choose>
 					<c:when test="${sessionScope.loginId == result[0].writer}">
