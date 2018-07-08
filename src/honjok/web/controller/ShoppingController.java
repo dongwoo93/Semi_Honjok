@@ -112,10 +112,12 @@ public class ShoppingController extends HttpServlet {
 		}
 		/*작성페이지에서 작성버튼 눌렀을 때 , 메인에서 네비바 쇼핑 눌렀을 때*/
 		else if(command.equals("/shopmain.shop")) {
+			
 			ArrayList<ShoppingDTO> result = dao.selectData();
 			List<ShoppingFilesDTO> list= filedao.getAllThum_sysFileName();
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
+			
 			
 			isRedirect=false;
 			dst="shopping/shopmain.jsp";
@@ -123,15 +125,21 @@ public class ShoppingController extends HttpServlet {
 			
 		}else if(command.equals("/itemview.shop")) {
 			String seq = request.getParameter("seq");
+			String id = (String) request.getSession().getAttribute("loginId");
+			if(id != null) {
+				
+			}else {
+				id = "nonmember";
+			}
 			ArrayList<ShoppingDTO> result = dao.clickData(seq);
 			List<ShoppingFilesDTO> list= filedao.clickfile(seq);
 			
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
-			
+			request.setAttribute("id", id);
 			
 			isRedirect=false;
-			dst = "shopping/itemview.jsp";
+			dst = "shopping/itemview2.jsp";
 		}else if(command.equals("/purchase.shop")) {
 			String seq = request.getParameter("seq");
 			ArrayList<ShoppingDTO> result = dao.clickData(seq);
@@ -142,12 +150,32 @@ public class ShoppingController extends HttpServlet {
 			String a = result.get(0).getProduct_price().replaceAll("\\,","");
 			int price2 = Integer.parseInt(a) + 2500;
 			String price = dt.format(price2);
+			String pid = result.get(0).getProduct_id();
 			
 			request.setAttribute("list", list);
 			request.setAttribute("price", price);
+			request.setAttribute("pid", pid);
 			
 			isRedirect=false;
-			dst = "shopping/order.jsp";
+			dst = "shopping/order2.jsp";
+		}else if(command.equals("/complete.shop")) {
+			String pid = request.getParameter("pid");
+			ShoppingDTO result = dao.selectData(pid);
+			
+			String quantity = result.getProduct_quantity();
+			String count = result.getProduct_count();
+			
+			String updateQuan = Integer.toString(Integer.parseInt(quantity) - 1);
+			String updateCoun = Integer.toString(Integer.parseInt(count) + 1);
+			
+			int upResult = dao.updateCount(pid, updateCoun);
+			int upResult2 = dao.updateQuantity(pid, updateQuan);
+			
+			if(upResult > 0 && upResult2 > 0 ) {
+				dst = "shopmain.shop";
+			}else {
+				response.sendRedirect("error.jsp");
+			}
 		}
 		
 		

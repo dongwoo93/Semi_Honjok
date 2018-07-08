@@ -277,3 +277,41 @@ em {
     line-height: 55px;
     letter-spacing: -0.5px;
 }
+
+#deliverybt{
+	cursor: pointer;
+}
+
+#navbar {
+	color: white;
+	background-color: #dee2e6 !important;
+	z-index:1030;
+	position: fixed;
+	transition: background-color 200ms linear;
+}
+
+#navbar .navbar-nav .nav-link {
+	color: black;
+}
+
+#navbar .navbar-nav .nav-link:hover {
+    color: #1e73be;
+}
+
+#navbar .navbar-brand {
+	color: black;
+}
+
+.buynot {
+    padding: 29px 0;
+    background: #f7f7f7;
+    border: 1px solid #f0f0f0;
+    border-bottom: 1px solid #cccccc;
+    text-align: center;
+}
+
+
+.buynot .buynot_txt {
+    font-weight: bold;
+    color: #e63740;
+}

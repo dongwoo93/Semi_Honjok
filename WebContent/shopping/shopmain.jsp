@@ -58,6 +58,14 @@
 #myfooter{
 	margin-top: 300px;
 }
+#pro_title{
+	color:black;
+}
+
+#pro_title:hover {
+	color:black;
+}
+
 </style>
 
 </head>
@@ -91,7 +99,7 @@
 							alt="Card image cap" style="border: 1px solid #e3e3e3;">
 						</a>
 						<div class="card-body" style="width: 318px; height: 180px;">
-							<p class="item-name">${result.product_name}</p>
+							<p class="item-name"><a href="itemview.shop?seq=${result.product_id}" id="pro_title">${result.product_name}</a></p>
 							<p class="item-price">${result.product_price}원</p>
 							<p class="item-shortdesc">${result.product_summary}</p>
 						</div>

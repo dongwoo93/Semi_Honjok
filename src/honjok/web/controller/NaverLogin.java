@@ -24,7 +24,6 @@ public class NaverLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 String requestURI = request.getRequestURI();
-			System.out.println(requestURI);
 		
 		    String clientId = "0QWAu0ecnrYTQlD9z0JZ";//���ø����̼� Ŭ���̾�Ʈ ���̵�";
 		    String clientSecret = "cAOyrtdthX";//���ø����̼� Ŭ���̾�Ʈ ��ũ����";
@@ -40,14 +39,13 @@ String requestURI = request.getRequestURI();
 		    apiURL += "&state=" + state;
 		    String access_token = "";
 		    String refresh_token = "";
-		    System.out.println("apiURL="+apiURL);
 		    try {
 		      URL url = new URL(apiURL);
 		      HttpURLConnection con = (HttpURLConnection)url.openConnection();
 		      con.setRequestMethod("GET");
 		      int responseCode = con.getResponseCode();
 		      BufferedReader br;
-		      System.out.print("responseCode="+responseCode);
+		      
 		      if(responseCode==200) { // ���� ȣ��
 		        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		      } else {  // ���� �߻�
@@ -61,20 +59,17 @@ String requestURI = request.getRequestURI();
 		      br.close();
 		      if(responseCode==200) {
 		        /*out.println(res.toString());*/
-		        System.out.println(res.toString());
 		        
 		        JSONParser jsPars = new JSONParser();
 	            String Alldata = res.toString();
 	            JSONObject jsOBj = (JSONObject)jsPars.parse(Alldata);  
 	            
 	            String access = (String) jsOBj.get("access_token");
-	            System.out.println(access);
 	            
 	            /*request.setAttribute("access", access);*/
 	            
 	            RequestDispatcher rd = request.getRequestDispatcher("abc.do?access="+URLEncoder.encode(access, "utf8"));
 	            
-	            System.out.println(access);
 	            
 				rd.forward(request, response);
 	            

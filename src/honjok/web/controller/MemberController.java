@@ -75,7 +75,6 @@ public class MemberController extends HttpServlet {
 			} else if(command.equals("/memberout.mem")) {
 
 				String id = request.getParameter("id");
-				System.out.println(id);
 				
 				if(id.contains("Naver") || id.contains("Kakao") || id.contains("Google")) {
 					
@@ -94,7 +93,6 @@ public class MemberController extends HttpServlet {
 
 					boolean b = dao.idpwCheck(id, pw);
 					
-					System.out.println("memberout 들어옴");
 					
 					if(b) {
 						int result = dao.deleteData(id,pw);
@@ -125,7 +123,6 @@ public class MemberController extends HttpServlet {
 			}else if(command.equals("/memberoutform.mem")) {
 				String id = (String) request.getSession().getAttribute("loginId");
 				List<MemberDTO> result = dao.outputData(id);
-				System.out.println(result.get(0).getPortal());
 				request.setAttribute("result", result);
 				isRedirect = false;
 				dst = "memberout2.jsp";
@@ -166,8 +163,7 @@ public class MemberController extends HttpServlet {
 				String zipcode = request.getParameter("zipcode");
 				String address = request.getParameter("address");
 				String gender = request.getParameter("gender");
-                System.out.println(id);
-                System.out.println(name);
+
 				ArrayList<MemberDTO> result = dao.outputData(id);
 				
 				

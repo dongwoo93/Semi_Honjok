@@ -1,22 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/itemview.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    pageEncoding="UTF-8"%>
 
-<style>
-#deliverybt{
-	cursor: pointer;
-}
-</style>
-
-</head>
-<body>
+<%@ include file="../include/top.jsp" %>
 <script>
 	$(document).ready(function(){
 		$("#deliverybt").click(function(){
@@ -29,7 +14,7 @@
 		})
 	})
 </script>
-	<div class="container">
+	<div class="container" style="margin-top: 230px;">
 		<div id="content" class="item-content">
 			<div class="item-topinfowrap">
 				<div class="item-topgallerywrap">
@@ -106,11 +91,24 @@
 							</button>
 						</li>
 					</ul>
-
+					
+					<c:choose>
+					<c:when test="${result[0].product_quantity == 0}">
+					<div class="buynot">
+					<p id="ucItemOrderInfo_ucItemOrderButtons_notBuyTxt" class="buynot_txt">
+					현재 구매가 불가능한 상품입니다.
+					</p>
+					</div>
+					</c:when>
+					<c:otherwise>
 					<div class="item-bottombtns">
 						<button class="btn_cart" type="button">장바구니</button>
 						<button id="deliverybt" class="btn_buy" type="button">구매하기</button>
 					</div>
+					</c:otherwise>
+					</c:choose>
+					
+					
 					
 				</div>
 			</div>
@@ -126,5 +124,5 @@
 
 		</div>
 	</div>
-</body>
-</html>
+	<link rel="stylesheet" type="text/css" href="shoppingcss/itemview.css">
+	<%@ include file="../include/bottom.jsp"%>
