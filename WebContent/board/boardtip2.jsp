@@ -5,7 +5,7 @@
 <%@ include file="../include/top.jsp"%>
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="wrapper">
 	<div class="card-deck">
 		<c:choose>
 			<c:when test="${board.size() > 0}">
@@ -44,17 +44,11 @@
 		</c:choose>
 	</div>
 	<br>
-	<div class="box" id="searchbar"> <!-- #ffffff #63717f -->
-  <div class="container-1">
-      <span class="icon"><i class="fa fa-search" id="sicon"></i></span>
-      <input type="search" id="search" placeholder="Search" />
-  </div>
-</div>
+
 </div>
 	<div class="row text-center">
 		<div class="col-md-1" style="margin: auto">
-			<ul class="pagination">${navi}
-			</ul>
+			<ul class="pagination">${navi}</ul>
 		</div>
 		<c:choose>
 			<c:when test="${sessionScope.loginId == 'admin'}">
@@ -64,7 +58,15 @@
 			</c:when>
 		</c:choose>
 	</div>
+
+<div class="box" id="searchbar">
+	<!-- #ffffff #63717f -->
+	<div class="container-1">
+		<span class="icon"><i class="fa fa-search" id="sicon"></i></span> <input
+			type="search" id="search" placeholder="Search" />
+	</div>
 </div>
+
 <script>
 	$("#writebt").click(function(){
 		$(location).attr('href','write.tip');

@@ -109,7 +109,6 @@ public class MemberController extends HttpServlet {
 					  
 						}
 					}else {
-						  // System.out.println("아이디 비번 다른경우 들어옴");
 							int num = 1;
 							request.setAttribute("num", num);
 							isRedirect = false;

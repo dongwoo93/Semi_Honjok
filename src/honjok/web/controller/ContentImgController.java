@@ -27,8 +27,6 @@ public class ContentImgController extends HttpServlet {
 			//StringBuffer sb = new StringBuffer();
 			//String line = null;
 			String realPath = request.getServletContext().getRealPath("/files/");
-			// getServletContext()
-			//System.out.println("ó�� realPath: " + realPath);
 			File f = new File(realPath);
 			if(!f.exists()){
 				f.mkdir();
@@ -43,10 +41,7 @@ public class ContentImgController extends HttpServlet {
 			String systemFileName =  mr.getFilesystemName(file);
 
 			realPath = contextPath + "/files/" + systemFileName;
-			//System.out.println("contextPath: " + contextPath);
-			//System.out.println("�����н�2: " + realPath);
 			JSONObject json = new JSONObject();
-			System.out.println("file: " + systemFileName);
 			json.put("url", realPath);
 			json.put("systemFileName", systemFileName);
 			response.setCharacterEncoding("utf8");
@@ -57,21 +52,14 @@ public class ContentImgController extends HttpServlet {
 			return;
 		}else if(command.equals("/deleteImg.img")) {
 			String src = request.getParameter("src");
-			//System.out.println(src);
-			// String fileName
 			String realPath = request.getServletContext().getRealPath("/files/");
-			// getServletContext()
 			File f = new File(realPath);
 			File file = new File(f + "/" + src);
-			//System.out.println(file);
 
 			if(file.exists() ){
 				if(file.delete()){
-					System.out.println("���ϻ��� ����");
-					//int result = dao.deleteData(seq);
 				}
 			}else{
-				System.out.println("������ �������� �ʽ��ϴ�.");
 			}
 			return;
 		}
