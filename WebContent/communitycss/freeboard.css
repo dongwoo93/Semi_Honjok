@@ -1,5 +1,11 @@
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;	
+}
+
 .container{
 	margin-top: 100px;
+	white-space: nowrap;
 }
 
 .headSelect{
@@ -55,7 +61,7 @@
 
 .header{
 	border-radius: 3px;
-	background-color: #555555;
+	background-color: #1e73be;
 	font-size: 12px;
 	/* transition-duration: 0.4s; */
 	padding: 10px 24px;
@@ -97,11 +103,12 @@ a:active {
 #write {
 	float: right;
 	border-radius: 3px;
-	background-color: #555555;
-	font-size: 12px;
+	background-color: #1e73be;
+	font-size: 15px;
 	/* transition-duration: 0.4s; */
 	padding: 10px 16.35px;
 	color: white;
+	margin-bottom: 30px;
 }
 
 #write:hover {
@@ -181,11 +188,11 @@ a:active {
 	text-align: left;
 }
 #noticeheader{
-	width: 10%;
+	width: 12%;
 	text-align: left;
 }
 #noticetitle{
-	width: 50%;
+	width: 48%;
 }
 #noticewriter{
 	width: 10%;
