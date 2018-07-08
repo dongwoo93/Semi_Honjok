@@ -94,7 +94,8 @@ var num = 1;
 					</tr>
 					<tr>
 						<td width=100px height=20px>글쓴이</td>
-						<th colspan=3>${result[0].writer}</th>
+						<th colspan=2>${result[0].writer}</th>
+						<td width=180px>${result[0].ip}</td>
 					</tr>
 					<tr>
          
