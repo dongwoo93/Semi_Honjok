@@ -736,10 +736,6 @@ float:right;
 
 
 				</form>
-
-				<div class="text-center small">
-					이미 아이디가 있으신가요? <a href="login.html">로그인</a>
-				</div>
 			</div>
 		</c:otherwise>
 	</c:choose>

@@ -123,6 +123,10 @@ function attachSignin(element) {
 
 
 $(document).ready(function() {
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		   $('id').focus();
+		})
 
 	startApp();
 

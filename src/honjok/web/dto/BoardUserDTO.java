@@ -30,7 +30,6 @@ public class BoardUserDTO {
 	}
 
 
-
 	public BoardUserDTO(int seq, int cat_seq, String category, String header, String title, String contents,
 			String writer, String writedate, int viewcount, int like, String ip) {
 		super();
@@ -54,6 +53,19 @@ public class BoardUserDTO {
 			String ip) {
 		super();
 		this.seq = seq;
+		this.category = category;
+		this.title = title;
+		this.writer = writer;
+		this.contents = contents;
+		this.header = header;
+		this.ip = ip;
+	}
+	
+	public BoardUserDTO(int seq, int cat_seq, String category, String title, String writer, String contents, String header,
+			String ip) {
+		super();
+		this.seq = seq;
+		this.cat_seq = cat_seq;
 		this.category = category;
 		this.title = title;
 		this.writer = writer;

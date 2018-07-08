@@ -93,7 +93,7 @@
 					<tbody id="notice">
 				<tr>
 					<td id="noticecheck"><input type="checkbox" name="nocheck">
-					<td id="noticeno">${item2.seq}</td>
+					<td id="noticeno">${item2.cat_seq}</td>
 					<td id="noticeheader"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
 					<td id="noticewriter"><b>${item2.writer}</b></td>
@@ -114,7 +114,7 @@
 						<tbody id="body_a">
 							<tr>
 								<td id="articlecheck"><input type="checkbox" class="chk" name="chk" id="chk" value="${item.seq}">
-								<td id="no">${item.seq}
+								<td id="no">${item.cat_seq}
 								<td id="header">${item.header}
 								<c:choose>
 								<c:when test="${item.commentcount > 0}">
