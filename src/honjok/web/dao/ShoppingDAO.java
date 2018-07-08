@@ -55,7 +55,7 @@ public class ShoppingDAO {
 	public ArrayList<ShoppingDTO> selectData() throws Exception{
 		
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from product";
+		String sql = "select * from product order by product_id desc";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		
 		ResultSet rs = pstat.executeQuery();
@@ -79,6 +79,33 @@ public class ShoppingDAO {
 		con.close();
 		
 		return list;
+	}
+	
+public ShoppingDTO selectData(String pid) throws Exception{
+		
+		Connection con = DBUtils.getConnection();
+		String sql = "select * from product where product_id = ?";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setString(1, pid);
+		ResultSet rs = pstat.executeQuery();
+		ArrayList<ShoppingDTO> list = new ArrayList<>();
+			rs.next();
+			ShoppingDTO dto = new ShoppingDTO();
+			dto.setProduct_id(rs.getString(1));
+			dto.setProduct_name(rs.getString(2));
+			dto.setProduct_price(rs.getString(3));
+			dto.setProduct_quantity(rs.getString(4));
+			dto.setProduct_count(rs.getString(5));
+			dto.setProduct_summary(rs.getString(6));
+			dto.setProduct_contents(rs.getString(7));
+			dto.setProduct_delivery(rs.getString(8));
+		
+		
+		rs.close();
+		pstat.close();
+		con.close();
+		
+		return dto;
 	}
 	
 public ArrayList<ShoppingDTO> clickData(String seq) throws Exception{
@@ -111,6 +138,37 @@ public ArrayList<ShoppingDTO> clickData(String seq) throws Exception{
 		
 		return list;
 	}
+
+public int updateQuantity(String pid, String quantity) throws Exception {
+	Connection con = DBUtils.getConnection();
+	String sql = "update product set product_quantity=? where product_id=?";
+	PreparedStatement pstat = con.prepareStatement(sql);
+	
+	pstat.setString(1, quantity);
+	pstat.setString(2, pid);
+	
+	int result = pstat.executeUpdate();
+	con.commit();
+	pstat.close();
+	con.close();
+	return result;
+	
+}
+
+public int updateCount(String pid, String count) throws Exception {
+	Connection con = DBUtils.getConnection();
+	String sql = "update product set product_count=? where product_id=?";
+	PreparedStatement pstat = con.prepareStatement(sql);
+	
+	pstat.setString(1, count);
+	pstat.setString(2, pid);
+	
+	int result = pstat.executeUpdate();
+	con.commit();
+	pstat.close();
+	con.close();
+	return result;
+}
 	
 	
 	

@@ -28,10 +28,13 @@ public class PayController extends HttpServlet {
 		String zipcode = request.getParameter("zipcode");
 		String address1 = request.getParameter("address1");
 		String address2 = request.getParameter("address2");
+		String email = request.getParameter("email");
 		
 		String price = price2.replaceAll("\\,","");
 		String phone = bPhone1 + bPhone2 + bPhone3 + "";
 		String address = address1 + address2;
+		
+		String pid = request.getParameter("pid");
 		
 		
 		request.setAttribute("price", price);
@@ -40,6 +43,8 @@ public class PayController extends HttpServlet {
 		request.setAttribute("phone", phone);
 		request.setAttribute("zipcode", zipcode);
 		request.setAttribute("address", address);
+		request.setAttribute("email", email);
+		request.setAttribute("pid", pid);
 		
 		String dst = "pay.jsp";
 		

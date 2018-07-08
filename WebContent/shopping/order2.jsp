@@ -216,6 +216,11 @@
 							</td>
 						</tr>
 						<tr>
+							<th id="mail"><span
+								class="delivery-important">＊</span>이메일</th>
+							<td><input id="emailid" name="email" type="email" style="width: 500px; margin-left: 20px;"></td>
+						</tr>
+						<tr>
 							<th id="develiy">배송메시지</th>
 							<td><input id="de" type="text" style="width: 500px;"></td>
 						</tr>
@@ -260,6 +265,7 @@
 							버튼을 눌러<br>주문을 완료해주세요</span>
 					</div>
 				</div>
+				<input type="hidden" name="pid" value="${pid}">
 				</form>
 				<div style="height: 30px;"></div>
 				<div class="kcc_bx">
