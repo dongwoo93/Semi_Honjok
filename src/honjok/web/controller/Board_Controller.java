@@ -282,7 +282,7 @@ public class Board_Controller extends HttpServlet {
 				String content = request.getParameter("comment");
 				String ip = request.getRemoteAddr();
 				String writer = (String)request.getSession().getAttribute("loginId");
-				System.out.println(writer);
+				
 				BoardCommentDTO dto = new BoardCommentDTO(boardseq, writer, content, ip);
 				
 				int result = dao.insertComment(dto);
