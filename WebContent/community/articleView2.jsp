@@ -119,29 +119,31 @@ var num = 1;
 						<td colspan=4 height=400px>${result[0].contents}</td>
 					</tr>
 					<tr>
-						<td align=center colspan=4><c:choose>
-								<c:when test="${likeStat == 0}">
-									<button type=button id=like>
-										<img src="kejang/good.jpg">
-									</button>
-									<button type=button id=likecancel style="display: none">
-										<img src="kejang/no.png">
-									</button>
-									<!-- <button type="button" id=like>좋아요</button>
-									<button type="button" id=likecancel style="display: none">좋아요
-										취소</button> -->
-									<span id=likespan>${result[0].like}</span>
-								</c:when>
-								<c:otherwise>
-									<button type=button id=likecancel>
-										<img src="kejang/no.png">
-									</button>
-									<button type=button id=like style="display: none">
-										<img src="kejang/good.jpg">
-									</button>
-									<span id=likespan>${result[0].like}</span>
-								</c:otherwise>
-							</c:choose></td>
+						<td align=center colspan=4>
+						
+						<c:choose>
+			<c:when test="${likeStat == 0}">
+				<!-- <button type="button" id=like>좋아요</button> -->
+				<span><input type="image" src="images/nomal_heart.png"
+					id="like" style="width:40px; height:40px;"></span>
+				<!-- <button type="button" id=likecancel style="display: none">좋아요 취소</button> -->
+				<span><input type="image" src="images/heart_77931.png"
+					id="likecancel" style="display: none; width:40px; height:40px;"></span>
+				<span id=likespan>${result[0].like}</span><span> 명이 좋아합니다</span>
+			</c:when>
+			<c:otherwise>
+				<!-- <button type="button" id=likecancel>좋아요 취소</button> -->
+				<input type="image" src="images/heart_77931.png" id="likecancel" style="width:40px; height:40px;">
+				<input type="image" src="images/nomal_heart.png" id="like"
+					style="display: none; width:40px; height:40px;">
+				<!-- <button type="button" id=like style="display: none">좋아요</button> -->
+				
+				<span id=likespan>${result[0].like}</span><span> 명이 좋아합니다</span>
+			</c:otherwise>
+		</c:choose>
+						
+							
+							</td>
 					</tr>
 					<tr>
 						<td width=100px height=20px>작성자IP</td>
