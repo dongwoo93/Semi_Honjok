@@ -67,7 +67,7 @@
 					<td id="no">No.</td>
 					<td id="header"></td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date">작성일</td>
 					<td id="view">조회</td>
 					<td id="like">추천</td>
@@ -79,7 +79,7 @@
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date">작성일</td>
 					<td id="view">조회</td>
 					<td id="like">추천</td>
@@ -93,7 +93,7 @@
 					<tbody id="notice">
 				<tr>
 					<td id="noticecheck"><input type="checkbox" name="nocheck">
-					<td id="noticeno">${item2.seq}</td>
+					<td id="noticeno">${item2.cat_seq}</td>
 					<td id="noticeheader"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
 					<td id="noticewriter"><b>${item2.writer}</b></td>
@@ -114,7 +114,7 @@
 						<tbody id="body_a">
 							<tr>
 								<td id="articlecheck"><input type="checkbox" class="chk" name="chk" id="chk" value="${item.seq}">
-								<td id="no">${item.seq}
+								<td id="no">${item.cat_seq}
 								<td id="header">${item.header}
 								<c:choose>
 								<c:when test="${item.commentcount > 0}">
@@ -151,9 +151,9 @@
 				<c:when test="${cat eq 'best'}">
 				<tr style="background-color:#1e73be; color:#ffffff; text-align: center;">
 					<td id="no">No.</td>
-					<td id="header"></td>
+					<td id="header">말머리</td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date">작성일</td>
 					<td id="view">조회</td>
 					<td id="like">추천</td>
@@ -164,7 +164,7 @@
 					<td id="no">No.</td>
 					<td id="header">말머리</td>
 					<td id="title">제목</td>
-					<td id="writer">작성자</td>
+					<td id="writer" style="text-align: left;">작성자</td>
 					<td id="date" style="text-align: center;">작성일</td>
 					<td id="view" style="text-align: center;">조회</td>
 					<td id="like">추천</td>
@@ -177,7 +177,7 @@
 					<c:forEach var="item2" items="${result2}">
 					<tbody id="notice">
 				<tr>
-					<td id="noticeno">${item2.seq}</td>
+					<td id="noticeno" style="text-align: center;">${item2.seq}</td>
 					<td id="noticeheader" style="text-align: center;"><b>${item2.header}</b></td>
 					<td id="noticetitle"><a href="Board_Controller.freeb?no=${item2.seq}&count=${item2.viewcount}" class="no-uline"><b>${item2.title}</b></a></td>
 					<td id="noticewriter"><b>${item2.writer}</b></td>
@@ -197,7 +197,7 @@
 					<c:forEach var="item" items="${result}">
 						<tbody id="body_a">
 							<tr>
-								<td id="no">${item.seq}
+								<td id="no" style="text-align: center;">${item.seq}
 								<td id="header" style="text-align: center;">${item.header}
 								<c:choose>
 								<c:when test="${item.commentcount > 0}">
@@ -247,7 +247,7 @@
 			<c:if test="${cat ne 'best'}">
 			<select name="select" id="select">
 				<option value="title">제목</option>
-				<option value="writer">작성자</option>
+				<option value="writer" style="text-align: left;">작성자</option>
 				<option value="content">내용</option>
 			</select>
 		<input type="search" id="search" name="search"><button type=button id="sbtn">검색</button>

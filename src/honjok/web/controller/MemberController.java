@@ -112,7 +112,7 @@ public class MemberController extends HttpServlet {
 							int num = 1;
 							request.setAttribute("num", num);
 							isRedirect = false;
-							dst = "memberout.jsp";
+							dst = "memberout2.jsp";
 					}
 				}
 				
