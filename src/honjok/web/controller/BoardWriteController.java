@@ -39,8 +39,6 @@ public class BoardWriteController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		//System.out.println(command);
-		//StringBuffer sb = new StringBuffer();
 		//String line = null;
 		String realPath = request.getServletContext().getRealPath("/files/");
 		// getServletContext()
@@ -48,8 +46,8 @@ public class BoardWriteController extends HttpServlet {
 		if(!f.exists()){
 			f.mkdir();
 		}
-		int maxSize = 1024 * 1024 * 100; // �ִ� ������
-		String enc = "utf8"; // �ѱ�
+		int maxSize = 1024 * 1024 * 100;
+		String enc = "utf8";
 		MultipartRequest mr = new MultipartRequest(request, realPath, maxSize, enc,
 				new DefaultFileRenamePolicy());
 		Enumeration<String> names = mr.getFileNames();
@@ -65,14 +63,6 @@ public class BoardWriteController extends HttpServlet {
 		String[] fileList = null;
 		Object obj;
 
-		//String contentsImg = mr.getParameter("contentsImg");
-		/*List<>
-		String[] splitImgName = contentsImg.split(".");
-
-		while() {
-
-		}
-		 */
 		String paramName = names.nextElement();
 		String originalFileName = mr.getOriginalFileName(paramName);
 		String systemFileName = mr.getFilesystemName(paramName);
