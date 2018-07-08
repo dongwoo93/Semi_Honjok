@@ -34,7 +34,7 @@
 				<tbody>
 					<c:forEach var="free" items="${free}" varStatus="status">
 						<tr>
-							<td class="td-contents" style="text-align: center;">${free.seq}</td>
+							<td class="td-contents" style="text-align: center;">${free.cat_seq}</td>
 							<td class="td-contents"><a href="Board_Controller.freeb?no=${free.seq}&count=${free.viewcount}"
 									class="no-uline">${free.title}</a></td>
 							<%-- <td class="td-contents">${free.contents}</td> --%>
@@ -67,7 +67,7 @@
 				<tbody>
 					<c:forEach var="qna" items="${qna}" varStatus="status">
 						<tr>
-							<td class="td-contents" style="text-align: center;">${qna.seq}</td>
+							<td class="td-contents" style="text-align: center;">${qna.cat_seq}</td>
 							<td class="td-contents"><a href="Board_Controller.freeb?no=${qna.seq}&count=${qna.viewcount}"
 									class="no-uline">${qna.title}</a></td>
 							<%-- <td class="td-contents">${qna.contents}</td> --%>
@@ -130,7 +130,7 @@
 				<tbody>
 					<c:forEach var="counsel" items="${counsel}" varStatus="status">
 						<tr>
-							<td class="td-contents" style="text-align: center;">${counsel.seq}</td>
+							<td class="td-contents" style="text-align: center;">${counsel.cat_seq}</td>
 							<td class="td-contents"><a href="Board_Controller.freeb?no=${counsel.seq}&count=${counsel.viewcount}"
 									class="no-uline">${counsel.title}</a></td>
 							<%-- <td class="td-contents">${counsel.contents}</td> --%>
@@ -162,7 +162,7 @@
 				<tbody>
 					<c:forEach var="tip" items="${tip}" varStatus="status">
 						<tr>
-							<td class="td-contents" style="text-align: center;">${tip.seq}</td>
+							<td class="td-contents" style="text-align: center;">${tip.cat_seq}</td>
 							<td class="td-contents"><a href="Board_Controller.freeb?no=${tip.seq}&count=${tip.viewcount}"
 									class="no-uline">${tip.title}</a></td>
 							<%-- <td class="td-contents">${tip.contents}</td> --%>

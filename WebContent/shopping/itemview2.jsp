@@ -116,10 +116,10 @@
 			<div class="vip-tabwrap uxetabs">
 				<div class="vip-tabnavi uxeposfix">
 					<ul>
-						<li class="uxetabs_menu"><a> 상세설명 </a></li>
+						<li class="uxetabs_menu"><a style="color: white;"> 상세설명 </a></li>
 					</ul>
 				</div>
-				<div>${result[0].product_contents}</div>
+				<div style="text-align: center">${result[0].product_contents}</div>
 			</div>
 
 		</div>

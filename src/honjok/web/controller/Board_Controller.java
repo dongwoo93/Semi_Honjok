@@ -168,11 +168,27 @@ public class Board_Controller extends HttpServlet {
     			String contents = mr.getParameter("summernote");
     			String header = mr.getParameter("header");
     			String ip = request.getRemoteAddr();
+    			String catseq = "0";
 				
     			BoardDAO board = new BoardDAO();
     			UserFilesDAO file = new UserFilesDAO();
     			String postSeq = board.getBoardSeq();
-    			BoardUserDTO boDto = new BoardUserDTO(Integer.parseInt(postSeq), category, title, id, contents, header, ip);
+    			
+    			if(category.equals("free")) {
+    				catseq = board.getFreeSeq();
+    			}else if(category.equals("qna")) {
+    				catseq = board.getQnaSeq();
+    			}else if(category.equals("coun")) {
+    				catseq = board.getCounSeq();
+    			}else if(category.equals("tip")) {
+    				catseq = board.getTipSeq();
+    			}
+
+    			BoardUserDTO boDto = new BoardUserDTO(Integer.parseInt(postSeq), Integer.parseInt(catseq), category, title, id, contents, header, ip);
+    			
+    			
+    			
+    			
     			int result = board.insertData(boDto);
     			
     			while(names.hasMoreElements()) {

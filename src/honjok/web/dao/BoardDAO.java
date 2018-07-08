@@ -28,6 +28,54 @@ public class BoardDAO {
 		return result;
 	}
 	
+	public String getFreeSeq() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_free_seq.nextval from dual";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
+	public String getQnaSeq() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_qna_seq.nextval from dual";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
+	public String getCounSeq() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_coun_seq.nextval from dual";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
+	public String getTipSeq() throws Exception {
+		Connection con = DBUtils.getConnection();
+		String sql = "select user_tip_seq.nextval from dual";
+		PreparedStatement pstat = con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		pstat.close();
+		con.close();
+		return result;
+	}
+	
 	public List<BoardUserDTO> selectFree() throws Exception {
 
 		Connection con = DBUtils.getConnection();
@@ -42,6 +90,7 @@ public class BoardDAO {
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
@@ -71,10 +120,12 @@ public class BoardDAO {
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
-			dto.setLike(rs.getInt(8));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
 			list.add(dto);
 		}
 		rs.close();
@@ -99,10 +150,12 @@ public class BoardDAO {
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
-			dto.setLike(rs.getInt(8));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
 			list.add(dto);
 		}
 		rs.close();
@@ -127,10 +180,12 @@ public class BoardDAO {
 		while(rs.next()) {
 			BoardUserDTO dto = new BoardUserDTO();
 			dto.setSeq(rs.getInt(1));
+			dto.setCat_seq(rs.getInt(2));
 			dto.setTitle(rs.getString(4));
 			dto.setWriter(rs.getString(5));
 			dto.setContents(rs.getString(6));
-			dto.setLike(rs.getInt(8));
+			dto.setViewcount(rs.getInt(8));
+			dto.setLike(rs.getInt(9));
 			list.add(dto);
 		}
 		rs.close();
@@ -143,7 +198,7 @@ public class BoardDAO {
 
 	public List<BoardUserDTO> selectBest() throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user) where num between 1 and 13";
+		String sql = "select * from (select board_user.*, row_number() over(order by user_like desc) as num from board_user where user_like > 10) where num between 1 and 13";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();
 		List<BoardUserDTO> result = new ArrayList<>();
@@ -328,17 +383,18 @@ public class BoardDAO {
 	
 	public int insertData(BoardUserDTO dto) throws Exception {
 		Connection con = DBUtils.getConnection();
-		String sql = "insert into board_user values(?,user_free_seq.nextval,?,?,?,?,?,default,default,sysdate,?)";
+		String sql = "insert into board_user values(?,?,?,?,?,?,?,default,default,sysdate,?)";
 		PreparedStatement pstat = con.prepareStatement(sql);
 		StringReader sr = new StringReader(dto.getContents());		
 		con.setAutoCommit(false);
 		pstat.setInt(1, dto.getSeq());
-		pstat.setString(2, dto.getCategory());
-		pstat.setString(3, dto.getTitle());
-		pstat.setString(4, dto.getWriter());
-		pstat.setCharacterStream(5, sr, dto.getContents().length());
-		pstat.setString(6, dto.getHeader());
-		pstat.setString(7, dto.getIp());
+		pstat.setInt(2, dto.getCat_seq());
+		pstat.setString(3, dto.getCategory());
+		pstat.setString(4, dto.getTitle());
+		pstat.setString(5, dto.getWriter());
+		pstat.setCharacterStream(6, sr, dto.getContents().length());
+		pstat.setString(7, dto.getHeader());
+		pstat.setString(8, dto.getIp());
 		int result = pstat.executeUpdate();
 		con.commit();
 		pstat.close();
