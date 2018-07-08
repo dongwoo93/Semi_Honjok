@@ -57,9 +57,7 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				/*for(int i =0; fileResult.size()>i;i++) {
-					System.out.println(result.get(i).getViewcount());
-				}*/
+
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/selectView.tip")) {
@@ -97,9 +95,6 @@ public class BoardTipController extends HttpServlet {
 				int upResult = dao.UpdateViewCount(seq, viewcount);
 				if(upResult > 0) {
 					result = dao.selectAllData(seq);
-					/*for(int i =0; result.size()>i;i++) {
-						System.out.println(result.get(i).getSubject());
-					}*/	
 					response.setCharacterEncoding("UTF-8");
 					request.setAttribute("result", result);
 					request.setAttribute("no", seq);
@@ -119,7 +114,6 @@ public class BoardTipController extends HttpServlet {
 					//../../../.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Semi_Honjok
 					String realPath = request.getServletContext().getRealPath("/files/");
 					File file = new File(realPath + "/"+ systemFileName);
-					System.out.println(file);
 					if(file.exists()){
 						if(file.delete()){
 							List<String> list = fileDAO.getNote_sysFileName(seq);
@@ -127,7 +121,6 @@ public class BoardTipController extends HttpServlet {
 								for(int i=0; i < list.size(); i++) {
 									String Path = request.getServletContext().getRealPath("/files/");
 									File file2 = new File(Path + "/"+ list.get(i));
-									System.out.println(i+"번" + file2);
 									if(file2.exists() ){
 										if(file2.delete()){
 										}
@@ -147,9 +140,6 @@ public class BoardTipController extends HttpServlet {
 				String seq = request.getParameter("seq");
 				AdminFilesDTO fileDTO = fileDAO.isExsitThum_sysFile(seq);
 				result = dao.selectAllData(seq);
-				/*for(int i =0; result.size()>i;i++) {
-					System.out.println(result.get(i).getSubject());
-				}*/
 
 				response.setCharacterEncoding("UTF-8");
 				request.setAttribute("result", result);
@@ -176,9 +166,6 @@ public class BoardTipController extends HttpServlet {
 				request.setAttribute("thumbnail", fileResult);
 				request.setAttribute("navi", navi);
 				request.setAttribute("page", currentPage);
-				/*for(int i =0; fileResult.size()>i;i++) {
-					System.out.println(fileResult.get(i).getThum_sysFileName());
-				}*/
 				isRedirect = false;
 				dst = "board/boardtip2.jsp";
 			}else if(command.equals("/searchtitle.tip")) {

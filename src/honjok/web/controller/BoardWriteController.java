@@ -82,22 +82,15 @@ public class BoardWriteController extends HttpServlet {
 						int fileResult = fileDAO.insertThumb_FileName(fileDTO);
 						if(fileResult > 0) {
 							if(stJson != null){
-								System.out.println("json 변환 들어옴");
-								System.out.println(stJson.toString());
 								obj = paser.parse(stJson);
-								System.out.println(obj);
 								JSONArray jsonArray = (JSONArray)obj;
-								System.out.println(jsonArray);
 								fileList = new String[jsonArray.size()];
-								System.out.println(fileList);
 								for(int j=0;j<fileList.length;j++){
 									fileList[j] = jsonArray.get(j).toString();
-									System.out.println("컨텐츠 파일 이름:" + fileList[j]);
 								}
 								int imgUpResult[] = fileDAO.insertContentsImg(seq, fileList);
 								for(int i=0;i<imgUpResult.length;i++) {
 									if(imgUpResult[i] > 0) {
-										System.out.println("이미지업 결과:" + imgUpResult[i]);
 									}
 								}
 							}
