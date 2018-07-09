@@ -31,8 +31,8 @@ public class MemberDAO {
 
 
 		rs.close();
-		con.close();
 		pstat.close();
+		con.close();
 
 		return b;
 
@@ -222,9 +222,10 @@ public class MemberDAO {
 			result = true;
 		}
 
+		
+		rs.close();
 		pstat.close();
 		con.close();
-		rs.close();
 
 		return result;
 	}

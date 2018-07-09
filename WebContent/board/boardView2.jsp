@@ -56,10 +56,35 @@
 			</c:otherwise>
 		</c:choose>
 	</span> <span class="col-md-8">조회수 ${result.viewcount}</span>
-	<span> 공유하기 <script type="text/javascript" src="http://share.naver.net/js/naver_sharebutton.js"></script> <script type="text/javascript"> new ShareNaver.makeButton({"type": "d"}); </script> </span>
+	<span>
+	<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+	<script type="text/javascript">
+	new ShareNaver.makeButton({"type": "e"});
+	</script>
+	</span>
+	
+	<!-- <input type="button" value="네이버공유하기" onclick="share(); return false"/>
+   <script>
+    function share() {
+
+    	var link = document.location.href;
+		var formtitle = '${result.title}'; 
+		link  = link.replace("localhost","192.168.20.36");
+      var url = encodeURIComponent(link);
+      alert(url);
+      var title = encodeURIComponent(formtitle);
+      
+      window.open('http://blog.naver.com/openapi/share?url='+url+'&title='+title, 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+		location.href("naverShare.jsp");
+    }
+  </script> -->
 	<!-- <button type="button" class="btn btn-outline-info"
 		onclick="$('html, body').stop().animate( { scrollTop : 0 } ); ">맨
+		
 		위로</button> -->
+	
+
+  	
 	<%-- </c:forEach> --%>
 	</div>
 	<div style="height: 130px;"></div>
