@@ -56,7 +56,7 @@
 					
 						<c:choose>
 						<c:when test="${result[0].portal ne null}">
-						<div>그냥 탈퇴될거임</div>
+						<div>간편 로그인 사용자는 별도 인증 없이 바로 탈퇴됩니다.</div>
 						<input type="hidden" name="id" value="${result[0].id}">
 						<button id="btn2" class="btn btn-secondary btn-lg pull-right" type="submit">회원탈퇴</button>
 						
