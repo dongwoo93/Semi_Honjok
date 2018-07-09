@@ -75,7 +75,7 @@ public class loginController extends HttpServlet {
 			}else if(command.equals("/naver.do")) {
 
 				String clientId = "0QWAu0ecnrYTQlD9z0JZ"; //���ø����̼� Ŭ���̾�Ʈ ���̵�";
-				String redirectURI = URLEncoder.encode("http://14.38.139.185:8080/SemiProject/NaverLogin", "UTF-8");
+				String redirectURI = URLEncoder.encode("http://192.168.20.36:8080/SemiProject/NaverLogin", "UTF-8");
 				SecureRandom random = new SecureRandom();
 				String state = new BigInteger(130, random).toString();
 				String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";

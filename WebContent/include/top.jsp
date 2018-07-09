@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>혼족닷컴</title>
+<title>hollo.com</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Hi+Melody"
@@ -105,7 +105,7 @@
       
       <li class="dropdown mx-2"><a id="shopping" href="shopmain.shop" class="catego nav-link">혼족쇼핑</a>
       	<ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="selectNaviSub.tip?category=혼족쇼핑&subject=쇼핑">쇼핑</a></li>
+				<li class="dropdown-item"><a href="shopmain.shop">쇼핑</a></li>
 		</ul>
       
       </li>
@@ -118,7 +118,7 @@
    	   </c:when>
    	   <c:otherwise>
    	   <li class="nav-item mx-3"><a href="mypage.jsp" class="nav-link">Mypage</a></li>
-      <li class="nav-item" id="logoutli" ><button type="button" class="nav-link" data-toggle="modal" data-target="#myModal" id="logoutbt" style="cursor:pointer; cursor: hand;">Logout</button></li>
+      <li class="nav-item" id="logoutli" ><button type="button" class="nav-link" id="logoutbt" style="cursor:pointer; cursor: hand;">Logout</button></li>
    	   </c:otherwise>
    	  </c:choose>
    </ul>

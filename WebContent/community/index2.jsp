@@ -176,7 +176,7 @@
 		<div class="wpb_wrapper"
 			style="text-align: center; display: inline-block; margin-right: 200px;">
 			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix"
-				onclick="location.href="#" style="cursor: pointer;">
+				onclick="location.href='selectNaviCat.tip?category=맛집'" style="cursor: pointer;">
 				<h3 class="bottom-title">혼족 맛집</h3>
 				<img src="images/레스토랑.png" class="iconimg" width="90px;" height="90px;">
 				<p></p>
@@ -202,7 +202,7 @@
 			style="text-align: center; display: inline-block; margin-right: 200px;">
 			
 			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix" 
-				onclick="location.href="#" style="cursor: pointer;">
+				onclick="location.href='shopmain.shop'" style="cursor: pointer;">
 				<h3 class="bottom-title">혼족 쇼핑</h3>
 				<img src="images/쇼핑.png" class="iconimg" width="90px;" height="90px;">
 				<p></p>
@@ -228,7 +228,7 @@
 		<div class="wpb_wrapper"
 			style="text-align: center; display: inline-block; margin-right: 200px;">
 			<div class="iconbox  iconbox-style-8 icon-color-accent color-dark clearfix" 
-				onclick="location.href="#" style="cursor: pointer;">
+				onclick="location.href='selectNaviCat.tip?category=여행'" style="cursor: pointer;">
 				<h3 class="bottom-title">혼족 여행</h3>
 				<img src="images/비행기.png" class="iconimg" width="90px;" height="90px;">
 				<p></p>
