@@ -56,6 +56,7 @@
 			</c:otherwise>
 		</c:choose>
 	</span> <span class="col-md-8">조회수 ${result.viewcount}</span>
+	<span>공유하기</span>
 	<span>
 	<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
 	<script type="text/javascript">
