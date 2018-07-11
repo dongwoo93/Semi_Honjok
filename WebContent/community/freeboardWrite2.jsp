@@ -5,7 +5,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
     <script type="text/javascript" src="js/freeboardWrite.js"></script>
     <div class="container">
-		<form action="boardWrite.freeb" method="post"
+		<form id="boardwrite" action="boardWrite.freeb" method="post"
 			enctype="multipart/form-data">
 			<div id="wrapper">
 			<div id="head1">말머리</div>
@@ -59,7 +59,7 @@
 			<input type="hidden" id="imgBackUp" name="contentsImg">
 			
 			<div id="btmbtn">
-				<button type="submit" class="btn btn-primary" id="writebt">작성</button>
+				<button type="button" class="btn btn-primary" id="writebt">작성</button>
 				<button type="button" class="btn btn-danger" id="cancelbt">취소</button>
 			</div>
 		</form>

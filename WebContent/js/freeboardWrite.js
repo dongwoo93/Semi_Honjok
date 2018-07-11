@@ -1,6 +1,18 @@
 var count = 1;
 
 $(document).ready(function(){
+	
+	$("#writebt").click(function() {
+		var title = $("#titleinput").val();
+		var content = $("#summernote").val();
+		
+		if(title != "" && content != "") {
+			$("#boardwrite").submit();
+		}else {
+			alert("내용을 입력해주세요");
+		}
+		
+	})
 	 
 	
 	$('#summernote').summernote({
